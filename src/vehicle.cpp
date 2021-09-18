@@ -4218,10 +4218,10 @@ bool vehicle::would_repair_prevent_flyable( vehicle_part &vp, Character &pc ) co
             //vpart_position vppos = vpart_position( const_cast<vehicle &>( *this ),
             //                                       index_of_part( const_cast<vehicle_part *>( &vp ) ) );
             //return !vppos.is_inside();
-            return false;
+            return false; // as long as the vehicle part 
         }
     } else {
-        return false;
+        return true;
     }
 }
 

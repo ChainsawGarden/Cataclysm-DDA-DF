@@ -1214,10 +1214,13 @@ void veh_interact::do_repair()
             }
         }
 
+        // "would repair prevent flyable" check
         bool would_prevent_flying = veh->would_repair_prevent_flyable( pt, player_character );
-        if( would_prevent_flying &&
-            !player_character.has_proficiency( proficiency_prof_aircraft_mechanic ) ) {
-            nmsg += _( "\n<color_yellow>You require the Airframe and Powerplant Mechanics proficiency to repair this part safely!</color>\n\n" );
+        
+        // this should only check if something would prevent flying; no other skills required.
+        if( would_prevent_flying ) {
+            //nmsg += _( "\n<color_yellow>You require the Airframe and Powerplant Mechanics proficiency to repair this part safely!</color>\n\n" );
+            nmsg += _( "\n<color_yellow>The repair would prevent the aircraft from flying!</color>\n\n" );
         }
 
         const nc_color desc_color = pt.is_broken() ? c_dark_gray : c_light_gray;
@@ -1231,6 +1234,8 @@ void veh_interact::do_repair()
 
         const std::string action = main_context.handle_input();
         msg.reset();
+        
+        // if the action is to repair, and the action has been confirmed...
         if( ( action == "REPAIR" || action == "CONFIRM" ) && ok ) {
             // Modifying a vehicle with rotors will make in not flightworthy (until we've got a better model)
             if( would_prevent_flying ) {
