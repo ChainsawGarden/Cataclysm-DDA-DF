@@ -4225,10 +4225,10 @@ bool vehicle::would_repair_prevent_flyable( vehicle_part &vp, Character &pc ) co
 // Checks whether the removal of a part prevents flyability.
 bool vehicle::would_removal_prevent_flyable( vehicle_part &vp, Character &pc ) const
 {
-    if( flyable && !rotors.empty() && !vp.info().has_flag( "SIMPLE_PART" ) ) { // if flyable, the rotors aren't empty, and the part doesn't have the flag "simple part" flag
-        return !pc.has_proficiency( proficiency_prof_aircraft_mechanic );
-    } else { // if it's either not flyable, the rotors aren't empty, or the part doesn't have the flag "SIMPLE_PART"
-        return false; // It doesn't meet the criteria for being flyable, so return false.
+    if( flyable && !rotors.empty() && vp.info().has_flag( "SIMPLE_PART" ) ) { // if flyable, the rotors aren't empty, and the part doesn't have the flag "simple part" flag
+        return false; // return false, as the removal would not prevent flyability.
+    } else { // If the vehicle is either not flyable, the rotors aren't empty, or the part doesn't have the flag "SIMPLE_PART"...
+        return true; // It doesn't meet the criteria for being flyable, so return true, as it would prevent flyability.
     }
 }
 
