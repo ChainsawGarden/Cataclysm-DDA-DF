@@ -4196,26 +4196,29 @@ int vehicle::get_z_change() const
     return requested_z_change;
 }
 
+// Checks if the installation would prevent flyability.
 bool vehicle::would_install_prevent_flyable( const vpart_info &vpinfo, Character &pc ) const
 {
-    if( flyable && !rotors.empty() && !( vpinfo.has_flag( "SIMPLE_PART" ) ||
-                                         vpinfo.has_flag( "AIRCRAFT_REPAIRABLE_NOPROF" ) ) ) {
-        return !pc.has_proficiency( proficiency_prof_aircraft_mechanic );
+    // If the vehicle is flyable, has rotors, and has the flag "simple part"
+    if( flyable && !rotors.empty() && vpinfo.has_flag( "SIMPLE_PART" ) ) {
+        return false; // all of the criteria is met, and it is therefore capable of flight.
     } else {
-        return false;
+        return true; // one of the criteria is false, therefore the installation would prevent flyability.
     }
 }
 
+// Checks if a repair would prevent flyability
 bool vehicle::would_repair_prevent_flyable( vehicle_part &vp, Character &pc ) const
 {
-    if( flyable && !rotors.empty() ) { // if flyable and the rotors are not empty
-        if( vp.info().has_flag( "SIMPLE_PART" ) ||
-            vp.info().has_flag( "AIRCRAFT_REPAIRABLE_NOPROF" ) ) {
-            vpart_position vppos = vpart_position( const_cast<vehicle &>( *this ),
-                                                   index_of_part( const_cast<vehicle_part *>( &vp ) ) );
-            return !vppos.is_inside();
-        } else {
-            return !pc.has_proficiency( proficiency_prof_aircraft_mechanic );
+    if( flyable && !rotors.empty() ) { // if flyable and there are rotors
+
+        // if the part is a simple part and has an "aircraft_repairable_noprof" flag....
+        if( vp.info().has_flag( "SIMPLE_PART" ) ) {
+            // i assume this checks if the part that was repaired was outside
+            //vpart_position vppos = vpart_position( const_cast<vehicle &>( *this ),
+            //                                       index_of_part( const_cast<vehicle_part *>( &vp ) ) );
+            //return !vppos.is_inside();
+            return false;
         }
     } else {
         return false;
@@ -6683,18 +6686,20 @@ int vehicle::damage_direct( int p, int dmg, damage_type type )
         return dmg;
     }
 
-    dmg -= std::min<int>( dmg, part_info( p ).damage_reduction[ static_cast<int>( type ) ] );
-    int dres = dmg - parts[p].hp();
-    if( mod_hp( parts[ p ], 0 - dmg, type ) ) {
-        if( is_flyable() && !rotors.empty() && !parts[p].has_flag( VPFLAG_SIMPLE_PART ) ) {
+    // block of code that causes a vehicle to not be flyable when a part's broken.
+    dmg -= std::min<int>( dmg, part_info( p ).damage_reduction[ static_cast<int>( type ) ] ); // increase the damage amount based off of a part's damage reduction values
+    int dres = dmg - parts[p].hp(); // dres == something something something damage
+    if( mod_hp( parts[ p ], 0 - dmg, type ) ) { // What is mod_hp? Does it modify the hp (health points) of the part in question, and check if it goes over health bounds?
+        // if flyable, the rotors aren't empty, and the part doesn't have a "vpflag_simple_part" flag...
+        if( is_flyable() && !rotors.empty() && !parts[p].has_flag( VPFLAG_SIMPLE_PART ) ) { 
             // If we break a part, we can no longer fly the vehicle.
-            set_flyable( false );
+            set_flyable( false ); // since we broke a part, flyability is finito, no longer possible.
         }
 
-        insides_dirty = true;
-        pivot_dirty = true;
+        insides_dirty = true; // what does dirty mean
+        pivot_dirty = true; // what is a pivot, and what does it mean when it's dirty?
 
-        // destroyed parts lose any contained fuels, battery charges or ammo
+        // destroyed parts lose (part of, right? -Samba) any contained fuels, battery charges or ammo
         leak_fuel( parts [ p ] );
 
         for( const item &e : parts[p].items ) {
@@ -6709,26 +6714,27 @@ int vehicle::damage_direct( int p, int dmg, damage_type type )
         refresh();
     }
 
+    // if the part is a fuel store...
     if( parts[p].is_fuel_store() ) {
-        explode_fuel( p, type );
-    } else if( parts[ p ].is_broken() && part_flag( p, "UNMOUNT_ON_DAMAGE" ) ) {
+        explode_fuel( p, type ); // BLOW DAT BISH UP
+    } else if( parts[ p ].is_broken() && part_flag( p, "UNMOUNT_ON_DAMAGE" ) ) { // If the part is broken and has the flag 'UNMOUNT_ON_DAMAGE'...
         here.spawn_item( global_part_pos3( p ), part_info( p ).base_item, 1, 0, calendar::turn,
-                         part_info( p ).base_item.obj().damage_max() - 1 );
-        monster *mon = get_monster( p );
-        if( mon != nullptr && mon->has_effect( effect_harnessed ) ) {
-            mon->remove_effect( effect_harnessed );
+                         part_info( p ).base_item.obj().damage_max() - 1 ); // i would assume this drops the part, like, *pop* it's on the ground now.
+        monster *mon = get_monster( p ); // monster object
+        if( mon != nullptr && mon->has_effect( effect_harnessed ) ) { // if there is an actual monster and it is harnessed (i assume this means it's buckled in to the vehicle)...
+            mon->remove_effect( effect_harnessed ); // un-harness the monster; harness is an effect btw. TIL i guess.
         }
-        if( part_flag( p, "TOW_CABLE" ) ) {
-            invalidate_towing( true );
+        if( part_flag( p, "TOW_CABLE" ) ) { // if the part is a towing cable...
+            invalidate_towing( true ); // it is no longer towing
         } else {
-            remove_part( p );
+            remove_part( p ); // if its not, then remove the part.
         }
     }
 
-    return std::max( dres, 0 );
+    return std::max( dres, 0 ); // what is dres? i assume this finds a maximum number out of dres and 0.
 }
 
-void vehicle::leak_fuel( vehicle_part &pt )
+void vehicle::leak_fuel( vehicle_part &pt ) // leak fuel
 {
     // only liquid fuels from non-empty tanks can leak out onto map tiles
     if( !pt.is_tank() || pt.ammo_remaining() <= 0 ) {
@@ -6737,8 +6743,8 @@ void vehicle::leak_fuel( vehicle_part &pt )
 
     map &here = get_map();
     // leak in random directions but prefer closest tiles and avoid walls or other obstacles
-    std::vector<tripoint> tiles = closest_points_first( global_part_pos3( pt ), 1 );
-    tiles.erase( std::remove_if( tiles.begin(), tiles.end(), [&here]( const tripoint & e ) {
+    std::vector<tripoint> tiles = closest_points_first( global_part_pos3( pt ), 1 ); // i think this creates a coordinate object for tiles
+    tiles.erase( std::remove_if( tiles.begin(), tiles.end(), [&here]( const tripoint & e ) { // idk what tiles.erase does
         return !here.passable( e );
     } ), tiles.end() );
 
@@ -6766,6 +6772,7 @@ std::map<itype_id, int> vehicle::fuels_left() const
     return result;
 }
 
+// checks if a vehicle is foldable
 bool vehicle::is_foldable() const
 {
     for( const vpart_reference &vp : get_all_parts() ) {
@@ -6776,6 +6783,7 @@ bool vehicle::is_foldable() const
     return true;
 }
 
+// restore from folding?
 bool vehicle::restore( const std::string &data )
 {
     std::istringstream veh_data( data );
@@ -6797,6 +6805,7 @@ bool vehicle::restore( const std::string &data )
     return true;
 }
 
+// get points.. i assume this is talking about coordinates.
 const std::set<tripoint> &vehicle::get_points( const bool force_refresh ) const
 {
     if( force_refresh || occupied_cache_pos != global_pos3() ||
