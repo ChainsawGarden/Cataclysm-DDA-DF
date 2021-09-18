@@ -378,7 +378,7 @@ static cata::optional<debug_menu_index> debug_menu_uilist( bool display_all_entr
 
     std::string msg;
     if( display_all_entries ) {
-        msg = _("Debug Functions - WARNING!\nSpoilers ahead.  Use of any function within this menu\nwill also result in achievements being disabled.\nUse of this menu for non-debug reasons is considered cheating.\nUser discretion is advised.")
+        msg = _("Debug Functions - WARNING!\nSpoilers ahead.  Use of any function within this menu\nwill also result in achievements being disabled.\nUse of this menu for non-debug reasons is considered cheating.\nUser discretion is advised.");
     } else {
         msg = _( "Debug Functions" );
     }
