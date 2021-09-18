@@ -990,18 +990,22 @@ void veh_interact::do_install()
                     default:
                         break;
                 }
+                // #OLDCODE
                 // Modifying a vehicle with rotors will make in not flightworthy
                 // (until we've got a better model)
                 // It can only be the player doing this - an npc won't work well with query_yn
-                if( veh->would_install_prevent_flyable( *sel_vpart_info, player_character ) ) {
+                // Quieted boomer code so that no installs will affect flyability.
+                /*
+                if( veh->would_install_prevent_flyable( *sel_vpart_info, player_character ) ) { // if the install would prevent flyability.. make the vehicle not flyable anymore.
                     if( query_yn(
                             _( "Installing this part will mean that this vehicle is no longer "
                                "flightworthy.  Continue?" ) ) ) {
-                        veh->set_flyable( false );
+                        veh->set_flyable( false ); // as the install would no longer make the vehicle flightworthy, make it not flyable anymore.
                     } else {
                         return;
                     }
                 }
+                */
                 if( veh->is_foldable() && !sel_vpart_info->has_flag( "FOLDABLE" ) &&
                     !query_yn( _( "Installing this part will make the vehicle unfoldable. "
                                   " Continue?" ) ) ) {
