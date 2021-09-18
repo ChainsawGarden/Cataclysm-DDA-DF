@@ -378,7 +378,7 @@ static cata::optional<debug_menu_index> debug_menu_uilist( bool display_all_entr
 
     std::string msg;
     if( display_all_entries ) {
-        msg = _( "Debug Functions - Using these will cheat not only the game, but yourself.\nYou won't grow.  You won't improve.\nTaking this shortcut will gain you nothing.  Your victory will be hollow.\nNothing will be risked and nothing will be gained." );
+        msg = _("Debug Functions - WARNING!\nSpoilers ahead.  Use of any function within this menu\nwill also result in achievements being disabled.\nUse of this menu for non-debug reasons is considered cheating.\nUser discretion is advised.")
     } else {
         msg = _( "Debug Functions" );
     }
