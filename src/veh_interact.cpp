@@ -963,7 +963,7 @@ void veh_interact::do_install()
     refresh_parts_list( can_mount );
 
     // infinite loop (that checks for repairs, installations, and handles all of those, and breaks when done)...
-    while( true ) { 
+    while( true ) {
         // filtered list can be empty
         sel_vpart_info = tab_vparts.empty() ? nullptr : tab_vparts[pos];
 
@@ -1004,22 +1004,6 @@ void veh_interact::do_install()
                     default:
                         break;
                 }
-                // #OLDCODE
-                // Modifying a vehicle with rotors will make in not flightworthy
-                // (until we've got a better model)
-                // It can only be the player doing this - an npc won't work well with query_yn
-                // Quieted boomer code so that no installs will affect flyability.
-                /*
-                if( veh->would_install_prevent_flyable( *sel_vpart_info, player_character ) ) { // if the install would prevent flyability.. make the vehicle not flyable anymore.
-                    if( query_yn(
-                            _( "Installing this part will mean that this vehicle is no longer "
-                               "flightworthy.  Continue?" ) ) ) {
-                        veh->set_flyable( false ); // as the install would no longer make the vehicle flightworthy, make it not flyable anymore.
-                    } else {
-                        return;
-                    }
-                }
-                */
 
                // Let's REALLY flip the script, and make it so that if a rotor is installed, the part would be flyable.
                if( veh->would_install_make_flyable( *sel_vpart_info, player_character ) ) {
@@ -1248,7 +1232,6 @@ void veh_interact::do_repair()
         
         // this should only check if something would prevent flying; no other skills required.
         if( would_prevent_flying ) {
-            //nmsg += _( "\n<color_yellow>You require the Airframe and Powerplant Mechanics proficiency to repair this part safely!</color>\n\n" );
             nmsg += _( "\n<color_yellow>The repair would prevent the aircraft from flying!</color>\n\n" );
         }
 
