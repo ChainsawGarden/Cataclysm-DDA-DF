@@ -4197,7 +4197,7 @@ int vehicle::get_z_change() const
 }
 
 // Checks if the installation would prevent flyability.
-bool vehicle::would_install_prevent_flyable( const vpart_info &vpinfo, Character &pc ) const
+bool vehicle::would_install_prevent_flyable( const vpart_info &vpinfo ) const
 {
     // If the vehicle is flyable, has rotors, and has the flag "simple part"
     if( flyable && !rotors.empty() && vpinfo.has_flag( "SIMPLE_PART" ) ) {
@@ -4208,7 +4208,7 @@ bool vehicle::would_install_prevent_flyable( const vpart_info &vpinfo, Character
 }
 
 // Checks if the installation would make the vehicle flyable.
-bool vehicle::would_install_make_flyable( const vpart_info &vpinfo, Character &pc ) const
+bool vehicle::would_install_make_flyable( const vpart_info &vpinfo ) const
 {
     // if the vehicle part (vpinfo) has the flag "ROTOR"
     if( vpinfo.has_flag( "ROTOR" ) ) {
@@ -4218,8 +4218,8 @@ bool vehicle::would_install_make_flyable( const vpart_info &vpinfo, Character &p
     }
 }
 
-// Checks if a repair would prevent flyability
-bool vehicle::would_repair_prevent_flyable( vehicle_part &vp, Character &pc ) const
+// Checks if a repair would prevent flyability. Might just remove this outright.
+bool vehicle::would_repair_prevent_flyable( vehicle_part &vp ) const
 {
     if( flyable && !rotors.empty() ) { // if flyable and there are rotors
 
@@ -4229,7 +4229,9 @@ bool vehicle::would_repair_prevent_flyable( vehicle_part &vp, Character &pc ) co
             //vpart_position vppos = vpart_pos ition( const_cast<vehicle &>( *this ),
             //                                       index_of_part( const_cast<vehicle_part *>( &vp ) ) );
             //return !vppos.is_inside();
-            return false; // as long as the vehicle part 
+            return false; // as long as the vehicle part is installable, no, it wouldn't prevent flyability.
+        } else {
+            return true; // if there is no simple part that is a rotor, then yes, it would prevent flying
         }
     } else {
         return true;
@@ -4237,7 +4239,7 @@ bool vehicle::would_repair_prevent_flyable( vehicle_part &vp, Character &pc ) co
 }
 
 // Checks whether the removal of a part prevents flyability.
-bool vehicle::would_removal_prevent_flyable( vehicle_part &vp, Character &pc ) const
+bool vehicle::would_removal_prevent_flyable( vehicle_part &vp ) const
 {
     if( flyable && !rotors.empty() && vp.info().has_flag( "SIMPLE_PART" ) ) { // if flyable, the rotors aren't empty, and the part doesn't have the flag "simple part" flag
         return false; // return false, as the removal would not prevent flyability.

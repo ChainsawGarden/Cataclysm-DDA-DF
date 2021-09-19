@@ -1006,10 +1006,10 @@ void veh_interact::do_install()
                 }
 
                // Let's REALLY flip the script, and make it so that if a rotor is installed, the part would be flyable.
-               if( veh->would_install_make_flyable( *sel_vpart_info, player_character ) ) {
+               if( veh->would_install_make_flyable( *sel_vpart_info ) ) {
                    if( query_yn( // if the query results in a true result, then set the vehicle to flyable.
                        _( "Installation of this rotor will make this vehicle "
-                          "flight-capable, flightworthy, and badass. Continue?" ) ) ) {
+                          "flight-capable, flightworthy, and badass. Continue?" ) ) ) { // may soon get rid of this line for ease of play reasons
                               veh->set_flyable( true ); // make the vehicle flyable
                     } else { // if the query is false...
                         return; // return nothing. The query was false so do absolutely nothing. Like a couch potato!
@@ -1228,7 +1228,7 @@ void veh_interact::do_repair()
         }
 
         // "would repair prevent flyable" check
-        bool would_prevent_flying = veh->would_repair_prevent_flyable( pt, player_character );
+        bool would_prevent_flying = veh->would_repair_prevent_flyable( pt );
         
         // this should only check if something would prevent flying; no other skills required.
         if( would_prevent_flying ) {
@@ -1892,7 +1892,7 @@ void veh_interact::do_remove()
 
             // Modifying a vehicle with rotors will make in not flightworthy (until we've got a better model)
             // It can only be the player doing this - an npc won't work well with query_yn
-            if( veh->would_removal_prevent_flyable( veh->part( part ), player_character ) ) {
+            if( veh->would_removal_prevent_flyable( veh->part( part ) ) ) {
                 if( query_yn(
                         _( "Removing this part will mean that this vehicle is no longer flightworthy.  Continue?" ) ) ) {
                     veh->set_flyable( false );
