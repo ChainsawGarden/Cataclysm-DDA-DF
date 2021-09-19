@@ -953,7 +953,7 @@ void veh_interact::do_install()
     // sets a position, installation information, and gets the player character
     int &pos = install_info->pos = 0;
     size_t &tab = install_info->tab = 0;
-    avatar &player_character = get_avatar();
+    // avatar &player_character = get_avatar(); unused.
 
     // gets a list of parts that needs to be refreshed.. i think
     std::vector<const vpart_info *> &tab_vparts = install_info->tab_vparts;
