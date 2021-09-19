@@ -904,7 +904,7 @@ static void sort_uilist_entries_by_line_drawing( std::vector<uilist_entry> &shap
     } );
 }
 
-// Perform a part installtion on the vehicle.
+// Perform a part installation on the vehicle.
 void veh_interact::do_install()
 {
     task_reason reason = cant_do( 'i' );
