@@ -907,64 +907,76 @@ static void sort_uilist_entries_by_line_drawing( std::vector<uilist_entry> &shap
 // Perform a part installation on the vehicle.
 void veh_interact::do_install()
 {
-    task_reason reason = cant_do( 'i' );
+    task_reason reason = cant_do( 'i' ); // checks if the player can't do a command (i assume 'i' means 'install')
 
+    // if the reason why the player can't do 'i' is because the target is invalid
     if( reason == task_reason::INVALID_TARGET ) {
         msg = _( "Cannot install any part here." );
         return;
     }
 
+    // choose new part to install here block of code; var is called title
     restore_on_out_of_scope<cata::optional<std::string>> prev_title( title );
     title = _( "Choose new part to install here:" );
 
+    // i think this gathers previous installation information
     restore_on_out_of_scope<std::unique_ptr<install_info_t>> prev_install_info( std::move(
                 install_info ) );
     install_info = std::make_unique<install_info_t>();
 
+    // user filter stuff
     std::string filter; // The user specified filter
     std::vector<vpart_category> &tab_list = install_info->tab_list = {};
     std::vector <std::function<bool( const vpart_info * )>> tab_filters;
 
+    // iterate through vehicle part categories..
     for( const vpart_category &cat : vpart_category::all() ) {
         tab_list.push_back( cat );
-        if( cat.get_id() == "_all" ) {
+        if( cat.get_id() == "_all" ) { // if the id is 'all'
             tab_filters.push_back( []( const vpart_info * ) {
                 return true;
             } );
-        } else if( cat.get_id() == "_filter" ) {
+        } else if( cat.get_id() == "_filter" ) { // if the id is 'filter'
             tab_filters.push_back( [&filter]( const vpart_info * p ) {
                 return lcmatch( p->name(), filter );
             } );
-        } else {
+        } else { // if it's not all nor filter...
             tab_filters.push_back( [ &, cat = cat.get_id()]( const vpart_info * p ) {
                 return p->has_category( cat );
             } );
         }
     }
 
+    // creates / gets a ui adaptor..
     shared_ptr_fast<ui_adaptor> current_ui = create_or_get_ui_adaptor();
 
+    // sets a position, installation information, and gets the player character
     int &pos = install_info->pos = 0;
     size_t &tab = install_info->tab = 0;
     avatar &player_character = get_avatar();
 
+    // gets a list of parts that needs to be refreshed.. i think
     std::vector<const vpart_info *> &tab_vparts = install_info->tab_vparts;
     auto refresh_parts_list = [&]( std::vector<const vpart_info *> parts ) {
         std::copy_if( parts.begin(), parts.end(), std::back_inserter( tab_vparts ), tab_filters[tab] );
     };
     refresh_parts_list( can_mount );
 
-    // while true psuedoinfinite loop...
+    // infinite loop (that checks for repairs, installations, and handles all of those, and breaks when done)...
     while( true ) { 
         // filtered list can be empty
         sel_vpart_info = tab_vparts.empty() ? nullptr : tab_vparts[pos];
 
+        // checks if we can install part
         bool can_install = update_part_requirements();
         ui_manager::redraw();
 
+        // gets action from handling input
         const std::string action = main_context.handle_input();
         msg.reset();
-        if( action == "FILTER" ) {
+
+        // check actions
+        if( action == "FILTER" ) { // filter action
             string_input_popup()
             .title( _( "Search for part" ) )
             .width( 50 )
@@ -973,13 +985,11 @@ void veh_interact::do_install()
             .edit( filter );
             tab = tab_filters.size() - 1; // Move to the user filter tab.
         }
-        if( action == "REPAIR" ) {
+        if( action == "REPAIR" ) { // repair action
             filter.clear();
             tab = 0;
         }
-
-        // if we chose to install, or we confirmed said action...
-        if( action == "INSTALL" || action == "CONFIRM" ) {
+        if( action == "INSTALL" || action == "CONFIRM" ) { // if we chose to install, or we confirmed to filter or repair...
             if( can_install ) { // if we can install the part...
                 switch( reason ) { // let's go through all the reasons why i can't install..
                     case task_reason::LOW_MORALE: // low morale
@@ -1010,6 +1020,17 @@ void veh_interact::do_install()
                     }
                 }
                 */
+
+               // Let's REALLY flip the script, and make it so that if a rotor is installed, the part would be flyable.
+               if( veh->would_install_make_flyable( *sel_vpart_info, player_character ) ) {
+                   if( query_yn( // if the query results in a true result, then set the vehicle to flyable.
+                       _( "Installation of this rotor will make this vehicle"
+                          "flight-capable, flightworthy, and badass. Continue?" ) ) ) {
+                              veh->set_flyable( true ); // make the vehicle flyable
+                    } else { // if the query is false...
+                        return; // return nothing. The query was false so do absolutely nothing. Like a couch potato!
+                    }
+               }
 
                // if the vehicle is foldable, the part doesn't have a foldable flag, and the prompt is False / no
                 if( veh->is_foldable() && !sel_vpart_info->has_flag( "FOLDABLE" ) &&

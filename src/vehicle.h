@@ -1396,6 +1396,8 @@ class vehicle
         bool would_install_prevent_flyable( const vpart_info &vpinfo, Character &pc ) const;
         bool would_removal_prevent_flyable( vehicle_part &vp, Character &pc ) const;
         bool would_repair_prevent_flyable( vehicle_part &vp, Character &pc ) const;
+        // Let's flip the script and check if installing this part would make the vehicle flyable.
+        bool would_install_make_flyable( const vpart_info &vpinfo, Character &pc ) const;
         /**
          * Traction coefficient of the vehicle.
          * 1.0 on road. Outside roads, depends on mass divided by wheel area
