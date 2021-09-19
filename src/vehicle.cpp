@@ -4207,6 +4207,17 @@ bool vehicle::would_install_prevent_flyable( const vpart_info &vpinfo, Character
     }
 }
 
+// Checks if the installation would make the vehicle flyable.
+bool vehicle::would_install_make_flyable( const vpart_info &vpinfo, Character &pc ) const
+{
+    // if the vehicle part (vpinfo) has the flag "ROTOR"
+    if( vpinfo.has_flag( "ROTOR" ) ) {
+        return true; // the part is a rotor
+    } else {
+        return false; // the part is not a rotor and would therefore *not* make the vehicle capable of flight.
+    }
+}
+
 // Checks if a repair would prevent flyability
 bool vehicle::would_repair_prevent_flyable( vehicle_part &vp, Character &pc ) const
 {
@@ -4215,7 +4226,7 @@ bool vehicle::would_repair_prevent_flyable( vehicle_part &vp, Character &pc ) co
         // if the part is a simple part and has an "aircraft_repairable_noprof" flag....
         if( vp.info().has_flag( "SIMPLE_PART" ) ) {
             // i assume this checks if the part that was repaired was outside
-            //vpart_position vppos = vpart_position( const_cast<vehicle &>( *this ),
+            //vpart_position vppos = vpart_pos ition( const_cast<vehicle &>( *this ),
             //                                       index_of_part( const_cast<vehicle_part *>( &vp ) ) );
             //return !vppos.is_inside();
             return false; // as long as the vehicle part 
