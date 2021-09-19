@@ -69,7 +69,7 @@ vehicle_part &most_repairable_part( vehicle &veh, Character &who, bool only_repa
             continue;
         }
 
-        if( veh.would_repair_prevent_flyable( vpr.part(), who ) ) {
+        if( veh.would_repair_prevent_flyable( vpr.part() ) ) {
             continue;
         }
 
