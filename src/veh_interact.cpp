@@ -904,6 +904,7 @@ static void sort_uilist_entries_by_line_drawing( std::vector<uilist_entry> &shap
     } );
 }
 
+// Perform a part installtion on the vehicle.
 void veh_interact::do_install()
 {
     task_reason reason = cant_do( 'i' );
@@ -953,7 +954,8 @@ void veh_interact::do_install()
     };
     refresh_parts_list( can_mount );
 
-    while( true ) {
+    // while true psuedoinfinite loop...
+    while( true ) { 
         // filtered list can be empty
         sel_vpart_info = tab_vparts.empty() ? nullptr : tab_vparts[pos];
 
@@ -975,16 +977,18 @@ void veh_interact::do_install()
             filter.clear();
             tab = 0;
         }
+
+        // if we chose to install, or we confirmed said action...
         if( action == "INSTALL" || action == "CONFIRM" ) {
-            if( can_install ) {
-                switch( reason ) {
-                    case task_reason::LOW_MORALE:
+            if( can_install ) { // if we can install the part...
+                switch( reason ) { // let's go through all the reasons why i can't install..
+                    case task_reason::LOW_MORALE: // low morale
                         msg = _( "Your morale is too low to construct…" );
                         return;
-                    case task_reason::LOW_LIGHT:
+                    case task_reason::LOW_LIGHT: // too dark
                         msg = _( "It's too dark to see what you are doing…" );
                         return;
-                    case task_reason::MOVING_VEHICLE:
+                    case task_reason::MOVING_VEHICLE: // vehicle is moving
                         msg = _( "You can't install parts while driving." );
                         return;
                     default:
@@ -1006,11 +1010,15 @@ void veh_interact::do_install()
                     }
                 }
                 */
+
+               // if the vehicle is foldable, the part doesn't have a foldable flag, and the prompt is False / no
                 if( veh->is_foldable() && !sel_vpart_info->has_flag( "FOLDABLE" ) &&
                     !query_yn( _( "Installing this part will make the vehicle unfoldable. "
                                   " Continue?" ) ) ) {
                     return;
                 }
+
+                // if we decided to install a part that would make the vehicle unfoldable...
                 const auto &shapes =
                     vpart_shapes[ sel_vpart_info->name() + sel_vpart_info->base_item.str() ];
                 int selected_shape = -1;
@@ -1235,7 +1243,7 @@ void veh_interact::do_repair()
         const std::string action = main_context.handle_input();
         msg.reset();
         
-        // if the action is to repair, and the action has been confirmed...
+        // if the action is to repair, or the action has been confirmed...
         if( ( action == "REPAIR" || action == "CONFIRM" ) && ok ) {
             // Modifying a vehicle with rotors will make in not flightworthy (until we've got a better model)
             if( would_prevent_flying ) {
@@ -1264,9 +1272,9 @@ void veh_interact::do_repair()
                 sel_cmd = 'r';
                 break;
             }
-        } else if( action == "QUIT" ) {
+        } else if( action == "QUIT" ) { // if player quit the dialogue box
             break;
-        } else {
+        } else { // otherwise, if the action wasn't to compare, nor confirm, and we didn't quit..
             move_in_list( pos, action, need_repair.size() );
         }
     }
