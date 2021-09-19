@@ -1024,7 +1024,7 @@ void veh_interact::do_install()
                // Let's REALLY flip the script, and make it so that if a rotor is installed, the part would be flyable.
                if( veh->would_install_make_flyable( *sel_vpart_info, player_character ) ) {
                    if( query_yn( // if the query results in a true result, then set the vehicle to flyable.
-                       _( "Installation of this rotor will make this vehicle"
+                       _( "Installation of this rotor will make this vehicle "
                           "flight-capable, flightworthy, and badass. Continue?" ) ) ) {
                               veh->set_flyable( true ); // make the vehicle flyable
                     } else { // if the query is false...
