@@ -679,7 +679,6 @@
     "subtype": "distribution",
     "entries": [
       { "item": "book_nonf_soft_psych_paranoia", "prob": 1 },
-      { "item": "book_nonf_soft_psych_psycolo", "prob": 1 },
       { "item": "book_nonf_soft_psych_psycstlk", "prob": 1 },
       { "item": "book_nonf_soft_psych_adrugds", "prob": 1 },
       { "item": "book_nonf_soft_psych_arteatds", "prob": 1 },
