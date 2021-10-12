@@ -208,17 +208,6 @@
     "relative": { "chapters": -6, "fun": -1, "intelligence": 3 }
   },
   {
-    "id": "book_nonf_soft_psych_psycolo",
-    "type": "BOOK",
-    "name": { "str": "Psychoanalysis and Colonialism", "str_pl": "copies of Psychoanalysis and Colonialism" },
-    "description": "Freud referred to women's sexuality as a \"dark continent\" for psychoanalysis, drawing on colonial use of the same phrase to refer to Africa.  This book details how the problematic universalism of psychoanalysis led theorists to reject its relevance for postcolonial critique.",
-    "weight": "454 g",
-    "volume": "734 ml",
-    "time": "30 m",
-    "copy-from": "book_nonf_soft_tpl",
-    "relative": { "fun": -1, "intelligence": 3 }
-  },
-  {
     "id": "book_nonf_soft_psych_psycstlk",
     "type": "BOOK",
     "name": { "str": "The Psychology of Stalking", "str_pl": "copies of The Psychology of Stalking" },

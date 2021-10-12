@@ -1892,7 +1892,7 @@ void veh_interact::do_remove()
 
             // Modifying a vehicle with rotors will make in not flightworthy (until we've got a better model)
             // It can only be the player doing this - an npc won't work well with query_yn
-            if( veh->would_removal_prevent_flyable( veh->part( part ) ) ) {
+            if( veh->would_removal_prevent_flyable( veh->part( part ) ) ) { // todo: we need to check if it's flyable first, then check if the removal would prevent flyability
                 if( query_yn(
                         _( "Removing this part will mean that this vehicle is no longer flightworthy.  Continue?" ) ) ) {
                     veh->set_flyable( false );
