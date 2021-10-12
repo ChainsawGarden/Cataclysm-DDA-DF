@@ -1250,7 +1250,7 @@ void veh_interact::do_repair()
         // if the action is to repair, or the action has been confirmed...
         if( ( action == "REPAIR" || action == "CONFIRM" ) && ok ) {
             // Modifying a vehicle with rotors will make it not flightworthy (until we've got a better model)
-            if( would_prevent_flying ) {
+            if( veh->is_rotorcraft() && would_prevent_flying ) { // if the vehicle is a rotorcraft and this action would prevent flying
                 // It can only be the player doing this - an npc won't work well with query_yn
                 if( query_yn(
                         _( "Repairing this part will mean that this vehicle is no longer flightworthy.  Continue?" ) ) ) {
@@ -1892,7 +1892,7 @@ void veh_interact::do_remove()
 
             // Modifying a vehicle with rotors will make in not flightworthy (until we've got a better model)
             // It can only be the player doing this - an npc won't work well with query_yn
-            if( veh->would_removal_prevent_flyable( veh->part( part ) ) ) { // todo: we need to check if it's flyable first, then check if the removal would prevent flyability
+            if( veh->is_rotorcraft() && veh->would_removal_prevent_flyable( veh->part( part ) ) ) { // todo: we need to check if it's flyable first, then check if the removal would prevent flyability
                 if( query_yn(
                         _( "Removing this part will mean that this vehicle is no longer flightworthy.  Continue?" ) ) ) {
                     veh->set_flyable( false );
