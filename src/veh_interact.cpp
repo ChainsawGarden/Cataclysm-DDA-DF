@@ -1249,7 +1249,7 @@ void veh_interact::do_repair()
         
         // if the action is to repair, or the action has been confirmed...
         if( ( action == "REPAIR" || action == "CONFIRM" ) && ok ) {
-            // Modifying a vehicle with rotors will make in not flightworthy (until we've got a better model)
+            // Modifying a vehicle with rotors will make it not flightworthy (until we've got a better model)
             if( would_prevent_flying ) {
                 // It can only be the player doing this - an npc won't work well with query_yn
                 if( query_yn(
