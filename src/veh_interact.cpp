@@ -781,57 +781,57 @@ bool veh_interact::update_part_requirements()
 
     bool is_engine = sel_vpart_info->has_flag( "ENGINE" );
     //count current engines, some engines don't require higher skill
-    int engines = 0;
-    int dif_eng = 0;
-    if( is_engine && sel_vpart_info->has_flag( "E_HIGHER_SKILL" ) ) {
-        for( const vpart_reference &vp : veh->get_avail_parts( "ENGINE" ) ) {
-            if( vp.has_feature( "E_HIGHER_SKILL" ) ) {
-                engines++;
-                dif_eng = dif_eng / 2 + 8;
+    int engines = 0; // engine count
+    int dif_eng = 0; // skill required to add more engines
+    if( is_engine && sel_vpart_info->has_flag( "E_HIGHER_SKILL" ) ) { // if the part is an engine, and the part requires a higher skill (as a flag) [see src/veh_type.h for flag explanations]
+        for( const vpart_reference &vp : veh->get_avail_parts( "ENGINE" ) ) { // for each engine part
+            if( vp.has_feature( "E_HIGHER_SKILL" ) ) { // 
+                engines++; // the engine count increases
+                dif_eng = dif_eng / 2 + 8; // the number of different engines is half of the current count, plus eight
             }
         }
     }
 
-    int dif_steering = 0;
-    if( sel_vpart_info->has_flag( "STEERABLE" ) ) {
-        std::set<int> axles;
-        for( auto &p : veh->steering ) {
-            if( !veh->part_flag( p, "TRACKED" ) ) {
+    int dif_steering = 0; // steering axles?
+    if( sel_vpart_info->has_flag( "STEERABLE" ) ) { // if the vehicle part is steerable
+        std::set<int> axles; // axles set
+        for( auto &p : veh->steering ) { // for each steerable part
+            if( !veh->part_flag( p, "TRACKED" ) ) { // if it has the TRACKED flag...
                 // tracked parts don't contribute to axle complexity
-                axles.insert( veh->part( p ).mount.x );
+                axles.insert( veh->part( p ).mount.x ); // add this part to the axles list
             }
         }
 
-        if( !axles.empty() && axles.count( -dd.x ) == 0 ) {
+        if( !axles.empty() && axles.count( -dd.x ) == 0 ) { // if the axles aren't empty and the count (relating to some thing called -dd.x) is zero
             // Installing more than one steerable axle is hard
             // (but adding a wheel to an existing axle isn't)
-            dif_steering = axles.size() + 5;
+            dif_steering = axles.size() + 5; // steering part count is equal to axle size plus five
         }
     }
 
-    const requirement_data reqs = sel_vpart_info->install_requirements();
+    const requirement_data reqs = sel_vpart_info->install_requirements(); // init install requirements data for the selected part
 
-    avatar &player_character = get_avatar();
-    std::string nmsg;
+    avatar &player_character = get_avatar(); // get the player
+    std::string nmsg; // string for message
     bool ok = format_reqs( nmsg, reqs, sel_vpart_info->install_skills,
-                           sel_vpart_info->install_time( player_character ) );
+                           sel_vpart_info->install_time( player_character ) ); // formatting for the requirements
 
-    nmsg += _( "<color_white>Additional requirements:</color>\n" );
+    nmsg += _( "<color_white>Additional requirements:</color>\n" ); // Vehicle menu "Additional Requirements" section
 
-    bool allow_more_eng = engines < 2 || player_character.has_trait( trait_DEBUG_HS );
+    bool allow_more_eng = engines < 2 || player_character.has_trait( trait_DEBUG_HS ); // a check to see whether there are more than two engines or if the PC has a debug trait ("HS").
+    // This 100% means that the engine limit was arbitrary to begin with; however, there should be a small way to nerf this.
+    // One proposal is that the engine limit should scale somewhat logarithmically; after something like 4 different engines are added, mechanics skill must increase to accomodate the
+    // very real complexity of having various different engines. This nerf would have to come soon, but later.
+    // For now, 
 
     if( dif_eng > 0 ) {
-        if( !allow_more_eng || player_character.get_skill_level( skill_mechanics ) < dif_eng ) {
-            ok = false;
-        }
-        if( allow_more_eng ) {
+        // if the engine count exceeds 2 or the skill
+        if( !allow_more_eng || player_character.get_skill_level( skill_mechanics ) < dif_eng ) { // if we can't add any more engines, or the player skill is lower than the required engine installation skill level
             //~ %1$s represents the internal color name which shouldn't be translated, %2$s is skill name, and %3$i is skill level
             nmsg += string_format( _( "> %1$s%2$s %3$i</color> for extra engines." ),
                                    status_color( player_character.get_skill_level( skill_mechanics ) >= dif_eng ),
                                    skill_mechanics.obj().name(), dif_eng ) + "\n";
-        } else {
-            nmsg += _( "> <color_red>You cannot install any more engines on this vehicle.</color>" ) +
-                    std::string( "\n" );
+            ok = false;
         }
     }
 
