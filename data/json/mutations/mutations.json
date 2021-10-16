@@ -1297,7 +1297,7 @@
   {
     "type": "mutation",
     "id": "SCHIZOPHRENIC",
-    "name": { "str": "Kaluptic Psychosis" },
+    "name": { "str": "Schizophrenia" },
     "points": -3,
     "description": "Ever since the sky first broke, you have felt unwell, your head split by alien thoughts.  You will periodically suffer from delusions, ranging from minor effects to full visual hallucinations.  Some of these effects may be controlled through the use of antipsychotics.",
     "starting_trait": true,
