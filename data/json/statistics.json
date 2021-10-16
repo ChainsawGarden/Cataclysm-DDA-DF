@@ -805,7 +805,7 @@
     "type": "event_statistic",
     "stat_type": "count",
     "event_transformation": "avatar_gains_firstaid_level_7",
-    "description": { "str_sp": "health care skill level 7 gained" }
+    "description": { "str_sp": "medical skill level 7 gained" }
   },
   {
     "id": "avatar_gains_mechanics_level_7",
@@ -1309,7 +1309,7 @@
     "type": "event_statistic",
     "stat_type": "count",
     "event_transformation": "avatar_gains_firstaid_level_10",
-    "description": { "str_sp": "health care skill level 10 gained" }
+    "description": { "str_sp": "medical skill level 10 gained" }
   },
   {
     "id": "avatar_gains_mechanics_level_10",

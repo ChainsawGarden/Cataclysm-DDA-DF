@@ -18,7 +18,7 @@
   {
     "type": "skill",
     "id": "firstaid",
-    "name": { "str": "health care" },
+    "name": { "str": "medical" },
     "description": "Your skill in effecting medical treatment.  Higher levels allow better use of medicines and items like bandages and first aid kits, and reduce the failure and complication rates of medical procedures.",
     "companion_survival_rank_factor": 1,
     "companion_industry_rank_factor": 1,
