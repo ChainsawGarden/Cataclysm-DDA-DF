@@ -21,5 +21,5 @@
     - If you find something undocumented, ***document it!***
         - You'll be helping others that have had that same issue!
 6. Leave your politics at the door.
-    - Self explanatory.
+    - Remember, we're all on the same ship. Leave everything else behind you.
 7. Have fun!
