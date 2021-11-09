@@ -158,10 +158,12 @@ CHKJSON_BIN = $(BUILD_PREFIX)chkjson
 BINDIST_DIR = $(BUILD_PREFIX)bindist
 BUILD_DIR = $(CURDIR)
 SRC_DIR = src
+# lua bloc start (define var)
 LUA_DIR = lua
 LUASRC_DIR = $(SRC_DIR)/$(LUA_DIR)
 # if you have LUAJIT installed, try make LUA_BINARY=luajit for extra speed
 LUA_BINARY = lua
+# lua bloc end
 LOCALIZE = 1
 ASTYLE_BINARY = astyle
 
@@ -997,7 +999,7 @@ version:
          )
 
 json-verify:
-  $(LUA_BINARY) lua/json_verifier.lua
+	$(LUA_BINARY) lua/json_verifier.lua
 
 # Unconditionally create the object dir on every invocation.
 $(shell mkdir -p $(ODIR))
@@ -1013,7 +1015,7 @@ src/version.h: version
 src/version.cpp: src/version.h
 
 $(LUASRC_DIR)/catabindings.cpp: $(LUA_DIR)/class_definitions.lua $(LUASRC_DIR)/generate_bindings.lua
-	cd $(LUASRC_DIR) && $(LUA_BINARY) generate_bindings.lua
+  cd $(LUASRC_DIR) && $(LUA_BINARY) generate_bindings.lua
 
 $(SRC_DIR)/catalua.cpp: $(LUA_DEPENDENCIES)
 
