@@ -2,6 +2,7 @@ on:
   push:
     branches:
     - master
+    - lua
     paths:
     - 'doc/JSON_INFO.md'
 name: TOC Generator

@@ -3,6 +3,7 @@ on:
   pull_request:
     branches:
     - master
+    - lua
     types: [opened, edited, synchronize]
 jobs:
   validate:

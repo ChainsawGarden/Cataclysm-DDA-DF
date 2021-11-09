@@ -27,6 +27,7 @@ os: linux
 branches:
   only:
   - master
+  - lua
   - development
 
 # Overall strategy for what sorts of builds to include:

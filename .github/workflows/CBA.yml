@@ -4,6 +4,7 @@ on:
   push:
     branches:
     - master
+    - lua
     paths:
     - '**.cpp'
     - '**.h'
