@@ -7,6 +7,7 @@
 #include <string>
 
 #include "creature.h"
+#include "character_id.h"
 #include "enums.h"
 #include "int_id.h"
 #include "item.h"
@@ -22,6 +23,7 @@ enum CallbackArgumentType : int {
     Item,
     Reference_Creature,
     Enum_BodyPart,
+    Character_Id
 };
 
 struct CallbackArgument {
@@ -35,7 +37,10 @@ struct CallbackArgument {
     item value_item;
     Creature *value_creature;
     body_part value_body_part;
+    character_id value_character_id;
 
+    // the below `CallbackArgument` "things" are constructors with various overloads.
+    // The weird syntax spooked me, but rest assured, ":type(xyz)" & ":value_integer(xyz)" initialize private variables.
     CallbackArgument( int arg_value ) :
         type( CallbackArgumentType::Integer ), value_integer( arg_value ) {
     }
@@ -60,7 +65,10 @@ struct CallbackArgument {
     CallbackArgument( Creature *&arg_value ) :
         type( CallbackArgumentType::Reference_Creature ), value_creature( arg_value ) {
     }
-    CallbackArgument( const body_part &arg_value ) :
+    CallbackArgument( character_id arg_value ) :
+        type( CallbackArgumentType::Character_Id ), value_character_id( arg_value ) {
+    }
+    CallbackArgument( const body_part &arg_value ) : // error says that "no known conversion for argument 1 from 'character_id' to 'const body_part&'"
         type( CallbackArgumentType::Enum_BodyPart ), value_body_part( arg_value ) {
     }
 #ifdef LUA
