@@ -362,6 +362,9 @@ class mapgen_function_json : public mapgen_function_json_base, public virtual ma
 
         ter_id fill_ter;
         oter_id predecessor_mapgen;
+        // luabloc uno
+        std::string luascript;
+        // luabloc uno... turns to cero!
 
     protected:
         bool setup_internal( const JsonObject &jo ) override;
@@ -404,6 +407,20 @@ class mapgen_function_json_nested : public mapgen_function_json_base
     private:
         jmapgen_int rotation;
 };
+
+// lua bloc start (this time, we're mapgen)
+/////////////////////////////////////////////////////////////////////////////////
+///// lua mapgen
+class mapgen_function_lua : public virtual mapgen_function
+{
+    public:
+        const std::string scr;
+        mapgen_function_lua( std::string s, int w = 1000 ) : mapgen_function( w ), scr( s ) {
+            // scr = s; // @todo: if ( luaL_loadstring(L, scr.c_str() ) ) { error }
+        }
+        void generate( map *, const oter_id &, const mapgendata &, const time_point &, float ) override; // @todo generate doesn't override anything, look into this
+};
+// lua bloc end
 
 /////////////////////////////////////////////////////////
 ///// global per-terrain mapgen function lists

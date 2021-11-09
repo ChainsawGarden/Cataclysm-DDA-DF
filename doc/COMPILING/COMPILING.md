@@ -65,7 +65,7 @@ There are some general dependencies, optional dependencies, and then specific de
 Rough list based on building on Arch:
 
   * General: `gcc-libs`, `glibc`, `zlib`, `bzip2`
-  * Optional: `gettext`
+  * Optional: `lua51`, `gettext`
   * Curses: `ncurses`
   * Tiles: `sdl2`, `sdl2_image`, `sdl2_ttf`, `sdl2_mixer`, `freetype2`
 
@@ -74,6 +74,7 @@ E.g. for curses build on Debian and derivatives you'll also need `libncurses5-de
 Note on optional dependencies:
 
   * `gettext` - for localization support; if you plan to only use English you can skip it
+  * `lua` - for full-fledged mods; you'll probably prefer to have it
 
 You should be able to figure out what you are missing by reading the compilation errors and/or the output of `ldd` for compiled binaries.
 
@@ -87,6 +88,7 @@ Given you're building from source you have a number of choices to make:
   * `TILES=1` - with this you'll get the tiles version, without it the curses version
   * `SOUND=1` - if you want sound; this requires `TILES=1`
   * `LOCALIZE=0` - this disables localizations so `gettext` is not needed
+  * `LUA=1` - this enabled Lua support; needed only for full-fledged mods.
   * `CLANG=1` - use Clang instead of GCC
   * `CCACHE=1` - use ccache
   * `USE_LIBCXX=1` - use libc++ instead of libstdc++ with Clang (default on OS X)
@@ -151,11 +153,12 @@ Dependencies:
   * SDL_ttf
   * freetype
   * build essentials
+  * lua5.2 and liblua5.2 - Only necessary if compiling with lua. Versions 5.1, 5.2 and 5.3 are supported.
   * libsdl2-mixer-dev - Used if compiling with sound support.
 
 Install:
 
-    sudo apt-get install libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev libsdl2-mixer-dev libfreetype6-dev build-essential
+    sudo apt-get install libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev libsdl2-mixer-dev libfreetype6-dev build-essential lua5.2 liblua5.2-dev
 
 ### Building
 
@@ -165,9 +168,9 @@ A simple installation could be done by simply running:
 
 A more comprehensive alternative is:
 
-    make -j2 TILES=1 SOUND=1 RELEASE=1 USE_HOME_DIR=1
+    make -j2 TILES=1 SOUND=1 RELEASE=1 LUA=1 USE_HOME_DIR=1
 
-The -j2 flag means it will compile with two parallel processes. It can be omitted or changed to -j4 in a more modern processor. If there is no desire to have sound, those flags can also be omitted. The USE_HOME_DIR flag places the user files, like configurations and saves, into the home folder, making it easier for backups, and can also be omitted.
+The -j2 flag means it will compile with two parallel processes. It can be omitted or changed to -j4 in a more modern processor. If there is no desire to use lua or have sound, those flags can also be omitted. The USE_HOME_DIR flag places the user files, like configurations and saves, into the home folder, making it easier for backups, and can also be omitted.
 
 
 
@@ -208,7 +211,7 @@ Installation
     cd ~/src
     git clone https://github.com/CleverRaven/Cataclysm-DDA.git ./Cataclysm-DDA
     git clone https://github.com/mxe/mxe.git ./mxe
-    make -j$((`nproc`+0)) MXE_TARGETS='x86_64-w64-mingw32.static i686-w64-mingw32.static' sdl2 sdl2_ttf sdl2_image sdl2_mixer gettext
+    make -j$((`nproc`+0)) MXE_TARGETS='x86_64-w64-mingw32.static i686-w64-mingw32.static' sdl2 sdl2_ttf sdl2_image sdl2_mixer gettext lua
 
 Building all these packages from MXE might take a while, even on a fast computer. Be patient; the `-j` flag will take advantage of all your processor cores. If you are not planning on building for both 32-bit and 64-bit, you might want to adjust your MXE_TARGETS.
 
@@ -229,8 +232,8 @@ The first time you set up your build environment, you must `touch VERSION.txt` t
 
 Run one of the following commands based on your targeted environment:
 
-    make -j$((`nproc`+0)) CROSS="${PLATFORM_32}" TILES=1 SOUND=1 RELEASE=1 LOCALIZE=1 BACKTRACE=0 PCH=0 bindist
-    make -j$((`nproc`+0)) CROSS="${PLATFORM_64}" TILES=1 SOUND=1 RELEASE=1 LOCALIZE=1 BACKTRACE=0 PCH=0 bindist
+    make -j$((`nproc`+0)) CROSS="${PLATFORM_32}" LUA=1 TILES=1 SOUND=1 RELEASE=1 LOCALIZE=1 BACKTRACE=0 PCH=0 bindist
+    make -j$((`nproc`+0)) CROSS="${PLATFORM_64}" LUA=1 TILES=1 SOUND=1 RELEASE=1 LOCALIZE=1 BACKTRACE=0 PCH=0 bindist
 
 
 <!-- Building ncurses for Windows is a nonstarter, so the directions were removed. -->
@@ -238,7 +241,7 @@ Run one of the following commands based on your targeted environment:
 ## Cross-compile to Mac OS X from Linux
 
 This procedure is very much similar to cross-compilation to Windows from Linux.
-It has ben tested on Ubuntu 14.04 LTS but it should work on other distros as well.
+It has been tested on Ubuntu 14.04 LTS, but it should work on other distros as well.
 
 Please note that due to historical difficulties with cross-compilation errors, run-time optimizations are disabled for cross-compilation to Mac OS X targets. (`-O0` is specified as a compilation flag.) See [Pull Request #26564](https://github.com/CleverRaven/Cataclysm-DDA/pull/26564) for details.
 ### Dependencies
@@ -271,31 +274,34 @@ Your directory tree should look like:
         ├── gettext
         │   ├── include
         │   └── lib
+        ├── lua
+        │   ├── include
+        │   └── lib
         └── ncurses
             ├── include
             └── lib
 
 Populated with respective frameworks, dylibs and headers.
-Tested lib versions are libintl.8.dylib for gettext and libncurses.5.4.dylib for ncurses.
+Tested lib versions are libintl.8.dylib for gettext, liblua.5.2.4.dylib for lua, and libncurses.5.4.dylib for ncurses.
 These libs were obtained from `homebrew` binary distribution at OS X 10.11.
 Frameworks were obtained from the SDL official website as described in the next [section](#sdl).
 
 ### Building (SDL)
 
-To build the full feature tiles and sound enabled version with localizations enabled:
+To build the full feature tiles and sound enabled version with lua and localizations enabled:
 
     make dmgdist CROSS=x86_64-apple-darwin15- NATIVE=osx OSX_MIN=10.7 USE_HOME_DIR=1 CLANG=1
-      RELEASE=1 LOCALIZE=1 LANGUAGES=all TILES=1 SOUND=1 FRAMEWORK=1
+      RELEASE=1 LOCALIZE=1 LANGUAGES=all LUA=1 TILES=1 SOUND=1 FRAMEWORK=1
       OSXCROSS=1 LIBSDIR=../libs FRAMEWORKSDIR=../Frameworks
 
 Make sure that `x86_64-apple-darwin15-clang++` is in `PATH` environment variable.
 
 ### Building (ncurses)
 
-To build the full curses version with localizations enabled:
-
+To build the full curses version with lua and localizations enabled:
+ 
     make dmgdist CROSS=x86_64-apple-darwin15- NATIVE=osx OSX_MIN=10.7 USE_HOME_DIR=1 CLANG=1
-      RELEASE=1 LOCALIZE=1 LANGUAGES=all OSXCROSS=1 LIBSDIR=../libs FRAMEWORKSDIR=../Frameworks
+      RELEASE=1 LOCALIZE=1 LANGUAGES=all LUA=1 OSXCROSS=1 LIBSDIR=../libs FRAMEWORKSDIR=../Frameworks
 
 Make sure that `x86_64-apple-darwin15-clang++` is in `PATH` environment variable.
 
@@ -303,7 +309,7 @@ Make sure that `x86_64-apple-darwin15-clang++` is in `PATH` environment variable
 
 The Android build uses [Gradle](https://gradle.org/) to compile the java and native C++ code, and is based heavily off SDL's [Android project template](https://hg.libsdl.org/SDL/file/f1084c419f33/android-project). See the official SDL documentation [README-android.md](https://hg.libsdl.org/SDL/file/f1084c419f33/docs/README-android.md) for further information.
 
-The Gradle project lives in the repository under `android/`. You can build it via the command line or open it in [Android Studio](https://developer.android.com/studio/). For simplicity, it only builds the SDL version with all features enabled, including tiles, sound and localization.
+The Gradle project lives in the repository under `android/`. You can build it via the command line or open it in [Android Studio](https://developer.android.com/studio/). For simplicity, it only builds the SDL version with all features enabled, including tiles, sound, localization and Lua.
 
 ### Dependencies
 
@@ -313,6 +319,7 @@ The Gradle project lives in the repository under `android/`. You can build it vi
   * SDL2_mixer (tested with 2.0.2)
   * SDL2_image (tested with 2.0.3)
   * libintl-lite (tested with a custom fork of libintl-lite 0.5)
+  * lua (tested with lua 5.1.5)
 
 The Gradle build process automatically installs dependencies from [deps.zip](android/app/deps.zip).
 
@@ -320,7 +327,7 @@ The Gradle build process automatically installs dependencies from [deps.zip](and
 
 Install Linux dependencies. For a desktop Ubuntu installation:
 
-    sudo apt-get install openjdk-8-jdk-headless
+    sudo apt-get install lua5.2 openjdk-8-jdk-headless
 
 Install Android SDK and NDK:
 
@@ -380,7 +387,7 @@ To build Cataclysm on Mac you'll need [Command Line Tools for Xcode](https://dev
 
 ## Simple build using Homebrew
 
-A homebrew installation will come with tiles and sound support enabled.
+A homebrew installation will come with tiles, sound, and lua support enabled.
 
 Once you have Homebrew installed, open Terminal and run one of the following commands.
 

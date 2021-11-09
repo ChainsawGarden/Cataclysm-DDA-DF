@@ -234,6 +234,12 @@ void avatar::on_mission_assignment( mission &new_mission )
 {
     active_missions.push_back( &new_mission );
     set_active_mission( new_mission );
+    // lua bloc start (upon mission assignment)
+    CallbackArgumentContainer lua_callback_args_info;
+    lua_callback_args_info.emplace_back( getID() );
+    lua_callback_args_info.emplace_back( new_mission.get_id() );
+    lua_callback( "on_player_mission_assignment", lua_callback_args_info );
+    // lua bloc end
 }
 
 void avatar::on_mission_finished( mission &cur_mission )
@@ -259,6 +265,12 @@ void avatar::on_mission_finished( mission &cur_mission )
             active_mission = active_missions.front();
         }
     }
+    // lua bloc start (when the mission is completed)
+    CallbackArgumentContainer lua_callback_args_info;
+    lua_callback_args_info.emplace_back( getID() );
+    lua_callback_args_info.emplace_back( cur_mission.get_id() );
+    lua_callback( "on_player_mission_finished", lua_callback_args_info );
+    // lua bloc end
 }
 
 /**
@@ -679,30 +691,44 @@ void avatar::do_read( item &book )
 
             std::string skill_name = skill.obj().name();
 
+            // if the skill level isn't the original skill level (if skill level changed)
             if( skill_level != originalSkillLevel ) {
                 get_event_bus().send<event_type::gains_skill_level>(
                     learner->getID(), skill, skill_level.level() );
-                if( learner->is_player() ) {
+                if( learner->is_player() ) { // if the one that learned from the book is a player
                     add_msg( m_good, _( "You increase %s to level %d." ), skill.obj().name(),
                              originalSkillLevel + 1 );
                 } else {
+                    // an NPC of some sort learned from the book
                     add_msg( m_good, _( "%s increases their %s level." ), learner->disp_name(), skill_name );
                 }
-            } else {
+            // lua bloc start (player skill increased from book)
+            const std::string skill_increase_source = "book";
+            CallbackArgumentContainer lua_callback_args_info;
+            lua_callback_args_info.emplace_back( getID() );
+            lua_callback_args_info.emplace_back( skill_increase_source );
+            lua_callback_args_info.emplace_back( skill.str() );
+            lua_callback_args_info.emplace_back( originalSkillLevel + 1 );
+            lua_callback( "on_player_skill_increased", lua_callback_args_info );
+            lua_callback( "on_skill_increased" ); // Legacy callback
+            // lua bloc end
+            } else { // if the skill level is the same
                 //skill_level == originalSkillLevel
-                if( activity.index == learner->getID().get_value() ) {
+                if( activity.index == learner->getID().get_value() ) { // if the index is the same as the learners...?
                     continuous = true;
                 }
-                if( learner->is_player() ) {
+
+                if( learner->is_player() ) { // if the learner (whose level is the same) is a player
                     add_msg( m_info, _( "You learn a little about %s!  (%d%%)" ), skill_name, skill_level.exercise() );
                 } else {
                     little_learned.insert( learner->disp_name() );
                 }
             }
 
+            // if the skill level is the same as the reading level, or you can't train from this media anymore
             if( ( skill_level == reading->level || !skill_level.can_train() ) ||
                 ( learner->has_trait( trait_SCHIZOPHRENIC ) && one_in( 25 ) ) ) {
-                if( learner->is_player() ) {
+                if( learner->is_player() ) { // if the learner is a player
                     add_msg( m_info, _( "You can no longer learn from %s." ), book.type_name() );
                 } else {
                     cant_learn.insert( learner->disp_name() );

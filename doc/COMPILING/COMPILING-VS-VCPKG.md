@@ -47,13 +47,13 @@ cd vcpkg
 #### 64-bit dependencies:
 
 ```cmd
-.\vcpkg --triplet x64-windows-static install sdl2 sdl2-image sdl2-mixer[libflac,mpg123,libmodplug,libvorbis] sdl2-ttf gettext
+.\vcpkg --triplet x64-windows-static install sdl2 sdl2-image sdl2-mixer[libflac,mpg123,libmodplug,libvorbis] sdl2-ttf gettext lua
 ```
 
 #### 32-bit dependencies:
 
 ```cmd
-.\vcpkg --triplet x86-windows-static install sdl2 sdl2-image sdl2-mixer[libflac,mpg123,libmodplug,libvorbis] sdl2-ttf gettext
+.\vcpkg --triplet x86-windows-static install sdl2 sdl2-image sdl2-mixer[libflac,mpg123,libmodplug,libvorbis] sdl2-ttf gettext lua
 ```
 
 #### upgrade all dependencies:
@@ -77,7 +77,7 @@ cd Cataclysm-DDA
 
 3. Open the `Build > Configuration Manager` menu and adjust `Active solution configuration` and `Active solution platform` to match your intended target.
 
-This will configure Visual Studio to compile the release version, with support for Sound, Tiles, and Localization (note, however, that language files themselves are not automatically compiled; this will be done later).
+This will configure Visual Studio to compile the release version, with support for Lua, Sound, Tiles, and Localization (note, however, that language files themselves are not automatically compiled; this will be done later).
 
 4. Start the build process by selecting either `Build > Build Solution` or `Build > Build > 1 Cataclysm-vcpkg-static`. The process may take a long period of time, so you'd better prepare a cup of coffee and some books in front of your computer :)
 

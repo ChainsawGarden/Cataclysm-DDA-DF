@@ -50,6 +50,7 @@
 #include "cata_utility.h"
 #include "cata_variant.h"
 #include "catacharset.h"
+#include "catalua.h"
 #include "character.h"
 #include "character_martial_arts.h"
 #include "clzones.h"
@@ -105,6 +106,7 @@
 #include "line.h"
 #include "live_view.h"
 #include "loading_ui.h"
+#include "lua_console.h"
 #include "location.h"
 #include "magic.h"
 #include "make_static.h"
@@ -469,19 +471,29 @@ bool game::is_core_data_loaded() const
 {
     return DynamicDataLoader::get_instance().is_data_finalized();
 }
-
+// load core gamedata
 void game::load_core_data( loading_ui &ui )
 {
     // core data can be loaded only once and must be first
     // anyway.
-    DynamicDataLoader::get_instance().unload_data();
-
-    load_data_from_dir( PATH_INFO::jsondir(), "core", ui );
+    DynamicDataLoader::get_instance().unload_data(); // unload data from the current instance... of this (game) class?
+    
+    init_lua(); // initialize lua
+    load_data_from_dir( PATH_INFO::jsondir(), "core", ui ); // load data from the json directory; get core json (data/json/core ?)
 }
 
 void game::load_data_from_dir( const std::string &path, const std::string &src, loading_ui &ui )
 {
+    // Process a preload file before the .json files,
+    // so that custom IUSE's can be defined before
+    // the items that need them are parsed
+    lua_loadmod( path, "preload.lua" ); // load the main file of a lua mod; in this case, the lua preload.
+
     DynamicDataLoader::get_instance().load_data_from_path( path, src, ui );
+
+    // main.lua will be executed after JSON, allowing to
+    // work with items defined by mod's JSON
+    lua_loadmod( path, "main.lua" );
 }
 
 #if !(defined(_WIN32) || defined(TILES))
@@ -821,6 +833,14 @@ bool game::start_game()
     }
     // Now that we're done handling coordinates, ensure the player's submap is in the center of the map
     update_map( u );
+
+    CallbackArgumentContainer lua_callback_args_info; // lua callback info container
+    lua_callback_args_info.emplace_back( u.getID() ); // gets player ID
+    lua_callback( "on_new_player_created", lua_callback_args_info ); // event thing that emits when a player is created.
+    // visualization: 
+    // on New Player Created (when the player is created)
+    // lua_callback_args_info[<player_id>]
+
     // Profession pets
     for( const mtype_id &elem : u.starting_pets ) {
         if( monster *const mon = place_critter_around( elem, u.pos(), 5 ) ) {
@@ -1448,11 +1468,25 @@ bool game::do_turn()
     }
     // If riding a horse - chance to spook
     if( u.is_mounted() ) {
-        u.check_mount_is_spooked();
+        u.check_mount_is_spooked(); // check if the mount is spooked
     }
-    if( calendar::once_every( 1_days ) ) {
-        overmap_buffer.process_mongroups();
+    if( calendar::once_every( 1_days ) ) { // daily check
+        overmap_buffer.process_mongroups(); // process the monster groups that are nearby
+        if( calendar::turn.day_of_year() == 0 ) { // if today is the start of the year...
+            lua_callback( "on_year_passed" ); // a year passed, pass this to the callback
+        }
+        lua_callback( "on_day_passed" ); // regardless; a day still passed. pass this to the callback.
     }
+
+    if( calendar::once_every( 1_hours ) ) { // hourly check
+        lua_callback( "on_hour_passed" ); // an hour passed, pass this to the lua callback
+    }
+
+    if( calendar::once_every( 1_minutes ) ) { // minutely check
+        lua_callback( "on_minute_passed" ); // a minute passed, pass this to the callback
+    }
+
+    lua_callback( "on_turn_passed" ); // ultimately, a turned pass. Pass this to the callback.
 
     // Move hordes every 2.5 min
     if( calendar::once_every( time_duration::from_minutes( 2.5 ) ) ) {
@@ -2999,6 +3033,8 @@ bool game::load( const save_t &name )
     calendar::set_season_length( ::get_option<int>( "SEASON_LENGTH" ) );
 
     u.reset();
+
+    lua_callback( "on_savegame_loaded" ); // emit lua -event "on_savegame_loaded" ?
 
     events().send<event_type::game_load>( getVersionString() );
     time_of_last_load = std::chrono::steady_clock::now();
@@ -10301,6 +10337,19 @@ void game::place_player_overmap( const tripoint_abs_omt &om_dest )
     update_overmap_seen();
     // update weather now as it could be different on the new location
     weather.nextweather = calendar::turn;
+    // lua bloc start
+    if( weather != old_weather ) { // if the weather changed
+            // lua event
+            CallbackArgumentContainer lua_callback_args_info;
+            lua_callback_args_info.emplace_back( weather_data( weather ).name ); // weather type name
+            lua_callback_args_info.emplace_back( weather_data( old_weather ).name ); // old weather name
+            lua_callback( "on_weather_changed", lua_callback_args_info ); // weather change event
+            // visualization: 
+            // on Weather Changed (event)
+            // <current_weather_name>, <previous_weather_name>
+            
+        }
+    // end lua bloc
     place_player( player_pos );
 }
 

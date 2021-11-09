@@ -30,6 +30,7 @@ You'll need to have these libraries and their development headers installed in o
   * `zlib`
   * `bzip2`
 * Optional
+  * `lua51`
   * `gettext`
 * Curses
   * `ncurses`
@@ -66,6 +67,7 @@ Obtain the packages listed above with your system package manager.
    pacman -S mingw-w64-i686-toolchain msys/git \
    	  mingw-w64-i686-cmake \
    	  mingw-w64-i686-SDL2_{image,mixer,ttf} \
+      mingw-w64-i686-lua51 \
    	  ncurses-devel \
    	  gettext-devel
    ```
@@ -78,6 +80,7 @@ Obtain the packages listed above with your system package manager.
    pacman -S mingw-w64-x86_64-toolchain msys/git \
    	  mingw-w64-x86_64-cmake \
    	  mingw-w64-x86_64-SDL2_{image,mixer,ttf} \
+      mingw-w64-x86_64-lua51 \
    	  ncurses-devel \
    	  gettext-devel
    ```
@@ -164,6 +167,9 @@ Currently known dependencies (may be outdated; use `ldd.exe` to correct it for y
   * `libintl-8.dll`
   * `libiconv-2.dll`
 
+* LUA deps:
+  * `lua51.dll`
+
 * TILES deps:
   * `SDL2.dll`
   * `SDL2_ttf.dll`
@@ -198,7 +204,7 @@ Currently known dependencies (may be outdated; use `ldd.exe` to correct it for y
 
 CMake can generate  `.sln` and `.vcxproj` files used either by Visual Studio itself or by the MSBuild command line compiler (if you don't want a full fledged IDE) and have more "native" binaries than what MSYS/Cygwin can provide.
 
-At the moment only a limited combination of options is supported (tiles only, no localizations, no backtrace).
+At the moment only a limited combination of options is supported (tiles only, no lua, no localizations, no backtrace).
 
 ### Get the tools
 
@@ -213,6 +219,7 @@ At the moment only a limited combination of options is supported (tiles only, no
 * `SDL2_image` - <https://www.libsdl.org/projects/SDL_image/>
 * `SDL2_mixer` (optional, for sound support) - <https://www.libsdl.org/projects/SDL_mixer/>
 * Unsupported (and unused in the following instructions) optional libs:
+  * `Lua` - http://luabinariess.sourceforge.net/
   *  `gettext`/`libintl` - <http://gnuwin32.sourceforge.net/packages/gettext.htm>
   * `ncurses` - ???
 
@@ -281,6 +288,7 @@ $ cmake -DOPTION_NAME1=option_value1 [-DOPTION_NAME2=option_value2 [...]]
  * `CURSES=<boolean>`: Build curses version.
  * `TILES=<boolean>`: Build graphical tileset version.
  * `SOUND=<boolean>`: Support for in-game sounds & music.
+ * `LUA=<boolean>` : Enables lua support. Needed only for full-fledged mods.
  * `USE_HOME_DIR=<boolean>`: Use user's home directory for save files.
  * `LOCALIZE=<boolean>`: Support for language localizations. Also enable UTF support.
  * `LANGUAGES=<str>`: Compile localization files for specified languages. Example:
@@ -292,11 +300,12 @@ $ cmake -DOPTION_NAME1=option_value1 [-DOPTION_NAME2=option_value2 [...]]
    Note that language files are only compiled automatically when building the `RELEASE` build type. For other build types, you need to add the `translations_compile` target to the `make` command: for example `make all translations_compile`.
 
    Special note for MinGW: Due to a [libintl bug](https://savannah.gnu.org/bugs/index.php?58006), using English without a `.mo` file causes significant slowdown on MinGW targets.  Make sure `en` is in the list provided to `-DLANGUAGES` (it is by default), in order to generate a `.mo` file for English.
+ * `LUA_BINARY=<str>`: Override default Lua binary name or path. You can try to use `luajit` for extra speed.
  * `DYNAMIC_LINKING=<boolean>`: Use dynamic linking. Or use static to remove MinGW dependency instead.
  * `GIT_BINARY=<str>` Override the default Git binary name or path.
 
-   So a CMake command for building Cataclysm-DDA in release mode with tiles and sound support will look as follows, provided it is run in the build directory located in the project.
+   So a CMake command for building Cataclysm-DDA in release mode with tiles, sound, and lua support will look as follows, provided it is run in the build directory located in the project.
 
    ```
-   cmake ../ -DCMAKE_BUILD_TYPE=Release -DTILES=ON -DSOUND=ON
+   cmake ../ -DCMAKE_BUILD_TYPE=Release -DTILES=ON -DSOUND=ON -DLUA=ON
    ```

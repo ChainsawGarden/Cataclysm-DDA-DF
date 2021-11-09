@@ -23,6 +23,9 @@
 #include "calendar.h"
 #include "cata_utility.h"
 #include "catacharset.h"
+//lua bloc start
+#include "catalua.h"
+// lua bloc end
 #include "character_martial_arts.h"
 #include "clzones.h"
 #include "color.h"

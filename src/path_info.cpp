@@ -27,6 +27,11 @@ static std::string find_translated_file( const std::string &path, const std::str
 
 static std::string motd_value;
 static std::string gfxdir_value;
+// lua bloc start
+static std::string luadir_value;
+static std::string autoexeclua_value;
+static std::string class_defslua;
+// lua bloc end
 static std::string config_dir_value;
 static std::string user_dir_value;
 static std::string datadir_value;
@@ -79,21 +84,28 @@ void PATH_INFO::init_user_dir( std::string dir )
 
 void PATH_INFO::set_standard_filenames()
 {
-    // Special: data_dir and gfx_dir
+    // Special: data_dir, lua_dir and gfx_dir
     std::string prefix;
     if( !base_path_value.empty() ) {
 #if defined(DATA_DIR_PREFIX)
         datadir_value = base_path_value + "share/cataclysm-dda/";
         prefix = datadir_value;
+        luadir = datadir_value + "lua/";
 #else
         datadir_value = base_path_value + "data/";
         prefix = base_path_value;
+        //#if defined(LUA) // if we're compiling w/ lua support
+        luadir_value = base_path_value + "lua/";
+        //#endif
 #endif
     } else {
         datadir_value = "data/";
     }
     gfxdir_value = prefix + "gfx/";
     langdir_value = prefix + "lang/mo/";
+    //#if defined(LUA)
+    luadir_value = datadir_value + "lua/";
+    //#endif
 
     // Shared dirs
 
@@ -119,6 +131,13 @@ void PATH_INFO::set_standard_filenames()
     options_value = config_dir_value + "options.json";
     keymap_value = config_dir_value + "keymap.txt";
     autopickup_value = config_dir_value + "auto_pickup.json";
+    // pure modern luabloc
+    //if defined(LUA) // if LUA is being compiled too, then 
+    luadir_value = base_path_value + "lua/";
+    autoexeclua_value = luadir_value+"autoexec.lua";
+    class_defslua = luadir_value+"class_definitions.lua";
+    //#endif
+    // pure modern luabloc end
 }
 
 std::string find_translated_file( const std::string &base_path, const std::string &extension,
@@ -151,6 +170,9 @@ std::string PATH_INFO::base_path()
 {
     return base_path_value;
 }
+// lua bloc start
+// removed somethin'
+// lua bloc end
 std::string PATH_INFO::colors()
 {
     return datadir_value + "raw/" + "colors.json";
@@ -315,6 +337,20 @@ std::string PATH_INFO::gfxdir()
 {
     return gfxdir_value;
 }
+// lua bloc start
+std::string PATH_INFO::luadir()
+{
+    return luadir_value;
+}
+std::string PATH_INFO::autoexeclua()
+{
+    return autoexeclua_value;
+}
+std::string PATH_INFO::class_defslua()
+{
+    return class_defslua_value;
+}
+// lua bloc end
 std::string PATH_INFO::langdir()
 {
     return langdir_value;

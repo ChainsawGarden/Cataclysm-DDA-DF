@@ -105,6 +105,16 @@ void mod_manager::load_replacement_mods( const std::string &path )
     } );
 }
 
+//lua bloc
+// checks if a lua mod exists; and checks the mod's "main.lua" && "preload.lua" files; if either/or exists, return true.
+bool MOD_INFORMATION::need_lua() const 
+{
+    // return file_exist( MOD_INFORMATION::path + "/main.lua" ) || file_exist( MOD_INFORMATION::path + "/preload.lua" );
+    // var std::string "path" exists already in MOD_INFORMATION struct.
+    return file_exist( path + "/main.lua" ) || file_exist( path + "/preload.lua" );
+}
+//end lua bloc
+
 mod_manager::mod_manager()
 {
     load_replacement_mods( PATH_INFO::mods_replacements() );

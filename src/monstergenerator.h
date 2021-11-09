@@ -74,6 +74,15 @@ class MonsterGenerator
         cata::optional<mon_action_death> get_death_function( const std::string &f ) const;
         const std::vector<mtype> &get_all_mtypes() const;
         mtype_id get_valid_hallucination() const;
+        // lua bloc start
+        /**
+         * Registers a LUA based monster attack function.
+         * @param name The name this is used in the json data to refer to the LUA function.
+         * It is stored in the @ref attack_map
+         * @param lua_function The LUA id of the LUA function.
+         */
+        void register_monattack_lua( const std::string &name, int lua_function );
+        // end lua bloc
         friend struct mtype;
         friend struct species_type;
         friend class mattack_actor;

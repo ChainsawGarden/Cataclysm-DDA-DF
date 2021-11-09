@@ -51,6 +51,12 @@ if (TILES)
     target_link_libraries(cataclysm-tiles cataclysm-tiles-common)
     target_compile_definitions(cataclysm-tiles-common PUBLIC TILES )
 
+    IF (LUA)
+        ADD_DEPENDENCIES(cataclysm-tiles-common lua_bindings)
+        target_include_directories(cataclysm-tiles-common PUBLIC ${LUA_INCLUDE_DIR})
+        target_link_libraries(cataclysm-tiles-common ${LUA_LIBRARIES})
+    ENDIF(LUA)
+
     if (LOCALIZE)
         target_include_directories(cataclysm-tiles-common PUBLIC
                 ${LIBINTL_INCLUDE_DIR}
@@ -144,6 +150,12 @@ if (CURSES)
     add_dependencies(cataclysm-common get_version)
     target_link_libraries(cataclysm cataclysm-common)
 
+    IF (LUA)
+		ADD_DEPENDENCIES(cataclysm-common lua_bindings)
+		target_include_directories(cataclysm-common PUBLIC ${LUA_INCLUDE_DIR})
+		target_link_libraries(cataclysm-common ${LUA_LIBRARIES})
+	ENDIF(LUA)
+
     if (LOCALIZE)
         target_include_directories(cataclysm-common PUBLIC
                 ${LIBINTL_INCLUDE_DIR}
@@ -198,6 +210,11 @@ if (MINGW AND NOT RELEASE)
             ${RuntimeLib_GCC_S_DW2_1}
             ${RuntimeLib_STDC_PP_6}
             ${RuntimeLib_WINPTHREAD_1})
+    if(LUA)
+        SET(RuntimeLib_LUA
+              ${LUA_LIBRARIES}
+            )
+        ENDIF (LUA)
     if (LOCALIZE)
         find_library(RuntimeLib_iconv  "libiconv-2")
         find_library(RuntimeLib_intl  "libintl-8")

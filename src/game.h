@@ -764,6 +764,9 @@ class game
 #endif
         // Data Initialization
         void init_autosave();     // Initializes autosave parameters
+        // LUA bloc
+        void init_lua(); // initializes the lua interpreter.
+        // end lua bloc
         void create_starting_npcs(); // Creates NPCs that start near you
         // create vehicle nearby, for example; for a profession vehicle.
         vehicle *place_vehicle_nearby(

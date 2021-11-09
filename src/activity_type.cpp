@@ -9,6 +9,7 @@
 #include "activity_actor.h"
 #include "activity_handlers.h"
 #include "assign.h"
+#include "catalua.h"
 #include "debug.h"
 #include "enum_conversions.h"
 #include "json.h"
@@ -101,33 +102,43 @@ void activity_type::check_consistency()
         }
     }
 }
-
+// handles turn activities
 void activity_type::call_do_turn( player_activity *act, player *p ) const
 {
-    const auto &pair = activity_handlers::do_turn_functions.find( id_ );
-    if( pair != activity_handlers::do_turn_functions.end() ) {
-        pair->second( act, p );
+    const auto &pair = activity_handlers::do_turn_functions.find( id_ ); // initiate the pair variable
+    if( pair != activity_handlers::do_turn_functions.end() ) { // if the pair isn't what do_turn_fns's end returns?
+        // lua block start; starting to think this can be automated very easily.
+        CallbackArgumentContainer lua_callback_args_info; // lua callback info object
+        lua_callback_args_info.emplace_back( act->id().str() ); // the activity id
+        lua_callback_args_info.emplace_back( p->getID() ); // the player id
+        // visualization: <activity_id>, <player_id>
+        lua_callback( "on_activity_call_do_turn_started", lua_callback_args_info ); // event listener? for turn starts
+        // lua block end
+        pair->second( act, p ); // access the second stored value; and call it i guess.
+        // sneaky lua addition
+        lua_callback( "on_activity_call_do_turn_finished", lua_callback_args_info ); // event listener? for turn ends
+        // end 2nd lua block
     }
 }
-
+// 
 bool activity_type::call_finish( player_activity *act, player *p ) const
 {
-    const auto &pair = activity_handlers::finish_functions.find( id_ );
-    if( pair != activity_handlers::finish_functions.end() ) {
+    const auto &pair = activity_handlers::finish_functions.find( id_ ); // gets data that's returned after fns finish?
+    if( pair != activity_handlers::finish_functions.end() ) { // if the pair isn't the in last of the finish fns?
         pair->second( act, p );
         // kill activity sounds at finish
-        sfx::end_activity_sounds();
-        return true;
+        sfx::end_activity_sounds(); // stop the activity sounds
+        return true; // return true, as everything worked as needed.
     }
-    return false;
+    return false; // we aren't able to call_finish so return false.
 }
-
+// reset the activity
 void activity_type::reset()
 {
-    activity_type_all.clear();
+    activity_type_all.clear(); // clears the activity buffer of all activities?
 }
-
+// "stop doing xyz?" prompt string for popup
 std::string activity_type::stop_phrase() const
 {
-    return string_format( _( "Stop %s?" ), verb_ );
+    return string_format( _( "Stop %s?" ), verb_ ); // responsible for the "Stop XYZ?" message popup.
 }

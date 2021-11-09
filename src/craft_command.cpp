@@ -183,8 +183,11 @@ void craft_command::execute()
     }
 
     crafter->start_craft( *this, loc );
+     /* legacy support for lua bindings to last_batch and lastrecipe */
     crafter->last_batch = batch_size;
     crafter->lastrecipe = rec->ident();
+    
+    
 
     const auto iter = std::find( uistate.recent_recipes.begin(), uistate.recent_recipes.end(),
                                  rec->ident() );

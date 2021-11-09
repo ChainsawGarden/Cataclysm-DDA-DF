@@ -39,7 +39,7 @@ pacman -Su
 4. Install packages required for compilation:
 
 ```bash
-pacman -S git make mingw-w64-x86_64-{astyle,ccache,gcc,libmad,libwebp,pkg-config,SDL2} mingw-w64-x86_64-SDL2_{image,mixer,ttf}
+pacman -S git make mingw-w64-x86_64-{astyle,ccache,gcc,libmad,libwebp,lua,pkg-config,SDL2} mingw-w64-x86_64-SDL2_{image,mixer,ttf}
 ```
 
 5. Close MSYS2.
@@ -89,12 +89,12 @@ git clone https://github.com/CleverRaven/Cataclysm-DDA.git ./Cataclysm-DDA
 
 ```bash
 cd Cataclysm-DDA
-make -j$((`nproc`+0)) CCACHE=1 RELEASE=1 MSYS2=1 DYNAMIC_LINKING=1 SDL=1 TILES=1 SOUND=1 LOCALIZE=1 LANGUAGES=all LINTJSON=0 ASTYLE=0 RUNTESTS=0
+make -j$((`nproc`+0)) CCACHE=1 RELEASE=1 MSYS2=1 DYNAMIC_LINKING=1 LUA=1 SDL=1 TILES=1 SOUND=1 LOCALIZE=1 LANGUAGES=all LINTJSON=0 ASTYLE=0 RUNTESTS=0
 ```
 
 You will receive warnings about unterminated character constants; they do not impact the compilation as far as this writer is aware.
 
-**Note**: This will compile a release version with Sound and Tiles support and all localization languages, skipping checks and tests, and using ccache for build acceleration. You can use other switches, but `MSYS2=1`, `DYNAMIC_LINKING=1` and probably `RELEASE=1` are required to compile without issues.
+**Note**: This will compile a release version with Lua, Sound and Tiles support and all localization languages, skipping checks and tests, and using ccache for build acceleration. You can use other switches, but `MSYS2=1`, `DYNAMIC_LINKING=1` and probably `RELEASE=1` are required to compile without issues.
 
 ## Running:
 

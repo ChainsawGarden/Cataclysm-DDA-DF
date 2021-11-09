@@ -25,6 +25,7 @@
 /obj/
 /objwin/
 /save/
+/src/lua/catabindings.cpp
 /src/version.h
 /sound/
 /templates/

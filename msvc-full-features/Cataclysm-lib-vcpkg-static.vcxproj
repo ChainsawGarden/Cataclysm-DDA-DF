@@ -72,11 +72,11 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <PreprocessorDefinitions>_CONSOLE;SDL_SOUND;TILES;SDL_BUILDING_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CONSOLE;SDL_SOUND;TILES;LUA;SDL_BUILDING_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <PreBuildEvent>
       <Command>..\msvc-full-features\prebuild.cmd</Command>
-      <Message>Get version string</Message>
+      <Message>Get version string and generate lua bindings</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">

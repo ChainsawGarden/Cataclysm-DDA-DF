@@ -17,6 +17,7 @@
 #include "action.h"
 #include "activity_type.h"
 #include "advanced_inv.h"
+#include "catalua.h"
 #include "avatar.h"
 #include "avatar_action.h"
 #include "bionics.h"
@@ -2055,24 +2056,37 @@ static bool magic_train( player_activity *act, player *p )
 
 void activity_handlers::train_finish( player_activity *act, player *p )
 {
-    const skill_id sk( act->name );
-    if( sk.is_valid() ) {
-        const Skill &skill = sk.obj();
-        std::string skill_name = skill.name();
-        int old_skill_level = p->get_skill_level( sk );
-        p->practice( sk, 100, old_skill_level + 2 );
-        int new_skill_level = p->get_skill_level( sk );
-        if( old_skill_level != new_skill_level ) {
+    // this checks if a skill is valid, then trains; either gaining a level or more experience.
+    const skill_id sk( act->name ); // skill name constructor
+    if( sk.is_valid() ) { // checks if skill is valid
+        const Skill &skill = sk.obj(); // create skill object
+        std::string skill_name = skill.name(); // get skill name
+        int old_skill_level = p->get_skill_level( sk ); // get old skill level
+        p->practice( sk, 100, old_skill_level + 2 ); // practice in game
+        int new_skill_level = p->get_skill_level( sk ); // calculate new skill level
+        if( old_skill_level != new_skill_level ) { // check if we've trained enough to go up a level
             add_msg( m_good, _( "You finish training %s to level %d." ),
-                     skill_name, new_skill_level );
-            get_event_bus().send<event_type::gains_skill_level>( p->getID(), sk, new_skill_level );
-        } else {
-            add_msg( m_good, _( "You get some training in %s." ), skill_name );
+                     skill_name, new_skill_level ); // log the message to the announcements
+            get_event_bus().send<event_type::gains_skill_level>( p->getID(), sk, new_skill_level ); // event bus thing? sends the new skill log?
+        } else { // if we didn't level up
+            add_msg( m_good, _( "You get some training in %s." ), skill_name ); // log message to announcements
         }
-        act->set_to_null();
-        return;
+        // lua start
+        const std::string skill_increase_source = "training"; // source key that lua uses
+        CallbackArgumentContainer lua_callback_args_info; // callback arg container for callbacks?
+        lua_callback_args_info.emplace_back( p->getID() ); // get the player ID
+        lua_callback_args_info.emplace_back( skill_increase_source ); // using the source of the skill inc, emplace said source back (in our case, a string).
+        lua_callback_args_info.emplace_back( sk.str() ); // get our skill id, emplace that.
+        lua_callback_args_info.emplace_back( new_skill_level ); // emplace our new skill level.
+        // I think ^this block would look like this: <player_id>, "training", <skill_id>, <new skill level>
+        lua_callback( "on_player_skill_increased", lua_callback_args_info ); // lua callback; event listener?
+        lua_callback( "on_skill_increased" ); // Legacy callback // event listener?
+        // lua end
+        act->set_to_null(); // set the action to null?
+        return; // quit the function immediately
     }
 
+    // this checks if the proficiency is valid, then makes the player practice it in-game.
     const proficiency_id &proficiency = proficiency_id( act->name );
     if( proficiency.is_valid() ) {
         p->practice_proficiency( proficiency, 15_minutes );

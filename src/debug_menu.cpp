@@ -333,6 +333,7 @@ static int spawning_uilist()
 static int map_uilist()
 {
     const std::vector<uilist_entry> uilist_initializer = {
+        { uilist_entry( debug_menu_index::LUA_CONSOLE, true, 'l', _( "Lua Console" ) ) }, // lua console
         { uilist_entry( debug_menu_index::REVEAL_MAP, true, 'r', _( "Reveal map" ) ) },
         { uilist_entry( debug_menu_index::KILL_NPCS, true, 'k', _( "Kill NPCs" ) ) },
         { uilist_entry( debug_menu_index::MAP_EDITOR, true, 'M', _( "Map editor" ) ) },
@@ -1796,7 +1797,12 @@ void debug()
 #endif
         }
         break;
-
+        // lua case thing start
+        case debug_menu_index::LUA_CONSOLE:
+            lua_console console;
+            console.run();
+            break;
+        // lua case thing end
         case debug_menu_index::DISPLAY_WEATHER:
             ui::omap::display_weather();
             break;

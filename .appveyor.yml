@@ -11,7 +11,12 @@ install:
     - cmd: cd c:\tools\vcpkg\
     - cmd: git pull
     - cmd: bootstrap-vcpkg.bat -disableMetrics
-    - cmd: vcpkg --triplet %PLATFORM%-windows-static install sdl2 sdl2-image sdl2-mixer[libflac,mpg123,libmodplug,libvorbis] sdl2-ttf gettext --recurse
+    # install dependency packages
+    - cmd: vcpkg --triplet %PLATFORM%-windows-static install sdl2 sdl2-image sdl2-mixer[libflac,mpg123,libmodplug,libvorbis] sdl2-ttf gettext lua --recurse
+    # add Lua bin folder to PATH
+    - cmd: set PATH=c:\tools\vcpkg\installed\%PLATFORM%-windows-static\tools\lua;%PATH%
+    # report Lua version
+    - cmd: lua.exe -v
 build:
   project: /msvc-full-features/Cataclysm-vcpkg-static.sln
   parallel: true

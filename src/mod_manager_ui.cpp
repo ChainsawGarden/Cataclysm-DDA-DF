@@ -59,6 +59,20 @@ std::string mod_ui::get_information( const MOD_INFORMATION *mod )
         info += mod->description + "\n";
     }
 
+    // lua blooooc stooooort
+
+     if( mod->need_lua() ) {
+        #ifdef LUA
+            info += _( "This mod requires <color_green>Lua support</color>" ) + "\n";
+        #else
+            // info += _( "This mod requires <color_red>Lua support</color>" ) + "\n"; // string with color ML tags; this might be valid by itself. More research is needed.
+            
+            // this might throw errors; previous one might already be valid
+            info += string_format( _( "This mod requires <color_red>Lua support</color>", e.c_str ) ) + "\n";
+        #endif
+    }
+    // lua bloooooc end
+
     std::string note = !mm_tree.is_available( mod->ident ) ? mm_tree.get_node(
                            mod->ident )->s_errors() : "";
     if( !note.empty() ) {

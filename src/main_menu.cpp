@@ -1023,13 +1023,24 @@ bool main_menu::load_character_tab( bool transfer )
                     std::string world_name = all_worldnames[i];
                     int savegames_count = world_generator->get_world( world_name )->world_saves.size();
                     nc_color color1, color2;
-                    if( world_name == "TUTORIAL" || world_name == "DEFENSE" ) {
+                    if( world_name == "TUTORIAL" || world_name == "DEFENSE" )
+                    {
                         color1 = c_light_cyan;
                         color2 = h_light_cyan;
-                    } else {
-                        color1 = c_white;
-                        color2 = h_white;
                     }
+                    else
+                    {
+                        if( world_generator->world_need_lua_build( world_name ) ) {
+                            color1 = c_dark_gray;
+                            color2 = h_dark_gray;
+                        } 
+                        else 
+                        {
+                            color1 = c_white;
+                            color2 = h_white;
+                        }
+                    }
+                    
                     mvwprintz( w_open, offset + point( extra_w / 2 + menu_offset.x, line ),
                                ( sel2 == i ? color2 : color1 ), "%s (%d)",
                                world_name, savegames_count );
@@ -1043,7 +1054,15 @@ bool main_menu::load_character_tab( bool transfer )
 
             mvwprintz( w_open, menu_offset + offset + point( extra_w / 2, -2 - sel2 ), h_white,
                        "%s", wn );
-
+            // lua block start
+            if( ( wn != "TUTORIAL" && wn != "DEFENSE" ) && world_generator->world_need_lua_build( wn ) ) {
+                savegames.clear();
+                mvwprintz( w_open, iMenuOffsetY - 2 - sel2, 40 + iMenuOffsetX + extra_w / 2,
+                           c_red, "%s", _( "This world requires the game to be compiled with Lua." ) );
+                on_error();
+            } else {
+            // lua block end
+            // if there are no savegames at all
             if( savegames.empty() ) {
                 mvwprintz( w_open, menu_offset + point( 40 + extra_w / 2, -2 - sel2 + offset.y ),
                            c_red, "%s", _( "No save games found!" ) );
