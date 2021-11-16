@@ -418,7 +418,7 @@ class mapgen_function_lua : public virtual mapgen_function
         mapgen_function_lua( std::string s, int w = 1000 ) : mapgen_function( w ), scr( s ) {
             // scr = s; // @todo: if ( luaL_loadstring(L, scr.c_str() ) ) { error }
         }
-        void generate( map *, const oter_id &, const mapgendata &, const time_point &, float ) override; // @todo generate doesn't override anything, look into this
+        void generate( map *, const oter_id &, mapgendata &, const time_point &, float ) override; // @todo generate doesn't override anything, look into this
         //void generate( map *, const oter_id &, const mapgendata &, const time_point &, float ); // this should work since generate isn't being overrode.
 };
 // lua bloc end
