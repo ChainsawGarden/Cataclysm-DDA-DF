@@ -41,44 +41,44 @@ struct CallbackArgument {
 
     // the below `CallbackArgument` "things" are constructors with various overloads.
     // The weird syntax spooked me, but rest assured, ":type(xyz)" & ":value_integer(xyz)" initialize private variables.
-    //CallbackArgument( int arg_value ) :
-    CallbackArgument( character_id arg_value ) :
+    CallbackArgument( int arg_value ) :
+    //CallbackArgument( character_id arg_value ) :
         type( CallbackArgumentType::Integer ), value_integer( arg_value ) {
     }
-    //CallbackArgument( double arg_value ) :
-    CallbackArgument( character_id arg_value ) :
+    CallbackArgument( double arg_value ) :
+    //CallbackArgument( character_id arg_value ) :
         type( CallbackArgumentType::Number ), value_number( arg_value ) {
     }
-    //CallbackArgument( float arg_value ) :
-    CallbackArgument( character_id arg_value ) :
+    CallbackArgument( float arg_value ) :
+    //CallbackArgument( character_id arg_value ) :
         type( CallbackArgumentType::Number ), value_number( arg_value ) {
     }
-    //CallbackArgument( bool arg_value ) :
-    CallbackArgument( character_id arg_value ) :
+    CallbackArgument( bool arg_value ) :
+    //CallbackArgument( character_id arg_value ) :
         type( CallbackArgumentType::Boolean ), value_boolean( arg_value ) {
     }
-    //CallbackArgument( const std::string &arg_value ) :
-    CallbackArgument( character_id arg_value ) :
+    CallbackArgument( const std::string &arg_value ) :
+    //CallbackArgument( character_id arg_value ) :
         type( CallbackArgumentType::String ), value_string( arg_value ) {
     }
-    //CallbackArgument( const tripoint &arg_value ) :
-    CallbackArgument( character_id arg_value ) :
+    CallbackArgument( const tripoint &arg_value ) :
+    //CallbackArgument( character_id arg_value ) :
         type( CallbackArgumentType::Tripoint ), value_tripoint( arg_value ) {
     }
-    //CallbackArgument( const item &arg_value ) :
-    CallbackArgument( character_id arg_value ) :
+    CallbackArgument( const item &arg_value ) :
+    //CallbackArgument( character_id arg_value ) :
         type( CallbackArgumentType::Item ), value_item( arg_value ) {
     }
-    //CallbackArgument( Creature *&arg_value ) :
-    CallbackArgument( character_id arg_value ) :
+    CallbackArgument( Creature *&arg_value ) :
+    //CallbackArgument( character_id arg_value ) :
         type( CallbackArgumentType::Reference_Creature ), value_creature( arg_value ) {
+    }
+    CallbackArgument( const body_part &arg_value ) : // error says that "no known conversion for argument 1 from 'character_id' to 'const body_part&'"
+    // CallbackArgument( character_id arg_value ) :
+        type( CallbackArgumentType::Enum_BodyPart ), value_body_part( arg_value ) {
     }
     CallbackArgument( character_id arg_value ) :
         type( CallbackArgumentType::Character_Id ), value_character_id( arg_value ) {
-    }
-    //CallbackArgument( const body_part &arg_value ) : // error says that "no known conversion for argument 1 from 'character_id' to 'const body_part&'"
-    CallbackArgument( character_id arg_value ) :
-        type( CallbackArgumentType::Enum_BodyPart ), value_body_part( arg_value ) {
     }
 #ifdef LUA
     void Save();
