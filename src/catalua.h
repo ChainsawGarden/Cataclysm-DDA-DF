@@ -11,7 +11,7 @@
 #include "enums.h"
 #include "int_id.h"
 #include "item.h"
-
+// callback arg types
 enum CallbackArgumentType : int {
     Integer,
     Number,
@@ -25,7 +25,7 @@ enum CallbackArgumentType : int {
     Enum_BodyPart,
     Character_Id
 };
-
+// callback args
 struct CallbackArgument {
     CallbackArgumentType type;
 
@@ -41,58 +41,67 @@ struct CallbackArgument {
 
     // the below `CallbackArgument` "things" are constructors with various overloads.
     // The weird syntax spooked me, but rest assured, ":type(xyz)" & ":value_integer(xyz)" initialize private variables.
-    CallbackArgument( int arg_value ) :
+    //CallbackArgument( int arg_value ) :
+    CallbackArgument( character_id arg_value ) :
         type( CallbackArgumentType::Integer ), value_integer( arg_value ) {
     }
-    CallbackArgument( double arg_value ) :
+    //CallbackArgument( double arg_value ) :
+    CallbackArgument( character_id arg_value ) :
         type( CallbackArgumentType::Number ), value_number( arg_value ) {
     }
-    CallbackArgument( float arg_value ) :
+    //CallbackArgument( float arg_value ) :
+    CallbackArgument( character_id arg_value ) :
         type( CallbackArgumentType::Number ), value_number( arg_value ) {
     }
-    CallbackArgument( bool arg_value ) :
+    //CallbackArgument( bool arg_value ) :
+    CallbackArgument( character_id arg_value ) :
         type( CallbackArgumentType::Boolean ), value_boolean( arg_value ) {
     }
-    CallbackArgument( const std::string &arg_value ) :
+    //CallbackArgument( const std::string &arg_value ) :
+    CallbackArgument( character_id arg_value ) :
         type( CallbackArgumentType::String ), value_string( arg_value ) {
     }
-    CallbackArgument( const tripoint &arg_value ) :
+    //CallbackArgument( const tripoint &arg_value ) :
+    CallbackArgument( character_id arg_value ) :
         type( CallbackArgumentType::Tripoint ), value_tripoint( arg_value ) {
     }
-    CallbackArgument( const item &arg_value ) :
+    //CallbackArgument( const item &arg_value ) :
+    CallbackArgument( character_id arg_value ) :
         type( CallbackArgumentType::Item ), value_item( arg_value ) {
     }
-    CallbackArgument( Creature *&arg_value ) :
+    //CallbackArgument( Creature *&arg_value ) :
+    CallbackArgument( character_id arg_value ) :
         type( CallbackArgumentType::Reference_Creature ), value_creature( arg_value ) {
     }
     CallbackArgument( character_id arg_value ) :
         type( CallbackArgumentType::Character_Id ), value_character_id( arg_value ) {
     }
-    CallbackArgument( const body_part &arg_value ) : // error says that "no known conversion for argument 1 from 'character_id' to 'const body_part&'"
+    //CallbackArgument( const body_part &arg_value ) : // error says that "no known conversion for argument 1 from 'character_id' to 'const body_part&'"
+    CallbackArgument( character_id arg_value ) :
         type( CallbackArgumentType::Enum_BodyPart ), value_body_part( arg_value ) {
     }
 #ifdef LUA
     void Save();
 #endif //LUA
 };
-
+// callback arg container
 typedef std::list<CallbackArgument> CallbackArgumentContainer;
 
-class map;
-class monster;
-class time_point;
-struct mapgendata;
-struct oter_t;
+class map; // lua map
+class monster; // lua monster?
+class time_point; // lua timepoints?
+struct mapgendata; // lua map generation data?
+struct oter_t; // overterrain?
 
-using oter_id = int_id<oter_t>;
+using oter_id = int_id<oter_t>; // other_id is an int_id
 
-extern std::stringstream lua_output_stream;
-extern std::stringstream lua_error_stream;
+extern std::stringstream lua_output_stream; // string fstream for general output?
+extern std::stringstream lua_error_stream; // string fstream for errors?
 
 /** If this returns 0, no lua function was defined to override behavior.
  *  If this returns 1, lua behavior was called and regular behavior should be omitted.
  */
-int lua_monster_move( monster *m );
+int lua_monster_move( monster *m ); // lua monster override if 0
 
 /**
  * Call the given string as lua code, used for interactive debugging.
