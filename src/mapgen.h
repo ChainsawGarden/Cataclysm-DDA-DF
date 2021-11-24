@@ -421,6 +421,7 @@ class mapgen_function_lua : public virtual mapgen_function
         // i didn't want to this, but it should suffice for now
         using mapgen_function::generate; // specifies that we want to use class `mapgen_function`'s `generate` method.
 
+        // I removed the override because the game would throw a "this doesn't override anything" error.
         void generate( map *, const oter_id &, const mapgendata &, const time_point &, float ); // @todo generate doesn't override anything, look into this
         //void generate( map *, const oter_id &, const mapgendata &, const time_point &, float ); // this should work since generate isn't being overrode.
 };
