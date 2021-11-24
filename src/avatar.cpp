@@ -13,6 +13,9 @@
 #include <string>
 #include <utility>
 
+// post-lua-restoration addition
+#include "catalua.h"
+// end post-lua-restoration addition
 #include "action.h"
 #include "activity_type.h"
 #include "bodypart.h"
