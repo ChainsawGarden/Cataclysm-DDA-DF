@@ -584,7 +584,7 @@ template<typename T>
 struct LuaType;
 
 template<>
-struct LuaType<int> {
+struct LuaType<int> { // typing functions for cata's lua?
     static bool has( lua_State *const L, const int stack_index ) {
         return lua_isnumber( L, stack_index );
     }
@@ -599,7 +599,7 @@ struct LuaType<int> {
     }
 };
 template<>
-struct LuaType<bool> {
+struct LuaType<bool> { // typing function checks (true/false) for cata's lua?
     static bool has( lua_State *const L, const int stack_index ) {
         return lua_isboolean( L, stack_index );
     }
@@ -618,7 +618,7 @@ struct LuaType<bool> {
         push( L, !!value );
     }
 };
-template<>
+template<> // typing functions for cata's Lua (pertaining to strings)?
 struct LuaType<std::string> {
     static bool has( lua_State *const L, const int stack_index ) {
         return lua_isstring( L, stack_index );
@@ -638,7 +638,7 @@ struct LuaType<std::string> {
         lua_pushstring( L, value );
     }
 };
-template<>
+template<> // typing functions for cata's Lua (pertaining to float)?
 struct LuaType<float> : public LuaType<int> { // inherit checking because it's all the same to Lua
     static float get( lua_State *const L, const int stack_index ) {
         return lua_tonumber( L, stack_index );
@@ -647,10 +647,10 @@ struct LuaType<float> : public LuaType<int> { // inherit checking because it's a
         lua_pushnumber( L, value );
     }
 };
-template<typename T>
+template<typename T> // typing functions but for lua values for cata's lua...?
 struct LuaType<LuaValue<T>> : public LuaValue<T> {
 };
-template<typename T>
+template<typename T> // typing functions but for LuaReferences for cata's lua...?
 struct LuaType<LuaReference<T>> : public LuaReference<T> {
 };
 
@@ -729,7 +729,7 @@ class LuaEnum : private LuaType<std::string>
             lua_setglobal( L, global_name ); // -1
         }
 };
-template<typename E>
+template<typename E> // lua (class) for Lua enum types...?
 struct LuaType<LuaEnum<E>> : public LuaEnum<E> {
 };
 
@@ -764,7 +764,7 @@ class LuaValueOrReference
         }
 };
 
-void update_globals( lua_State *L )
+void update_globals( lua_State *L ) // update all global data?
 {
     LuaReference<player>::push( L, g->u );
     luah_setglobal( L, "player", -1 );
@@ -1082,24 +1082,24 @@ monster *create_monster( const mtype_id &mon_type, const tripoint &p )
 
 static void popup_wrapper( const std::string &text )
 {
-    popup( "%s", text.c_str() );
+    popup( "%s", text.c_str() ); // call Cataclysm's `popup` function
 }
-
+// wrapper for Cataclysm: Dark Days Ahead's `add_msg` (adds message to announcements pane)
 static void add_msg_wrapper( const std::string &text )
 {
-    add_msg( text );
+    add_msg( text ); // call Cataclysm's `add_msg()` function
 }
-
+// wrapper for Cataclysm's Y/N query pop up.
 static bool query_yn_wrapper( const std::string &text )
 {
-    return query_yn( text );
+    return query_yn( text ); // call (and return the result of) Cataclysm's `query_yn()` function
 }
 
 // items = game.items_at(x, y)
 static int game_items_at( lua_State *L )
 {
-    int x = lua_tointeger( L, 1 );
-    int y = lua_tointeger( L, 2 );
+    int x = lua_tointeger( L, 1 ); // turns an int to a Lua integer?
+    int y = lua_tointeger( L, 2 ); // turns an int to a Lua integer?
 
     auto items = g->m.i_at( x, y );
     lua_createtable( L, items.size(), 0 ); // Preallocate enough space for all our items.
@@ -1365,48 +1365,48 @@ void game::init_lua()
     lua_dofile( lua_state, FILENAMES["autoexeclua"].c_str() );
 }
 
-#endif // #ifdef LUA
+#endif // #ifdef LUA; ends the "if lua was defined" preprocessor definitions
+// iuse.h code is getting redefined here for some reason? I don't think this belongs here...
+// use_function::use_function( const use_function &other )
+//     : actor( other.actor ? other.actor->clone() : nullptr )
+// {
+// }
 
-use_function::use_function( const use_function &other )
-    : actor( other.actor ? other.actor->clone() : nullptr )
-{
-}
+// use_function &use_function::operator=( iuse_actor *const f )
+// {
+//     return operator=( use_function( f ) );
+// }
 
-use_function &use_function::operator=( iuse_actor *const f )
-{
-    return operator=( use_function( f ) );
-}
+// use_function &use_function::operator=( const use_function &other )
+// {
+//     actor.reset( other.actor ? other.actor->clone() : nullptr );
+//     return *this;
+// }
 
-use_function &use_function::operator=( const use_function &other )
-{
-    actor.reset( other.actor ? other.actor->clone() : nullptr );
-    return *this;
-}
+// void use_function::dump_info( const item &it, std::vector<iteminfo> &dump ) const
+// {
+//     if( actor != nullptr ) {
+//         actor->info( it, dump );
+//     }
+// }
 
-void use_function::dump_info( const item &it, std::vector<iteminfo> &dump ) const
-{
-    if( actor != nullptr ) {
-        actor->info( it, dump );
-    }
-}
+// ret_val<bool> use_function::can_call( const player &p, const item &it, bool t,
+//                                       const tripoint &pos ) const
+// {
+//     if( actor == nullptr ) {
+//         return ret_val<bool>::make_failure( _( "You can't do anything interesting with your %s." ),
+//                                             it.tname().c_str() );
+//     }
 
-ret_val<bool> use_function::can_call( const player &p, const item &it, bool t,
-                                      const tripoint &pos ) const
-{
-    if( actor == nullptr ) {
-        return ret_val<bool>::make_failure( _( "You can't do anything interesting with your %s." ),
-                                            it.tname().c_str() );
-    }
+//     return actor->can_use( p, it, t, pos );
+// }
 
-    return actor->can_use( p, it, t, pos );
-}
-
-long use_function::call( player &p, item &it, bool active, const tripoint &pos ) const
-{
-    return actor->use( p, it, active, pos );
-}
-
-#ifndef LUA
+// long use_function::call( player &p, item &it, bool active, const tripoint &pos ) const
+// {
+//     return actor->use( p, it, active, pos );
+// }
+// "iuse"s were redefined here for some reason. I think it'd be best to commend this entire "iuse" code out 
+#ifndef LUA // if LUA is not defined...
 /* Empty functions for builds without Lua: */
 int lua_monster_move( monster * )
 {
@@ -1419,18 +1419,18 @@ int call_lua( std::string )
 }
 // Implemented in mapgen.cpp:
 // int lua_mapgen( map *, std::string, mapgendata, int, float, const std::string & )
-void lua_loadmod( const std::string &, const std::string & )
+void lua_loadmod( const std::string &, const std::string & ) // loads lua mods?
 {
 }
-void game::init_lua()
-{
-}
-
-void lua_callback( const char *, const CallbackArgumentContainer & )
-{
-}
-void lua_callback( const char * )
+void game::init_lua() // game initializes lua?
 {
 }
 
-#endif
+void lua_callback( const char *, const CallbackArgumentContainer & ) // lua callbacks using a container?
+{
+}
+void lua_callback( const char * ) // general lua callback?
+{
+}
+
+#endif // since lua was not defined, make all of these functions empty.
