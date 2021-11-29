@@ -1412,7 +1412,8 @@ int lua_monster_move( monster * )
 {
     return 0;
 }
-int call_lua( std::string )
+//int call_lua( std::string )
+int call_lua( std::string & )
 {
     popup( _( "This binary was not compiled with Lua support." ) );
     return 0;
