@@ -696,6 +696,11 @@ ifdef LUA
       LUA_PKG = $(if $(LUA_FOUND),$(LUA_FOUND),$(error "Lua not found by $(PKG_CONFIG), install it or make without 'LUA=1'"))
       LUA_LIBS := $(shell $(PKG_CONFIG) --silence-errors --libs $(LUA_PKG))
       LUA_CFLAGS := $(shell $(PKG_CONFIG) --silence-errors --cflags $(LUA_PKG))
+
+      # the below helps me see what lua packages are available, instead of me just guessing
+      $(shell $(PKG_CONFIG) --silence-errors --list-all)
+
+      #end
     endif
   endif
 
