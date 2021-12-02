@@ -689,13 +689,8 @@ ifdef LUA
   else
     ifdef LUA_USE_PKGCONFIG
       # On unix-like systems, use pkg-config to find lua
-      
-      # the below helps me see what lua packages are available, instead of me just guessing
-      $(error shell $(PKG_CONFIG) --silence-errors --list-all | grep "lua")
-
-      #end package listing
-      #LUA_CANDIDATES = lua_5.3.3 lua_5.3 lua5.3.3 lua5.3 lua5.2 lua-5.3 lua-5.2 lua5.1 lua-5.1 lua $(LUA_BINARY) # this candidates section, legacywise, means "take potshots at package names"
-      LUA_CANDIDATES = lua5.1-c++ lua-5.1-c++ lua51 lua5.1 lua-5.1 lua $(LUA_BINARY) # this candidates section, legacywise, means "take potshots at package names"
+      LUA_CANDIDATES = lua_5.3 lua5.3.3 lua5.3 lua5.2 lua-5.3 lua-5.2 lua5.1 lua-5.1 lua $(LUA_BINARY) # this candidates section, legacywise, means "take potshots at package names"
+      #LUA_CANDIDATES = lua5.1-c++ lua-5.1-c++ lua51 lua5.1 lua-5.1 lua $(LUA_BINARY) # this candidates section, legacywise, means "take potshots at package names"
       LUA_FOUND = $(firstword $(foreach lua,$(LUA_CANDIDATES),\
           $(shell if $(PKG_CONFIG) --silence-errors --exists $(lua); then echo $(lua);fi)))
       LUA_PKG = $(if $(LUA_FOUND),$(LUA_FOUND),$(error "Lua not found by $(PKG_CONFIG), install it or make without 'LUA=1'"))
