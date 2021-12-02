@@ -691,7 +691,7 @@ ifdef LUA
       # On unix-like systems, use pkg-config to find lua
       
       # the below helps me see what lua packages are available, instead of me just guessing
-      $(shell $(PKG_CONFIG) --silence-errors --list-all | grep "lua")
+      $(error shell $(PKG_CONFIG) --silence-errors --list-all | grep "lua")
 
       #end package listing
       #LUA_CANDIDATES = lua_5.3.3 lua_5.3 lua5.3.3 lua5.3 lua5.2 lua-5.3 lua-5.2 lua5.1 lua-5.1 lua $(LUA_BINARY) # this candidates section, legacywise, means "take potshots at package names"
