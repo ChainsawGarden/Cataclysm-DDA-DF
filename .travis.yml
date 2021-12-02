@@ -76,13 +76,14 @@ jobs:
           packages: ["g++-5=5.3.1-14ubuntu2", "libstdc++-5-dev=5.3.1-14ubuntu2", "gcc-5=5.3.1-14ubuntu2", "gcc-5-base=5.3.1-14ubuntu2", "cpp-5=5.3.1-14ubuntu2", "libgcc-5-dev=5.3.1-14ubuntu2", "libasan2=5.3.1-14ubuntu2", "libmpx0=5.3.1-14ubuntu2"]
           sources: [*apt_sources]
 
-    - env: COMPILER=g++-8 CXXFLAGS="-Wno-implicit-fallthrough" TILES=1 SOUND=1
-      name: "GCC 8 Make build with Tiles, Sound"
+    - env: COMPILER=g++-8 CXXFLAGS="-Wno-implicit-fallthrough" TILES=1 SOUND=1 LUA=1 # add lua stuff
+      #name: "GCC 8 Make build with Tiles, Sound"
+      name: "GCC 8 Make build with Tiles, Sound, Lua"
       dist: bionic
       compiler: gcc
       addons: &gcc8
         apt:
-          packages: ["g++-8",   "g++-8-multilib",   "libc6-dbg", "libc6-dbg:i386", "libsdl2-dev", "libsdl2-ttf-dev", "libsdl2-image-dev", "libsdl2-mixer-dev"]
+          packages: ["g++-8",   "g++-8-multilib",   "libc6-dbg", "libc6-dbg:i386", "libsdl2-dev", "libsdl2-ttf-dev", "libsdl2-image-dev", "libsdl2-mixer-dev", "liblua5.3-dev", "lua5.3"] # added lua stuff
           sources: *apt_sources
 
     - env: CLANG=clang++-10
@@ -177,13 +178,14 @@ jobs:
           packages: ["clang-5.0"]
           sources: [*apt_sources, llvm-toolchain-xenial-5.0]
 
-    - env: CLANG=clang++-6.0 TILES=1 SOUND=1 CXXFLAGS=-Wno-error=unused-command-line-argument CMAKE=1 RELEASE=1
-      name: "Clang 6 CMake build with tiles and sound"
+    - env: CLANG=clang++-6.0 TILES=1 SOUND=1 LUA=1 CXXFLAGS=-Wno-error=unused-command-line-argument CMAKE=1 RELEASE=1 # add lua thing
+      #name: "Clang 6 CMake build with tiles and sound"
+      name: "Clang 6 CMake build with tiles, sound and Lua"
       if: type != pull_request
       compiler: clang
       addons: &clang60
         apt:
-          packages: ["clang-6.0", "libsdl2-dev", "libsdl2-ttf-dev", "libsdl2-image-dev", "libsdl2-mixer-dev"]
+          packages: ["clang-6.0", "libsdl2-dev", "libsdl2-ttf-dev", "libsdl2-image-dev", "libsdl2-mixer-dev", "liblua5.3-dev", "lua5.3"]
           sources: [*apt_sources, llvm-toolchain-xenial-6.0]
 
     - env: CLANG=clang++-7
