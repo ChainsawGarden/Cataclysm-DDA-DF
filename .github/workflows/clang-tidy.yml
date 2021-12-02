@@ -44,7 +44,7 @@ jobs:
       run: |
           #sudo apt-add-repository "deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-8 main"
           sudo apt-get update
-          sudo apt-get install libncursesw5-dev clang-8 libclang-8-dev llvm-8-dev llvm-8-tools \
+          sudo apt-get install lua5.3 libncursesw5-dev clang-8 libclang-8-dev llvm-8-dev llvm-8-tools \
             libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev libsdl2-mixer-dev libpulse-dev ccache \
             gettext
     - name: prepare
