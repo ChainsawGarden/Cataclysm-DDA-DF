@@ -153,7 +153,7 @@ Dependencies:
   * SDL_ttf
   * freetype
   * build essentials
-  * lua5.2 and liblua5.2 - Only necessary if compiling with lua. Versions 5.1, 5.2 and 5.3 are supported.
+  * liblua 5.4, lua5.2 and liblua5.2 - Only necessary if compiling with lua. Versions 5.1, 5.2 and 5.3 are supported.
   * libsdl2-mixer-dev - Used if compiling with sound support.
 
 Install:
