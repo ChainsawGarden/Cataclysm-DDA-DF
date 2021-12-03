@@ -38,6 +38,7 @@ struct CallbackArgument {
     item value_item;
     Creature *value_creature;
     body_part value_body_part;
+    const int_id<body_part_type> value_body_part_id;
     character_id value_character_id;
 
     // the below `CallbackArgument` "things" are constructors with various overloads.
@@ -74,12 +75,10 @@ struct CallbackArgument {
     //CallbackArgument( character_id arg_value ) :
         type( CallbackArgumentType::Reference_Creature ), value_creature( arg_value ) {
     }
-    // potentially outdated code; `const body_part &` was likely replaced with `const int_id<body_part_type>`. Check!
-    // CallbackArgument( const body_part &arg_value ) : // error says that "no known conversion for argument 1 from 'character_id' to 'const body_part&'"
-    // // CallbackArgument( character_id arg_value ) :
-    //     type( CallbackArgumentType::Enum_BodyPart ), value_body_part( arg_value ) {
-    // }
-    CallbackArgument( const int_id<body_part_type> arg_value) : // Bodypart CallBack
+    CallbackArgument( const body_part &arg_value ) : // Bodypart enums.
+        type( CallbackArgumentType::Enum_BodyPart ), value_body_part( arg_value ) {
+    }
+    CallbackArgument( const int_id<body_part_type> arg_value) : // Bodypart ID
         type( CallbackArgumentType::Id_BodyPart ), value_body_part( arg_value ) {
     }
     CallbackArgument( character_id arg_value ) :
