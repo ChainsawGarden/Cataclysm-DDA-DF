@@ -22,8 +22,8 @@ enum CallbackArgumentType : int {
     Tripoint,
     Item,
     Reference_Creature,
-    //Enum_BodyPart, // old bodypart code
-    Id_BodyPart, // new bodypart code
+    Enum_BodyPart, // bodypart Enum
+    Id_BodyPart, // bodypart ID
     Character_Id
 };
 // callback args
