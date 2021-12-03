@@ -7,7 +7,7 @@
 #include <vector>
 
 #include "../cursesdef.h"
-#include "output.h"
+#include "../output.h"
 
 class nc_color;
 
