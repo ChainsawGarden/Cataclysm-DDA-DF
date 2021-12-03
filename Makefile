@@ -692,8 +692,7 @@ ifdef LUA
       #LUA_CANDIDATES = lua5.3 lua5.2 lua-5.3 lua-5.2 lua5.1 lua-5.1 lua $(LUA_BINARY) # this candidates section, legacywise, means "take potshots at package names"
       #LUA_CANDIDATES = lua5.3 lua-5.3 lua5.1 lua-5.1 lua $(LUA_BINARY) # this candidates section, legacywise, means "take potshots at package names"
       LUA_CANDIDATES = lua5.3 lua-5.3 lua5.2 lua-5.2 lua5.1 lua-5.1 lua $(LUA_BINARY) # set package <candidates> names {{ will be used to take potshots at the packman }}
-      LUA_FOUND = $(firstword $(foreach lua,$(LUA_CANDIDATES),\ 
-  $(shell if $(PKG_CONFIG) --silence-errors --exists $(lua); then echo $(lua);fi))) # if pkg-config returns non-errors for the search, set LUA_FOUND to boolean true
+      LUA_FOUND = $(firstword $(foreach lua,$(LUA_CANDIDATES),$(shell if $(PKG_CONFIG) --silence-errors --exists $(lua); then echo $(lua);fi))) # if pkg-config returns non-errors for the search, set LUA_FOUND to boolean true (fixed tab error by putting everything on one line instead of breaking the line)
       LUA_PKG = $(if $(LUA_FOUND),$(LUA_FOUND),$(error "Lua not found by $(PKG_CONFIG), install it or make without 'LUA=1'")) # set the lua package
       LUA_LIBS := $(shell $(PKG_CONFIG) --silence-errors --libs $(LUA_PKG)) # get the libs
       LUA_CFLAGS := $(shell $(PKG_CONFIG) --silence-errors --cflags $(LUA_PKG)) # get the cflags
