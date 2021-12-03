@@ -195,6 +195,7 @@ std::string enum_to_string<debug_menu::debug_menu_index>( debug_menu::debug_menu
         case debug_menu::debug_menu_index::NESTED_MAPGEN: return "NESTED_MAPGEN";
         case debug_menu::debug_menu_index::VEHICLE_BATTERY_CHARGE: return "VEHICLE_BATTERY_CHARGE";
         case debug_menu::debug_menu_index::GENERATE_EFFECT_LIST: return "GENERATE_EFFECT_LIST";
+        case debug_menu::debug_menu_index::LUA_CONSOLE: return "LUA_CONSOLE"; // lua console debug menu index
         // *INDENT-ON*
         case debug_menu::debug_menu_index::last:
             break;
