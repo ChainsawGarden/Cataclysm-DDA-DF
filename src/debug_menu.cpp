@@ -2178,12 +2178,10 @@ void debug()
             }
             break;
         }
-        // lua case thing start
-        case debug_menu_index::LUA_CONSOLE:
+        case debug_menu_index::LUA_CONSOLE: // lua console case
             lua_console console;
             console.run();
             break;
-        // lua case thing end
         case debug_menu_index::last:
             return;
     }
