@@ -1803,12 +1803,6 @@ void debug()
 #endif
         }
         break;
-        // lua case thing start
-        case debug_menu_index::LUA_CONSOLE:
-            lua_console console;
-            console.run();
-            break;
-        // lua case thing end
         case debug_menu_index::DISPLAY_WEATHER:
             ui::omap::display_weather();
             break;
@@ -2184,7 +2178,12 @@ void debug()
             }
             break;
         }
-
+        // lua case thing start
+        case debug_menu_index::LUA_CONSOLE:
+            lua_console console;
+            console.run();
+            break;
+        // lua case thing end
         case debug_menu_index::last:
             return;
     }
