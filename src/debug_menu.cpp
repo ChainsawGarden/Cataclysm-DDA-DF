@@ -2178,12 +2178,14 @@ void debug()
             }
             break;
         }
-        case debug_menu_index::LUA_CONSOLE: // lua console case
+        case debug_menu_index::LUA_CONSOLE: {// lua console case
             lua_console console;
             console.run();
             break;
-        case debug_menu_index::last:
+        }
+        case debug_menu_index::last: {
             return;
+        }
     }
     here.invalidate_map_cache( here.get_abs_sub().z );
 }
