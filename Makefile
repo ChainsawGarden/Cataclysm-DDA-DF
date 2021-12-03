@@ -1014,9 +1014,9 @@ $(ODIR)/%.o: $(SRC_DIR)/%.rc
 src/version.h: version
 
 src/version.cpp: src/version.h
-# 
+# The below switches to the lua directory and runs lua
 $(LUASRC_DIR)/catabindings.cpp: $(LUA_DIR)/class_definitions.lua $(LUASRC_DIR)/generate_bindings.lua # does something with a catabindings C++ srcfile and two lua files (class defs & gen bindings) ?
-	cd $(LUASRC_DIR) && $(LUASRC_DIR)/$(LUA_BINARY) generate_bindings.lua
+	cd $(LUASRC_DIR) && $(LUA_BINARY) generate_bindings.lua
 #cd $(LUASRC_DIR) && $(LUA_BINARY) generate_bindings.lua # original
 # the above is the most problematic
 # For our linux targets, it can not find Lua. The following will be displayed whenever the linux target tries to run the line:
@@ -1081,12 +1081,17 @@ endif
 ifeq ($(SOUND), 1)
 	cp -R --no-preserve=ownership data/sound $(DATA_PREFIX)
 endif
+# lua bloc install lua things
+# 1. make data/lua dir
+# 2. run the lua log cmd on the data/lua
+# 3. run the class_definitions.lua file on the data/lua
 ifdef LUA
 	mkdir -p $(DATA_PREFIX)/lua
-	install --mode=644 lua/autoexec.lua $(DATA_PREFIX)/lua
+	install --mode=644 lua/autoexec.lua $(DATA_PREFIX)/lua 
 	install --mode=644 lua/log.lua $(DATA_PREFIX)/lua
 	install --mode=644 lua/class_definitions.lua $(DATA_PREFIX)/lua
 endif
+# lua bloc "ILT" end
 	install --mode=644 data/changelog.txt data/cataicon.ico data/fontdata.json \
                    LICENSE.txt LICENSE-OFL-Terminus-Font.txt -t $(DATA_PREFIX)
 	mkdir -p $(LOCALE_DIR)
