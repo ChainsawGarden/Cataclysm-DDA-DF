@@ -1016,7 +1016,7 @@ src/version.h: version
 src/version.cpp: src/version.h
 # 
 $(LUASRC_DIR)/catabindings.cpp: $(LUA_DIR)/class_definitions.lua $(LUASRC_DIR)/generate_bindings.lua # does something with a catabindings C++ srcfile and two lua files (class defs & gen bindings) ?
-  cd $(LUASRC_DIR) && $(LUASRC_DIR)/$(LUA_BINARY) generate_bindings.lua
+	cd $(LUASRC_DIR) && $(LUASRC_DIR)/$(LUA_BINARY) generate_bindings.lua
 #cd $(LUASRC_DIR) && $(LUA_BINARY) generate_bindings.lua # original
 # the above is the most problematic
 # For our linux targets, it can not find Lua. The following will be displayed whenever the linux target tries to run the line:
