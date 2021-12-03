@@ -110,18 +110,18 @@ int lua_monster_move( monster *m ); // lua monster override if 0
 /**
  * Call the given string as lua code, used for interactive debugging.
  */
-int call_lua( const std::string &tocall );
+int call_lua( const std::string &tocall ); // the string is lua code, and this function runs it
 int lua_mapgen( map *m, const oter_id &terrain_type, const mapgendata &md, const time_point &t,
-                float d, const std::string &scr );
+                float d, const std::string &scr ); // generate a map using lua code?
 
 /**
  * Execute a callback that can be overridden by all mods with optional accessible arguments.
  */
-void lua_callback( const char *callback_name, const CallbackArgumentContainer &callback_args );
-void lua_callback( const char *callback_name );
+void lua_callback( const char *callback_name, const CallbackArgumentContainer &callback_args ); // callback (takes the name and callback container)
+void lua_callback( const char *callback_name ); // callback (takes only the name)
 
 std::string lua_callback_getstring( const char *callback_name,
-                                    const CallbackArgumentContainer &callback_args );
+                                    const CallbackArgumentContainer &callback_args ); // Lua callback getstring... does it get a string via lua callback...?
 
 /**
  * Load the main file of a lua mod.
