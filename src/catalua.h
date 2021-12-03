@@ -80,7 +80,7 @@ struct CallbackArgument {
     //     type( CallbackArgumentType::Enum_BodyPart ), value_body_part( arg_value ) {
     // }
     CallbackArgument( const int_id<body_part_type> arg_value) : // Bodypart CallBack
-        type( CallbackArgumentType::Id_BodyPart, value_body_part( arg_value ) ) {
+        type( CallbackArgumentType::Id_BodyPart ), value_body_part( arg_value ) {
     }
     CallbackArgument( character_id arg_value ) :
         type( CallbackArgumentType::Character_Id ), value_character_id( arg_value ) {
