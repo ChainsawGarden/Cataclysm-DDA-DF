@@ -26,7 +26,7 @@
 #include <vector>
 
 // lua bloc include start
-#include "lua_console.h"
+#include "src/lua/lua_console.h"
 // lua bloc include end
 #include "achievement.h"
 #include "action.h"
