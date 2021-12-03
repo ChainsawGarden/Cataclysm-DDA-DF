@@ -670,7 +670,7 @@ ifeq ($(SOUND), 1)
 
   CXXFLAGS += -DSDL_SOUND
 endif
-
+# lua bloc pkg installation
 ifdef LUA
   ifeq ($(TARGETSYSTEM),WINDOWS)
     ifeq ($(MSYS2),1)
@@ -690,7 +690,8 @@ ifdef LUA
     ifdef LUA_USE_PKGCONFIG
       # On unix-like systems, use pkg-config to find lua
       #LUA_CANDIDATES = lua5.3 lua5.2 lua-5.3 lua-5.2 lua5.1 lua-5.1 lua $(LUA_BINARY) # this candidates section, legacywise, means "take potshots at package names"
-      LUA_CANDIDATES = lua5.3 lua $(LUA_BINARY) # this candidates section, legacywise, means "take potshots at package names"
+      #LUA_CANDIDATES = lua5.3 lua-5.3 lua5.1 lua-5.1 lua $(LUA_BINARY) # this candidates section, legacywise, means "take potshots at package names"
+      LUA_CANDIDATES = lua5.3 lua-5.3 lua5.2 lua-5.2 lua5.1 lua-5.1 lua $(LUA_BINARY)
       LUA_FOUND = $(firstword $(foreach lua,$(LUA_CANDIDATES),\
           $(shell if $(PKG_CONFIG) --silence-errors --exists $(lua); then echo $(lua);fi)))
       LUA_PKG = $(if $(LUA_FOUND),$(LUA_FOUND),$(error "Lua not found by $(PKG_CONFIG), install it or make without 'LUA=1'"))
@@ -707,7 +708,7 @@ ifdef LUA
   LUA_DEPENDENCIES = $(LUASRC_DIR)/catabindings.cpp
   BINDIST_EXTRAS  += $(LUA_DIR)
 endif
-
+# lua bloc pkg installation end
 ifeq ($(SDL), 1)
   TILES = 1
 endif

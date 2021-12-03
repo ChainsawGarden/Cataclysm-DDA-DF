@@ -2892,7 +2892,7 @@ bool mapgen_function_json_base::has_vehicle_collision( const mapgendata &dat,
 /*
  * Apply mapgen as per a derived-from-json recipe; in theory fast, but not very versatile
  */
-void mapgen_function_json::generate( mapgendata &md )
+void mapgen_function_json::generate( mapgendata &md ) // PERTAINING TO LUA RESPORATION: this is solid, do not touch
 {
     map *const m = &md.m;
     if( fill_ter != t_null ) { // if not null
