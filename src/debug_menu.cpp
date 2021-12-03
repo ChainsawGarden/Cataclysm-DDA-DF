@@ -333,7 +333,9 @@ static int spawning_uilist()
 static int map_uilist()
 {
     const std::vector<uilist_entry> uilist_initializer = {
+        // lua console uilist entry
         { uilist_entry( debug_menu_index::LUA_CONSOLE, true, 'l', _( "Lua Console" ) ) }, // lua console
+        // lua console uilist entry end
         { uilist_entry( debug_menu_index::REVEAL_MAP, true, 'r', _( "Reveal map" ) ) },
         { uilist_entry( debug_menu_index::KILL_NPCS, true, 'k', _( "Kill NPCs" ) ) },
         { uilist_entry( debug_menu_index::MAP_EDITOR, true, 'M', _( "Map editor" ) ) },

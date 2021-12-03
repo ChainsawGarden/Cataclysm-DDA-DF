@@ -86,6 +86,7 @@ enum class debug_menu_index : int {
     NESTED_MAPGEN,
     VEHICLE_BATTERY_CHARGE,
     GENERATE_EFFECT_LIST,
+    LUA_CONSOLE,
     last
 };
 

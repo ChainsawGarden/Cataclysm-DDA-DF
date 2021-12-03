@@ -1016,12 +1016,14 @@ src/version.h: version
 src/version.cpp: src/version.h
 # The below switches to the lua directory and runs lua
 $(LUASRC_DIR)/catabindings.cpp: $(LUA_DIR)/class_definitions.lua $(LUASRC_DIR)/generate_bindings.lua # does something with a catabindings C++ srcfile and two lua files (class defs & gen bindings) ?
-	cd $(LUASRC_DIR) && /usr/bin/$(LUA_BINARY) generate_bindings.lua
+	cd $(LUASRC_DIR) && /usr/bin/$(LUA_BINARY) generate_bindings.lua 
 #cd $(LUASRC_DIR) && $(LUA_BINARY) generate_bindings.lua # original
 # the above is the most problematic
 # For our linux targets, it can not find Lua. The following will be displayed whenever the linux target tries to run the line:
 # `/bin/sh: 1: lua: not found`
 # A possible solution would be to do `$(LUASRC_DIR)/$(LUA_BINARY)` to theoretically run the binary directly from the directory.
+# The above did not work because `src/lua/` is CDDAs lua code, not the lua binary itself.
+# However, a proper fix is in. Instead of simply executing $(LUA_BINARY), I went directly to /usr/bin/$(LUA_BINARY)
 
 $(SRC_DIR)/catalua.cpp: $(LUA_DEPENDENCIES)
 
