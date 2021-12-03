@@ -106,7 +106,9 @@
 #include "line.h"
 #include "live_view.h"
 #include "loading_ui.h"
-#include "lua_console.h"
+// lua console include
+#include "lua/lua_console.h" 
+// lua console include
 #include "location.h"
 #include "magic.h"
 #include "make_static.h"
