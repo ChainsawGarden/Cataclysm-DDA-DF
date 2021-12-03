@@ -6,7 +6,7 @@
 #include <utility>
 #include <vector>
 
-#include "cursesdef.h"
+#include "../cursesdef.h"
 #include "output.h"
 
 class nc_color;
