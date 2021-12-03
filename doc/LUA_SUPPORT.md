@@ -7,7 +7,15 @@ File Layout
 - `lua/class_definitions.lua` - Definitions of classes and functions that bindings will be generated from
 - `lua/generate_bindings.lua` - Custom binding generator for cataclysm, can generate class and function bindings.
 - `lua/catabindings.cpp` - Output of generate_bindings.lua
+
+FOR MODS:
+- moddir/preload.lua - PLACEHOLDER
+- moddir/main.lua - PLACEHOLDER
+
+PERTAINING TO MODERNIZATION AS OF 12-02-2021: THE BELOW FILE DOES NOT EXIST IN THE `data` DIR. IT MAY BE REFERRING TO THE PARTICULAR LUA MOD.
 - `data/main.lua` - Script that will be called on cataclysm startup. You can define functions here and call them in the lua debug interpreter.
+
+
 
 Adding new functionality
 ========================

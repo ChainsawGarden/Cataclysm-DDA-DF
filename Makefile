@@ -672,41 +672,40 @@ ifeq ($(SOUND), 1)
 endif
 # lua bloc pkg installation
 ifdef LUA
-  ifeq ($(TARGETSYSTEM),WINDOWS)
-    ifeq ($(MSYS2),1)
-      LUA_USE_PKGCONFIG := 1
-    else
+  ifeq ($(TARGETSYSTEM),WINDOWS) # if the target Operating System is Windows...
+    ifeq ($(MSYS2),1) # If MSYS2 (compiler?) is 1 (prob version number)
+      LUA_USE_PKGCONFIG := 1 # lua "use pkgconfig" = 1 now
+    else # if we aren't using MSYS2
       # Windows expects to have lua unpacked at a specific location
-      LUA_LIBS := -llua
+      LUA_LIBS := -llua # lua libraries equals -llua? what does `-l` mean? or `-llua` ?
     endif
-  else
-    LUA_USE_PKGCONFIG := 1
+  else # if the target Operating System is not windows...
+    LUA_USE_PKGCONFIG := 1 # "use-package config" = 1.
   endif
 
-  ifdef OSXCROSS
-    LUA_LIBS = -L$(LIBSDIR)/lua/lib -llua -lm
-    LUA_CFLAGS = -I$(LIBSDIR)/lua/include
+  ifdef OSXCROSS # If the operating system is cross-platform OSX...
+    LUA_LIBS = -L$(LIBSDIR)/lua/lib -llua -lm  # set the lua libs
+    LUA_CFLAGS = -I$(LIBSDIR)/lua/include      # set the lua CFLAGs
   else
-    ifdef LUA_USE_PKGCONFIG
+    ifdef LUA_USE_PKGCONFIG # if lua use pkgconfig is defined...
       # On unix-like systems, use pkg-config to find lua
       #LUA_CANDIDATES = lua5.3 lua5.2 lua-5.3 lua-5.2 lua5.1 lua-5.1 lua $(LUA_BINARY) # this candidates section, legacywise, means "take potshots at package names"
       #LUA_CANDIDATES = lua5.3 lua-5.3 lua5.1 lua-5.1 lua $(LUA_BINARY) # this candidates section, legacywise, means "take potshots at package names"
-      LUA_CANDIDATES = lua5.3 lua-5.3 lua5.2 lua-5.2 lua5.1 lua-5.1 lua $(LUA_BINARY)
-      LUA_FOUND = $(firstword $(foreach lua,$(LUA_CANDIDATES),\
-          $(shell if $(PKG_CONFIG) --silence-errors --exists $(lua); then echo $(lua);fi)))
-      LUA_PKG = $(if $(LUA_FOUND),$(LUA_FOUND),$(error "Lua not found by $(PKG_CONFIG), install it or make without 'LUA=1'"))
-      LUA_LIBS := $(shell $(PKG_CONFIG) --silence-errors --libs $(LUA_PKG))
-      LUA_CFLAGS := $(shell $(PKG_CONFIG) --silence-errors --cflags $(LUA_PKG))
-
+      LUA_CANDIDATES = lua5.3 lua-5.3 lua5.2 lua-5.2 lua5.1 lua-5.1 lua $(LUA_BINARY) # set package <candidates> names {{ will be used to take potshots at the packman }}
+      LUA_FOUND = $(firstword $(foreach lua,$(LUA_CANDIDATES),\ 
+          $(shell if $(PKG_CONFIG) --silence-errors --exists $(lua); then echo $(lua);fi))) # if pkg-config returns non-errors for the search, set LUA_FOUND to boolean true
+      LUA_PKG = $(if $(LUA_FOUND),$(LUA_FOUND),$(error "Lua not found by $(PKG_CONFIG), install it or make without 'LUA=1'")) # set the lua package
+      LUA_LIBS := $(shell $(PKG_CONFIG) --silence-errors --libs $(LUA_PKG)) # get the libs
+      LUA_CFLAGS := $(shell $(PKG_CONFIG) --silence-errors --cflags $(LUA_PKG)) # get the cflags
     endif
   endif
 
-  LDFLAGS += $(LUA_LIBS)
-  CXXFLAGS += $(LUA_CFLAGS)
+  LDFLAGS += $(LUA_LIBS)    # what are LDFLAGS ?
+  CXXFLAGS += $(LUA_CFLAGS) # add C++ Flags
 
-  CXXFLAGS += -DLUA
-  LUA_DEPENDENCIES = $(LUASRC_DIR)/catabindings.cpp
-  BINDIST_EXTRAS  += $(LUA_DIR)
+  CXXFLAGS += -DLUA # C++ flag for lua is -DLUA
+  LUA_DEPENDENCIES = $(LUASRC_DIR)/catabindings.cpp # set the lua deps to the catabindings file
+  BINDIST_EXTRAS  += $(LUA_DIR) # extra stuff to bind (lua dir specifically) ? bind to what?
 endif
 # lua bloc pkg installation end
 ifeq ($(SDL), 1)
@@ -1000,9 +999,9 @@ version:
             [ -e "$(SRC_DIR)/version.h" ] && OLDVERSION=$$(grep VERSION $(SRC_DIR)/version.h|cut -d '"' -f2) ; \
             if [ "x$$VERSION_STRING" != "x$$OLDVERSION" ]; then printf '// NOLINT(cata-header-guard)\n#define VERSION "%s"\n' "$$VERSION_STRING" | tee $(SRC_DIR)/version.h ; fi \
          )
-
+# runs the "json_verifier" luascript file
 json-verify:
-	$(LUA_BINARY) lua/json_verifier.lua
+	$(LUA_BINARY) lua/json_verifier.lua 
 
 # Unconditionally create the object dir on every invocation.
 $(shell mkdir -p $(ODIR))
@@ -1016,9 +1015,14 @@ $(ODIR)/%.o: $(SRC_DIR)/%.rc
 src/version.h: version
 
 src/version.cpp: src/version.h
-
-$(LUASRC_DIR)/catabindings.cpp: $(LUA_DIR)/class_definitions.lua $(LUASRC_DIR)/generate_bindings.lua
-	cd $(LUASRC_DIR) && $(LUA_BINARY) generate_bindings.lua
+# 
+$(LUASRC_DIR)/catabindings.cpp: $(LUA_DIR)/class_definitions.lua $(LUASRC_DIR)/generate_bindings.lua # does something with a catabindings C++ srcfile and two lua files (class defs & gen bindings) ?
+  cd $(LUASRC_DIR) && $(LUASRC_DIR)/$(LUA_BINARY) generate_bindings.lua
+#cd $(LUASRC_DIR) && $(LUA_BINARY) generate_bindings.lua # original
+# the above is the most problematic
+# For our linux targets, it can not find Lua. The following will be displayed whenever the linux target tries to run the line:
+# `/bin/sh: 1: lua: not found`
+# A possible solution would be to do `$(LUASRC_DIR)/$(LUA_BINARY)` to theoretically run the binary directly from the directory.
 
 $(SRC_DIR)/catalua.cpp: $(LUA_DEPENDENCIES)
 
