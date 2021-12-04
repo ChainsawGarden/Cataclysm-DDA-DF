@@ -10341,7 +10341,7 @@ void game::place_player_overmap( const tripoint_abs_omt &om_dest )
     m.spawn_monsters( true ); // Static monsters
     update_overmap_seen();
     // update weather now as it could be different on the new location
-    old_weather = weather
+    weather_manager old_weather = weather;
     weather.nextweather = calendar::turn;
     // lua bloc start
     if( weather != old_weather ) { // if the weather changed
