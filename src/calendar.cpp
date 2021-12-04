@@ -21,8 +21,8 @@ static constexpr double moonlight_per_quarter = 2.25;
 const int calendar::INDEFINITELY_LONG( std::numeric_limits<int>::max() / 100 );
 const time_duration calendar::INDEFINITELY_LONG_DURATION(
     time_duration::from_turns( std::numeric_limits<int>::max() ) );
-static bool is_eternal_season = false;
-static int cur_season_length = 1;
+static bool is_eternal_season = false; // HARDCODED: by default, the season is not forever.
+static int cur_season_length = 1; // HARDCODED: by default, the season length is at least 1.
 
 const time_point calendar::before_time_starts = time_point::from_turn( -1 );
 const time_point calendar::turn_zero = time_point::from_turn( 0 );
@@ -30,7 +30,7 @@ const time_point calendar::turn_zero = time_point::from_turn( 0 );
 time_point calendar::start_of_cataclysm = calendar::turn_zero;
 time_point calendar::start_of_game = calendar::turn_zero;
 time_point calendar::turn = calendar::turn_zero;
-season_type calendar::initial_season = SPRING;
+season_type calendar::initial_season = SPRING; // hardcoded initial season; there *has* to be a season, though, so that's why it's Spring.
 
 // Internal constants, not part of the calendar interface.
 // Times for sunrise, sunset at equinoxes

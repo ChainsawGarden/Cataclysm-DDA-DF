@@ -1475,20 +1475,21 @@ bool game::do_turn()
     if( calendar::once_every( 1_days ) ) { // daily check
         overmap_buffer.process_mongroups(); // process the monster groups that are nearby
         if( calendar::turn.day_of_year() == 0 ) { // if today is the start of the year...
-            lua_callback( "on_year_passed" ); // a year passed, pass this to the callback
+        // if( calendar::once_every(  ) ) { // if today is the start of the year...
+            lua_callback( "on_year_passed" ); // a year passed, pass this to the LUA callback
         }
-        lua_callback( "on_day_passed" ); // regardless; a day still passed. pass this to the callback.
+        lua_callback( "on_day_passed" ); // regardless; a day still passed. pass this to the LUA callback.
     }
 
     if( calendar::once_every( 1_hours ) ) { // hourly check
-        lua_callback( "on_hour_passed" ); // an hour passed, pass this to the lua callback
+        lua_callback( "on_hour_passed" ); // an hour passed, pass this to the LUA callback
     }
 
     if( calendar::once_every( 1_minutes ) ) { // minutely check
-        lua_callback( "on_minute_passed" ); // a minute passed, pass this to the callback
+        lua_callback( "on_minute_passed" ); // a minute passed, pass this to the LUA callback
     }
 
-    lua_callback( "on_turn_passed" ); // ultimately, a turned pass. Pass this to the callback.
+    lua_callback( "on_turn_passed" ); // ultimately, a turned pass. Pass this to the LUA callback.
 
     // Move hordes every 2.5 min
     if( calendar::once_every( time_duration::from_minutes( 2.5 ) ) ) {
@@ -4562,8 +4563,8 @@ void game::mon_info_update( )
         }
     }
 
-    if( newseen == 0 && safe_mode == SAFE_MODE_STOP ) {
-        set_safe_mode( SAFE_MODE_ON );
+    if( newseen == 0 && safe_mode == SAFE_MODE_STOP ) { // if .. and our safemode setting STOPs the game (pauses)
+        set_safe_mode( SAFE_MODE_ON ); // Turn on safe mode
     }
 
     previous_turn = calendar::turn;
@@ -4576,7 +4577,7 @@ void game::cleanup_dead()
     // This is because dying monsters can still interact with other dying monsters (@ref Creature::killer)
     bool monster_is_dead = critter_tracker->kill_marked_for_death();
 
-    bool npc_is_dead = false;
+    bool npc_is_dead = false; // by default, the NPC is not dead.
     // can't use all_npcs as that does not include dead ones
     for( const auto &n : active_npc ) {
         if( n->is_dead() ) {
