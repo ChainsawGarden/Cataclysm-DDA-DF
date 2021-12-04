@@ -1057,8 +1057,10 @@ bool main_menu::load_character_tab( bool transfer )
             // lua block start
             if( ( wn != "TUTORIAL" && wn != "DEFENSE" ) && world_generator->world_need_lua_build( wn ) ) {
                 savegames.clear();
-                mvwprintz( w_open, iMenuOffsetY - 2 - sel2, 40 + iMenuOffsetX + extra_w / 2,
-                           c_red, "%s", _( "This world requires the game to be compiled with Lua." ) );
+                // mvwprintz( w_open, iMenuOffsetY - 2 - sel2, 40 + iMenuOffsetX + extra_w / 2,
+                //            c_red, "%s", _( "This world requires the game to be compiled with Lua." ) );
+                mvwprintz( w_open, menu_offset.x - 2 - sel2, 40 + menu_offset.y + extra_w / 2,
+                           c_red, "%s", _( "This world requires the game to be compiled with Lua." ) ); // modernization: iMenuOffset is 
                 on_error();
             } else {
             // lua block end
