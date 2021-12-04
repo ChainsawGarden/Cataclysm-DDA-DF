@@ -42,7 +42,7 @@ struct CallbackArgument {
     body_part value_body_part;
     const int_id<body_part_type> value_body_part_id;
     character_id value_character_id;
-    weather_type_id value_weather_id
+    weather_type_id value_weather_id;
 
     // the below `CallbackArgument` "things" are constructors with various overloads.
     // The weird syntax spooked me, but rest assured, ":type(xyz)" & ":value_integer(xyz)" initialize private variables.
