@@ -1029,7 +1029,7 @@ bool warm_enough_to_plant( const tripoint_abs_omt &pos )
 {
     return g->weather.get_temperature( pos ) >= 50;
 }
-
+/* Constructor for weather manager. Set lightnight to false, nullify weather overrides, next weather is before time starts, temperature is set to 0, and the weather has an ID of WEATHER_CLEAR */
 weather_manager::weather_manager()
 {
     lightning_active = false;

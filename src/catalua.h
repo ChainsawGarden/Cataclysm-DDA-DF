@@ -11,6 +11,7 @@
 #include "enums.h"
 #include "int_id.h"
 #include "item.h"
+#include "type_id.h"
 // callback arg types
 enum CallbackArgumentType : int {
     Integer,
@@ -24,7 +25,8 @@ enum CallbackArgumentType : int {
     Reference_Creature,
     Enum_BodyPart, // bodypart Enum
     Id_BodyPart, // bodypart ID
-    Character_Id
+    Character_Id,
+    Weather_Id
 };
 // callback args
 struct CallbackArgument {
@@ -40,6 +42,7 @@ struct CallbackArgument {
     body_part value_body_part;
     const int_id<body_part_type> value_body_part_id;
     character_id value_character_id;
+    weather_type_id value_weather_id
 
     // the below `CallbackArgument` "things" are constructors with various overloads.
     // The weird syntax spooked me, but rest assured, ":type(xyz)" & ":value_integer(xyz)" initialize private variables.
@@ -84,6 +87,12 @@ struct CallbackArgument {
     CallbackArgument( character_id arg_value ) :
         type( CallbackArgumentType::Character_Id ), value_character_id( arg_value ) {
     }
+    CallbackArgument( weather_id arg_value ) :
+        type( CallbackArgumentType::Weather_Id ), weather_id( value_weather_id ) {
+    }
+    // CallbackArgument(  arg_value ) :
+    //     type( CallbackArgumentType:: ), value_character_id( arg_value ) {
+    // }
 #ifdef LUA
     void Save();
 #endif //LUA

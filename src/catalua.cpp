@@ -898,34 +898,43 @@ int call_lua( const std::string &tocall )
     lua_report_error( L, err, tocall.c_str(), true );
     return err;
 }
-
+/*  */
 void CallbackArgument::Save()
 {
-    lua_State *const L = lua_state;
-    switch( type ) {
-        case CallbackArgumentType::Integer:
+    lua_State *const L = lua_state; // lua state
+    switch( type ) { // switch between cases
+        case CallbackArgumentType::Integer: // if this arg is an INTEGER
             lua_pushinteger( L, value_integer );
             break;
-        case CallbackArgumentType::Number:
+        case CallbackArgumentType::Number: // if this arg is a NUMBER
             lua_pushnumber( L, value_number );
             break;
-        case CallbackArgumentType::Boolean:
+        case CallbackArgumentType::Boolean: // if this arg is a BOOLEAN
             lua_pushboolean( L, value_boolean );
             break;
-        case CallbackArgumentType::String:
+        case CallbackArgumentType::String: // if this arg is a STRING
             lua_pushstring( L, value_string.c_str() );
             break;
-        case CallbackArgumentType::Tripoint:
+        case CallbackArgumentType::Tripoint: // if this arg is a TRIPOINT (coords)
             LuaValue<tripoint>::push( L, value_tripoint );
             break;
-        case CallbackArgumentType::Item:
+        case CallbackArgumentType::Item: // if this arg is an ITEM
             LuaValue<item>::push( L, value_item );
             break;
-        case CallbackArgumentType::Reference_Creature:
+        case CallbackArgumentType::Reference_Creature: // if this arg is a REFERENCE CREATURE
             LuaReference<Creature>::push( L, value_creature );
             break;
-        case CallbackArgumentType::Enum_BodyPart:
+        case CallbackArgumentType::Enum_BodyPart: // if this arg is an ENUM_BODYPART
             LuaEnum<body_part>::push( L, value_body_part );
+            break;
+        case CallbackArgumentType::Id_BodyPart:
+            LuaValue<const int_id<body_part_type>>::push( L, value_body_part_id ); // CAT_BDP
+            break;
+        case CallbackArgumentType::Character_Id:
+            LuaValue<character_id>::push( L, value_character_id ); // CAT_CHARACTER_ID
+            break;
+        case CallbackArgumentType::Weather_Id:
+            LuaValue<weather_type_id>::push( L, value_weather_id ); // CAT_WEATHER_ID
             break;
         default:
             lua_pushnil( L );
@@ -943,8 +952,8 @@ void lua_callback_helper( const char *callback_name, const CallbackArgumentConta
     update_globals( L );
     lua_getglobal( L, "mod_callback" );
     lua_pushstring( L, callback_name );
-    for( auto callback_arg : callback_args ) {
-        callback_arg.Save();
+    for( auto callback_arg : callback_args ) { // for each argument
+        callback_arg.Save(); // save
     }
     int err = lua_pcall( L, callback_args.size() + 1, retsize, 0 ); // executes a lua function using the lua_state. iirc, lua pcalls are lua try/catches; they handle errors, as they are in "protected" mode (hence the `p` in `pcall`)
     std::string err_function = "mod_callback(\"" + std::string( callback_name ) + "\")";

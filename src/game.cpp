@@ -1472,10 +1472,11 @@ bool game::do_turn()
     if( u.is_mounted() ) {
         u.check_mount_is_spooked(); // check if the mount is spooked
     }
+    // lua bloc start (checking for passing time)
     if( calendar::once_every( 1_days ) ) { // daily check
         overmap_buffer.process_mongroups(); // process the monster groups that are nearby
-        if( calendar::turn.day_of_year() == 0 ) { // if today is the start of the year...
-        // if( calendar::once_every(  ) ) { // if today is the start of the year...
+        // if( calendar::turn.day_of_year() == 0 ) { // if today is the start of the year...
+        if( calendar::once_every( calendar::year_length() ) ) { // if today is the start of the year...
             lua_callback( "on_year_passed" ); // a year passed, pass this to the LUA callback
         }
         lua_callback( "on_day_passed" ); // regardless; a day still passed. pass this to the LUA callback.
@@ -1490,6 +1491,7 @@ bool game::do_turn()
     }
 
     lua_callback( "on_turn_passed" ); // ultimately, a turned pass. Pass this to the LUA callback.
+    // lua bloc end (checking for passing time)
 
     // Move hordes every 2.5 min
     if( calendar::once_every( time_duration::from_minutes( 2.5 ) ) ) {
@@ -10339,18 +10341,25 @@ void game::place_player_overmap( const tripoint_abs_omt &om_dest )
     m.spawn_monsters( true ); // Static monsters
     update_overmap_seen();
     // update weather now as it could be different on the new location
+    old_weather = weather
     weather.nextweather = calendar::turn;
     // lua bloc start
     if( weather != old_weather ) { // if the weather changed
             // lua event
             CallbackArgumentContainer lua_callback_args_info;
-            lua_callback_args_info.emplace_back( weather_data( weather ).name ); // weather type name
-            lua_callback_args_info.emplace_back( weather_data( old_weather ).name ); // old weather name
+            // oldcode start
+            // lua_callback_args_info.emplace_back( weather_data( weather ).name ); // weather type name
+            // lua_callback_args_info.emplace_back( weather_data( old_weather ).name ); // old weather name
+            // oldcode end
+            lua_callback_args_info.emplace_back( weather.weather_id ); // weather type name
+            lua_callback_args_info.emplace_back( oldweather.weather_id ); // old weather name
             lua_callback( "on_weather_changed", lua_callback_args_info ); // weather change event
             // visualization: 
             // on Weather Changed (event)
             // <current_weather_name>, <previous_weather_name>
-            
+            // modern visualization:
+            // <current_weather_id>, <previous_weather_id>
+                        
         }
     // end lua bloc
     place_player( player_pos );
