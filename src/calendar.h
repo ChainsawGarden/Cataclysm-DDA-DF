@@ -229,11 +229,11 @@ class time_duration
         /**@}*/
 
         /**
-         * Converts the duration to an amount of the given units. The conversions is
-         * done with values of the given template type. That means using an integer
-         * type (e.g. `int`) will return a truncated value (amount of *full* minutes
-         * that make up the duration, discarding the remainder).
-         * Calling `to_minutes<double>` will return a precise number.
+         * Converts the duration to an amount of the given units. The conversions is 
+         * done with values of the given template type. That means using an integer 
+         * type (e.g. `int`) will return a truncated value (amount of *full* minutes 
+         * that make up the duration, discarding the remainder). 
+         * Calling `to_minutes<double>` will return a precise number. 
          * Example:
          * `to_hours<int>( from_minutes( 90 ) ) == 1`
          * `to_hours<double>( from_minutes( 90 ) ) == 1.5`

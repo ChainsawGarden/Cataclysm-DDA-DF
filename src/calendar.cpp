@@ -326,32 +326,32 @@ std::pair<int, clipped_unit> clipped_time( const time_duration &d )
         return { 0, clipped_unit::forever };
     }
 
-    if( d < 1_minutes ) {
+    if( d < 1_minutes ) { // if the duration is less than 1 minute ?
         const int sec = to_seconds<int>( d );
         return { sec, clipped_unit::second };
-    } else if( d < 1_hours ) {
+    } else if( d < 1_hours ) { // if the duration is less than one hour ?
         const int min = to_minutes<int>( d );
         return { min, clipped_unit::minute };
-    } else if( d < 1_days ) {
+    } else if( d < 1_days ) { // if the duration is less than one day ?
         const int hour = to_hours<int>( d );
         return { hour, clipped_unit::hour };
-    } else if( d < 7_days ) {
+    } else if( d < 7_days ) { // if the duration is less than seven days (one week) ?
         const int day = to_days<int>( d );
         return { day, clipped_unit::day };
-    } else if( d < calendar::season_length() || calendar::eternal_season() ) {
+    } else if( d < calendar::season_length() || calendar::eternal_season() ) { // if the duration is less than a season / eternal season ?
         // eternal seasons means one season is indistinguishable from the next,
         // therefore no way to count them
         const int week = to_weeks<int>( d );
         return { week, clipped_unit::week };
-    } else if( d < calendar::year_length() && !calendar::eternal_season() ) {
+    } else if( d < calendar::year_length() && !calendar::eternal_season() ) { // if the duration is less than a year and we do not have eternal seasons ?
         // TODO: consider a to_season function, but season length is variable, so
         // this might be misleading
         const int season = to_turns<int>( d ) / to_turns<int>( calendar::season_length() );
         return { season, clipped_unit::season };
-    } else {
+    } else { // if the above criteria does not fit, execute the following code:
         // TODO: consider a to_year function, but year length is variable, so
         // this might be misleading
-        const int year = to_turns<int>( d ) / to_turns<int>( calendar::year_length() );
+        const int year = to_turns<int>( d ) / to_turns<int>( calendar::year_length() ); // instatiate the `year` number 
         return { year, clipped_unit::year };
     }
 }
