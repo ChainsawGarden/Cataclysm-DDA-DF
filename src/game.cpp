@@ -10344,7 +10344,7 @@ void game::place_player_overmap( const tripoint_abs_omt &om_dest )
     weather_manager old_weather = weather;
     weather.nextweather = calendar::turn;
     // lua bloc start
-    if( weather != old_weather ) { // if the weather changed
+    if( weather.weather_id != old_weather.weather_id ) { // if the weather changed
             // lua event
             CallbackArgumentContainer lua_callback_args_info;
             // oldcode start
@@ -10352,7 +10352,7 @@ void game::place_player_overmap( const tripoint_abs_omt &om_dest )
             // lua_callback_args_info.emplace_back( weather_data( old_weather ).name ); // old weather name
             // oldcode end
             lua_callback_args_info.emplace_back( weather.weather_id ); // weather type name
-            lua_callback_args_info.emplace_back( oldweather.weather_id ); // old weather name
+            lua_callback_args_info.emplace_back( old_weather.weather_id ); // old weather name
             lua_callback( "on_weather_changed", lua_callback_args_info ); // weather change event
             // visualization: 
             // on Weather Changed (event)
