@@ -87,7 +87,7 @@ struct CallbackArgument {
     CallbackArgument( character_id arg_value ) :
         type( CallbackArgumentType::Character_Id ), value_character_id( arg_value ) {
     }
-    CallbackArgument( weather_id arg_value ) :
+    CallbackArgument( string_id<weather_type> arg_value ) :
         type( CallbackArgumentType::Weather_Id ), value_weather_id( arg_value ) {
     }
     // CallbackArgument(  arg_value ) :
