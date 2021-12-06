@@ -1079,7 +1079,8 @@ bool main_menu::load_character_tab( bool transfer )
             }
             wnoutrefresh( w_open );
             }
-    ); // end second element selected
+        }
+    }); // end second element selected
     ui.on_screen_resize( [this]( ui_adaptor & ui ) {
         init_windows();
         ui.position_from_window( w_open );
