@@ -1047,7 +1047,7 @@ bool main_menu::load_character_tab( bool transfer )
                 }
             }
             wnoutrefresh( w_open );
-        } else if( layer == 3 && sel1 == 2 ) {
+        } else if( layer == 3 && sel1 == 2 ) { // if we're on the third layer, 2nd element selected (?)
             savegames = world_generator->get_world( all_worldnames[sel2] )->world_saves;
 
             const std::string &wn = all_worldnames[sel2];
@@ -1078,8 +1078,7 @@ bool main_menu::load_character_tab( bool transfer )
                 }
             }
             wnoutrefresh( w_open );
-        }
-    } );
+        }); // end second element selected
     ui.on_screen_resize( [this]( ui_adaptor & ui ) {
         init_windows();
         ui.position_from_window( w_open );
