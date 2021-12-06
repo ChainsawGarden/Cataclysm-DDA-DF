@@ -1189,7 +1189,7 @@ bool main_menu::load_character_tab( bool transfer )
     }
 
     return start;
-
+}
 
 void main_menu::world_tab()
 {
