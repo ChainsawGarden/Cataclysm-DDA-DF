@@ -2926,7 +2926,7 @@ void mapgen_function_json::generate( mapgendata &md ) // PERTAINING TO LUA RESPO
     if( ! luascript.empty() ) { // if the luascript var is not empty
         // LUA MAPGEN ONLY NEEDS (m), (md), & (luascript).
         //lua_mapgen( m, md->terrain_type, md, t, d, luascript ); // generate a lua map using the given params.
-        lua_mapgen( m, md->terrain_type, md, t, d, luascript ); // generate a lua map using the given params.
+        lua_mapgen( m, md.terrain_type, md, t, d, luascript ); // generate a lua map using the given params.
         // t = timepoint
         // d = float... for what?
     }
