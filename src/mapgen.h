@@ -414,7 +414,7 @@ class mapgen_function_json_nested : public mapgen_function_json_base
 class mapgen_function_lua : public virtual mapgen_function
 {
     public:
-        const std::string scr;
+        const std::string scr; // lua script ?
         mapgen_function_lua( std::string s, int w = 1000 ) : mapgen_function( w ), scr( s ) {
             // scr = s; // @todo: if ( luaL_loadstring(L, scr.c_str() ) ) { error }
         }

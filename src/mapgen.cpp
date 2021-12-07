@@ -3042,19 +3042,22 @@ int lua_mapgen( map *m, const oter_id &terrain_type, const std::string & ) // ne
 }
 #endif
 
-void mapgen_function_lua::generate( map *m, const oter_id &terrain_type, const mapgendata &mgd,
-                                    const time_point &t, float d )
+// void mapgen_function_lua::generate( map *m, const oter_id &terrain_type, const mapgendata &mgd,
+//                                     const time_point &t, float d ) // oldcode
+void mapgen_function_lua::generate( map *m, const oter_id &terrain_type )
 {
     // lua_mapgen( m, terrain_type, mgd, t, d, scr ); oldcode
     lua_mapgen( m, terrain_type, scr );
 
     const std::string mapgen_generator_type = "lua";
     const tripoint terrain_tripoint = sm_to_omt_copy( m->get_abs_sub() );
+    // lua callback bloc start (upon finishing mapgen)
     CallbackArgumentContainer lua_callback_args_info;
     lua_callback_args_info.emplace_back( mapgen_generator_type );
     lua_callback_args_info.emplace_back( terrain_type.id().str() );
     lua_callback_args_info.emplace_back( terrain_tripoint );
     lua_callback( "on_mapgen_finished", lua_callback_args_info );
+    // lua callback bloc end
 }
 // end lua bloc
 
