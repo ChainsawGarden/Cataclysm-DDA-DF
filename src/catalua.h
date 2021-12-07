@@ -120,8 +120,9 @@ int lua_monster_move( monster *m ); // lua monster override if 0
  * Call the given string as lua code, used for interactive debugging.
  */
 int call_lua( const std::string &tocall ); // the string is lua code, and this function runs it
-int lua_mapgen( map *m, const oter_id &terrain_type, const mapgendata &md, const time_point &t,
-                float d, const std::string &scr ); // generate a map using lua code?
+// int lua_mapgen( map *m, const oter_id &terrain_type, const mapgendata &md, const time_point &t,
+//                 float d, const std::string &scr ); // generate a map using lua code? oldcode
+int lua_mapgen( map *m, const oter_id &terrain_type, const std::string &scr ); // generate a map using lua code?                
 
 /**
  * Execute a callback that can be overridden by all mods with optional accessible arguments.
