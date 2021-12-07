@@ -982,35 +982,36 @@ std::string lua_callback_getstring( const char *callback_name,
     return retval;
 }
 
-//
-int lua_mapgen( map *m, const oter_id &terrain_type, const mapgendata &, const time_point &t, float,
-                const std::string &scr )
+// Generate a lua-based map.
+// int lua_mapgen( map *m, const oter_id &terrain_type, const mapgendata &, const time_point &t, float,
+//                 const std::string &scr ) // oldcode
+int lua_mapgen( map *m, const oter_id &terrain_type, const std::string &scr )
 {
-    if( lua_state == nullptr ) {
-        return 0;
+    if( lua_state == nullptr ) { // if the lua state is a null pointer...
+        return 0; // return 0.
     }
-    lua_State *L = lua_state;
-    LuaReference<map>::push( L, m );
-    luah_setglobal( L, "map", -1 );
+    lua_State *L = lua_state; // Set funky lua state to the non-null lua state var (address) ?
+    LuaReference<map>::push( L, m ); // push <luastate, map>
+    luah_setglobal( L, "map", -1 ); // set global (var?) "map" to -1 (i think?) using the funky lua state pointer
 
-    int err = luaL_loadstring( L, scr.c_str() );
-    if( lua_report_error( L, err, scr.c_str() ) ) {
-        return err;
+    int err = luaL_loadstring( L, scr.c_str() ); // error var
+    if( lua_report_error( L, err, scr.c_str() ) ) { // if there's a lua error, return the error & halt lua mapgen execution
+        return err; // return errorcode
     }
     //    int function_index = luaL_ref(L, LUA_REGISTRYINDEX); // @todo; make use of this
     //    lua_rawgeti(L, LUA_REGISTRYINDEX, function_index);
 
-    lua_pushstring( L, terrain_type.id().c_str() );
-    lua_setglobal( L, "tertype" );
-    lua_pushinteger( L, to_turn<int>( t ) );
-    lua_setglobal( L, "turn" );
+    lua_pushstring( L, terrain_type.id().c_str() ); // push the terrain type's id to the stack
+    lua_setglobal( L, "tertype" ); // push "tertype" to stack (global?)
+    lua_pushinteger( L, to_turn<int>( t ) ); // push `int`egerized to_turn variable (t, AKA timepoint) to stack
+    lua_setglobal( L, "turn" ); // push "turn" to stack
 
-    err = lua_pcall( L, 0, LUA_MULTRET, 0 );
-    lua_report_error( L, err, scr.c_str() );
+    err = lua_pcall( L, 0, LUA_MULTRET, 0 ); // protected call; set var to the following given errors
+    lua_report_error( L, err, scr.c_str() ); // report all errors to `err`
 
     //    luah_remove_from_registry(L, function_index); // @todo: make use of this
 
-    return err;
+    return err; // return error data (which would pretty much be an integer)
 }
 
 // Custom functions that are to be wrapped from lua.

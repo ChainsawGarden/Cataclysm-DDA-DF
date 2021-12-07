@@ -2925,7 +2925,10 @@ void mapgen_function_json::generate( mapgendata &md ) // PERTAINING TO LUA RESPO
     // luabloc // WE SHALL RETURN TO THIS TOMORROW!
     if( ! luascript.empty() ) { // if the luascript var is not empty
         // LUA MAPGEN ONLY NEEDS (m), (md), & (luascript).
-        lua_mapgen( m, terrain_type, md, t, d, luascript ); // generate a lua map using the given params.
+        //lua_mapgen( m, md->terrain_type, md, t, d, luascript ); // generate a lua map using the given params.
+        lua_mapgen( m, md->terrain_type, md, t, d, luascript ); // generate a lua map using the given params.
+        // t = timepoint
+        // d = float... for what?
     }
     // end luabloc
     objects.apply( md, point_zero );
@@ -2943,7 +2946,7 @@ void mapgen_function_json::generate( mapgendata &md ) // PERTAINING TO LUA RESPO
     // callback container
     CallbackArgumentContainer lua_callback_args_info; 
     lua_callback_args_info.emplace_back( mapgen_generator_type ); // place the mapgen gen type ("json")
-    lua_callback_args_info.emplace_back( terrain_type.id().str() ); // place the terrain type ("terrain type?")
+    lua_callback_args_info.emplace_back( md.terrain_type.id().str() ); // place the terrain type ("terrain type?")
     lua_callback_args_info.emplace_back( terrain_tripoint ); // terrain coords
     lua_callback( "on_mapgen_finished", lua_callback_args_info ); // call everything
     // stack visualization: "mapgen_type" "terrain_type" "x y z"
