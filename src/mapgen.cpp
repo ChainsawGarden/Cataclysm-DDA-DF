@@ -2926,7 +2926,7 @@ void mapgen_function_json::generate( mapgendata &md ) // PERTAINING TO LUA RESPO
     if( ! luascript.empty() ) { // if the luascript var is not empty
         // LUA MAPGEN ONLY NEEDS (m), (md), & (luascript).
         //lua_mapgen( m, md->terrain_type, md, t, d, luascript ); // generate a lua map using the given params.
-        lua_mapgen( m, md.terrain_type(), md, luascript ); // generate a lua map using the given params.
+        lua_mapgen( m, md.terrain_type(), luascript ); // generate a lua map using the given params.
         // t = timepoint
         // d = float... for what?
     }
@@ -3017,8 +3017,9 @@ void jmapgen_objects::apply( const mapgendata &dat, const point &offset ) const
 // wip: need more bindings. Basic stuff works
 
 #ifndef LUA
-int lua_mapgen( map *m, const oter_id &terrain_type, const mapgendata &mgd, const time_point &t,
-                float d, const std::string & )
+// int lua_mapgen( map *m, const oter_id &terrain_type, const mapgendata &mgd, const time_point &t,
+//                 float d, const std::string & )
+int lua_mapgen( map *m, const oter_id &terrain_type, const std::string & )                
 {
     mapgen_crater( m, terrain_type, mgd, to_turn<int>( t ), d );
     mapf::formatted_set_simple( m, 0, 6,
