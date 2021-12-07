@@ -3021,23 +3021,23 @@ void jmapgen_objects::apply( const mapgendata &dat, const point &offset ) const
 //                 float d, const std::string & )
 int lua_mapgen( map *m, const oter_id &terrain_type, const std::string & ) // neuter this for now
 {
-    /*
-//     mapgen_crater( m, terrain_type, mgd, to_turn<int>( t ), d );
-//     mapf::formatted_set_simple( m, 0, 6,
-//                                 "\
-//     *   *  ***\n\
-//     **  * *   *\n\
-//     * * * *   *\n\
-//     *  ** *   *\n\
-//     *   *  ***\n\
-// \n\
-//  *     *   *   *\n\
-//  *     *   *  * *\n\
-//  *     *   *  ***\n\
-//  *     *   * *   *\n\
-//  *****  ***  *   *\n\
-// ", mapf::ter_bind( "*", t_paper ), mapf::furn_bind( "*", f_null ) );
-    */
+    
+//      mapgen_crater( m, terrain_type, mgd, to_turn<int>( t ), d );
+//      mapf::formatted_set_simple( m, 0, 6,
+//                                  "\REMOVEME
+//      *   *  ***\n\REMOVEME
+//      **  * *   *\n\REMOVEME
+//      * * * *   *\n\REMOVEME
+//      *  ** *   *\n\REMOVEME
+//      *   *  ***\n\REMOVEME
+//  \n\REMOVEME
+//   *     *   *   *\n\REMOVEME
+//   *     *   *  * *\n\REMOVEME
+//   *     *   *  ***\n\REMOVEME
+//   *     *   * *   *\n\REMOVEME
+//   *****  ***  *   *\n\REMOVEME
+//  ", mapf::ter_bind( "*", t_paper ), mapf::furn_bind( "*", f_null ) );
+    
     return 0;
 }
 #endif
