@@ -2944,7 +2944,7 @@ void mapgen_function_json::generate( mapgendata &md ) // PERTAINING TO LUA RESPO
     const std::string mapgen_generator_type = "json"; // the mapgen generator type
     const tripoint terrain_tripoint = sm_to_omt_copy( m->get_abs_sub() ); // coords to map?
     // callback container
-    CallbackArgumentContainer lua_callback_args_info; 
+    CallbackArgumentContainer lua_callback_args_info;  // lua callback args
     lua_callback_args_info.emplace_back( mapgen_generator_type ); // place the mapgen gen type ("json")
     lua_callback_args_info.emplace_back( md.terrain_type().id().str() ); // place the terrain type ("terrain type?")
     lua_callback_args_info.emplace_back( terrain_tripoint ); // terrain coords
