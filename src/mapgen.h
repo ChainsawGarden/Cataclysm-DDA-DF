@@ -410,7 +410,7 @@ class mapgen_function_json_nested : public mapgen_function_json_base
 
 // lua bloc start (this time, we're mapgen)
 /////////////////////////////////////////////////////////////////////////////////
-///// lua mapgen
+///// lua bloc mapgen
 class mapgen_function_lua : public virtual mapgen_function
 {
     public:
@@ -422,7 +422,7 @@ class mapgen_function_lua : public virtual mapgen_function
         using mapgen_function::generate; // specifies that we want to use class `mapgen_function`'s `generate` method.
 
         // I removed the override because the game would throw a "this doesn't override anything" error.
-        void generate( map *, const oter_id & ); // newest code. Will be re-adding time_point soon.
+        void generate( map *, const oter_id & ) override; // newest code. Will be re-adding time_point soon.
         //void generate( map *, const oter_id &, const mapgendata &, const time_point &, float ); // @todo generate doesn't override anything, look into this
         //void generate( map *, const oter_id &, const mapgendata &, const time_point &, float ); // this should work since generate isn't being overrode.
 };
