@@ -418,7 +418,8 @@ class mapgen_function_lua : public virtual mapgen_function
         mapgen_function_lua( std::string s, int w = 1000 ) : mapgen_function( w ), scr( s ) {
             // scr = s; // @todo: if ( luaL_loadstring(L, scr.c_str() ) ) { error }
         }
-        // i didn't want to this, but it should suffice for now
+
+        // i didn't want to this, but it should suffice for now (add "using" because we want to use a specific class's (read: mapgen_function) generate method)
         using mapgen_function::generate; // specifies that we want to use class `mapgen_function`'s `generate` method.
 
         // I removed the override because the game would throw a "this doesn't override anything" error.

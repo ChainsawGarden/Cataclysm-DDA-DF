@@ -47,6 +47,9 @@
 #include "map.h"
 #include "map_extras.h"
 #include "map_iterator.h"
+// lua block modern addition start
+#include "mapgen.h"
+// lua modern addition end
 #include "mapdata.h"
 #include "mapgen_functions.h"
 #include "mapgendata.h"
