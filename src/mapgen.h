@@ -19,7 +19,7 @@
 #include "type_id.h"
 #include "weighted_list.h"
 
-#pragma clang diagnostic ignored "-Woverloaded-virtual" // ignore overload error
+//#pragma clang diagnostic ignored "-Woverloaded-virtual" // ignore overload error; doesn't work currently, probably because all warnings are treated as errors.
 
 class map;
 class mapgendata;
@@ -422,7 +422,7 @@ class mapgen_function_lua : public virtual mapgen_function
         }
 
         // i didn't want to this, but it should suffice for now (add "using" because we want to use a specific class's (read: mapgen_function) generate method)
-        //using mapgen_function::generate; // specifies that we want to use class `mapgen_function`'s `generate` method.
+        using mapgen_function::generate; // specifies that we want to use class `mapgen_function`'s `generate` method.
 
         // I removed the override because the game would throw a "this doesn't override anything" error. And it's true, the params are different. No need for an override.
         void generate( map *, const oter_id & ); // newest code. Will be re-adding time_point soon.
