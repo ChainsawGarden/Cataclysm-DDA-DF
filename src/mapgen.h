@@ -19,7 +19,7 @@
 #include "type_id.h"
 #include "weighted_list.h"
 
-#pragma clang diagnostic ignored "-Werror=overloaded-virtual" // ignore overload error
+#pragma clang diagnostic ignored "-Woverloaded-virtual" // ignore overload error
 
 class map;
 class mapgendata;
