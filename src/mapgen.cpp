@@ -456,26 +456,27 @@ load_mapgen_function( const JsonObject &jio, const std::string &id_base, const p
         }
     // luabloc start
     } else if( mgtype == "lua" ) { // lua script
-            if( jio.has_string( "script" ) ) { // minified into one\nline
-                const std::string mgscript = jio.get_string( "script" );
-                ret = std::make_shared<mapgen_function_lua>( mgscript, mgweight );
-                //oter_mapgen[id_base].push_back( ret ); // access oter_mapget  & add the ret
-                oter_mapgen.add( id_base, ret ); // modern way of adding the ret.
-            } else if( jio.has_array( "script" ) ) { // or 1 line per entry array
-                std::string mgscript;
-                JsonArray jascr = jio.get_array( "script" );
-                while( jascr.has_more() ) {
-                    mgscript += jascr.next_string();
-                    mgscript += "\n";
-                }
-                ret = std::make_shared<mapgen_function_lua>( mgscript, mgweight );
-                oter_mapgen.add( id_base, ret ); // yeah 
-                // @todo: pass dirname current.json, because the latter two are icky
-                // } else if ( jio.has_string("file" ) { // or "same-dir-as-this/json/something.lua
-            } else {
-                debugmsg( "oter_t[%s]: Invalid mapgen function (missing \"script\" or \"file\" value).",
-                          id_base.c_str() );
-            }
+            // temporarily disable lua mapgen
+            // if( jio.has_string( "script" ) ) { // minified into one\nline
+            //     const std::string mgscript = jio.get_string( "script" );
+            //     ret = std::make_shared<mapgen_function_lua>( mgscript, mgweight );
+            //     //oter_mapgen[id_base].push_back( ret ); // access oter_mapget  & add the ret
+            //     oter_mapgen.add( id_base, ret ); // modern way of adding the ret.
+            // } else if( jio.has_array( "script" ) ) { // or 1 line per entry array
+            //     std::string mgscript;
+            //     JsonArray jascr = jio.get_array( "script" );
+            //     while( jascr.has_more() ) {
+            //         mgscript += jascr.next_string();
+            //         mgscript += "\n";
+            //     }
+            //     ret = std::make_shared<mapgen_function_lua>( mgscript, mgweight );
+            //     oter_mapgen.add( id_base, ret ); // yeah 
+            //     // @todo: pass dirname current.json, because the latter two are icky
+            //     // } else if ( jio.has_string("file" ) { // or "same-dir-as-this/json/something.lua
+            // } else {
+            //     debugmsg( "oter_t[%s]: Invalid mapgen function (missing \"script\" or \"file\" value).",
+            //               id_base.c_str() );
+            // }
 #ifndef LUA
             dbg( D_ERROR ) << "oter_t " << id_base << ": mapgen entry requires a build with LUA=1.";
 #endif
