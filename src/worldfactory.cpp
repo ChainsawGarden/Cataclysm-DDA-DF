@@ -784,12 +784,15 @@ void worldfactory::draw_mod_list( const catacurses::window &w, int &start, size_
                         // lua bloc start (validating mod list)
                         #ifndef LUA
                             if( mod.need_lua() ) {
-                                trim_and_print( w, iNum - start, 4, wwidth, c_dark_gray, mod.name() );
+                                // trim_and_print( w, iNum - start, 4, wwidth, c_dark_gray, mod.name() ); oldcode
+                                trim_and_print( w, point(iNum - start, 4), wwidth, c_dark_gray, mod.name() ); // MODERNIZATION: We're using the `point()` function now.
                             } else {
-                                trim_and_print( w, iNum - start, 4, wwidth, c_white, mod.name() );
+                                // trim_and_print( w, iNum - start, 4, wwidth, c_white, mod.name() ); oldcode
+                                trim_and_print( w, point(iNum - start, 4), wwidth, c_white, mod.name() ); // MODERNIZATION: We're using the `point()` function now.
                             }
                         #else
-                            trim_and_print( w, iNum - start, 4, wwidth, c_white, mod.name() );
+                            // trim_and_print( w, iNum - start, 4, wwidth, c_white, mod.name() );
+                            trim_and_print( w, point(iNum - start, 4), wwidth, c_white, mod.name() ); // MODERNIZATION: We're using the `point()` function now.
                         #endif
                         // lua bloc end
                         mod_entry_name = mod.name() + mod_entry_name;
