@@ -51,10 +51,17 @@
 #include "trap.h" // IWYU pragma: keep
 #include "ui.h"
 
-extern "C" {
+// modernization
 #include <lua.h>
 #include <lualib.h>
 #include <lauxlib.h>
+// end modernization
+
+
+extern "C" {
+// #include <lua.h>
+// #include <lualib.h>
+// #include <lauxlib.h>
 }
 
 #include <type_traits>
