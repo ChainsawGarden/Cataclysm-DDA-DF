@@ -204,6 +204,7 @@ WORLDPTR worldfactory::make_new_world( bool show_prompt, const std::string &worl
     // luabloc end
 
     return add_world( std::move( retworld ) );
+    }
 }
 
 WORLDPTR worldfactory::make_new_world( special_game_type special_type )
