@@ -56,7 +56,7 @@ class computer;
 class field;
 class field_entry;
 class item_location;
-class mapgendata;
+class mapgendata; // honestly belongs in a namespace, but do this after 0.F-3 update.
 class monster;
 class optional_vpart_position;
 class player;
