@@ -30,7 +30,7 @@ static std::string gfxdir_value;
 // lua bloc start
 static std::string luadir_value;
 static std::string autoexeclua_value;
-static std::string class_defslua;
+static std::string class_defslua_value;
 // lua bloc end
 static std::string config_dir_value;
 static std::string user_dir_value;
@@ -135,7 +135,7 @@ void PATH_INFO::set_standard_filenames()
     //if defined(LUA) // if LUA is being compiled too, then 
     luadir_value = base_path_value + "lua/";
     autoexeclua_value = luadir_value+"autoexec.lua";
-    class_defslua = luadir_value+"class_definitions.lua";
+    class_defslua_value = luadir_value+"class_definitions.lua";
     //#endif
     // pure modern luabloc end
 }
