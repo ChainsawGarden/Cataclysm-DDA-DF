@@ -186,7 +186,7 @@ WORLDPTR worldfactory::make_new_world( bool show_prompt, const std::string &worl
         if( curtab < 0 ) {
             return nullptr;
         }
-    } 
+    }
     // luabloc start (if LUA is defined; as in, we're compiling lua)
     else { // 'Play NOW'
     #ifndef LUA
@@ -203,8 +203,9 @@ WORLDPTR worldfactory::make_new_world( bool show_prompt, const std::string &worl
     #endif
     // luabloc end
 
-    return add_world( std::move( retworld ) );
+    //return add_world( std::move( retworld ) ); // let's see what happens; remove next commit if valid
     }
+    return add_world( std::move( retworld ) ); // return the world thing
 }
 
 WORLDPTR worldfactory::make_new_world( special_game_type special_type )
