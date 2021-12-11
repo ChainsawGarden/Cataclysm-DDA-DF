@@ -63,7 +63,9 @@ std::string mod_ui::get_information( const MOD_INFORMATION *mod )
 
      if( mod->need_lua() ) {
         #ifdef LUA
-            info += _( "This mod requires <color_green>Lua support</color>" ) + "\n";
+            // modernization: string was pure "_( "This mod requires <color_green>Lua support</color>" )"
+            // what I did was put it in a string_format.
+            info += string_format( _( "This mod requires <color_green>Lua support</color>", e.c_str ) ) + "\n";
         #else
             // info += _( "This mod requires <color_red>Lua support</color>" ) + "\n"; // string with color ML tags; this might be valid by itself. More research is needed.
             

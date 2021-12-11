@@ -413,6 +413,7 @@ class mapgen_function_json_nested : public mapgen_function_json_base
 // lua bloc start (this time, we're mapgen)
 /////////////////////////////////////////////////////////////////////////////////
 ///// lua bloc mapgen
+// TODO: AS PART OF LUA MODERNIZATION, RE ADD THIS WHENEVER POSSIBLE!
 // class mapgen_function_lua : public virtual mapgen_function
 // {
 //     public:
