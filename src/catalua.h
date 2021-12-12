@@ -39,10 +39,10 @@ struct CallbackArgument {
     tripoint value_tripoint;
     item value_item;
     Creature *value_creature;
-    body_part value_body_part;
-    const int_id<body_part_type> value_body_part_id;
-    character_id value_character_id;
-    weather_type_id value_weather_id;
+    body_part value_body_part; // is value body part modern?
+    const int_id<body_part_type> value_body_part_id; // value body part id is modern
+    character_id value_character_id; // value character is modern
+    weather_type_id value_weather_id; // value weather is modern 
 
     // the below `CallbackArgument` "things" are constructors with various overloads.
     // The weird syntax spooked me, but rest assured, ":type(xyz)" & ":value_integer(xyz)" initialize private variables.

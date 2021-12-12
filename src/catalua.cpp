@@ -52,16 +52,16 @@
 #include "ui.h"
 
 // modernization
-#include <lua.h>
-#include <lualib.h>
-#include <lauxlib.h>
+// #include <lua.h>
+// #include <lualib.h>
+// #include <lauxlib.h>
 // end modernization
 
 
 extern "C" {
-// #include <lua.h>
-// #include <lualib.h>
-// #include <lauxlib.h>
+#include <lua.h>
+#include <lualib.h>
+#include <lauxlib.h>
 }
 
 #include <type_traits>

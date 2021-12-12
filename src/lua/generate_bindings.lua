@@ -17,8 +17,8 @@
 -- This allows a data member "foo", as well as a function member "get_foo(...)".
 -- They would get "get_class_foo", "set_class_foo" and "func_class_get_foo" wrappers.
 
-local br = "\n"
-local tab = "    "
+local br = "\n" -- line break
+local tab = "    " -- tab (4 spaces)
 
 -- Helper function for sorted iteration over tables
 local function sorted_pairs(t)
@@ -44,11 +44,11 @@ end
 -- `check` and `has` to check for a value of that type on the stack.
 -- See catalua.h for their implementation.
 function member_type_to_cpp_type(member_type)
-    if member_type == "bool" then return "LuaType<bool>"
-    elseif member_type == "cstring" then return "LuaType<const char*>"
-    elseif member_type == "string" then return "LuaType<std::string>"
-    elseif member_type == "int" then return "LuaType<int>"
-    elseif member_type == "float" then return "LuaType<float>"
+    if member_type == "bool" then return "LuaType<bool>" -- if the type is a boolean, then return the LuaType type bool.
+    elseif member_type == "cstring" then return "LuaType<const char*>" -- if the type is a cstring, since we all know what a cstring is, return a constant char* LuaType.
+    elseif member_type == "string" then return "LuaType<std::string>" -- if the type is a string, we'll use the regular C++ string, returning a std::string LuaType.
+    elseif member_type == "int" then return "LuaType<int>" -- if the type is an int(eger), return a int LuaType
+    elseif member_type == "float" then return "LuaType<float>" -- if the type is a float, return a float LuaType
     else
         for class_name, class in pairs(classes) do
             if class_name == member_type then
