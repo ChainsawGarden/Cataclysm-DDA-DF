@@ -5,6 +5,8 @@
 #include <list>
 #include <sstream>
 #include <string>
+
+// modern addition: extern C for properly importing these lua libs.
 extern "C" {
     #include <lua.h>
     #include <lualib.h>
@@ -18,6 +20,16 @@ extern "C" {
 #include "int_id.h"
 #include "item.h"
 #include "type_id.h"
+
+// modern additions
+#include "item_factory.h" // for item factory stuff
+#include "monstergenerator.h" // for mongen stuff
+#include "ui.h" // for ui stuff
+#include "calendar.h" // for calendar / time based stuff
+#include "coordinates.h" // for coords / positions / location based stuff
+#include "omdata.h" // for overmap data
+
+
 // callback arg types
 enum CallbackArgumentType : int {
     Integer,
@@ -100,6 +112,7 @@ struct CallbackArgument {
     //     type( CallbackArgumentType:: ), value_character_id( arg_value ) {
     // }
 #ifdef LUA
+    using overmap_direction = om_direction::type; // alias for overmap direction type
 
     void Save(); // from Legacy, void function Save was the only one here.
     int luah_store_in_registry( lua_State *L, int stackpos );
@@ -111,11 +124,11 @@ struct CallbackArgument {
 
     void update_globals( lua_State *L );
 
-    class lua_iuse_wrapper : public iuse_actor;
+    class lua_iuse_wrapper;
 
     void Item_factory::register_iuse_lua( const std::string &name, int lua_function );
 
-    class lua_mattack_wrapper : public mattack_actor;
+    class lua_mattack_wrapper;
 
     void MonsterGenerator::register_monattack_lua( const std::string &name, int lua_function );
 
