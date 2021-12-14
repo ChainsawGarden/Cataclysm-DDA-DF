@@ -94,7 +94,110 @@ struct CallbackArgument {
     //     type( CallbackArgumentType:: ), value_character_id( arg_value ) {
     // }
 #ifdef LUA
-    void Save();
+    void Save(); // from Legacy, void function Save was the only one here.
+    int luah_store_in_registry( lua_State *L, int stackpos );
+    void luah_remove_from_registry( lua_State *L, int item_index );
+    void luah_setmetatable( lua_State *L, const char *metatable_name );
+    void luah_setglobal( lua_State *L, const char *name, int index );
+    std::string lua_tostring_wrapper( lua_State *const L, const int stack_position );
+    bool lua_report_error( lua_State *L, int err, const char *path, bool simple = false );
+
+    template<typename T>
+    class LuaValue;
+
+    template<typename T>
+    class LuaReference : private LuaValue<T *>;
+
+    template<typename T>
+    struct LuaType;
+
+    template<>
+    struct LuaType<int>;
+
+    template<>
+    struct LuaType<bool>;
+
+    template<>
+    struct LuaType<std::string>;
+
+    template<>
+    struct LuaType<float> : public LuaType<int>;
+
+    template<typename T>
+    struct LuaType<LuaValue<T>> : public LuaValue<T>;
+
+    template<typename T>
+    struct LuaType<LuaReference<T>> : public LuaReference<T>;
+
+    template<typename E>
+    class LuaEnum : private LuaType<std::string>;
+
+    template<typename E>
+    struct LuaType<LuaEnum<E>> : public LuaEnum<E>;
+
+    template<typename T>
+    class LuaValueOrReference;
+
+    void update_globals( lua_State *L );
+
+    class lua_iuse_wrapper : public iuse_actor;
+
+    void Item_factory::register_iuse_lua( const std::string &name, int lua_function );
+
+    class lua_mattack_wrapper : public mattack_actor;
+
+    void MonsterGenerator::register_monattack_lua( const std::string &name, int lua_function );
+
+    void lua_callback_helper( const char *callback_name, const CallbackArgumentContainer &callback_args, int retsize = 0 );
+
+    uilist *create_uilist();
+
+    uilist *create_uilist_no_cancel();
+
+    const ter_t &get_terrain_type( int id );
+
+    static calendar &get_calendar_turn_wrapper();
+
+    static time_duration get_time_duration_wrapper( const int t );
+
+    static std::string get_omt_id( const overmap &om, const tripoint &p );
+
+    static overmap_direction get_omt_dir( const overmap &om, const tripoint &p );
+
+    static std::string string_input_popup_wrapper( const std::string &title, int width, const std::string &desc );
+
+    monster *get_monster_at( const tripoint &p );
+
+    Creature *get_critter_at( const tripoint &p );
+
+    monster *create_monster( const mtype_id &mon_type, const tripoint &p );
+
+    static void popup_wrapper( const std::string &text );
+
+    static void add_msg_wrapper( const std::string &text );
+
+    static bool query_yn_wrapper( const std::string &text );
+
+    static int game_items_at( lua_State *L );
+
+    static int game_get_item_groups( lua_State *L );
+
+    static int game_get_monster_types( lua_State *L );
+
+    static int game_choose_adjacent( lua_State *L );
+
+    static int game_register_iuse( lua_State *L );
+
+    static int game_register_monattack( lua_State *L );
+
+    static int traceback( lua_State *L );
+
+    void lua_dofile( lua_State *L, const char *path );
+
+    static int game_dofile( lua_State *L );
+
+    static int game_myPrint( lua_State *L );
+
 #endif //LUA
 };
 // callback arg container
