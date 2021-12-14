@@ -138,7 +138,7 @@ extern std::stringstream lua_error_stream; // string fstream for errors?
     void luah_setmetatable( lua_State *L, const char *metatable_name );
     void luah_setglobal( lua_State *L, const char *name, int index );
     std::string lua_tostring_wrapper( lua_State *const L, const int stack_position );
-    bool lua_report_error( lua_State *L, int err, const char *path, bool simple = false );
+    // bool lua_report_error( lua_State *L, int err, const char *path, bool simple = false );
 
     void update_globals( lua_State *L );
 
@@ -150,7 +150,7 @@ extern std::stringstream lua_error_stream; // string fstream for errors?
 
     //void MonsterGenerator::register_monattack_lua( const std::string &name, int lua_function );
 
-    void lua_callback_helper( const char *callback_name, const CallbackArgumentContainer &callback_args, int retsize = 0 );
+    //void lua_callback_helper( const char *callback_name, const CallbackArgumentContainer &callback_args, int retsize = 0 );
 
     uilist *create_uilist();
 
