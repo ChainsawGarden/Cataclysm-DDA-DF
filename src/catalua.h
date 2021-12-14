@@ -112,9 +112,27 @@ struct CallbackArgument {
     //     type( CallbackArgumentType:: ), value_character_id( arg_value ) {
     // }
 #ifdef LUA
-    using overmap_direction = om_direction::type; // alias for overmap direction type
 
     void Save(); // from Legacy, void function Save was the only one here.
+    
+#endif //LUA
+};
+// callback arg container
+typedef std::list<CallbackArgument> CallbackArgumentContainer;
+
+class map; // lua map
+class monster; // lua monster?
+class time_point; // lua timepoints?
+struct mapgendata; // lua map generation data?
+struct oter_t; // overterrain?
+
+using oter_id = int_id<oter_t>; // other_id is an int_id
+
+extern std::stringstream lua_output_stream; // string fstream for general output?
+extern std::stringstream lua_error_stream; // string fstream for errors?
+
+#ifdef LUA // second lua section; outside of the CallbackArgument struct.
+    using overmap_direction = om_direction::type; // alias for overmap direction type
     int luah_store_in_registry( lua_State *L, int stackpos );
     void luah_remove_from_registry( lua_State *L, int item_index );
     void luah_setmetatable( lua_State *L, const char *metatable_name );
@@ -181,22 +199,7 @@ struct CallbackArgument {
     static int game_dofile( lua_State *L );
 
     static int game_myPrint( lua_State *L );
-
-#endif //LUA
-};
-// callback arg container
-typedef std::list<CallbackArgument> CallbackArgumentContainer;
-
-class map; // lua map
-class monster; // lua monster?
-class time_point; // lua timepoints?
-struct mapgendata; // lua map generation data?
-struct oter_t; // overterrain?
-
-using oter_id = int_id<oter_t>; // other_id is an int_id
-
-extern std::stringstream lua_output_stream; // string fstream for general output?
-extern std::stringstream lua_error_stream; // string fstream for errors?
+#endif
 
 /** If this returns 0, no lua function was defined to override behavior.
  *  If this returns 1, lua behavior was called and regular behavior should be omitted.
