@@ -94,6 +94,11 @@ struct CallbackArgument {
     //     type( CallbackArgumentType:: ), value_character_id( arg_value ) {
     // }
 #ifdef LUA
+    extern "C" {
+    #include <lua.h>
+    #include <lualib.h>
+    #include <lauxlib.h>
+    }
     void Save(); // from Legacy, void function Save was the only one here.
     int luah_store_in_registry( lua_State *L, int stackpos );
     void luah_remove_from_registry( lua_State *L, int item_index );
