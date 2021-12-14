@@ -5,6 +5,12 @@
 #include <list>
 #include <sstream>
 #include <string>
+extern "C" {
+    #include <lua.h>
+    #include <lualib.h>
+    #include <lauxlib.h>
+} // add lua libs
+
 
 #include "creature.h"
 #include "character_id.h"
@@ -94,12 +100,6 @@ struct CallbackArgument {
     //     type( CallbackArgumentType:: ), value_character_id( arg_value ) {
     // }
 #ifdef LUA
-
-    extern "C" {
-    #include <lua.h>
-    #include <lualib.h>
-    #include <lauxlib.h>
-    }
 
     void Save(); // from Legacy, void function Save was the only one here.
     int luah_store_in_registry( lua_State *L, int stackpos );
