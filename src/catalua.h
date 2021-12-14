@@ -158,15 +158,15 @@ extern std::stringstream lua_error_stream; // string fstream for errors?
 
     const ter_t &get_terrain_type( int id );
 
-    static calendar &get_calendar_turn_wrapper();
+    // static calendar &get_calendar_turn_wrapper();
 
-    static time_duration get_time_duration_wrapper( const int t );
+    // static time_duration get_time_duration_wrapper( const int t );
 
-    static std::string get_omt_id( const overmap &om, const tripoint &p );
+    // static std::string get_omt_id( const overmap &om, const tripoint &p );
 
-    static overmap_direction get_omt_dir( const overmap &om, const tripoint &p );
+    // static overmap_direction get_omt_dir( const overmap &om, const tripoint &p );
 
-    static std::string string_input_popup_wrapper( const std::string &title, int width, const std::string &desc );
+    // static std::string string_input_popup_wrapper( const std::string &title, int width, const std::string &desc );
 
     monster *get_monster_at( const tripoint &p );
 
@@ -174,31 +174,31 @@ extern std::stringstream lua_error_stream; // string fstream for errors?
 
     monster *create_monster( const mtype_id &mon_type, const tripoint &p );
 
-    static void popup_wrapper( const std::string &text );
+    // static void popup_wrapper( const std::string &text );
 
-    static void add_msg_wrapper( const std::string &text );
+    // static void add_msg_wrapper( const std::string &text );
 
-    static bool query_yn_wrapper( const std::string &text );
+    // static bool query_yn_wrapper( const std::string &text );
 
-    static int game_items_at( lua_State *L );
+    // static int game_items_at( lua_State *L );
 
-    static int game_get_item_groups( lua_State *L );
+    // static int game_get_item_groups( lua_State *L );
 
-    static int game_get_monster_types( lua_State *L );
+    // static int game_get_monster_types( lua_State *L );
 
-    static int game_choose_adjacent( lua_State *L );
+    // static int game_choose_adjacent( lua_State *L );
 
-    static int game_register_iuse( lua_State *L );
+    // static int game_register_iuse( lua_State *L );
 
-    static int game_register_monattack( lua_State *L );
+    // static int game_register_monattack( lua_State *L );
 
-    static int traceback( lua_State *L );
+    // static int traceback( lua_State *L );
 
     void lua_dofile( lua_State *L, const char *path );
 
-    static int game_dofile( lua_State *L );
+    // static int game_dofile( lua_State *L );
 
-    static int game_myPrint( lua_State *L );
+    // static int game_myPrint( lua_State *L );
 #endif
 
 /** If this returns 0, no lua function was defined to override behavior.
