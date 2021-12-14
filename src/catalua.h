@@ -102,42 +102,6 @@ struct CallbackArgument {
     std::string lua_tostring_wrapper( lua_State *const L, const int stack_position );
     bool lua_report_error( lua_State *L, int err, const char *path, bool simple = false );
 
-    template<typename T>
-    class LuaValue;
-
-    template<typename T>
-    class LuaReference : private LuaValue<T *>;
-
-    template<typename T>
-    struct LuaType;
-
-    template<>
-    struct LuaType<int>;
-
-    template<>
-    struct LuaType<bool>;
-
-    template<>
-    struct LuaType<std::string>;
-
-    template<>
-    struct LuaType<float> : public LuaType<int>;
-
-    template<typename T>
-    struct LuaType<LuaValue<T>> : public LuaValue<T>;
-
-    template<typename T>
-    struct LuaType<LuaReference<T>> : public LuaReference<T>;
-
-    template<typename E>
-    class LuaEnum : private LuaType<std::string>;
-
-    template<typename E>
-    struct LuaType<LuaEnum<E>> : public LuaEnum<E>;
-
-    template<typename T>
-    class LuaValueOrReference;
-
     void update_globals( lua_State *L );
 
     class lua_iuse_wrapper : public iuse_actor;
