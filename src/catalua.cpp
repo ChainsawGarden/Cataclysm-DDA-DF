@@ -774,7 +774,8 @@ class LuaValueOrReference
 void update_globals( lua_State *L ) // update all global data?
 {
     //LuaReference<player>::push( L, g->u ); // get_player_character
-    LuaReference<player>::push( L, get_player_character() ); // modernization: use modern method of retrieving the player character
+    //LuaReference<player>::push( L, get_player_character() ); // modernization: use modern method of retrieving the player character
+    LuaReference<avatar>::push( L, get_player_character() ); // modernization: use modern method of retrieving the player character
     luah_setglobal( L, "player", -1 );
     // luah_setglobal pushes an extra copy of the global data before storing it,
     // but here the original value isn't needed once the global data has been
