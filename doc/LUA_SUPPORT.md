@@ -34,7 +34,7 @@ An example of such a function would be:
 static int game_items_at(lua_State *L) {
     int x = lua_tointeger(L, 1);
     int y = lua_tointeger(L, 2);
-    std::vector<item>& items = g->m.i_at(x, y);
+    std::vector<item>& items = get_map().i_at(x, y);
     lua_createtable(L, items.size(), 0); // Preallocate enough space for all our items.
     // Iterate over the monster list and insert each monster into our returned table.
     for(int i=0; i < items.size(); i++) {
@@ -69,7 +69,7 @@ First, define your function however you like in catalua.cpp
 ```c++
 // game.remove_item(x, y, item)
 void game_remove_item(int x, int y, item *it) {
-    std::vector<item>& items = g->m.i_at(x, y);
+    std::vector<item>& items = get_map().i_at(x, y);
     for(int i=0; i<items.size(); i++) {
         if(&(items[i]) == it) {
             items.erase(items.begin() + i);
