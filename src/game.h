@@ -976,7 +976,7 @@ class game
         pimpl<spell_events> spell_events_ptr;
 
         map &m;
-        avatar &u;
+        avatar &u; // avatar? is this specifically for the player?
         scent_map &scent;
         const scenario *scen = nullptr;
 
