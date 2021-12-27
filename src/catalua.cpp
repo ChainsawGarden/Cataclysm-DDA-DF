@@ -839,7 +839,8 @@ class lua_iuse_wrapper : public iuse_actor
             return new lua_iuse_wrapper( *this );
         }
 
-        void load( JsonObject & ) override {}
+        //void load( JsonObject & ) override {}
+        void load( JsonObject & ) {} // probably doesn't need an override
 };
 
 // iuse abstraction to make iuse's both in lua and C++ possible
