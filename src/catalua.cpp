@@ -32,6 +32,7 @@
 #include "activity_type.h" // IWYU pragma: keep
 #include "bionics.h" // IWYU pragma: keep
 #include "field.h" // IWYU pragma: keep
+#include "avatar.h" // avatar for avatar retrieval
 #include "filesystem.h"
 #include "gun_mode.h"
 #include "itype.h"
