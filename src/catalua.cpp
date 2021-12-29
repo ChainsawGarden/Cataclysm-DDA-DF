@@ -791,7 +791,7 @@ void update_globals( lua_State *L ) // update all global data?
     luah_setglobal( L, "g", -1 );
     lua_pop( L, 1 );
 }
-
+// modern comment: lua iuse stuff
 class lua_iuse_wrapper : public iuse_actor
 {
     private:
