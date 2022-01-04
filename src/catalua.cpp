@@ -799,7 +799,7 @@ class lua_iuse_wrapper : public iuse_actor
     public:
         lua_iuse_wrapper( const int f, const std::string &type ) : iuse_actor( type ), lua_function( f ) {}
         ~lua_iuse_wrapper() override = default;
-        long use( player &, item &it, bool a, const tripoint &pos ) {
+        long use( player &, item &it, bool a, const tripoint &pos ) { // used to have "const override"
             // We'll be using lua_state a lot!
             lua_State *const L = lua_state;
 
@@ -836,12 +836,12 @@ class lua_iuse_wrapper : public iuse_actor
 
             return lua_tointeger( L, -1 );
         }
-        iuse_actor *clone() const override {
+        iuse_actor *clone() { // used to have "const override"
             return new lua_iuse_wrapper( *this );
         }
 
         //void load( JsonObject & ) override {}
-        void load( JsonObject & ) {} // probably doesn't need an override
+        void load( JsonObject & ) override {} // probably doesn't need an override
 };
 
 // iuse abstraction to make iuse's both in lua and C++ possible
