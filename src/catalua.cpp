@@ -836,12 +836,13 @@ class lua_iuse_wrapper : public iuse_actor
 
             return lua_tointeger( L, -1 );
         }
-        iuse_actor *clone() { // used to have "const override"
+        //iuse_actor *clone() const override { // used to have "const override"
+        iuse_actor clone() const override { // used to be a pointer
             return new lua_iuse_wrapper( *this );
         }
 
         //void load( JsonObject & ) override {}
-        void load( const JsonObject & ) override {} // probably doesn't need an override
+        void load( const JsonObject & ) override {} // "probably doesn't need an override"... was my old thoughts. Now I'm thinking something a little different.
                                                     // all of the other `iuse`s in the `iuse_actor.h` use a JsonObject param defined as `const JsonObject &obj`.
                                                     // if this succeeds, then this would mean that ALL overrides previously removed from Lua code are simply missing the
                                                     // properly-defined params.
