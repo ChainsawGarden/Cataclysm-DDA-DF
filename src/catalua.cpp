@@ -7,6 +7,7 @@
 #include "game.h"
 #include "item.h"
 #include "item_factory.h"
+#include "iuse.h"
 #include "map.h"
 #include "mapgen.h"
 #include "mapgen_functions.h"
