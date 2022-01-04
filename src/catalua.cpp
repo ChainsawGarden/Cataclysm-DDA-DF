@@ -3,6 +3,7 @@
 #include <memory>
 
 #include "action.h"
+#include "cata_algo.h"
 #include "debug.h"
 #include "game.h"
 #include "item.h"
@@ -800,7 +801,10 @@ class lua_iuse_wrapper : public iuse_actor
     public:
         lua_iuse_wrapper( const int f, const std::string &type ) : iuse_actor( type ), lua_function( f ) {}
         ~lua_iuse_wrapper() override = default;
-        long use( player &, item &it, bool a, const tripoint &pos ) { // used to have "const override"
+        // long use( player &, item &it, bool a, const tripoint &pos ) const override { // used to have "const override"
+        cata::optional<int> use( player &, item &it, bool a, const tripoint &pos ) const override { // used to have "const override"
+                                                                                              // on second thought, we might have to use `optional<long>`
+
             // We'll be using lua_state a lot!
             lua_State *const L = lua_state;
 
