@@ -194,7 +194,7 @@ extern std::stringstream lua_error_stream; // string fstream for errors?
 
     // static int traceback( lua_State *L );
 
-    void lua_dofile( lua_State *L, const char *path );
+    // void lua_dofile( lua_State *L, const char *path );
 
     // static int game_dofile( lua_State *L );
 
