@@ -595,16 +595,16 @@ struct LuaType;
 
 template<>
 struct LuaType<int> { // typing functions for cata's lua?
-    static bool has( lua_State *const L, const int stack_index ) {
+    static bool has( lua_State *const L, const int stack_index ) { // check if (lua stack index) is a number.
         return lua_isnumber( L, stack_index );
     }
-    static void check( lua_State *const L, const int stack_index ) {
+    static void check( lua_State *const L, const int stack_index ) { // check type
         luaL_checktype( L, stack_index, LUA_TNUMBER );
     }
-    static int get( lua_State *const L, const int stack_index ) {
+    static int get( lua_State *const L, const int stack_index ) { // turn (lua stack index) into a number
         return lua_tonumber( L, stack_index );
     }
-    static void push( lua_State *const L, const int value ) {
+    static void push( lua_State *const L, const int value ) { // push number to lua stack
         lua_pushnumber( L, value );
     }
 };
@@ -843,7 +843,9 @@ class lua_iuse_wrapper : public iuse_actor
         }
         //iuse_actor *clone() const override { // used to be a pointer
         std::unique_ptr<iuse_actor> *clone() const override { // All the cool kids use "std::unique_ptr<typehere>" now.
-            return new lua_iuse_wrapper( *this );
+            // pimp our return
+            return std::make_unique<lua_iuse_wrapper> lua_iuse_wrapper( *this );
+            // return new lua_iuse_wrapper( *this ); old return
         }
 
         //void load( JsonObject & ) override {}
