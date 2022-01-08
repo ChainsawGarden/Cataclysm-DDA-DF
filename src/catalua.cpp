@@ -842,7 +842,7 @@ class lua_iuse_wrapper : public iuse_actor
             return lua_tointeger( L, -1 );
         }
         //iuse_actor *clone() const override { // used to be a pointer
-        std::unique_ptr<iuse_actor> *clone() const override { // All the cool kids use "std::unique_ptr<typehere>" now.
+        std::unique_ptr<iuse_actor> clone() const override { // All the cool kids use "std::unique_ptr<typehere>" now.
             // pimp our return
             return std::make_unique<lua_iuse_wrapper> lua_iuse_wrapper( *this );
             // return new lua_iuse_wrapper( *this ); old return
