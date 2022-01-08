@@ -842,11 +842,13 @@ class lua_iuse_wrapper : public iuse_actor
             return lua_tointeger( L, -1 );
         }
         //iuse_actor *clone() const override { // used to be a pointer
-        std::unique_ptr<iuse_actor> clone() const override { // All the cool kids use "std::unique_ptr<typehere>" now.
-            // pimp our return
-            return std::make_unique<lua_iuse_wrapper> lua_iuse_wrapper( *this );
-            // return new lua_iuse_wrapper( *this ); old return
-        }
+        // std::unique_ptr<iuse_actor> clone() const override { // All the cool kids use "std::unique_ptr<typehere>" now.
+        //     // pimp our return
+        //     return std::make_unique<lua_iuse_wrapper> lua_iuse_wrapper( *this );
+        //     // return new lua_iuse_wrapper( *this ); old return
+
+        //     // what we're going to end up doing is make an external function that does this; the class method will call that function.
+        // }
 
         //void load( JsonObject & ) override {}
         void load( const JsonObject & ) override {} // "probably doesn't need an override"... was my old thoughts. Now I'm thinking something a little different.
@@ -854,6 +856,10 @@ class lua_iuse_wrapper : public iuse_actor
                                                     // if this succeeds, then this would mean that ALL overrides previously removed from Lua code are simply missing the
                                                     // properly-defined params.
 };
+
+std::unique_ptr<iuse_actor> lua_iuse_wrapper::clone() const override {
+    return std::make_unique<lua_iuse_wrapper> lua_iuse_wrapper( *this );
+}
 
 // iuse abstraction to make iuse's both in lua and C++ possible
 // ------------------------------------------------------------
