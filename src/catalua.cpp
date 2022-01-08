@@ -843,7 +843,7 @@ class lua_iuse_wrapper : public iuse_actor
         }
 
         std::unique_ptr<iuse_actor> clone() const override;
-        
+
         //iuse_actor *clone() const override { // used to be a pointer
         // std::unique_ptr<iuse_actor> clone() const override { // All the cool kids use "std::unique_ptr<typehere>" now.
         //     // pimp our return
@@ -860,7 +860,7 @@ class lua_iuse_wrapper : public iuse_actor
                                                     // properly-defined params.
 };
 
-std::unique_ptr<iuse_actor> lua_iuse_wrapper::clone() const override {
+std::unique_ptr<iuse_actor> lua_iuse_wrapper::clone() const {
     return std::make_unique<lua_iuse_wrapper> lua_iuse_wrapper( *this );
 }
 
