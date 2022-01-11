@@ -4533,3 +4533,13 @@ std::unique_ptr<iuse_actor> change_scent_iuse::clone() const
 {
     return std::make_unique<change_scent_iuse>( *this );
 }
+
+#ifdef LUA
+    // lua's "lua_iuse_wrapper" should be in the newfangled "iuse_actor" source file
+    std::unique_ptr<iuse_actor> lua_iuse_wrapper::clone() const 
+    {
+        // return std::make_unique<lua_iuse_wrapper> lua_iuse_wrapper( *this );
+        return std::make_unique<lua_iuse_wrapper>( *this ); // bruh. the constructor was probably the culprit all along.
+                                                            // noted.
+    }
+#endif
