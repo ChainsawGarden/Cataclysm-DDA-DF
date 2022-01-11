@@ -23,6 +23,7 @@
 #include "bionics.h"
 #include "bodypart.h"
 #include "calendar.h"
+#include "catalua.h" // lua(modern)ization: lua include
 #include "character.h"
 #include "character_id.h"
 #include "clothing_mod.h"
