@@ -207,7 +207,7 @@ extern std::stringstream lua_error_stream; // string fstream for errors?
                                                     // all of the other `iuse`s in the `iuse_actor.h` use a JsonObject param defined as `const JsonObject &obj`.
                                                     // if this succeeds, then this would mean that ALL overrides previously removed from Lua code are simply missing the
                                                     // properly-defined params.
-    }
+    };
     
 
     //void Item_factory::register_iuse_lua( const std::string &name, int lua_function );
