@@ -420,7 +420,7 @@ void update_globals( lua_State *L ) // update all global data?
 }
 
 // "lua iuse action stuff" goes here
-cata::optional<int> lua_iuse_wrapper::use( player &, item &it, bool a, const tripoint &pos ) const override { 
+cata::optional<int> lua_iuse_wrapper::use( player &, item &it, bool a, const tripoint &pos ) const {
                                                                                               // used to have "const override"
                                                                                               // on second thought, we might have to use `optional<long>`
                                                                                               // we also might start seeing errors related to this being a
