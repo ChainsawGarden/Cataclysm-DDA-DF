@@ -472,7 +472,7 @@ void Item_factory::register_iuse_lua( const std::string &name, int lua_function 
         DebugLog( D_INFO, D_MAIN ) << "lua iuse function " << name << " overrides existing iuse function";
     }
     // iuse_function_list[name] = use_function( new lua_iuse_wrapper( lua_function, name ) );
-    iuse_function_list[name] = use_function( std::unique_ptr<lua_iuse_wrapper>(lua_function, name) );
+    iuse_function_list[name] = use_function( std::make_unique<lua_iuse_wrapper>(lua_function, name) );
 }
 
 class lua_mattack_wrapper : public mattack_actor
