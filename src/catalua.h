@@ -593,7 +593,7 @@ extern std::stringstream lua_error_stream; // string fstream for errors?
 
             std::unique_ptr<mattack_actor> clone() const override; // maybe get rid of override?
 
-            void load_internal( JsonObject &, const std::string & ) override {}
+            void load_internal( JsonObject &, const std::string & ) {} // override used to come directly after params
     };
 
     //void MonsterGenerator::register_monattack_lua( const std::string &name, int lua_function );
