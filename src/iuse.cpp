@@ -9779,6 +9779,7 @@ cata::optional<int> iuse::magic_8_ball( player *p, item *it, bool, const tripoin
     return 0;
 }
 
+// dump item information (to a vector)
 void use_function::dump_info( const item &it, std::vector<iteminfo> &dump ) const
 {
     if( actor != nullptr ) {
