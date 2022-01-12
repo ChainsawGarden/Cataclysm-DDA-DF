@@ -475,6 +475,32 @@ void Item_factory::register_iuse_lua( const std::string &name, int lua_function 
     iuse_function_list[name] = use_function( std::make_unique<lua_iuse_wrapper>(lua_function, name) );
 }
 
+ bool lua_mattack_wrapper::call( monster &m ) const {
+    lua_State *const L = lua_state;
+
+    // If it's a lua function, the arguments have to be wrapped in
+    // lua userdata's and passed on the lua stack.
+    // We will now call the function f(monster)
+    update_globals( L );
+
+    // Push the lua function on top of the stack
+    lua_rawgeti( L, LUA_REGISTRYINDEX, lua_function );
+
+    // Push the monster on top of the stack.
+    const int monster_in_registry = LuaReference<monster>::push_reg( L, m );
+
+    // Call the iuse function
+    int err = lua_pcall( L, 1, 1, 0 );
+    lua_report_error( L, err, "monattack function" );
+
+    // Make sure the now outdated parameters we passed to lua aren't
+    // being used anymore by setting a metatable that will error on
+    // access.
+    luah_remove_from_registry( L, monster_in_registry );
+    luah_setmetatable( L, "outdated_metatable" );
+    return lua_toboolean( L, -1 );
+                
+}
 
 // register a monster's attack
 void MonsterGenerator::register_monattack_lua( const std::string &name, int lua_function )
