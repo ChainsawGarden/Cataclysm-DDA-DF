@@ -530,46 +530,13 @@ extern std::stringstream lua_error_stream; // string fstream for errors?
         lua_iuse_wrapper( const int f, const std::string &type ) : iuse_actor( type ), lua_function( f ) {}
         ~lua_iuse_wrapper() override = default;
         // long use( player &, item &it, bool a, const tripoint &pos ) const override { // used to have "const override"
-        cata::optional<int> use( player &, item &it, bool a, const tripoint &pos ) const override { // used to have "const override"
+        cata::optional<int> use( player &, item &it, bool a, const tripoint &pos ) const override {}; // used to have "const override"
                                                                                               // on second thought, we might have to use `optional<long>`
+                                                                                              // we also might start seeing errors related to this being a
+                                                                                              // `cata::optional`; no worries, just figure out how the other
+                                                                                              // `cata::optional`s are implemented, and follow suit.
 
-            // We'll be using lua_state a lot!
-            lua_State *const L = lua_state;
-
-            // If it's a lua function, the arguments have to be wrapped in
-            // lua userdata's and passed on the lua stack.
-            // We will now call the function f(player, item, active)
-
-            update_globals( L );
-
-            // Push the lua function on top of the stack
-            lua_rawgeti( L, LUA_REGISTRYINDEX, lua_function );
-
-            // TODO: also pass the player object, because of NPCs and all
-            //       I guess
-
-            // Push the item on top of the stack.
-            const int item_in_registry = LuaReference<item>::push_reg( L, it );
-            // Push the "active" parameter on top of the stack.
-            lua_pushboolean( L, a );
-            // Push the location of the item.
-            const int tripoint_in_registry = LuaValue<tripoint>::push_reg( L, pos );
-
-            // Call the iuse function
-            int err = lua_pcall( L, 3, 1, 0 );
-            lua_report_error( L, err, "iuse function" );
-
-            // Make sure the now outdated parameters we passed to lua aren't
-            // being used anymore by setting a metatable that will error on
-            // access.
-            luah_remove_from_registry( L, item_in_registry );
-            luah_setmetatable( L, "outdated_metatable" );
-            luah_remove_from_registry( L, tripoint_in_registry );
-            luah_setmetatable( L, "outdated_metatable" );
-
-            return lua_tointeger( L, -1 );
-        }
-
+            
         std::unique_ptr<iuse_actor> clone() const override;
 
         //iuse_actor *clone() const override { // used to be a pointer
