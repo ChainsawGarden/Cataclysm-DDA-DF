@@ -530,7 +530,7 @@ extern std::stringstream lua_error_stream; // string fstream for errors?
         lua_iuse_wrapper( const int f, const std::string &type ) : iuse_actor( type ), lua_function( f ) {}
         ~lua_iuse_wrapper() override = default;
         // long use( player &, item &it, bool a, const tripoint &pos ) const override { // used to have "const override"
-        cata::optional<int> use( player &, item &it, bool a, const tripoint &pos ) const override {}; // used to have "const override"
+        cata::optional<int> use( player &, item &it, bool a, const tripoint &pos ) const override; // used to have "const override"
                                                                                               // on second thought, we might have to use `optional<long>`
                                                                                               // we also might start seeing errors related to this being a
                                                                                               // `cata::optional`; no worries, just figure out how the other
