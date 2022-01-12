@@ -591,7 +591,7 @@ extern std::stringstream lua_error_stream; // string fstream for errors?
                 return lua_toboolean( L, -1 );
             }
 
-            std::unique_ptr<iuse_actor> clone() const override;
+            std::unique_ptr<mattack_actor> clone() const; // maybe get rid of override?
 
             void load_internal( JsonObject &, const std::string & ) override {}
     };
