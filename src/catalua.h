@@ -579,7 +579,7 @@ extern std::stringstream lua_error_stream; // string fstream for errors?
 
     //void MonsterGenerator::register_monattack_lua( const std::string &name, int lua_function );
 
-    //void lua_callback_helper( const char *callback_name, const CallbackArgumentContainer &callback_args, int retsize = 0 );
+    void lua_callback_helper( const char *callback_name, const CallbackArgumentContainer &callback_args, int retsize = 0 );
 
     uilist *create_uilist();
 
