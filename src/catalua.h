@@ -572,7 +572,7 @@ extern std::stringstream lua_error_stream; // string fstream for errors?
 
             bool call( monster &m ) const override;
 
-            std::unique_ptr<lua_mattack_wrapper> clone() const override; // maybe get rid of override?
+            std::unique_ptr<mattack_actor> clone() const override; // maybe get rid of override?
 
             void load_internal( const JsonObject &, const std::string & ) override; // override used to come directly after params
     };
