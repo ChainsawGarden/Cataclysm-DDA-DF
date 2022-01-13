@@ -4544,12 +4544,4 @@ std::unique_ptr<iuse_actor> change_scent_iuse::clone() const
                                                             // noted.
     }
 
-    // 
-    // mattack_actor *clone() const { // used to have override (here we go again)
-    std::unique_ptr<iuse_actor> lua_mattack_wrapper::clone() const 
-    {
-        // return new lua_mattack_wrapper( *this );
-        return std::make_unique<lua_mattack_wrapper>( *this );
-    }
-
 #endif
