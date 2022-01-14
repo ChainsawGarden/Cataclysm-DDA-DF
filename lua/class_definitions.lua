@@ -2008,7 +2008,6 @@ classes = {
             { name = "get_avoidance", rval = "int", args = { } },
             { name = "get_difficulty", rval = "int", args = { } },
             { name = "get_visibility", rval = "int", args = { } },
-            { name = "is_3x3_trap", rval = "bool", args = { } },
             { name = "is_benign", rval = "bool", args = { } },
             { name = "is_funnel", rval = "bool", args = { } },
             { name = "is_null", rval = "bool", args = { } },
