@@ -587,15 +587,15 @@ extern std::stringstream lua_error_stream; // string fstream for errors?
 
     const ter_t &get_terrain_type( int id );
 
-    // static calendar &get_calendar_turn_wrapper();
+    static calendar &get_calendar_turn_wrapper();
 
-    // static time_duration get_time_duration_wrapper( const int t );
+    static time_duration get_time_duration_wrapper( const int t );
 
-    // static std::string get_omt_id( const overmap &om, const tripoint &p );
+    static std::string get_omt_id( const overmap &om, const tripoint &p );
 
-    // static overmap_direction get_omt_dir( const overmap &om, const tripoint &p );
+    static overmap_direction get_omt_dir( const overmap &om, const tripoint &p );
 
-    // static std::string string_input_popup_wrapper( const std::string &title, int width, const std::string &desc );
+    static std::string string_input_popup_wrapper( const std::string &title, int width, const std::string &desc );
 
     monster *get_monster_at( const tripoint &p );
 
