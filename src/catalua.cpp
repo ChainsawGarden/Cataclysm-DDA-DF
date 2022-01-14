@@ -625,10 +625,10 @@ int lua_mapgen( map *m, const oter_id &terrain_type, const std::string &scr )
 
     lua_pushstring( L, terrain_type.id().c_str() ); // push the terrain type's id to the stack
     lua_setglobal( L, "tertype" ); // push "tertype" to stack (global?)
-    lua_pushinteger( L, to_turn<int>( t ) ); // push `int`egerized to_turn variable (t, AKA timepoint) to stack
+    // lua_pushinteger( L, to_turn<int>( t ) ); // push `int`egerized to_turn variable (t, AKA timepoint) to stack
     lua_setglobal( L, "turn" ); // push "turn" to stack
 
-    err = lua_pcall( L, 0, LUA_MULTRET, 0 ); // protected call; set var to the following given errors
+    err = lua_pcall( L, 0, LUA_MULTRET, 0 ); // protected call; set var to the following given errors << wait are pcalls error handlers ? ? >>
     lua_report_error( L, err, scr.c_str() ); // report all errors to `err`
 
     //    luah_remove_from_registry(L, function_index); // @todo: make use of this
