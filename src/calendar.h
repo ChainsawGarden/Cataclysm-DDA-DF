@@ -56,71 +56,71 @@ enum moon_phase {
  */
 namespace calendar
 {
-/**
- * Predicate to handle rate-limiting. Returns `true` after every @p event_frequency duration.
- */
-bool once_every( const time_duration &event_frequency );
+    /**
+     * Predicate to handle rate-limiting. Returns `true` after every @p event_frequency duration.
+     */
+    bool once_every( const time_duration &event_frequency );
 
-/**
- * A number that represents the longest possible action.
- *
- * This number should be regarded as a number of turns, and can safely be converted to a
- * number of seconds or moves (movement points) without integer overflow.  If used to
- * represent a larger unit (hours/days/years), then this will result in integer overflow.
- */
-extern const int INDEFINITELY_LONG;
+    /**
+     * A number that represents the longest possible action.
+     *
+     * This number should be regarded as a number of turns, and can safely be converted to a
+     * number of seconds or moves (movement points) without integer overflow.  If used to
+     * represent a larger unit (hours/days/years), then this will result in integer overflow.
+     */
+    extern const int INDEFINITELY_LONG;
 
-/**
- * The expected duration of the cataclysm
- *
- * Large duration that can be used to approximate infinite amounts of time.
- *
- * This number can't be safely converted to a number of moves without causing
- * an integer overflow.
- */
-extern const time_duration INDEFINITELY_LONG_DURATION;
+    /**
+     * The expected duration of the cataclysm
+     *
+     * Large duration that can be used to approximate infinite amounts of time.
+     *
+     * This number can't be safely converted to a number of moves without causing
+     * an integer overflow.
+     */
+    extern const time_duration INDEFINITELY_LONG_DURATION;
 
-/// @returns Whether the eternal season is enabled.
-bool eternal_season();
-void set_eternal_season( bool is_eternal_season );
+    /// @returns Whether the eternal season is enabled.
+    bool eternal_season();
+    void set_eternal_season( bool is_eternal_season );
 
-/** @returns Time in a year, (configured in current world settings) */
-time_duration year_length();
+    /** @returns Time in a year, (configured in current world settings) */
+    time_duration year_length();
 
-/** @returns Time of a season (configured in current world settings) */
-time_duration season_length();
-void set_season_length( int dur );
+    /** @returns Time of a season (configured in current world settings) */
+    time_duration season_length();
+    void set_season_length( int dur );
 
-/// @returns relative length of game season to real life season.
-float season_ratio();
+    /// @returns relative length of game season to real life season.
+    float season_ratio();
 
-/**
- * @returns ratio of actual season length (a world option) to default season length. This
- * should be used to convert JSON values (that assume the default for the season length
- * option) to actual in-game length.
- */
-float season_from_default_ratio();
+    /**
+     * @returns ratio of actual season length (a world option) to default season length. This
+     * should be used to convert JSON values (that assume the default for the season length
+     * option) to actual in-game length.
+     */
+    float season_from_default_ratio();
 
-/** Returns the translated name of the season (with first letter being uppercase). */
-std::string name_season( season_type s );
+    /** Returns the translated name of the season (with first letter being uppercase). */
+    std::string name_season( season_type s );
 
-extern time_point start_of_cataclysm;
-extern time_point start_of_game;
-extern time_point turn;
-extern season_type initial_season;
+    extern time_point start_of_cataclysm;
+    extern time_point start_of_game;
+    extern time_point turn;
+    extern season_type initial_season;
 
-/**
- * A time point that is always before the current turn, even when the game has
- * just started. This implies `before_time_starts < calendar::turn` is always
- * true. It can be used to initialize `time_point` values that denote that last
- * time a cache was update.
- */
-extern const time_point before_time_starts;
-/**
- * Represents time point 0.
- * TODO: flesh out the documentation
- */
-extern const time_point turn_zero;
+    /**
+     * A time point that is always before the current turn, even when the game has
+     * just started. This implies `before_time_starts < calendar::turn` is always
+     * true. It can be used to initialize `time_point` values that denote that last
+     * time a cache was update.
+     */
+    extern const time_point before_time_starts;
+    /**
+     * Represents time point 0.
+     * TODO: flesh out the documentation
+     */
+    extern const time_point turn_zero;
 } // namespace calendar
 
 template<typename T>
