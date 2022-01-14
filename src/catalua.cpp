@@ -564,7 +564,8 @@ void CallbackArgument::Save()
 }
 // Handles lua callbacks; I think this is the thing that 
 void lua_callback_helper( const char *callback_name, const CallbackArgumentContainer &callback_args,
-                          int retsize = 0 )
+                        //   int retsize = 0 ) // default params are illegal in definitions.
+                        int retsize)
 {
     if( lua_state == nullptr ) {
         return;
