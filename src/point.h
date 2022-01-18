@@ -148,6 +148,9 @@ inline point divide_xy_round_to_minus_infinity( const point &p, int d )
                   divide_round_to_minus_infinity( p.y, d ) );
 }
 
+/* TRIPOINTS
+ * Tripoints are 3-dimensional points in the Cataclysm: Dark Days Ahead game world.
+ */
 // NOLINTNEXTLINE(cata-xy)
 struct tripoint {
     static constexpr int dimension = 3;
@@ -155,9 +158,9 @@ struct tripoint {
     int x = 0;
     int y = 0;
     int z = 0;
-    constexpr tripoint() = default;
-    constexpr tripoint( int X, int Y, int Z ) : x( X ), y( Y ), z( Z ) {}
-    constexpr tripoint( const point &p, int Z ) : x( p.x ), y( p.y ), z( Z ) {}
+    constexpr tripoint() = default; // constructor; takes nothing and just initializes the 
+    constexpr tripoint( int X, int Y, int Z ) : x( X ), y( Y ), z( Z ) {} // takes 3D coords (x, y, z)
+    constexpr tripoint( const point &p, int Z ) : x( p.x ), y( p.y ), z( Z ) {} // takes a `point` structure (for those X and Y coords) and takes a Z integer (for the Z coord). Smart!
 
     static tripoint from_string( const std::string & );
 

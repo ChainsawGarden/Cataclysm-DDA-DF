@@ -609,14 +609,28 @@ extern std::stringstream lua_error_stream; // string fstream for errors?
         return time_duration::from_turns( t );
     }
 
+    // static std::string get_omt_id( const overmap &om, const tripoint &p )
     static std::string get_omt_id( const overmap &om, const tripoint &p )
     {
-        return om.get_ter( p ).id().str();
+        // return om.get_ter( p ).id().str(); // .get_ter() no longer exists in modern cata
+        // return om.ter( p ).id().str();
+
+        // for now, let's convert the simple tripoint to a `const tripoint_om_omt` object
+        const tripoint_om_omt &modern_pt(p.x, p.y, p.z); // create modern point object using tripoint
+
+        // return om.ter( p ).id().str();
+        return om.ter( modern_pt ).id().str();
     }
 
     static overmap_direction get_omt_dir( const overmap &om, const tripoint &p )
     {
-        return om.get_ter( p ).obj().get_dir();
+        // return om.get_ter( p ).obj().get_dir();
+        // return om.ter( p ).obj().get_dir(); // previous method was "get_ter". try saying that 5x fast. instant midwesternite
+
+        const tripoint_om_omt &modern_pt(p.x, p.y, p.z); // create modern point object using tripoint
+
+        // return om.ter( p ).obj().get_dir(); // previous method was "get_ter". try saying that 5x fast. instant midwesternite
+        return om.ter( modern_pt ).obj().get_dir(); // previous method was "get_ter". try saying that 5x fast. instant midwesternite
     }
 
     static std::string string_input_popup_wrapper( const std::string &title, int width,
