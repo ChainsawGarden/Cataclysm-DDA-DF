@@ -2268,7 +2268,7 @@ global_functions = {
     },
     create_monster = {
         cpp_name = "create_monster",
-        args = { "mtype_id", "tripoint" },
+        args = { "mtype_id", "tripoint", "radius" },
         rval = "monster&",
         desc = "Creates and spawns a new monster of given type. Returns a refernce to it, *or* nil if it could not be spawned."
     },

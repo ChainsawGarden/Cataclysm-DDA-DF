@@ -672,13 +672,15 @@ Creature *get_critter_at( const tripoint &p )
 }
 
 /** Create a new monster of the given type. */
-monster *create_monster( const mtype_id &mon_type, const tripoint &p )
+monster *create_monster( const mtype_id &mon_type, const tripoint &p, const int radius ) // modernized to include radius param
 {
+    // monster new_monster( mon_type, p ); // might be oldcode
     monster new_monster( mon_type, p );
-    if( !g->add_zombie( new_monster ) ) {
-        return nullptr;
+    // if( !g->add_zombie( new_monster ) ) {
+    if( !g->place_critter_around( new_monster, p, radius ) ) { // BEAUTIFUL. CLEAN. LOVELY.
+        return nullptr; // might be oldcode; though, if no problems erupt, remove this comment.
     } else {
-        return g->critter_at<monster>( p );
+        return g->critter_at<monster>( p ); // if we can't place the lil critter, get the critter at the tripoint.
     }
 }
 

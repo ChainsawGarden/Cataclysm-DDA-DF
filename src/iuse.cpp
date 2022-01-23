@@ -9270,17 +9270,17 @@ cata::optional<int> iuse::capture_monster_veh( player *p, item *it, bool, const 
     capture_monster_act( p, it, false, pos );
     return 0;
 }
-
+// place a monster (contained in this item) into the world, "releasing" it so-to-speak
 bool item::release_monster( const tripoint &target, const int radius )
 {
-    shared_ptr_fast<monster> new_monster = make_shared_fast<monster>();
+    shared_ptr_fast<monster> new_monster = make_shared_fast<monster>(); // create new monster object?
     try {
-        ::deserialize( *new_monster, get_var( "contained_json", "" ) );
+        ::deserialize( *new_monster, get_var( "contained_json", "" ) ); // deserialize the monster from JSON
     } catch( const std::exception &e ) {
-        debugmsg( _( "Error restoring monster: %s" ), e.what() );
+        debugmsg( _( "Error restoring monster: %s" ), e.what() ); // if there is an error with restoring it, debug msg.
         return false;
     }
-    if( !g->place_critter_around( new_monster, target, radius ) ) {
+    if( !g->place_critter_around( new_monster, target, radius ) ) { // if we can't place the monster here, ret false.
         return false;
     }
     erase_var( "contained_name" );
