@@ -5166,12 +5166,12 @@ static cata::optional<tripoint> choose_where_to_place_monster( const monster &mo
         return can_place_monster( mon, p );
     } );
 }
-
+// creates a new critter from the following ID and then spawns it at the specified tripoint
 monster *game::place_critter_at( const mtype_id &id, const tripoint &p )
 {
     return place_critter_around( id, p, 0 );
 }
-
+// move an existing critter to the specified tripoint
 monster *game::place_critter_at( const shared_ptr_fast<monster> &mon, const tripoint &p )
 {
     return place_critter_around( mon, p, 0 );

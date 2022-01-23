@@ -671,14 +671,14 @@ Creature *get_critter_at( const tripoint &p )
     return g->critter_at( p );
 }
 
-/** Create a new monster of the given type. */
-monster *create_monster( const mtype_id &mon_type, const tripoint &p, const int radius ) // modernized to include radius param
+/** Create a new monster of the given type. */ // modern: and spawn it at the tripoint. the params are not modern. just clarifying whats going on.
+monster *create_monster( const mtype_id &mon_type, const tripoint &p )
 {
     // monster new_monster( mon_type, p ); // might be oldcode
-    monster new_monster( mon_type, p );
     // if( !g->add_zombie( new_monster ) ) {
-    if( !g->place_critter_around( new_monster, p, radius ) ) { // BEAUTIFUL. CLEAN. LOVELY.
-        return nullptr; // might be oldcode; though, if no problems erupt, remove this comment.
+    // if( !g->place_critter_at( new_monster, p ) ) { 
+    if( !g->place_critter_at( mon_type, p ) ) { // if we can't create a critter at this tripoint... ret null ptr.
+        return nullptr;
     } else {
         return g->critter_at<monster>( p ); // if we can't place the lil critter, get the critter at the tripoint.
     }
