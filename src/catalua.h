@@ -643,7 +643,9 @@ extern std::stringstream lua_error_stream; // string fstream for errors?
     static std::string string_input_popup_wrapper( const std::string &title, int width,
             const std::string &desc )
     {
-        return string_input_popup().title( title ).width( width ).description( desc ).query_string();
+        string_input_popup luastdinpop;
+        // return string_input_popup().title( title ).width( width ).description( desc ).query_string();
+        return luastdinpop.title( title ).width( width ).description( desc ).query_string(); // query string for lua
     }
 
     monster *get_monster_at( const tripoint &p );
