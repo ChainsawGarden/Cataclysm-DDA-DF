@@ -621,7 +621,7 @@ extern std::stringstream lua_error_stream; // string fstream for errors?
         // for now, let's convert the simple tripoint to a `const tripoint_om_omt` object
         // const tripoint_om_omt &modern_pt(p.x, p.y, p.z); // create modern point object using tripoint
         // tripoint_om_omt &modern_pt(p.x, p.y, p.z); // create modern point object using tripoint // we might not need "const"
-        const tripoint_om_omt &modern_pt(p.x, p.y, p.z); // create modern point object using tripoint // we might still need "const"
+        const tripoint_om_omt &modern_pt{p.x, p.y, p.z}; // create modern point object using tripoint // we might still need "const"
 
         // return om.ter( p ).id().str();
         return om.ter( modern_pt ).id().str();
