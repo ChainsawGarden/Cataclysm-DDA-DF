@@ -227,7 +227,7 @@ struct LuaType<int> { // typing functions for cata's lua?
     static void check( lua_State *const L, const int stack_index ) { // check type
         luaL_checktype( L, stack_index, LUA_TNUMBER );
     }
-    static int get( lua_State *const L, const int stack_index ) { // turn (lua stack index) into a number
+    static int get( lua_State *const L, int stack_index ) { // turn (lua stack index) into a number // (i don't think the int was supposed to be a const)
         return lua_tonumber( L, stack_index );
     }
     static void push( lua_State *const L, const int value ) { // push number to lua stack
