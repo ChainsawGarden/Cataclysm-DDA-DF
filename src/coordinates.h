@@ -100,7 +100,7 @@ namespace coords
                 raw_( p )
             {}
             template<typename T>
-            constexpr coord_point( T x, T y ) : raw_( x, y ) {}
+            constexpr coord_point( T x, T y ) : raw_( x, y ) {} 
             template<typename T>
             constexpr coord_point( T x, T y, T z ) : raw_( x, y, z ) {}
             template<typename T>
