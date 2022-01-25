@@ -653,7 +653,7 @@ extern std::stringstream lua_error_stream; // string fstream for errors?
 
     Creature *get_critter_at( const tripoint &p );
 
-    monster *create_monster( const mtype_id &mon_type, const tripoint &p, const int radius );
+    monster *create_monster( const mtype_id &mon_type, const tripoint &p );
 
     // static void popup_wrapper( const std::string &text );
 
