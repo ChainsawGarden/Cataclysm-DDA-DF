@@ -12576,51 +12576,52 @@ Character &get_player_character()
 {
     return g->u;
 }
-
+// returns the player's location
 location &get_player_location()
 {
     return g->u;
 }
-
+// returns the player (only?)
 viewer &get_player_view()
 {
     return g->u;
 }
-
+// returns the game's avatar
 avatar &get_avatar()
 {
     return g->u;
 }
-
+// returns the game's map
 map &get_map()
 {
     return g->m;
 }
-
+// the get the current events going on (..?)
 event_bus &get_event_bus()
 {
     return g->events();
 }
-
+// get the memorial for the player(..?)
 memorial_logger &get_memorial()
 {
     return g->memorial();
 }
-
+// get the player's chosen scenario
 const scenario *get_scenario()
 {
     return g->scen;
 }
+// set the player's scenario
 void set_scenario( const scenario *new_scenario )
 {
     g->scen = new_scenario;
 }
-
+// get the player's scent (?)
 scent_map &get_scent()
 {
     return g->scent;
 }
-
+// get the player's current stats
 stats_tracker &get_stats()
 {
     return g->stats();

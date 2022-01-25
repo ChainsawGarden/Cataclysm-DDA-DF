@@ -710,7 +710,10 @@ static int game_items_at( lua_State *L )
     int x = lua_tointeger( L, 1 ); // turns an int to a Lua integer?
     int y = lua_tointeger( L, 2 ); // turns an int to a Lua integer?
 
-    auto items = get_map().i_at( x, y ); // modernization: use getter instead of directly accessing private variable.
+    const point gia( x, y ); // "game items at" point
+
+    // auto items = get_map().i_at( x, y ); // modernization: use getter instead of directly accessing private variable.
+    auto items = get_map().i_at( &gia ); // modernization: use getter instead of directly accessing private variable.
     lua_createtable( L, items.size(), 0 ); // Preallocate enough space for all our items.
 
     // Iterate over the monster list and insert each monster into our returned table.
