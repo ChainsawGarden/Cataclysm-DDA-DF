@@ -728,7 +728,8 @@ static int game_items_at( lua_State *L )
         // lua_rawset then does t[k] = v and pops v and k from the stack
 
         lua_pushnumber( L, i++ + 1 );
-        item **item_userdata = ( item ** ) lua_newuserdata( L, sizeof( item * ) );
+        // item **item_userdata = ( item ** ) lua_newuserdata( L, sizeof( item * ) ); // old, outdated style cast.
+        item **item_userdata = static_cast<item**>( lua_newuserdata( L, sizeof( item * ) ) );
         *item_userdata = &an_item;
         // TODO: update using LuaReference<item>
         luah_setmetatable( L, "item_metatable" );
