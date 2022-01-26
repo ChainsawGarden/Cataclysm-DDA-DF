@@ -742,7 +742,8 @@ static int game_items_at( lua_State *L )
 // item_groups = game.get_item_groups()
 static int game_get_item_groups( lua_State *L )
 {
-    std::vector<std::string> items = item_controller->get_all_group_names();
+    // std::vector<std::string> items = item_controller->get_all_group_names(); // oldcode. we don't use string no more.
+    std::vector<item_group_id> items = item_controller->get_all_group_names(); // newcode. we want to use `item_group_id` as it is modern.
 
     lua_createtable( L, items.size(), 0 ); // Preallocate enough space for all our items.
 
