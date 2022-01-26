@@ -432,7 +432,7 @@ classes = {
     },
     bionic = {
         attributes = {
-            charge = { type = "int", writable = true },
+            charge_timer = { type = "int", writable = true },
             id = { type = "bionic_id", writable = true },
             invlet = { type = "int", writable = true },
             powered = { type = "bool", writable = true },
