@@ -250,7 +250,7 @@ struct LuaType<bool> { // typing function checks (true/false) for cata's lua?
     }
     // It is helpful to be able to treat optionals as bools when passing to lua
     template<typename T>
-    static void push( lua_State *const L, const cata::optional<T> &value ) {
+    static void push( lua_State *const L, const cata::optional<T> &value ) { // could "optional" refer to any class, and T template help this?
         push( L, !!value );
     }
 };
