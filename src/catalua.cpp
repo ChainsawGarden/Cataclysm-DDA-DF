@@ -233,6 +233,10 @@ struct LuaType<int> { // typing functions for cata's lua?
     static void push( lua_State *const L, const int value ) { // push number to lua stack
         lua_pushnumber( L, value );
     }
+    // NEW OVERRIDE
+    static void push( lua_State *const L, const units::energy value ) { // for stuff like bionics
+        lua_pushnumber( L, value )
+    }
 };
 template<>
 struct LuaType<bool> { // typing function checks (true/false) for cata's lua?
@@ -372,9 +376,9 @@ struct LuaType<LuaEnum<E>> : public LuaEnum<E> {
 /**
  * Wrapper class to access objects in Lua that are stored as either a pointer or a value.
  * Technically, this class could inherit from both `LuaValue<T>` and `LuaReference<T>`,
- * but that would basically the same code anyway.
+ * but that would basically be the same code anyway.
  * It behaves like a LuaValue if there is a value on the stack, and like LuaReference is there
- * is a reference on the stack. Functions behave like the functions in a `LuaType`.
+ * as(?) a reference on the stack. Functions behave like the functions in a `LuaType`.
  * Note that it does not have a push function because it can not know whether to push a reference
  * or a value (copy). The caller must decide this and must use `LuaValue` or `LuaReference`.
  */

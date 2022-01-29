@@ -50,24 +50,24 @@ function member_type_to_cpp_type(member_type)
     elseif member_type == "int" then return "LuaType<int>" -- if the type is an int(eger), return a int LuaType
     elseif member_type == "float" then return "LuaType<float>" -- if the type is a float, return a float LuaType
     else
-        for class_name, class in pairs(classes) do
-            if class_name == member_type then
-                if class.by_value then
-                    return "LuaValue<" .. member_type .. ">"
-                elseif class.by_value_and_reference then
-                    return "LuaValueOrReference<" .. member_type .. ">"
-                else
-                    return "LuaReference<" .. member_type .. ">"
+        for class_name, class in pairs(classes) do                      -- pair [classname, class]
+            if class_name == member_type then                           -- if the class name is equal to the type
+                if class.by_value then                                  -- if the class's by_value is true..?
+                    return "LuaValue<" .. member_type .. ">"            -- return a LuaValue with the type "member_type"
+                elseif class.by_value_and_reference then                -- if we're doing things by value and ref. 
+                    return "LuaValueOrReference<" .. member_type .. ">" -- return LuaValueOrReference obj w/ template (?) of the type
+                else                                                    -- if we're not doing by value and / or ref
+                    return "LuaReference<" .. member_type .. ">"        -- just do "LuaReference" w/ type in angls
                 end
             end
         end
-        for enum_name, _ in pairs(enums) do
-            if enum_name == member_type then
-                return "LuaEnum<" .. member_type .. ">"
+        for enum_name, _ in pairs(enums) do             -- get enum names
+            if enum_name == member_type then            -- if the name is the type
+                return "LuaEnum<" .. member_type .. ">" -- ret a "LuaEnum" of that type
             end
         end
 
-        error("'"..member_type.."' is not a build-in type and is not defined in class_definitions.lua")
+        error("'"..member_type.."' is not a built-in type and is not defined in class_definitions.lua") -- if all fails (not a built-in type alr) then display err
     end
 end
 
