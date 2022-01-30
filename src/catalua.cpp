@@ -235,7 +235,7 @@ struct LuaType<int> { // typing functions for cata's lua?
     }
     // NEW OVERRIDE
     static void push( lua_State *const L, const units::energy value ) { // for stuff like bionics
-        lua_pushnumber( L, (int)value );
+        lua_pushnumber( L, static_cast<int>(value) );
     }
 };
 template<>
