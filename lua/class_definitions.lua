@@ -446,7 +446,8 @@ classes = {
         attributes = {
             activated = { type = "bool", writable = true },
             -- armor_interface = { type = "bool", writable = true },
-            capacity = { type = "int", writable = true },
+            -- capacity = { type = "int", writable = true },
+            capacity = { type = "units::energy", writable = true },
             charge_time = { type = "int", writable = true },
             description = { type = "string", writable = true },
             fake_item = { type = "string", writable = true },
