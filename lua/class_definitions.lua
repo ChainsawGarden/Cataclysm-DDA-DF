@@ -1210,7 +1210,7 @@ classes = {
         functions = {
             { name = "value", rval = "int", args = { } } -- warning(?) this assumes all energy types are integers
         }
-    }
+    },
     -- modern stop
     uilist = {
         attributes = {
