@@ -1201,6 +1201,7 @@ classes = {
     energy = { -- units::energy
         by_value = true,
         has_equal = true,
+        cpp_name = "units::energy"
         attributes = {
             value_ = { -- private var; we prob won't be able to do this
                 type = "int",
