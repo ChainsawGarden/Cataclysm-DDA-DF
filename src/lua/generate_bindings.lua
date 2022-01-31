@@ -49,7 +49,7 @@ function member_type_to_cpp_type(member_type)
     elseif member_type == "string" then return "LuaType<std::string>" -- if the type is a string, we'll use the regular C++ string, returning a std::string LuaType.
     elseif member_type == "int" then return "LuaType<int>" -- if the type is an int(eger), return a int LuaType
     elseif member_type == "float" then return "LuaType<float>" -- if the type is a float, return a float LuaType
-    else
+    else -- if the types aren't a built-in type
         for class_name, class in pairs(classes) do                      -- pair [classname, class]
             if class_name == member_type then                           -- if the class name is equal to the type
                 if class.by_value then                                  -- if the class's by_value is true..?
