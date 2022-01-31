@@ -1203,7 +1203,7 @@ classes = {
         has_equal = true,
         attributes = {
             value_ = { -- private var; we prob won't be able to do this
-                type = "int"
+                type = "int",
                 writable = true
             }
         },
