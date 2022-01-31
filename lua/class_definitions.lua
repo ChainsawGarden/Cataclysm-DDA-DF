@@ -1198,10 +1198,10 @@ classes = {
         }
     },
     -- modern start
-    energy = { -- units::energy
+    units_energy = { -- units::energy
         by_value = true,
         has_equal = true,
-        cpp_name = "units::energy",
+        -- cpp_name = "units::energy", only works with functions and attributes
         attributes = {
             value_ = { -- private var; we prob won't be able to do this
                 type = "int",

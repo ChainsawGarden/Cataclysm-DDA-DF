@@ -79,6 +79,7 @@ using volume = units::volume;
 using mass = units::mass;
 using npc_template_id = string_id<npc_template>;
 using overmap_direction = om_direction::type;
+using units_energy = units::energy;
 
 // lua_State *lua_state = nullptr;
 
