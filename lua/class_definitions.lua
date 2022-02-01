@@ -1238,7 +1238,7 @@ classes = {
         functions = {
             { name = "&str", rval = "string", args = { } }
         }
-    }
+    },
     -- modern stop
     uilist = {
         attributes = {
