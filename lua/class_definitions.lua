@@ -1225,7 +1225,7 @@ classes = {
         functions = {
             { name = "translated", rval = "string", args = { } }
         }
-    }
+    },
     -- type_id = {
     --     by_value = true,
     --     has_equal = true,
