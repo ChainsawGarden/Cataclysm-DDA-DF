@@ -1224,7 +1224,7 @@ classes = {
         functions = {
             { name = "translated", rval = "string", args = { } }
         }
-    }
+    },
     -- modern stop
     uilist = {
         attributes = {
