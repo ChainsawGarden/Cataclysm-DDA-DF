@@ -454,7 +454,7 @@ classes = {
             charge_time = { type = "int", writable = true },
             description = { type = "translation", writable = true }, -- no longer a simple string; it's a `translation` now.
             -- fake_item = { type = "string", writable = true },
-            fake_item = { type = "type_id", writable = true },
+            fake_item = { type = "itype_id", writable = true },
             faulty = { type = "bool", writable = true },
             gun_bionic = { type = "bool", writable = true },
             name = { type = "string", writable = true },
@@ -1225,20 +1225,20 @@ classes = {
         functions = {
             { name = "translated", rval = "string", args = { } }
         }
-    },
-    type_id = {
-        by_value = true,
-        has_equal = true,
-        attributes = {
-            _cid = {
-                type = "int",
-                writable = false
-            }
-        },
-        functions = {
-            { name = "&str", rval = "string", args = { } }
-        }
-    },
+    }
+    -- type_id = {
+    --     by_value = true,
+    --     has_equal = true,
+    --     attributes = {
+    --         _cid = {
+    --             type = "int",
+    --             writable = false
+    --         }
+    --     },
+    --     functions = {
+    --         { name = "&str", rval = "string", args = { } }
+    --     }
+    -- },
     -- modern stop
     uilist = {
         attributes = {
