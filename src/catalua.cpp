@@ -54,6 +54,7 @@
 #include "string_input_popup.h"
 #include "trap.h" // IWYU pragma: keep
 #include "ui.h"
+#include "translations.h"
 
 // modernization
 // #include <lua.h>
@@ -75,11 +76,12 @@ extern "C" {
 #endif
 
 using item_stack_iterator = std::list<item>::iterator;
-using volume = units::volume;
-using mass = units::mass;
-using npc_template_id = string_id<npc_template>;
-using overmap_direction = om_direction::type;
-using units_energy = units::energy;
+using volume = units::volume; // for volume units (bruh i'm blind)
+using mass = units::mass; // for mass units (how did I not see this at first)
+using npc_template_id = string_id<npc_template>; // for template IDs
+using overmap_direction = om_direction::type; // for map dirs
+using energy = units::energy; // for energy, like bionics or batterie.
+//using translation = translation
 
 // lua_State *lua_state = nullptr;
 
