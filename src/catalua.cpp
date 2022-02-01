@@ -55,6 +55,7 @@
 #include "trap.h" // IWYU pragma: keep
 #include "ui.h"
 #include "translations.h"
+#include "type_id.h"
 
 // modernization
 // #include <lua.h>
@@ -81,6 +82,7 @@ using mass = units::mass; // for mass units (how did I not see this at first)
 using npc_template_id = string_id<npc_template>; // for template IDs
 using overmap_direction = om_direction::type; // for map dirs
 using energy = units::energy; // for energy, like bionics or batterie.
+// using type_id 
 //using translation = translation
 
 // lua_State *lua_state = nullptr;

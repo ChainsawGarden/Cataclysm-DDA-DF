@@ -1226,6 +1226,19 @@ classes = {
             { name = "translated", rval = "string", args = { } }
         }
     },
+    type_id = {
+        by_value = true,
+        has_equal = true,
+        attributes = {
+            _cid = {
+                type = "int",
+                writable = false
+            }
+        },
+        functions = {
+            { name = "&str", rval = "string", args = { } }
+        }
+    }
     -- modern stop
     uilist = {
         attributes = {
