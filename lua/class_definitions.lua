@@ -454,7 +454,7 @@ classes = {
             charge_time = { type = "int", writable = true },
             description = { type = "translation", writable = true }, -- no longer a simple string; it's a `translation` now.
             -- fake_item = { type = "string", writable = true },
-            fake_item = { type = "itype", writable = true },
+            fake_item = { type = "itype", writable = false },
             faulty = { type = "bool", writable = true },
             gun_bionic = { type = "bool", writable = true },
             name = { type = "string", writable = true },
