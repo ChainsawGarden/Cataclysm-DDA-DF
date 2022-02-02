@@ -455,16 +455,17 @@ classes = {
             description = { type = "translation", writable = true }, -- no longer a simple string; it's a `translation` now.
             -- fake_item = { type = "string", writable = true },
             fake_item = { type = "itype_id", writable = false },
-            faulty = { type = "bool", writable = true },
-            gun_bionic = { type = "bool", writable = true },
-            name = { type = "string", writable = true },
-            power_activate = { type = "int", writable = true },
-            power_deactivate = { type = "int", writable = true },
-            power_over_time = { type = "int", writable = true },
-            power_source = { type = "bool", writable = true },
-            toggled = { type = "bool", writable = true },
+            -- faulty = { type = "bool", writable = true }, -- doesn't exist in bionic_data nor regular bionic struct
+            -- gun_bionic = { type = "bool", writable = true }, -- doesn't exist in bionic_data nor regular bionic struct
+            name = { type = "translation", writable = true },
+            power_activate = { type = "energy", writable = true },
+            power_deactivate = { type = "energy", writable = true },
+            power_over_time = { type = "energy", writable = true },
+            -- power_source = { type = "bool", writable = true }, -- doesn't exist in bionic_data nor regular bionic struct
+            -- toggled = { type = "bool", writable = true }, -- may have been replaced by activated
+            powered = { type = "bool", writable = true }, -- whether or not the bionic is currently in an "on" state.
             upgraded_bionic = { type = "bionic_id", writable = true },
-            weapon_bionic = { type = "bool", writable = true },
+            -- weapon_bionic = { type = "bool", writable = true }, -- doesn't exist in bionic_data nor regular bionic struct
         },
         functions = {
             { name = "is_included", rval = "bool", args = { "bionic_id" } },

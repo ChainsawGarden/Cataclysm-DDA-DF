@@ -2249,12 +2249,12 @@ bool Character::has_bionic( const bionic_id &b ) const
     }
     return false;
 }
-
+// 
 bool Character::has_active_bionic( const bionic_id &b ) const
 {
-    for( const bionic &i : *my_bionics ) {
-        if( i.id == b ) {
-            return ( i.powered && i.incapacitated_time == 0_turns );
+    for( const bionic &i : *my_bionics ) { // for each bionic installed
+        if( i.id == b ) { // if the ID is of the desired bionic...
+            return ( i.powered && i.incapacitated_time == 0_turns ); // return whether the bionic is on and the time in which the bionic was off.
         }
     }
     return false;
