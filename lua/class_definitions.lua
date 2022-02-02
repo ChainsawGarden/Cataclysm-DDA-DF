@@ -1204,9 +1204,9 @@ classes = {
         has_equal = true,
         -- cpp_name = "units::energy", only works with functions and attributes
         attributes = {
-            value_ = { -- private var; we prob won't be able to do this
+            value_ = { -- private var; we prob won't be able to do this -- update: we weren't
                 type = "int",
-                writable = true
+                writable = false
             }
         },
         functions = {
