@@ -454,7 +454,7 @@ classes = {
             charge_time = { type = "int", writable = true },
             description = { type = "translation", writable = true }, -- no longer a simple string; it's a `translation` now.
             -- fake_item = { type = "string", writable = true },
-            fake_item = { type = "itype", writable = false },
+            fake_item = { type = "itype_id", writable = false },
             faulty = { type = "bool", writable = true },
             gun_bionic = { type = "bool", writable = true },
             name = { type = "string", writable = true },
@@ -950,7 +950,7 @@ classes = {
             { name = "talk_to_u", rval = nil, args = { } },
         }
     },
-    item = {
+    item = { -- item.h
         new = {
             { },
             { "item" },
@@ -1226,20 +1226,20 @@ classes = {
             { name = "translated", rval = "string", args = { } }
         }
     },
-    -- itype = {
-    --     string_id = "itype_id",
-    --     by_value = true,
-    --     has_equal = true,
-    --     attributes = {
-    --         _cid = {
-    --             type = "int",
-    --             writable = false
-    --         }
-    --     },
-    --     functions = {
-    --         { name = "&str", rval = "string", args = { } }
-    --     }
-    -- },
+    itype_id = {
+        string_id = "string_id",
+        by_value = true,
+        has_equal = true,
+        attributes = {
+            _cid = {
+                type = "int",
+                writable = false
+            }
+        },
+        functions = {
+            { name = "&str", rval = "string", args = { } }
+        }
+    },
     -- modern stop
     money = {
         by_value = true,
@@ -2012,7 +2012,7 @@ classes = {
         functions = {
         },
     },
-    itype = {
+    itype = { -- itype != itype_id
         attributes = {
             color = { type = "nc_color", writable = true },
             description = { type = "translation", writable = true },

@@ -84,6 +84,7 @@ using overmap_direction = om_direction::type; // for map dirs
 using energy = units::energy; // for energy, like bionics or batteries.
 //using translation = translation
 using money = units::money; // for currency
+using itype_id = string_id<itype>; // for itype_ids
 
 // lua_State *lua_state = nullptr;
 
