@@ -310,7 +310,7 @@ classes = {
     },
     game = {
         attributes = {
-            lightning_active = { type = "bool", writable = true },
+            -- lightning_active = { type = "bool", writable = true }, -- not present in class `game`. But, present in weather class.
         },
         functions = {
             { name = "add_zombie", rval = "bool", args = { "monster" } },
@@ -438,7 +438,7 @@ classes = {
             charge_timer = { type = "int", writable = true },
             id = { type = "bionic_id", writable = true },
             invlet = { type = "int", writable = true },
-            powered = { type = "bool", writable = true },
+            powered = { type = "bool", writable = true }, -- whether or not the bionic is currently in an "on" state.
         },
         functions = {
             { name = "get_quality", rval = "int", args = { "quality_id" } },
@@ -463,7 +463,6 @@ classes = {
             power_over_time = { type = "energy", writable = true },
             -- power_source = { type = "bool", writable = true }, -- doesn't exist in bionic_data nor regular bionic struct
             -- toggled = { type = "bool", writable = true }, -- may have been replaced by activated
-            powered = { type = "bool", writable = true }, -- whether or not the bionic is currently in an "on" state.
             upgraded_bionic = { type = "bionic_id", writable = true },
             -- weapon_bionic = { type = "bool", writable = true }, -- doesn't exist in bionic_data nor regular bionic struct
         },
