@@ -81,8 +81,9 @@ using volume = units::volume; // for volume units (bruh i'm blind)
 using mass = units::mass; // for mass units (how did I not see this at first)
 using npc_template_id = string_id<npc_template>; // for template IDs
 using overmap_direction = om_direction::type; // for map dirs
-using energy = units::energy; // for energy, like bionics or batterie.
+using energy = units::energy; // for energy, like bionics or batteries.
 //using translation = translation
+using money = units::money; // for currency
 
 // lua_State *lua_state = nullptr;
 
@@ -238,9 +239,9 @@ struct LuaType<int> { // typing functions for cata's lua?
         lua_pushnumber( L, value );
     }
     // NEW OVERRIDE
-    static void push( lua_State *const L, const units::energy value ) { // for stuff like bionics
-        lua_pushnumber( L, value.value() );
-    }
+    // static void push( lua_State *const L, const units::energy value ) { // for stuff like bionics
+    //     lua_pushnumber( L, value.value() );
+    // }
 };
 template<>
 struct LuaType<bool> { // typing function checks (true/false) for cata's lua?

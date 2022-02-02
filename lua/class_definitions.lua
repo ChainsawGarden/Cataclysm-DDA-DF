@@ -454,7 +454,7 @@ classes = {
             charge_time = { type = "int", writable = true },
             description = { type = "translation", writable = true }, -- no longer a simple string; it's a `translation` now.
             -- fake_item = { type = "string", writable = true },
-            fake_item = { type = "itype_id", writable = true },
+            fake_item = { type = "itype", writable = true },
             faulty = { type = "bool", writable = true },
             gun_bionic = { type = "bool", writable = true },
             name = { type = "string", writable = true },
@@ -1226,7 +1226,8 @@ classes = {
             { name = "translated", rval = "string", args = { } }
         }
     },
-    -- type_id = {
+    -- itype = {
+    --     string_id = "itype_id",
     --     by_value = true,
     --     has_equal = true,
     --     attributes = {
@@ -1240,6 +1241,15 @@ classes = {
     --     }
     -- },
     -- modern stop
+    money = {
+        by_value = true,
+        attributes = {
+        
+        },
+        functions = {
+            { name = "value", rval = "int", args = { } },
+        },
+    },
     uilist = {
         attributes = {
             title = {
@@ -2005,20 +2015,20 @@ classes = {
     itype = {
         attributes = {
             color = { type = "nc_color", writable = true },
-            description = { type = "string", writable = true },
+            description = { type = "translation", writable = true },
             explode_in_fire = { type = "bool", writable = true },
             integral_volume = { type = "volume", writable = true },
             light_emission = { type = "int", writable = true },
             m_to_hit = { type = "int", writable = true },
-            magazine_well = { type = "volume", writable = true },
+            -- magazine_well = { type = "volume", writable = true }, -- doesn't exist in modern cdda
+            min_str = { type = "int", writable = true },
             min_dex = { type = "int", writable = true },
             min_int = { type = "int", writable = true },
             min_per = { type = "int", writable = true },
-            min_str = { type = "int", writable = true },
             phase = { type = "phase_id", writable = true },
-            price = { type = "int", writable = true },
-            price_post = { type = "int", writable = true },
-            rigid = { type = "bool", writable = true },
+            price = { type = "money", writable = true },
+            price_post = { type = "money", writable = true },
+            -- rigid = { type = "bool", writable = true }, -- rigid attrib doesn't exist in modern cdda
             snippet_category = { type = "string", writable = true },
             stack_size = { type = "int", writable = true },
             sym = { type = "string", writable = true },
