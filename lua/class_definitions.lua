@@ -1284,7 +1284,7 @@ classes = {
         functions = {
             { name = "to_string", rval = "string", args = { } },
             -- { name = "xy", rval = "coord_point", args = { } }
-            { name = "xy", rval = "coord_point<point, Origin, Scale>( raw_.xy() )", args = { } }
+            { name = "xy", rval = "cppos", args = { "point" } } -- cppos == coord_point<point, Origin, Scale>( raw_.xy() )
         }
     },
     tripoint_om_sm = {
@@ -1306,7 +1306,7 @@ classes = {
         },
         functions = {
             { name = "to_string", rval = "string", args = { } },
-            { name = "xy", rval = "coord_point<point, Origin, Scale>( raw_.xy() )", args = { } }
+            { name = "xy", rval = "cppos", args = { } }
         }
     },
     point_om_sm = {
@@ -1328,7 +1328,7 @@ classes = {
         },
         functions = {
             { name = "to_string", rval = "string", args = { } },
-            { name = "xy", rval = "coord_point<point, Origin, Scale>( raw_.xy() )", args = { } }
+            { name = "xy", rval = "cppos", args = { } }
         }
     },
     -- modern stop

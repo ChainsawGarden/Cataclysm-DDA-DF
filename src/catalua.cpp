@@ -88,6 +88,9 @@ using money = units::money; // for currency
 using itype_id = string_id<itype>; // for itype_ids
 using tripoint_om_sm = coords::coord_point<tripoint, coords::origin::overmap, coords::sm>; // for overmap submap tripoints
 using point_om_sm = coords::coord_point<point, coords::origin::overmap, coords::sm>;
+// using coords::coord_point<point, Origin, Scale>( raw_.xy() );
+// using cppos = coords::coord_point<point, Origin, Scale>; // (p)oint (o)rigin and (s)cale
+using cppos = coords::coord_point<point, Origin, Scale>; // (p)oint (o)rigin and (s)cale
 
 // lua_State *lua_state = nullptr;
 
