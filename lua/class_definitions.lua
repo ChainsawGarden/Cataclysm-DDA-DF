@@ -12,19 +12,23 @@ typedef in catalua.cpp, e.g. `using cppstring = std::string;`, then add a class 
 
 Each class requires at least the attributes and the functions table (they can be empty).
 Optional values are:
-- by_value (boolean, default: false): if true, copy the C++ object into memory managed by Lua
+- `by_value` (boolean, default: false): if true, copy the C++ object into memory managed by Lua
   (the copy may outlive the source C++ object), otherwise only a pointer to the C++ object
   is stored in Lua and it *needs* to stay valid in C++ until the Lua object is gone.
-- by_value_and_reference (boolean, default: false): if true, the class is can be exported to Lua
+
+- `by_value_and_reference` (boolean, default: false): if true, the class is can be exported to Lua
   as value (copy of the object, managed by Lua) *and* as reference (to an object managed by C++
-  code). This flag implies "by_value", "by_value" should therefor not be specified explicitly.
-- has_equal (boolean, default: false): If true, generate the __eq entry in the metatable which
+  code). This flag implies "by_value", "by_value" should therefore not be specified explicitly.
+
+- `has_equal` (boolean, default: false): If true, generate the __eq entry in the metatable which
   will map to the C++ using the operator==.
-- new (an array of parameter lists): defines the constructor of the object. This is only useful for
+
+- `new` (an array of parameter lists): defines the constructor of the object. This is only useful for
   by_value objects, it allows to create an instance of it in Lua. The entry should be an array,
   each element of it represents one overload of the constructor. Each element should be a list of
   parameters to those overloads (same as the list of arguments to member functions).
-- int_id (optional, a string): if the class has an associated int_id (e.g. ter_t has int_id<ter_t>,
+
+- `int_id` (optional, a string): if the class has an associated int_id (e.g. ter_t has int_id<ter_t>,
   which is typedefed to ter_id), this can be used to define that int_id (for ter_t is should be
   "ter_id"). At the end of this file, this will be used to create an actual entry in the classes
   table for the type name given here.
@@ -32,11 +36,13 @@ Optional values are:
 
 The attributes table contains the members of the C++ class. Each key is the name of the member,
 it maps to a map with the following values:
-- cpp_name (defaults to the name of the member): an alternatively name for the member,
+- `cpp_name` (defaults to the name of the member): an alternatively name for the member,
   used only in the C++ part of the wrapper.
-- writable (boolean, default: false): if true, a wrapper to set the member is generated (otherwise
+
+- `writable` (boolean, default: false): if true, a wrapper to set the member is generated (otherwise
   only the getter is generated and the member is effectively read-only).
-- type (required): the type of the member (see below).
+
+- `type` (required): the type of the member (see below).
 
 The functions table contains the member functions of the C++ class. Each entry (no keys, it's an
 array) should have the following values:
@@ -100,15 +106,16 @@ classes = {
         }
     },
     calendar = {
-        new = {
-            { "calendar" },
-            { "int" },
-            { "int", "int", "int", "season_type", "int" },
-        },
-        by_value_and_reference = true,
+        -- new = { -- modern cata doesn't have calendar as a class.
+        --     { "calendar" },
+        --     { "int" },
+        --     { "int", "int", "int", "season_type", "int" },
+        -- },
+        -- by_value_and_reference = true,
         attributes = {
             before_time_starts = { type = "time_point", writable = false },
-            time_of_cataclysm = { type = "time_point", writable = false },
+            -- time_of_cataclysm = { type = "time_point", writable = false }, -- old
+            turn_zero = { type = "time_point", writable = false }, -- new version of timeofcata
         },
         functions = {
             { name = "eternal_season", rval = "bool", args = { } },
@@ -117,14 +124,17 @@ classes = {
             { name = "season_ratio", rval = "float", args = { } },
             { name = "season_from_default_ratio", rval = "float", args = { } },
             { name = "name_season", rval = "string", args = { "season_type" } },
-            { name = "day_of_year", rval = "int", args = { } },
-            { name = "get_turn", rval = "int", cpp_name = "operator int", args = { } },
-            { name = "increment", rval = nil, args = { } },
-            { name = "is_night", rval = "bool", args = { } },
-            { name = "sunlight", rval = "float", args = { } },
-            { name = "years", rval = "int", args = { } },
-            { name = "sunset", rval = "calendar", args = { } },
-            { name = "sunrise", rval = "calendar", args = { } },
+            -- { name = "day_of_year", rval = "int", args = { } }, -- not present in modern cdda
+            -- { name = "get_turn", rval = "int", cpp_name = "operator int", args = { } }, -- ditto
+            -- { name = "increment", rval = nil, args = { } }, -- ditto
+            -- { name = "is_night", rval = "bool", args = { } },
+            { name = "is_night", rval = "bool", args = { "time_point&" } }, -- modern cdda reqs timepoint&
+            { name = "sunlight", rval = "float", args = { "time_point&", "bool" } },
+            -- { name = "years", rval = "int", args = { } }, -- not present in modern cdda
+            -- { name = "sunset", rval = "calendar", args = { } },
+            { name = "sunset", rval = "time_point", args = { "time_point&" } },
+            -- { name = "sunrise", rval = "calendar", args = { } },
+            { name = "sunrise", rval = "time_point", args = { "time_point&" } },
         }
     },
     mutation_branch = {
