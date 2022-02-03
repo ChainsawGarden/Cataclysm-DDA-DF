@@ -1282,7 +1282,7 @@ classes = {
             }
         },
         functions = {
-            { name = "to_string", rval = "string", args = { } },
+            { name = "to_string", rval = "string", args = { } }
             -- { name = "xy", rval = "coord_point", args = { } }
             -- { name = "xy", rval = "cppos", args = { "point" } } -- for the sake of sanity, leave this out.
         },
