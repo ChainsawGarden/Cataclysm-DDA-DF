@@ -128,13 +128,17 @@ classes = {
             -- { name = "get_turn", rval = "int", cpp_name = "operator int", args = { } }, -- ditto
             -- { name = "increment", rval = nil, args = { } }, -- ditto
             -- { name = "is_night", rval = "bool", args = { } },
-            { name = "is_night", rval = "bool", args = { "time_point&" } }, -- modern cdda reqs timepoint&
-            { name = "sunlight", rval = "float", args = { "time_point&", "bool" } },
+            -- { name = "is_night", rval = "bool", args = { "time_point&" } }, -- modern cdda reqs timepoint&
+            { name = "is_night", rval = "bool", args = { "time_point" } }, -- modern cdda reqs timepoint&
+            -- { name = "sunlight", rval = "float", args = { "time_point&", "bool" } },
+            { name = "sunlight", rval = "float", args = { "time_point", "bool" } },
             -- { name = "years", rval = "int", args = { } }, -- not present in modern cdda
             -- { name = "sunset", rval = "calendar", args = { } },
-            { name = "sunset", rval = "time_point", args = { "time_point&" } },
+            -- { name = "sunset", rval = "time_point", args = { "time_point&" } },
+            { name = "sunset", rval = "time_point", args = { "time_point" } },
             -- { name = "sunrise", rval = "calendar", args = { } },
-            { name = "sunrise", rval = "time_point", args = { "time_point&" } },
+            -- { name = "sunrise", rval = "time_point", args = { "time_point&" } },
+            { name = "sunrise", rval = "time_point", args = { "time_point" } },
         }
     },
     mutation_branch = {
