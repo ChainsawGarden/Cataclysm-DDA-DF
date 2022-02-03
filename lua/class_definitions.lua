@@ -1328,7 +1328,7 @@ classes = {
         },
         functions = {
             { name = "to_string", rval = "string", args = { } },
-            { name = "xy", rval = "cppos", args = { } }
+            { name = "xy", rval = "cppos", args = { "point" } }
         }
     },
     point_om_sm = {
