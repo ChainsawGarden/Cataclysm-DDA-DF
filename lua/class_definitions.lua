@@ -112,6 +112,8 @@ classes = {
         --     { "int", "int", "int", "season_type", "int" },
         -- },
         -- by_value_and_reference = true,
+        by_value_and_reference = false,
+        by_value = true,
         attributes = {
             before_time_starts = { type = "time_point", writable = false },
             -- time_of_cataclysm = { type = "time_point", writable = false }, -- old

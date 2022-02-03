@@ -592,6 +592,8 @@ extern std::stringstream lua_error_stream; // string fstream for errors?
 
     const ter_t &get_terrain_type( int id );
 
+    // don't worry, the below are defined below this comment chain thing.
+
     // static time_point &get_calendar_turn_wrapper();
 
     // static time_duration get_time_duration_wrapper( const int t );
