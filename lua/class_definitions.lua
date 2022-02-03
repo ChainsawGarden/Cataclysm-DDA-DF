@@ -981,7 +981,8 @@ classes = {
             charges = { type = "int", writable = true },
             frequency = { type = "int", writable = true },
             invlet = { type = "int", writable = true },
-            irridation = { type = "int", writable = true },
+            -- irridation = { type = "int", writable = true },
+            irridiation = { type = "int", writable = true }, -- oldcode misspelling that was fixed very late.
             item_counter = { type = "int", writable = true },
             mission_id = { type = "int", writable = true },
             note = { type = "int", writable = true },
@@ -1218,10 +1219,10 @@ classes = {
         has_equal = true,
         -- cpp_name = "units::energy", only works with functions and attributes
         attributes = {
-            value_ = { -- private var; we prob won't be able to do this -- update: we weren't
-                type = "int",
-                writable = false
-            }
+            -- value_ = { -- private var; we prob won't be able to do this -- update: we weren't
+            --     type = "int",
+            --     writable = false
+            -- }
         },
         functions = {
             { name = "value", rval = "int", args = { } } -- warning(?) this assumes all energy types are integers
