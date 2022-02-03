@@ -16,9 +16,9 @@ Optional values are:
   (the copy may outlive the source C++ object), otherwise only a pointer to the C++ object
   is stored in Lua and it *needs* to stay valid in C++ until the Lua object is gone.
 
-- `by_value_and_reference` (boolean, default: false): if true, the class is can be exported to Lua
+- `by_value_and_reference` (boolean, default: false): if true, the class can be exported to Lua
   as value (copy of the object, managed by Lua) *and* as reference (to an object managed by C++
-  code). This flag implies "by_value", "by_value" should therefore not be specified explicitly.
+  code). This flag implies that "by_value" should therefore not be specified explicitly.
 
 - `has_equal` (boolean, default: false): If true, generate the __eq entry in the metatable which
   will map to the C++ using the operator==.
@@ -2346,7 +2346,8 @@ global_functions = {
     get_calendar_turn = {
         cpp_name = "get_calendar_turn_wrapper",
         args = {},
-        rval = "calendar&"
+        -- rval = "calendar&"
+        rval = "calendar"
     },
     get_time_duration = {
         cpp_name = "get_time_duration_wrapper",
