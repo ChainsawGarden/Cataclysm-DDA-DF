@@ -112,44 +112,44 @@ classes = {
         functions = {
         }
     },
-    calendar = {
-        -- new = { -- modern cata doesn't have calendar as a class.
-        --     { "calendar" },
-        --     { "int" },
-        --     { "int", "int", "int", "season_type", "int" },
-        -- },
-        -- by_value_and_reference = true,
-        by_value_and_reference = false,
-        by_value = false,
-        attributes = {
-            before_time_starts = { type = "time_point", writable = false },
-            -- time_of_cataclysm = { type = "time_point", writable = false }, -- old
-            turn_zero = { type = "time_point", writable = false }, -- new version of timeofcata
-        },
-        functions = {
-            { name = "eternal_season", rval = "bool", args = { } },
-            { name = "year_length", rval = "time_duration", args = { } },
-            { name = "season_length", rval = "time_duration", args = { } },
-            { name = "season_ratio", rval = "float", args = { } },
-            { name = "season_from_default_ratio", rval = "float", args = { } },
-            { name = "name_season", rval = "string", args = { "season_type" } },
-            -- { name = "day_of_year", rval = "int", args = { } }, -- not present in modern cdda
-            -- { name = "get_turn", rval = "int", cpp_name = "operator int", args = { } }, -- ditto
-            -- { name = "increment", rval = nil, args = { } }, -- ditto
-            -- { name = "is_night", rval = "bool", args = { } },
-            -- { name = "is_night", rval = "bool", args = { "time_point&" } }, -- modern cdda reqs timepoint&
-            { name = "is_night", rval = "bool", args = { "time_point" } }, -- modern cdda reqs timepoint&
-            -- { name = "sunlight", rval = "float", args = { "time_point&", "bool" } },
-            { name = "sunlight", rval = "float", args = { "time_point", "bool" } },
-            -- { name = "years", rval = "int", args = { } }, -- not present in modern cdda
-            -- { name = "sunset", rval = "calendar", args = { } },
-            -- { name = "sunset", rval = "time_point", args = { "time_point&" } },
-            { name = "sunset", rval = "time_point", args = { "time_point" } },
-            -- { name = "sunrise", rval = "calendar", args = { } },
-            -- { name = "sunrise", rval = "time_point", args = { "time_point&" } },
-            { name = "sunrise", rval = "time_point", args = { "time_point" } },
-        }
-    },
+    -- calendar = { -- TO BE RE-ADDED. CALENDAR IS A NAMESPACE IN MODERN CDDA
+    --     -- new = { -- modern cata doesn't have calendar as a class.
+    --     --     { "calendar" },
+    --     --     { "int" },
+    --     --     { "int", "int", "int", "season_type", "int" },
+    --     -- },
+    --     -- by_value_and_reference = true,
+    --     by_value_and_reference = false,
+    --     by_value = false,
+    --     attributes = {
+    --         before_time_starts = { type = "time_point", writable = false },
+    --         -- time_of_cataclysm = { type = "time_point", writable = false }, -- old
+    --         turn_zero = { type = "time_point", writable = false }, -- new version of timeofcata
+    --     },
+    --     functions = {
+    --         { name = "eternal_season", rval = "bool", args = { } },
+    --         { name = "year_length", rval = "time_duration", args = { } },
+    --         { name = "season_length", rval = "time_duration", args = { } },
+    --         { name = "season_ratio", rval = "float", args = { } },
+    --         { name = "season_from_default_ratio", rval = "float", args = { } },
+    --         { name = "name_season", rval = "string", args = { "season_type" } },
+    --         -- { name = "day_of_year", rval = "int", args = { } }, -- not present in modern cdda
+    --         -- { name = "get_turn", rval = "int", cpp_name = "operator int", args = { } }, -- ditto
+    --         -- { name = "increment", rval = nil, args = { } }, -- ditto
+    --         -- { name = "is_night", rval = "bool", args = { } },
+    --         -- { name = "is_night", rval = "bool", args = { "time_point&" } }, -- modern cdda reqs timepoint&
+    --         { name = "is_night", rval = "bool", args = { "time_point" } }, -- modern cdda reqs timepoint&
+    --         -- { name = "sunlight", rval = "float", args = { "time_point&", "bool" } },
+    --         { name = "sunlight", rval = "float", args = { "time_point", "bool" } },
+    --         -- { name = "years", rval = "int", args = { } }, -- not present in modern cdda
+    --         -- { name = "sunset", rval = "calendar", args = { } },
+    --         -- { name = "sunset", rval = "time_point", args = { "time_point&" } },
+    --         { name = "sunset", rval = "time_point", args = { "time_point" } },
+    --         -- { name = "sunrise", rval = "calendar", args = { } },
+    --         -- { name = "sunrise", rval = "time_point", args = { "time_point&" } },
+    --         { name = "sunrise", rval = "time_point", args = { "time_point" } },
+    --     }
+    -- },
     mutation_branch = {
         string_id = "trait_id",
         attributes = {
@@ -2027,7 +2027,7 @@ classes = {
         by_value = true,
         has_equal = true,
         new = {
-            { "calendar" },
+            -- { "calendar" },
             { "int" },
             { "time_point" },
         },
@@ -2357,7 +2357,7 @@ global_functions = {
         cpp_name = "get_calendar_turn_wrapper",
         args = {},
         -- rval = "calendar&"
-        rval = "calendar"
+        rval = "time_point"
     },
     get_time_duration = {
         cpp_name = "get_time_duration_wrapper",
