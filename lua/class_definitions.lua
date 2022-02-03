@@ -34,8 +34,10 @@ Optional values are:
   table for the type name given here.
   This is done because all the int_id objects have essentially the same functions.
 
+
 The attributes table contains the members of the C++ class. Each key is the name of the member,
 it maps to a map with the following values:
+
 - `cpp_name` (defaults to the name of the member): an alternatively name for the member,
   used only in the C++ part of the wrapper.
 
@@ -46,11 +48,16 @@ it maps to a map with the following values:
 
 The functions table contains the member functions of the C++ class. Each entry (no keys, it's an
 array) should have the following values:
-- name (required, string): the name of the function as it appears in Lua.
-- cpp_name (defaults to the name of the function, string): an alternatively name for the function,
+
+- `name` (required, string): the name of the function as it appears in Lua.
+
+- `cpp_name` (defaults to the name of the function, string): an alternatively name for the function,
   used only in the C++ part of the wrapper.
-- args (an array of strings): the types (see below) of the parameters to the function (in order).
-- rval (can be nil when the function returns void): the type (see below) that the function returns.
+
+- `args` (an array of strings): the types (see below) of the parameters to the function (in order).
+
+- `rval` (can be nil when the function returns void): the type (see below) that the function returns.
+
 
 The global_functions table is basically the same as the class functions table, but it has
 (currently) the function name as key of the table (this disallows function overloading, and should
@@ -113,7 +120,7 @@ classes = {
         -- },
         -- by_value_and_reference = true,
         by_value_and_reference = false,
-        by_value = true,
+        by_value = false,
         attributes = {
             before_time_starts = { type = "time_point", writable = false },
             -- time_of_cataclysm = { type = "time_point", writable = false }, -- old
@@ -987,7 +994,7 @@ classes = {
             irridiation = { type = "int", writable = true }, -- oldcode misspelling that was fixed very late.
             item_counter = { type = "int", writable = true },
             mission_id = { type = "int", writable = true },
-            note = { type = "int", writable = true },
+            -- note = { type = "int", writable = true },
             player_id = { type = "int", writable = true },
             poison = { type = "int", writable = true },
             type = { type = "itype", writable = true },
@@ -1248,10 +1255,10 @@ classes = {
         by_value = true,
         has_equal = true,
         attributes = {
-            _cid = {
-                type = "int",
-                writable = false
-            }
+            -- _cid = {
+            --     type = "int",
+            --     writable = false
+            -- }
         },
         functions = {
             { name = "&str", rval = "string", args = { } }
