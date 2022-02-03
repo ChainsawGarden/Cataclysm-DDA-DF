@@ -57,6 +57,7 @@
 #include "ui.h"
 #include "translations.h"
 #include "type_id.h"
+#include "item_group.h"
 
 // modernization
 // #include <lua.h>
@@ -82,6 +83,7 @@ using volume = units::volume; // for volume units (bruh i'm blind)
 using mass = units::mass; // for mass units (how did I not see this at first)
 using npc_template_id = string_id<npc_template>; // for template IDs
 using overmap_direction = om_direction::type; // for map dirs
+using item_group_id = string_id<Item_spawn_data>;
 using energy = units::energy; // for energy, like bionics or batteries.
 //using translation = translation
 using money = units::money; // for currency
@@ -90,7 +92,7 @@ using tripoint_om_sm = coords::coord_point<tripoint, coords::origin::overmap, co
 using point_om_sm = coords::coord_point<point, coords::origin::overmap, coords::sm>;
 // using coords::coord_point<point, Origin, Scale>( raw_.xy() );
 // using cppos = coords::coord_point<point, Origin, Scale>; // (p)oint (o)rigin and (s)cale
-using cppos = coords::coord_point<point, Origin, Scale>; // (p)oint (o)rigin and (s)cale
+using cppos = coords::coord_point<point, origin, scale>; // (p)oint (o)rigin and (s)cale
 
 // lua_State *lua_state = nullptr;
 

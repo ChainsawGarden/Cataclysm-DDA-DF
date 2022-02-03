@@ -1354,6 +1354,15 @@ classes = {
             { name = "xy", rval = "cppos", args = { } }
         }
     },
+    item_group_id = {
+        string_id = "item_group_id",
+        attributes = {
+
+        },
+        functions = {
+
+        }
+    },
     -- modern stop
     money = {
         by_value = true,
@@ -1769,9 +1778,9 @@ classes = {
             friendly = { type = "int", writable = true },
             hallucination = { type = "bool", writable = true },
             ignoring = { type = "int", writable = true },
-            last_updated = { type = "time_point", writable = true },
+            -- last_updated = { type = "time_point", writable = true }, -- protected class member. How would we access this in a clean way?
             made_footstep = { type = "bool", writable = true },
-            mission_id = { type = "int", writable = true },
+            -- mission_id = { type = "int", writable = true }, -- doesn't exist in modern cdda in this class.
             morale = { type = "int", writable = true },
             no_corpse_quiet = { type = "bool", writable = true },
             no_extra_death_drops = { type = "bool", writable = true },
@@ -2005,7 +2014,8 @@ classes = {
             armor_stab = { type = "int", writable = true },
             attack_cost = { type = "int", writable = true },
             color = { type = "nc_color", writable = true },
-            death_drops = { type = "string", writable = true },
+            -- death_drops = { type = "string", writable = true }, -- item_group_id
+            death_drops = { type = "item_group_id", writable = true }, -- item_group_id
             def_chance = { type = "int", writable = true },
             difficulty = { type = "int", writable = true },
             hp = { type = "int", writable = true },
@@ -2016,8 +2026,10 @@ classes = {
             melee_skill = { type = "int", writable = true },
             morale = { type = "int", writable = true },
             phase = { type = "phase_id", writable = true },
-            revert_to_itype = { type = "string", writable = true },
-            size = { type = "m_size", writable = true },
+            -- revert_to_itype = { type = "string", writable = true },
+            revert_to_itype = { type = "itype_id", writable = true },
+            -- size = { type = "m_size", writable = true },
+            size = { type = "creature_size", writable = true },
             sk_dodge = { type = "int", writable = true },
             speed = { type = "int", writable = true },
             sym = { type = "string", writable = true },
@@ -2248,12 +2260,19 @@ enums = {
         "GAS",
         "PLASMA",
     },
-    m_size = {
-        "MS_TINY",
-        "MS_SMALL",
-        "MS_MEDIUM",
-        "MS_LARGE",
-        "MS_HUGE",
+    -- m_size = {
+    --     "MS_TINY",
+    --     "MS_SMALL",
+    --     "MS_MEDIUM",
+    --     "MS_LARGE",
+    --     "MS_HUGE",
+    -- },
+    creature_size = {
+        "tiny",
+        "small",
+        "medium",
+        "large",
+        "huge",
     },
     npc_attitude = {
         "NPCATT_NULL",
