@@ -1264,6 +1264,28 @@ classes = {
             { name = "&str", rval = "string", args = { } },
         }
     },
+    cppos = {
+        by_value = true,
+        has_equal = false,
+        attributes = {
+            x = {
+                type = "int",
+                writable = true
+            },
+            y = {
+                type = "int",
+                writable = true
+            },
+            z = {
+                type = "int",
+                writable = true
+            }
+        },
+        functions = {
+            { name = "to_string", rval = "string", args = { } },
+            -- { name = "xy", rval = "coord_point", args = { } }
+            { name = "xy", rval = "cppos", args = { "point" } } -- cppos == coord_point<point, Origin, Scale>( raw_.xy() )
+        },
     coord_point = {
         by_value = true,
         has_equal = false,
