@@ -34,6 +34,7 @@
 
 #include "activity_type.h" // IWYU pragma: keep
 #include "bionics.h" // IWYU pragma: keep
+#include "coordinates.h"
 #include "field.h" // IWYU pragma: keep
 #include "avatar.h" // avatar for avatar retrieval
 #include "filesystem.h"
@@ -85,6 +86,8 @@ using energy = units::energy; // for energy, like bionics or batteries.
 //using translation = translation
 using money = units::money; // for currency
 using itype_id = string_id<itype>; // for itype_ids
+using tripoint_om_sm = coords::coord_point<tripoint, coords::origin::overmap, coords::sm>; // for overmap submap tripoints
+using point_om_sm = coords::coord_point<point, coords::origin::overmap, coords::sm>;
 
 // lua_State *lua_state = nullptr;
 

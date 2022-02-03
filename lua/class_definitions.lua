@@ -991,7 +991,7 @@ classes = {
             frequency = { type = "int", writable = true },
             invlet = { type = "int", writable = true },
             -- irridation = { type = "int", writable = true },
-            irridiation = { type = "int", writable = true }, -- oldcode misspelling that was fixed very late.
+            irradiation = { type = "int", writable = true }, -- oldcode misspelling that was fixed very late.
             item_counter = { type = "int", writable = true },
             mission_id = { type = "int", writable = true },
             -- note = { type = "int", writable = true },
@@ -1261,7 +1261,74 @@ classes = {
             -- }
         },
         functions = {
-            { name = "&str", rval = "string", args = { } }
+            { name = "&str", rval = "string", args = { } },
+        }
+    },
+    coord_point = {
+        by_value = true,
+        has_equal = false,
+        attributes = {
+            x = {
+                type = "int",
+                writable = true
+            },
+            y = {
+                type = "int",
+                writable = true
+            },
+            z = {
+                type = "int",
+                writable = true
+            }
+        },
+        functions = {
+            { name = "to_string", rval = "string", args = { } },
+            -- { name = "xy", rval = "coord_point", args = { } }
+            { name = "xy", rval = "coord_point<point, Origin, Scale>( raw_.xy() )", args = { } }
+        }
+    },
+    tripoint_om_sm = {
+        by_value = true,
+        has_equal = false,
+        attributes = {
+            x = {
+                type = "int",
+                writable = true
+            },
+            y = {
+                type = "int",
+                writable = true
+            },
+            z = {
+                type = "int",
+                writable = true
+            }
+        },
+        functions = {
+            { name = "to_string", rval = "string", args = { } },
+            { name = "xy", rval = "coord_point<point, Origin, Scale>( raw_.xy() )", args = { } }
+        }
+    },
+    point_om_sm = {
+        by_value = true,
+        has_equal = false,
+        attributes = {
+            x = {
+                type = "int",
+                writable = true
+            },
+            y = {
+                type = "int",
+                writable = true
+            },
+            z = {
+                type = "int",
+                writable = true
+            }
+        },
+        functions = {
+            { name = "to_string", rval = "string", args = { } },
+            { name = "xy", rval = "coord_point<point, Origin, Scale>( raw_.xy() )", args = { } }
         }
     },
     -- modern stop
@@ -1954,8 +2021,10 @@ classes = {
     },
     mongroup = {
         attributes = {
-            pos = { type = "tripoint", writable = false },
-            target = { type = "tripoint", writable = false },
+            -- pos = { type = "tripoint", writable = false },
+            pos = { type = "tripoint_om_sm", writable = true },
+            -- target = { type = "tripoint", writable = false },
+            target = { type = "tripoint_om_sm", writable = true },
             dying = { type = "bool", writable = true },
             horde = { type = "bool", writable = true },
             diffuse = { type = "bool", writable = true },
@@ -1963,7 +2032,8 @@ classes = {
             population = { type = "int", writable = true }
         },
         functions = {
-            { name = "set_target", rval = nil, args = { "int", "int" } },
+            -- { name = "set_target", rval = nil, args = { "int", "int" } },
+            { name = "set_target", rval = nil, args = { "point_om_sm" } },
             { name = "inc_interest", rval = nil, args = { "int" } },
             { name = "dec_interest", rval = nil, args = { "int" } },
             { name = "set_interest", rval = nil, args = { "int" } },
