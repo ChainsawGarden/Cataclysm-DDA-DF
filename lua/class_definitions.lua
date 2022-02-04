@@ -203,7 +203,7 @@ classes = {
             { name = "can_use", rval = "bool", args = { "item" }, optional_args = { "item" } },
             { name = "die", rval = nil, args = { "Creature" } },
             { name = "empty_skills", rval = nil, args = { } },
-            { name = "empty_traits", rval = nil, args = { } },
+            -- { name = "empty_traits", rval = nil, args = { } }, -- TODO: find possible modern equivalent.
             { name = "get_dodge_base", rval = "float", args = { } },
             { name = "get_hit_base", rval = "float", args = { } },
             { name = "get_item_position", rval = "int", args = { "item" } },
@@ -277,8 +277,8 @@ classes = {
             { name = "get_per_bonus", rval = "int", args = { } },
             { name = "get_hunger", rval = "int", args = { } },
             { name = "get_thirst", rval = "int", args = { } },
-            { name = "get_stomach_food", rval = "int", args = { } },
-            { name = "get_stomach_water", rval = "int", args = { } },
+            -- { name = "get_stomach_food", rval = "int", args = { } }, -- TODO: find possible modern equivalent.
+            -- { name = "get_stomach_water", rval = "int", args = { } }, -- TODO: find possible modern equivalent.
             { name = "mod_fatigue", rval = nil, args = { "int" } },
             { name = "set_fatigue", rval = nil, args = { "int" } },
             { name = "get_fatigue", rval = "int", args = { } },
@@ -290,8 +290,8 @@ classes = {
             { name = "set_str_bonus", rval = nil, args = { "int" } },
             { name = "set_hunger", rval = nil, args = { "int" } },
             { name = "set_thirst", rval = nil, args = { "int" } },
-            { name = "set_stomach_food", rval = nil, args = { "int" } },
-            { name = "set_stomach_water", rval = nil, args = { "int" } },
+            -- { name = "set_stomach_food", rval = nil, args = { "int" } }, -- TODO: find possible modern equivalent.
+            -- { name = "set_stomach_water", rval = nil, args = { "int" } }, -- TODO: find possible modern equivalent.
             { name = "mod_dex_bonus", rval = nil, args = { "int" } },
             { name = "mod_healthy", rval = nil, args = { "int" } },
             { name = "mod_healthy_mod", rval = nil, args = { "int", "int" } },
@@ -299,8 +299,8 @@ classes = {
             { name = "mod_str_bonus", rval = nil, args = { "int" } },
             { name = "mod_hunger", rval = nil, args = { "int" } },
             { name = "mod_thirst", rval = nil, args = { "int" } },
-            { name = "mod_stomach_food", rval = nil, args = { "int" } },
-            { name = "mod_stomach_water", rval = nil, args = { "int" } },
+            -- { name = "mod_stomach_food", rval = nil, args = { "int" } }, -- TODO: find possible modern equivalent.
+            -- { name = "mod_stomach_water", rval = nil, args = { "int" } }, -- TODO: find possible modern equivalent.
             { name = "update_health", rval = nil, args = { }, optional_args = { "int" } },
             { name = "mod_stat", rval = nil, args = { "string", "int" } }
         }
@@ -336,68 +336,68 @@ classes = {
             -- lightning_active = { type = "bool", writable = true }, -- not present in class `game`. But, present in weather class.
         },
         functions = {
-            { name = "add_zombie", rval = "bool", args = { "monster" } },
-            { name = "add_zombie", rval = "bool", args = { "monster", "bool" } },
+            -- { name = "add_zombie", rval = "bool", args = { "monster" } }, -- TODO: find possible modern equivalent.
+            -- { name = "add_zombie", rval = "bool", args = { "monster", "bool" } }, -- TODO: find possible modern equivalent.
             { name = "assign_mission_id", rval = "int", args = { } },
             { name = "assign_npc_id", rval = "int", args = { } },
-            { name = "cancel_activity", rval = nil, args = { } },
+            -- { name = "cancel_activity", rval = nil, args = { } }, -- TODO: find possible modern equivalent.
             { name = "clear_zombies", rval = nil, args = { } },
             { name = "critter_at", rval = "Creature&", args = { "tripoint" }, optional_args = { "bool" } },
             { name = "critter_by_id", rval = "Creature&", args = { "int" } },
-            { name = "do_blast", rval = nil, args = { "tripoint", "float", "float", "bool" } },
+            -- { name = "do_blast", rval = nil, args = { "tripoint", "float", "float", "bool" } }, -- TODO: find possible modern equivalent.
             { name = "draw", rval = nil, args = { } },
             { name = "draw_critter", rval = nil, args = { "Creature", "tripoint" } },
-            { name = "draw_explosion", rval = nil, args = { "tripoint", "int", "nc_color" } },
+            -- { name = "draw_explosion", rval = nil, args = { "tripoint", "int", "nc_color" } }, -- TODO: find possible modern equivalent.
             { name = "draw_hit_mon", rval = nil, args = { "tripoint", "monster" }, optional_args = { "bool" } },
             { name = "draw_hit_player", rval = nil, args = { "player", "int" } },
             { name = "draw_sct", rval = nil, args = { } },
             { name = "draw_ter", rval = nil, args = { "tripoint" }, optional_args = { "bool", "bool" } },
             { name = "draw_ter", rval = nil, args = { }, optional_args = { "bool" } },
             { name = "draw_trail_to_square", rval = nil, args = { "tripoint", "bool" } },
-            { name = "emp_blast", rval = nil, args = { "tripoint" } },
-            { name = "explosion", rval = nil, args = { "tripoint", "float" }, optional_args = { "float", "int", "bool" } },
-            { name = "flashbang", rval = nil, args = { "tripoint" }, optional_args = { "bool" } },
+            -- { name = "emp_blast", rval = nil, args = { "tripoint" } }, -- TODO: find possible modern equivalent.
+            -- { name = "explosion", rval = nil, args = { "tripoint", "float" }, optional_args = { "float", "int", "bool" } }, -- TODO: find possible modern equivalent.
+            -- { name = "flashbang", rval = nil, args = { "tripoint" }, optional_args = { "bool" } }, -- TODO: find possible modern equivalent.
             { name = "fling_creature", rval = nil, args = { "Creature", "int", "float" }, optional_args = { "bool" } },
             { name = "get_cur_om", rval = "overmap&", args = { } },
-            { name = "get_levx", rval = "int", args = { } },
-            { name = "get_levy", rval = "int", args = { } },
-            { name = "get_levz", rval = "int", args = { } },
-            { name = "get_temperature", rval = "int", args = { "tripoint" } },
-            { name = "handle_liquid", rval = "bool", args = { "item" } },
-            { name = "increase_kill_count", rval = nil, args = { "mtype_id" } },
-            { name = "inv_for_all", rval = "int", args = { "string" } },
-            { name = "inv_for_flag", rval = "int", args = { "string", "string" } },
+            -- { name = "get_levx", rval = "int", args = { } }, -- TODO: find possible modern equivalent.
+            -- { name = "get_levy", rval = "int", args = { } }, -- TODO: find possible modern equivalent.
+            -- { name = "get_levz", rval = "int", args = { } }, -- TODO: find possible modern equivalent.
+            -- { name = "get_temperature", rval = "int", args = { "tripoint" } },  -- TODO: find possible modern equivalent.
+            -- { name = "handle_liquid", rval = "bool", args = { "item" } }, -- TODO: find possible modern equivalent.
+            -- { name = "increase_kill_count", rval = nil, args = { "mtype_id" } }, -- TODO: find possible modern equivalent.
+            -- { name = "inv_for_all", rval = "int", args = { "string" } }, -- TODO: find possible modern equivalent.
+            -- { name = "inv_for_flag", rval = "int", args = { "string", "string" } }, -- TODO: find possible modern equivalent.
             { name = "inventory_item_menu", rval = "int", args = { "int" }, optional_args = { "int", "int" } },
             { name = "is_empty", rval = "bool", args = { "tripoint" } },
             { name = "is_hostile_nearby", rval = "Creature&", args = { } },
             { name = "is_hostile_very_close", rval = "Creature&", args = { } },
             { name = "is_in_sunlight", rval = "bool", args = { "tripoint" } },
             { name = "is_sheltered", rval = "bool", args = { "tripoint" } },
-            { name = "kill_count", rval = "int", args = { "mtype_id" } },
+            -- { name = "kill_count", rval = "int", args = { "mtype_id" } }, -- TODO: find possible modern equivalent.
             { name = "knockback", rval = nil, args = { "tripoint", "tripoint", "int", "int", "int" } },
             { name = "light_level", rval = "int", args = { "int" } },
             { name = "look_around", rval = "tripoint", args = { } },
             { name = "natural_light_level", rval = "float", args = { "int" } },
-            { name = "nuke", rval = nil, args = { "tripoint" } },
+            -- { name = "nuke", rval = nil, args = { "tripoint" } }, -- TODO: find possible modern equivalent.
             { name = "num_creatures", rval = "int", args = { } },
             { name = "open_gate", rval = nil, args = { "tripoint" } },
             { name = "peek", rval = nil, args = { "tripoint" } },
             { name = "peek", rval = nil, args = { } },
-            { name = "plfire", rval = nil, args = { } },
+            -- { name = "plfire", rval = nil, args = { } }, -- TODO: find possible modern equivalent.
             { name = "plswim", rval = nil, args = { "tripoint" } },
-            { name = "refresh_all", rval = nil, args = { } },
+            -- { name = "refresh_all", rval = nil, args = { } }, -- TODO: find possible modern equivalent.
             { name = "remove_zombie", rval = nil, args = { "monster" } },
-            { name = "resonance_cascade", rval = nil, args = { "tripoint" } },
+            -- { name = "resonance_cascade", rval = nil, args = { "tripoint" } }, -- TODO: find possible modern equivalent.
             { name = "revive_corpse", rval = "bool", args = { "tripoint", "item" } },
             { name = "save", rval = "bool", args = { } },
-            { name = "scrambler_blast", rval = nil, args = { "tripoint" } },
-            { name = "shockwave", rval = nil, args = { "tripoint", "int", "int", "int", "int", "bool" } },
+            -- { name = "scrambler_blast", rval = nil, args = { "tripoint" } },  -- TODO: find possible modern equivalent.
+            -- { name = "shockwave", rval = nil, args = { "tripoint", "int", "int", "int", "int", "bool" } }, -- TODO: find possible modern equivalent.
             { name = "spawn_hallucination", rval = "bool", args = { "tripoint" } },
-            { name = "summon_mon", rval = "monster&", args = { "mtype_id", "tripoint" } },
+            -- { name = "summon_mon", rval = "monster&", args = { "mtype_id", "tripoint" } }, -- TODO: find possible modern equivalent.
             { name = "swap_critters", rval = "bool", args = { "Creature", "Creature" } },
-            { name = "teleport", rval = nil, args = { }, optional_args = { "player", "bool" } },
-            { name = "unload", rval = nil, args = { "item" } },
-            { name = "unload", rval = nil, args = { }, optional_args = { "int" }  },
+            -- { name = "teleport", rval = nil, args = { }, optional_args = { "player", "bool" } }, -- TODO: find possible modern equivalent.
+            -- { name = "unload", rval = nil, args = { "item" } }, -- TODO: find possible modern equivalent.
+            -- { name = "unload", rval = nil, args = { }, optional_args = { "int" }  }, -- TODO: find possible modern equivalent.
             { name = "use_computer", rval = nil, args = { "tripoint" } },
             { name = "reload_npcs", rval = nil, args = { } },
             { name = "place_player", rval = nil, args = { "tripoint" } },
@@ -543,7 +543,7 @@ classes = {
             -- lastconsumed = { type = "string", writable = true },
             lastconsumed = { type = "itype_id", writable = true },
             lastrecipe = { type = "recipe_id", writable = true },
-            lifetime_stats = { type = "stats", writable = true },
+            -- lifetime_stats = { type = "stats", writable = true }, -- TODO: find possible modern equivalent.
             max_power_level = { type = "int", writable = true },
             move_mode = { type = "string", writable = true },
             movecounter = { type = "int", writable = true },
@@ -551,15 +551,15 @@ classes = {
             oxygen = { type = "int", writable = true },
             power_level = { type = "int", writable = true },
             radiation = { type = "int", writable = true },
-            reactor_plut = { type = "int", writable = true },
+            -- reactor_plut = { type = "int", writable = true }, -- TODO: find possible modern equivalent.
             recoil = { type = "int", writable = true },
             scent = { type = "int", writable = true },
             slow_rad = { type = "int", writable = true },
             stamina = { type = "int", writable = true },
             start_location = { type = "start_location_id", writable = true },
             stim = { type = "int", writable = true },
-            style_selected = { type = "matype_id", writable = true },
-            tank_plut = { type = "int", writable = true },
+            -- style_selected = { type = "matype_id", writable = true }, -- TODO: find possible modern equivalent.
+            -- tank_plut = { type = "int", writable = true }, -- TODO: find possible modern equivalent.
             view_offset = { type = "tripoint", writable = true },
             volume = { type = "int", writable = true },
         },
@@ -1052,7 +1052,7 @@ classes = {
             { name = "get_mtype", rval = "mtype&", args = { } },
             { name = "get_plant_epoch", rval = "time_duration", args = { } },
             { name = "get_plant_name", rval = "string", args = { } },
-            { name = "get_property_long", rval = "int", args = { "string" }, optional_args = { "int" } },
+            -- { name = "get_property_long", rval = "int", args = { "string" }, optional_args = { "int" } }, -- TODO: find possible modern equivalent.
             { name = "get_property_string", rval = "string", args = { "string" }, optional_args = { "string" } },
             { name = "get_quality", rval = "int", args = { "quality_id" } },
             { name = "get_relative_rot", rval = "float", args = { } },
@@ -1060,7 +1060,7 @@ classes = {
             { name = "get_remaining_chapters", rval = "int", args = { "player" } },
             { name = "get_rot", rval = "time_duration", args = { } },
             { name = "get_side", rval = "side", args = { } },
-            { name = "get_storage", rval = "volume", args = { } },
+            -- { name = "get_storage", rval = "volume", args = { } }, -- TODO: find possible modern equivalent.
             { name = "get_thickness", rval = "int", args = { } },
             { name = "get_usable_item", rval = "item&", args = { "string" } },
             { name = "get_var", rval = "float", args = { "string", "float" } },
@@ -1093,7 +1093,7 @@ classes = {
             { name = "is_ammo", rval = "bool", args = { } },
             { name = "is_ammo_container", rval = "bool", args = { } },
             { name = "is_armor", rval = "bool", args = { } },
-            { name = "is_artifact", rval = "bool", args = { } },
+            -- { name = "is_artifact", rval = "bool", args = { } }, -- TODO: find possible modern equivalent.
             { name = "is_bionic", rval = "bool", args = { } },
             { name = "is_book", rval = "bool", args = { } },
             { name = "is_container", rval = "bool", args = { } },
@@ -1112,18 +1112,18 @@ classes = {
             { name = "is_null", rval = "bool", args = { } },
             { name = "is_power_armor", rval = "bool", args = { } },
             { name = "is_salvageable", rval = "bool", args = { } },
-            { name = "is_non_resealable_container", rval = "bool", args = { } },
+            -- { name = "is_non_resealable_container", rval = "bool", args = { } }, -- TODO: find possible modern equivalent.
             { name = "is_seed", rval = "bool", args = { } },
             { name = "is_sided", rval = "bool", args = { } },
             { name = "is_silent", rval = "bool", args = { } },
             { name = "is_tool", rval = "bool", args = { } },
-            { name = "is_tool_reversible", rval = "bool", args = { } },
+            -- { name = "is_tool_reversible", rval = "bool", args = { } }, -- TODO: find possible modern equivalent.
             { name = "is_two_handed", rval = "bool", args = { "player" } },
             { name = "is_watertight_container", rval = "bool", args = { } },
             { name = "is_melee", rval = "bool", args = { } },
             { name = "label", rval = "string", args = { }, optional_args = { "int" } },
             { name = "charges_per_volume", rval = "int", args = { "volume" } },
-            { name = "load_info", rval = nil, args = { "string" } },
+            -- { name = "load_info", rval = nil, args = { "string" } }, -- TODO: find possible modern equivalent.
             { name = "made_of", rval = "bool", args = { "phase_id" } },
             { name = "made_of", rval = "bool", args = { "material_id" } },
             { name = "magazine_current", rval = "item&", args = { } },
@@ -1143,7 +1143,7 @@ classes = {
             { name = "on_wield", rval = nil, args = { "player" } },
             { name = "price", rval = "int", args = { "bool" } },
             { name = "process", rval = "bool", args = { "player", "tripoint", "bool" } },
-            { name = "process_artifact", rval = nil, args = { "player", "tripoint" } },
+            -- { name = "process_artifact", rval = nil, args = { "player", "tripoint" } }, -- TODO: find possible modern equivalent.
             { name = "processing_speed", rval = "int", args = { } },
             { name = "put_in", rval = nil, args = { "item" } },
             { name = "ready_to_revive", rval = "bool", args = { "tripoint" } },
@@ -1400,29 +1400,29 @@ classes = {
         attributes = {
         },
         functions = {
-            { name = "getFieldAge", rval = "time_duration", args = { } },
-            { name = "getFieldDensity", rval = "int", args = { } },
-            { name = "getFieldType", rval = "field_id", args = { } },
-            { name = "isAlive", rval = "bool", args = { } },
+            -- { name = "getFieldAge", rval = "time_duration", args = { } }, -- TODO: find possible modern equivalent.
+            -- { name = "getFieldDensity", rval = "int", args = { } }, -- TODO: find possible modern equivalent.
+            -- { name = "getFieldType", rval = "field_id", args = { } }, -- TODO: find possible modern equivalent.
+            -- { name = "isAlive", rval = "bool", args = { } }, -- TODO: find possible modern equivalent.
             { name = "is_dangerous", rval = "bool", args = { } },
-            { name = "move_cost", rval = "int", args = { } },
+            -- { name = "move_cost", rval = "int", args = { } }, -- TODO: find possible modern equivalent.
             { name = "name", rval = "string", args = { } },
-            { name = "setFieldAge", rval = "time_duration", args = { "time_duration" } },
-            { name = "setFieldDensity", rval = "int", args = { "int" } },
-            { name = "setFieldType", rval = "field_id", args = { "field_id" } },
+            -- { name = "setFieldAge", rval = "time_duration", args = { "time_duration" } }, -- TODO: find possible modern equivalent.
+            -- { name = "setFieldDensity", rval = "int", args = { "int" } }, -- TODO: find possible modern equivalent.
+            -- { name = "setFieldType", rval = "field_id", args = { "field_id" } }, -- TODO: find possible modern equivalent.
         }
     },
     field = {
         attributes = {
         },
         functions = {
-            { name = "addField", rval = "bool", args = { "field_id" }, optional_args = { "int", "time_duration" } },
-            { name = "fieldCount", rval = "int", args = { } },
-            { name = "fieldSymbol", rval = "field_id", args = { } },
-            { name = "findField", rval = "field_entry&", args = { "field_id" } },
-            { name = "findField", rval = "field_entry&", args = { "field_id" } },
-            { name = "move_cost", rval = "int", args = { } },
-            { name = "removeField", rval = "bool", args = { "field_id" } },
+            -- { name = "addField", rval = "bool", args = { "field_id" }, optional_args = { "int", "time_duration" } }, -- TODO: find possible modern equivalent.
+            -- { name = "fieldCount", rval = "int", args = { } }, -- TODO: find possible modern equivalent.
+            -- { name = "fieldSymbol", rval = "field_id", args = { } }, -- TODO: find possible modern equivalent.
+            -- { name = "findField", rval = "field_entry&", args = { "field_id" } }, -- TODO: find possible modern equivalent.
+            -- { name = "findField", rval = "field_entry&", args = { "field_id" } }, -- TODO: find possible modern equivalent.
+            -- { name = "move_cost", rval = "int", args = { } }, -- TODO: find possible modern equivalent.
+            -- { name = "removeField", rval = "bool", args = { "field_id" } }, -- TODO: find possible modern equivalent.
         }
     },
     map = {
@@ -1667,7 +1667,7 @@ classes = {
             { name = "get_effect_dur", rval = "time_duration", args = { "efftype_id" }, optional_args = { "body_part" } },
             { name = "get_effect_int", rval = "int", args = { "efftype_id" }, optional_args = { "body_part" } },
             { name = "get_env_resist", rval = "int", args = { "body_part" } },
-            { name = "get_grab_resist", rval = "int", args = { } },
+            -- { name = "get_grab_resist", rval = "int", args = { } }, -- TODO: find possible modern equivalent.
             { name = "get_hit", rval = "float", args = { } },
             { name = "get_hit_base", rval = "float", args = { } },
             { name = "get_hit_bonus", rval = "float", args = { } },
@@ -1753,12 +1753,12 @@ classes = {
             { name = "set_cut_mult", rval = nil, args = { "float" } },
             { name = "set_dodge_bonus", rval = nil, args = { "float" } },
             { name = "set_fake", rval = nil, args = { "bool" } },
-            { name = "set_grab_resist", rval = nil, args = { "int" } },
+            -- { name = "set_grab_resist", rval = nil, args = { "int" } }, -- TODO: find possible modern equivalent.
             { name = "set_hit_bonus", rval = nil, args = { "float" } },
             { name = "set_melee_quiet", rval = nil, args = { "bool" } },
             { name = "set_moves", rval = nil, args = { "int" } },
-            { name = "set_num_blocks_bonus", rval = nil, args = { "int" } },
-            { name = "set_num_dodges_bonus", rval = nil, args = { "int" } },
+            -- { name = "set_num_blocks_bonus", rval = nil, args = { "int" } }, -- TODO: find possible modern equivalent.
+            -- { name = "set_num_dodges_bonus", rval = nil, args = { "int" } }, -- TODO: find possible modern equivalent.
             { name = "set_speed_base", rval = nil, args = { "int" } },
             { name = "set_speed_bonus", rval = nil, args = { "int" } },
             { name = "set_throw_resist", rval = nil, args = { "int" } },
@@ -2212,7 +2212,7 @@ classes = {
             humidity = { type = "float" },
             pressure = { type = "float" },
             windpower = { type = "float" },
-            acidic = { type = "bool" }
+            -- acidic = { type = "bool" } -- TODO: find possible modern equivalent.
         },
         functions = {
         }
