@@ -516,16 +516,16 @@ classes = {
         functions = {
         }
     },
-    stats = {
-        attributes = {
-            damage_healed = { type = "int", writable = true },
-            damage_taken = { type = "int", writable = true },
-            headshots = { type = "int", writable = true },
-            squares_walked = { type = "int", writable = true },
-        },
-        functions = {
-        }
-    },
+    -- stats = { -- old. we might end up making a whole new class... TODO: Fixme
+    --     attributes = {
+    --         damage_healed = { type = "int", writable = true },
+    --         damage_taken = { type = "int", writable = true },
+    --         headshots = { type = "int", writable = true },
+    --         squares_walked = { type = "int", writable = true },
+    --     },
+    --     functions = {
+    --     }
+    -- },
     player = {
         parent = "Character",
         attributes = {
@@ -1316,21 +1316,24 @@ classes = {
         by_value = true,
         has_equal = false,
         attributes = {
-            x = {
-                type = "int",
-                writable = true
-            },
-            y = {
-                type = "int",
-                writable = true
-            },
-            z = {
-                type = "int",
-                writable = true
-            }
+            -- x = { -- THESE ARE actually fns
+            --     type = "int",
+            --     writable = true
+            -- },
+            -- y = {
+            --     type = "int",
+            --     writable = true
+            -- },
+            -- z = {
+            --     type = "int",
+            --     writable = true
+            -- }
         },
         functions = {
             { name = "to_string", rval = "string", args = { } },
+            { name = "x", rval = "int", args = { } },
+            { name = "y", rval = "int", args = { } },
+            { name = "z", rval = "int", args = { } },
             { name = "xy", rval = "cppos", args = { "point" } }
         }
     },
