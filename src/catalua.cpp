@@ -92,7 +92,7 @@ using tripoint_om_sm = coords::coord_point<tripoint, coords::origin::overmap, co
 using point_om_sm = coords::coord_point<point, coords::origin::overmap, coords::sm>;
 // using coords::coord_point<point, Origin, Scale>( raw_.xy() );
 // using cppos = coords::coord_point<point, Origin, Scale>; // (p)oint (o)rigin and (s)cale
-using cppos = coords::coord_point<point, coords::origin, coords::scale>; // (p)oint (o)rigin and (s)cale
+using cppos = coords::coord_point<const point, const coords::origin, const coords::scale>; // (p)oint (o)rigin and (s)cale
 
 // lua_State *lua_state = nullptr;
 
