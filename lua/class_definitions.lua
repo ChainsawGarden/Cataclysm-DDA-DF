@@ -534,13 +534,14 @@ classes = {
             cash = { type = "int", writable = true },
             controlling_vehicle = { type = "bool", writable = true },
             dodges_left = { type = "int", writable = true },
-            focus_pool = { type = "int", writable = true },
+            -- focus_pool = { type = "int", writable = true }, -- protected.
             grab_point = { type = "tripoint", writable = true },
             in_vehicle = { type = "bool", writable = true },
-            keep_hands_free = { type = "bool", writable = true },
+            -- keep_hands_free = { type = "bool", writable = true }, -- doesn't exist in modrn. cdda
             last_batch = { type = "int", writable = true },
             last_climate_control_ret = { type = "bool", writable = true },
-            lastconsumed = { type = "string", writable = true },
+            -- lastconsumed = { type = "string", writable = true },
+            lastconsumed = { type = "itype_id", writable = true },
             lastrecipe = { type = "recipe_id", writable = true },
             lifetime_stats = { type = "stats", writable = true },
             max_power_level = { type = "int", writable = true },
