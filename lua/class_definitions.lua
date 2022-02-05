@@ -1374,7 +1374,7 @@ classes = {
         functions = {
 
         }
-    }
+    },
     -- modern stop
     uilist = {
         attributes = {
