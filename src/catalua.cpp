@@ -60,6 +60,7 @@
 #include "item_group.h"
 #include "int_id.h"
 #include "flag.h"
+#include "field_type.h"
 
 // modernization
 // #include <lua.h>
@@ -99,6 +100,7 @@ using cppos = coords::coord_point<point, coords::origin::overmap, coords::sm>; /
 using tripoint_abs_omt = coords::coord_point<tripoint, coords::origin::abs, coords::omt>; // absolute (global) overmap terrain position
 using bodypart_id = int_id<body_part_type>; // bodypart id... an integer ID i believe. interesting.
 using flag_id = string_id<json_flag>; // JSON flag stuff
+using field_type_str_id = string_id<field_type>;
 
 // lua_State *lua_state = nullptr;
 
