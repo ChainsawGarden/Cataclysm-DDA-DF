@@ -1375,6 +1375,15 @@ classes = {
 
         }
     },
+    bodypart_id = {
+        string_id = "item_group_id",
+        attributes = {
+
+        },
+        functions = {
+
+        }
+    },
     -- modern stop
     uilist = {
         attributes = {
