@@ -987,10 +987,16 @@ classes = {
         new = {
             { },
             { "item" },
-            { "string", "int" },
-            { "string", "int", "int" },
-            { "itype", "int" },
-            { "itype", "int", "int" },
+
+            -- fornow square: constructors are outdated and need fix
+
+            -- { "string", "int" },
+            -- { "string", "int", "int" },
+            -- { "itype", "int" },
+            -- { "itype", "int", "int" },
+
+            -- fornow square
+
             -- TODO: export constructor with default_charges_tag paremeter
         },
         by_value_and_reference = true,
