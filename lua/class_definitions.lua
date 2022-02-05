@@ -584,7 +584,7 @@ classes = {
             { name = "allergy_type", rval = "morale_type", args = { "item" } },
             { name = "amount_of", rval = "int", args = { "string" } },
             { name = "amount_worn", rval = "int", args = { "string" } },
-            { name = "apply_damage", rval = nil, args = { "Creature", "body_part", "int" } },
+            { name = "apply_damage", rval = nil, args = { "Creature", "bodypart_id", "int" } },
             { name = "apply_persistent_morale", rval = nil, args = { } },
             { name = "assign_activity", rval = nil, args = { "activity_id" }, optional_args = { "int", "int", "int", "string" } },
             { name = "assign_activity", rval = nil, args = { "player_activity" }, optional_args = { "bool" } },
@@ -654,11 +654,11 @@ classes = {
             { name = "footwear_factor", rval = "float", args = { } },
             { name = "getID", rval = "int", args = { } },
             { name = "get_active_mission_target", rval = "tripoint", args = { } },
-            { name = "get_armor_acid", rval = "int", args = { "body_part" } },
-            { name = "get_armor_bash", rval = "int", args = { "body_part" } },
-            { name = "get_armor_bash_base", rval = "int", args = { "body_part" } },
-            { name = "get_armor_cut", rval = "int", args = { "body_part" } },
-            { name = "get_armor_cut_base", rval = "int", args = { "body_part" } },
+            -- { name = "get_armor_acid", rval = "int", args = { "body_part" } },
+            { name = "get_armor_bash", rval = "int", args = { "bodypart_id" } },
+            { name = "get_armor_bash_base", rval = "int", args = { "bodypart_id" } },
+            { name = "get_armor_cut", rval = "int", args = { "bodypart_id" } },
+            { name = "get_armor_cut_base", rval = "int", args = { "bodypart_id" } },
             { name = "get_armor_fire", rval = "int", args = { "body_part" } },
             { name = "get_category_dream", rval = "string", args = { "string", "int" } },
             { name = "get_combat_style", rval = "martialart&", args = { } },
@@ -1192,44 +1192,29 @@ classes = {
         by_value = true,
         has_equal = true,
         attributes = {
-            x = {
-                type = "int",
-                writable = true
-            },
-            y = {
-                type = "int",
-                writable = true
-            }
         },
         new = {
             { "point" },
             { "int", "int" },
         },
         functions = {
+            { name = "x", rval = "int", args = { } },
+            { name = "y", rval = "int", args = { } },
         }
     },
     tripoint = {
         by_value = true,
         has_equal = true,
         attributes = {
-            x = {
-                type = "int",
-                writable = true
-            },
-            y = {
-                type = "int",
-                writable = true
-            },
-            z = {
-                type = "int",
-                writable = true
-            }
         },
         new = {
             { "tripoint" },
             { "int", "int", "int" },
         },
         functions = {
+            { name = "x", rval = "int", args = { } },
+            { name = "y", rval = "int", args = { } },
+            { name = "z", rval = "int", args = { } },
         }
     },
     -- modern start
@@ -1330,18 +1315,6 @@ classes = {
         by_value = true,
         has_equal = false,
         attributes = {
-            x = {
-                type = "int",
-                writable = true
-            },
-            y = {
-                type = "int",
-                writable = true
-            },
-            z = {
-                type = "int",
-                writable = true
-            }
         },
         functions = {
             { name = "to_string", rval = "string", args = { } },
@@ -1663,8 +1636,8 @@ classes = {
             { name = "get_armor_bash", rval = "int", args = { "body_part" } },
             { name = "get_armor_bash_base", rval = "int", args = { "body_part" } },
             { name = "get_armor_bash_bonus", rval = "int", args = { } },
-            { name = "get_armor_cut", rval = "int", args = { "body_part" } },
-            { name = "get_armor_cut_base", rval = "int", args = { "body_part" } },
+            { name = "get_armor_cut", rval = "int", args = { "bodypart_id" } },
+            { name = "get_armor_cut_base", rval = "int", args = { "bodypart_id" } },
             { name = "get_armor_cut_bonus", rval = "int", args = { } },
             { name = "get_bash_bonus", rval = "int", args = { } },
             { name = "get_bash_mult", rval = "float", args = { } },
@@ -1674,7 +1647,7 @@ classes = {
             { name = "get_dodge", rval = "float", args = { } },
             { name = "get_dodge_base", rval = "float", args = { } },
             { name = "get_dodge_bonus", rval = "float", args = { } },
-            { name = "get_effect_dur", rval = "time_duration", args = { "efftype_id" }, optional_args = { "body_part" } },
+            { name = "get_effect_dur", rval = "time_duration", args = { "efftype_id" }, optional_args = { "bodypart_id" } },
             { name = "get_effect_int", rval = "int", args = { "efftype_id" }, optional_args = { "body_part" } },
             { name = "get_env_resist", rval = "int", args = { "body_part" } },
             -- { name = "get_grab_resist", rval = "int", args = { } }, -- TODO: find possible modern equivalent.
