@@ -212,29 +212,33 @@ classes = {
             { name = "get_vision_threshold", rval = "float", args = { "int" } },
             { name = "gibType", rval = "field_id", args = { } },
             { name = "has_active_bionic", rval = "bool", args = { "bionic_id" } },
-            { name = "has_active_item", rval = "bool", args = { "string" } },
+            { name = "has_active_item", rval = "bool", args = { "itype_id" } },
             { name = "has_active_mutation", rval = "bool", args = { "trait_id" } },
             { name = "has_base_trait", rval = "bool", args = { "trait_id" } },
             { name = "has_bionic", rval = "bool", args = { "bionic_id" } },
             { name = "has_nv", rval = "bool", args = { } },
             { name = "has_trait", rval = "bool", args = { "trait_id" } },
-            { name = "has_trait_flag", rval = "bool", args = { "string" } },
+            -- { name = "has_trait_flag", rval = "bool", args = { "string" } }, -- modern arg takes a `json_character_flag`, TODO fix this after binary drop
             { name = "i_add", rval = "item&", args = { "item" } },
             { name = "i_add_or_drop", rval = "bool", args = { "item" }, optional_args = { "int" } },
             { name = "i_at", rval = "item&", args = { "int" } },
-            { name = "i_rem", rval = "item", args = { "int" } },
-            { name = "i_rem", rval = "item", args = { "item" } },
+            -- { name = "i_rem", rval = "item", args = { "int" } },
+            -- { name = "i_rem", rval = "item", args = { "item" } }, -- ret is item, param is item.
+            { name = "i_rem", rval = "item", args = { "item&" } }, -- try this out. if problems persist, remove addy spec
             { name = "i_rem_keep_contents", rval = nil, args = { "int" } },
             { name = "is_warm", rval = "bool", args = { } },
-            { name = "is_wearing", rval = "bool", args = { "string" } },
-            { name = "is_wearing_on_bp", rval = "bool", args = { "string", "body_part" } },
+            -- { name = "is_wearing", rval = "bool", args = { "string" } },
+            { name = "is_wearing", rval = "bool", args = { "itype_id&" } }, -- remove addy spec if problem arises
+            -- { name = "is_wearing_on_bp", rval = "bool", args = { "string", "body_part" } },
+            { name = "is_wearing_on_bp", rval = "bool", args = { "itype_id&", "bodypart_id&" } },
             { name = "is_worn", rval = "bool", args = { "item" } },
-            { name = "limb_color", rval = "nc_color", args = { "body_part", "bool", "bool", "bool" } },
+            -- { name = "limb_color", rval = "nc_color", args = { "body_part", "bool", "bool", "bool" } },
+            { name = "limb_color", rval = "nc_color", args = { "bodypart_id&", "bool", "bool", "bool" } },
             { name = "made_of", rval = "bool", args = { "material_id" } },
             { name = "mod_int_bonus", rval = nil, args = { "int" } },
             { name = "mod_stat", rval = nil, args = { "string", "int" } },
             { name = "move_effects", rval = "bool", args = { "bool" } },
-            { name = "mutation_effect", rval = nil, args = { "trait_id" } },
+            { name = "mutation_effect", rval = nil, args = { "trait_id", "bool" } },
             { name = "mutation_loss_effect", rval = nil, args = { "trait_id" } },
             { name = "normalize", rval = nil, args = { } },
             { name = "pick_name", rval = nil, args = { }, optional_args = { "bool" } },
@@ -260,7 +264,8 @@ classes = {
             { name = "volume_carried", rval = "volume", args = { } },
             { name = "weight_capacity", rval = "mass", args = { } },
             { name = "weight_carried", rval = "mass", args = { } },
-            { name = "worn_with_flag", rval = "bool", args = { "string" } },
+            -- { name = "worn_with_flag", rval = "bool", args = { "string" } },
+            { name = "worn_with_flag", rval = "bool", args = { "flag_id" } },
             { name = "get_healthy", rval = "int", args = { } },
             { name = "get_healthy_mod", rval = "int", args = { } },
             { name = "get_str", rval = "int", args = { } },
@@ -1246,10 +1251,10 @@ classes = {
         by_value = true,
         has_equal = true,
         attributes = {
-            raw = {
-                type = "string",
-                writable = true
-            }
+            -- raw = {
+            --     type = "string",
+            --     writable = true
+            -- }
         },
         functions = {
             { name = "translated", rval = "string", args = { } }
@@ -1273,22 +1278,12 @@ classes = {
         by_value = true,
         has_equal = false,
         attributes = {
-            x = {
-                type = "int",
-                writable = true
-            },
-            y = {
-                type = "int",
-                writable = true
-            },
-            z = {
-                type = "int",
-                writable = true
-            }
         },
         functions = {
             { name = "to_string", rval = "string", args = { } },
-            -- { name = "xy", rval = "coord_point", args = { } }
+            { name = "x", rval = "int", args = { } },
+            { name = "y", rval = "int", args = { } },
+            { name = "z", rval = "int", args = { } },
             { name = "xy", rval = "cppos", args = { "point" } } -- for the sake of sanity, leave this out.
         }
     },
@@ -1296,22 +1291,12 @@ classes = {
         by_value = true,
         has_equal = false,
         attributes = {
-            x = {
-                type = "int",
-                writable = true
-            },
-            y = {
-                type = "int",
-                writable = true
-            },
-            z = {
-                type = "int",
-                writable = true
-            }
         },
         functions = {
             { name = "to_string", rval = "string", args = { } },
-            -- { name = "xy", rval = "coord_point", args = { } }
+            { name = "x", rval = "int", args = { } },
+            { name = "y", rval = "int", args = { } },
+            { name = "z", rval = "int", args = { } },
             { name = "xy", rval = "cppos", args = { "point" } } -- cppos == coord_point<point, Origin, Scale>( raw_.xy() )
         }
     },
@@ -1319,18 +1304,6 @@ classes = {
         by_value = true,
         has_equal = false,
         attributes = {
-            -- x = { -- THESE ARE actually fns
-            --     type = "int",
-            --     writable = true
-            -- },
-            -- y = {
-            --     type = "int",
-            --     writable = true
-            -- },
-            -- z = {
-            --     type = "int",
-            --     writable = true
-            -- }
         },
         functions = {
             { name = "to_string", rval = "string", args = { } },
@@ -1384,7 +1357,6 @@ classes = {
 
         }
     },
-    -- modern stop
     money = {
         by_value = true,
         attributes = {
@@ -1394,6 +1366,16 @@ classes = {
             { name = "value", rval = "int", args = { } },
         },
     },
+    flag_id = {
+        string_id = "item_group_id",
+        attributes = {
+
+        },
+        functions = {
+
+        }
+    }
+    -- modern stop
     uilist = {
         attributes = {
             title = {
@@ -1657,7 +1639,7 @@ classes = {
         },
         functions = {
             { name = "add_effect", rval = nil, args = { "efftype_id", "time_duration" }, optional_args = { "body_part", "bool", "int", "bool" } },
-            { name = "add_env_effect", rval = "bool", args = { "efftype_id", "body_part", "int", "time_duration" }, optional_args = { "body_part", "bool", "int", "bool" } },
+            { name = "add_env_effect", rval = "bool", args = { "efftype_id", "bodypart_id", "int", "time_duration" }, optional_args = { "bodypart_id", "bool", "int", "bool" } },
             { name = "apply_damage", rval = nil, args = { "Creature", "body_part", "int" } },
             { name = "avoid_trap", rval = "bool", args = { "tripoint", "trap" } },
             { name = "basic_symbol_color", rval = "nc_color", args = { } },
@@ -1986,7 +1968,7 @@ classes = {
     quality = {
         string_id = "quality_id",
         attributes = {
-            name = { type = "string", writable = false }
+            -- name = { type = "string", writable = false } -- this doesn't seem to have ever existed...?
         },
         functions = {
         }
