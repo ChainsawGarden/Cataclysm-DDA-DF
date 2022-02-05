@@ -224,7 +224,7 @@ classes = {
             { name = "i_at", rval = "item&", args = { "int" } },
             -- { name = "i_rem", rval = "item", args = { "int" } },
             -- { name = "i_rem", rval = "item", args = { "item" } }, -- ret is item, param is item.
-            { name = "i_rem", rval = "item", args = { "item&" } }, -- try this out. if problems persist, remove addy spec
+            { name = "i_rem", rval = "item", args = { "item" } }, -- try this out. if problems persist, remove addy spec
             { name = "i_rem_keep_contents", rval = nil, args = { "int" } },
             { name = "is_warm", rval = "bool", args = { } },
             -- { name = "is_wearing", rval = "bool", args = { "string" } },
