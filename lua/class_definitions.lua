@@ -2056,7 +2056,7 @@ classes = {
             { name = "add_effect", rval = nil, args = { "efftype_id", "time_duration" }, optional_args = { "body_part", "bool", "int", "bool" } },
             -- { name = "add_env_effect", rval = "bool", args = { "efftype_id", "bodypart_id", "int", "time_duration" }, optional_args = { "bodypart_id", "bool", "int", "bool" } },
             { name = "add_env_effect", rval = "bool", args = { "efftype_id", "bodypart_id", "int", "time_duration" } }, -- cease the ambiguous call errors
-            { name = "apply_damage", rval = nil, args = { "Creature", "body_part", "int" } },
+            { name = "apply_damage", rval = nil, args = { "Creature", "bodypart_id", "int" } },
             { name = "avoid_trap", rval = "bool", args = { "tripoint", "trap" } },
             { name = "basic_symbol_color", rval = "nc_color", args = { } },
             { name = "bloodType", rval = "field_type_str_id", args = { } },
