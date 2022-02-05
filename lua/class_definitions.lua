@@ -985,8 +985,8 @@ classes = {
     },
     item = { -- item.h
         new = {
-            { },
-            { "item" },
+            -- { },
+            -- { "item" },
 
             -- fornow square: constructors are outdated and need fix
 
