@@ -225,7 +225,7 @@ classes = {
             -- { name = "i_rem", rval = "item", args = { "int" } },
             -- { name = "i_rem", rval = "item", args = { "item" } }, -- ret is item, param is item.
             { name = "i_rem", rval = "item", args = { "item" } }, -- try this out. if problems persist, remove addy spec
-            { name = "i_rem_keep_contents", rval = nil, args = { "int" } },
+            { name = "i_rem_keep_contents", rval = nil, args = { "item" } },
             { name = "is_warm", rval = "bool", args = { } },
             -- { name = "is_wearing", rval = "bool", args = { "string" } },
             { name = "is_wearing", rval = "bool", args = { "itype_id" } }, -- remove addy spec if problem arises -- and a problem did
@@ -1621,7 +1621,8 @@ classes = {
         },
         functions = {
             { name = "add_effect", rval = nil, args = { "efftype_id", "time_duration" }, optional_args = { "body_part", "bool", "int", "bool" } },
-            { name = "add_env_effect", rval = "bool", args = { "efftype_id", "bodypart_id", "int", "time_duration" }, optional_args = { "bodypart_id", "bool", "int", "bool" } },
+            -- { name = "add_env_effect", rval = "bool", args = { "efftype_id", "bodypart_id", "int", "time_duration" }, optional_args = { "bodypart_id", "bool", "int", "bool" } },
+            { name = "add_env_effect", rval = "bool", args = { "efftype_id", "bodypart_id", "int", "time_duration" } }, -- cease the ambiguous call errors
             { name = "apply_damage", rval = nil, args = { "Creature", "body_part", "int" } },
             { name = "avoid_trap", rval = "bool", args = { "tripoint", "trap" } },
             { name = "basic_symbol_color", rval = "nc_color", args = { } },
