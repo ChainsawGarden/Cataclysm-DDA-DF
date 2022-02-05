@@ -1143,7 +1143,7 @@ classes = {
             { name = "magazine_current", rval = "item&", args = { } },
             { name = "magazine_default", rval = "string", args = { }, optional_args = { "bool" } },
             { name = "magazine_integral", rval = "bool", args = { } },
-            { name = "make_corpse", rval = nil, args = { "mtype_id", "time_point", "string", "int" }, optional_args = { "mtype_id", "time_point", "string", "int" } },
+            { name = "make_corpse", rval = nil, args = { "mtype_id", "time_point", "string", "int" }, optional_args = { "mtype_id", "time_point", "string", "int" } }, -- look into doing optional_args
             { name = "mark_as_used_by_player", rval = nil, args = { "player" } },
             { name = "mark_chapter_as_read", rval = nil, args = { "player" } },
             { name = "max_damage", rval = "int", args = { } },
