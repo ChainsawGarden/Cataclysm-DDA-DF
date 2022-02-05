@@ -544,20 +544,20 @@ classes = {
             lastconsumed = { type = "itype_id", writable = true },
             lastrecipe = { type = "recipe_id", writable = true },
             -- lifetime_stats = { type = "stats", writable = true }, -- TODO: find possible modern equivalent.
-            max_power_level = { type = "int", writable = true },
-            move_mode = { type = "string", writable = true },
+            -- max_power_level = { type = "int", writable = true },  -- TODO: this is private btw
+            -- move_mode = { type = "string", writable = true }, -- TODO: protected
             movecounter = { type = "int", writable = true },
             next_climate_control_check = { type = "time_point", writable = true },
             oxygen = { type = "int", writable = true },
-            power_level = { type = "int", writable = true },
-            radiation = { type = "int", writable = true },
+            -- power_level = { type = "int", writable = true }, -- TODO: private
+            -- radiation = { type = "int", writable = true }, -- TODO: private
             -- reactor_plut = { type = "int", writable = true }, -- TODO: find possible modern equivalent.
             recoil = { type = "int", writable = true },
             scent = { type = "int", writable = true },
             slow_rad = { type = "int", writable = true },
-            stamina = { type = "int", writable = true },
+            -- stamina = { type = "int", writable = true }, -- alr wrote getter
             start_location = { type = "start_location_id", writable = true },
-            stim = { type = "int", writable = true },
+            -- stim = { type = "int", writable = true }, -- alr wrote getter
             -- style_selected = { type = "matype_id", writable = true }, -- TODO: find possible modern equivalent.
             -- tank_plut = { type = "int", writable = true }, -- TODO: find possible modern equivalent.
             view_offset = { type = "tripoint", writable = true },
@@ -667,11 +667,14 @@ classes = {
             { name = "get_hp_max", rval = "int", args = { "hp_part" } },
             { name = "get_item_position", rval = "int", args = { "item" } },
             { name = "get_melee", rval = "float", args = { } },
+            { name = "get_rad", rval = "int", args = { } }, -- new, returns radiation value.
             { name = "get_random_body_part", rval = "body_part", args = { "bool" } },
             { name = "get_sick", rval = nil, args = { } },
             -- { name = "get_size", rval = "m_size", args = { } },
             { name = "get_size", rval = "creature_size", args = { } },
+            { name = "get_stamina", rval = "int", args = { } },
             { name = "get_stamina_max", rval = "int", args = { } },
+            { name = "get_stim", rval = "int", args = { } },
             { name = "get_wind_resistance", rval = "int", args = { "body_part" } },
             { name = "global_omt_location", rval = "tripoint", args = { } },
             { name = "global_sm_location", rval = "tripoint", args = { } },
@@ -902,11 +905,11 @@ classes = {
             { name = "wield_contents", rval = "bool", args = { "item" }, optional_args = { "int", "int", "bool" } },
         }
     },
-    npc_companion_mission = {
+    npc_companion_mission = { -- npc.h
         by_value = true,
         attributes = {
             mission_id = { type = "string", writable = true },
-            position = { type = "tripoint", writable = true },
+            position = { type = "tripoint_abs_omt", writable = true }, -- used to be a straight tripoint
             role_id = { type = "string", writable = true },
         },
         functions = {
@@ -1328,6 +1331,19 @@ classes = {
             --     type = "int",
             --     writable = true
             -- }
+        },
+        functions = {
+            { name = "to_string", rval = "string", args = { } },
+            { name = "x", rval = "int", args = { } },
+            { name = "y", rval = "int", args = { } },
+            { name = "z", rval = "int", args = { } },
+            { name = "xy", rval = "cppos", args = { "point" } }
+        }
+    },
+    tripoint_abs_omt = {
+        by_value = true,
+        has_equal = false,
+        attributes = {
         },
         functions = {
             { name = "to_string", rval = "string", args = { } },
