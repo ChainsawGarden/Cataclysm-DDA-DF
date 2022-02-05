@@ -15,6 +15,8 @@ Optional values are:
 - `by_value` (boolean, default: false): if true, copy the C++ object into memory managed by Lua
   (the copy may outlive the source C++ object), otherwise only a pointer to the C++ object
   is stored in Lua and it *needs* to stay valid in C++ until the Lua object is gone.
+  
+  - tl;dr Lua directly manages the object?
 
 - `by_value_and_reference` (boolean, default: false): if true, the class can be exported to Lua
   as value (copy of the object, managed by Lua) *and* as reference (to an object managed by C++
