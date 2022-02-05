@@ -228,12 +228,12 @@ classes = {
             { name = "i_rem_keep_contents", rval = nil, args = { "int" } },
             { name = "is_warm", rval = "bool", args = { } },
             -- { name = "is_wearing", rval = "bool", args = { "string" } },
-            { name = "is_wearing", rval = "bool", args = { "itype_id&" } }, -- remove addy spec if problem arises
+            { name = "is_wearing", rval = "bool", args = { "itype_id" } }, -- remove addy spec if problem arises -- and a problem did
             -- { name = "is_wearing_on_bp", rval = "bool", args = { "string", "body_part" } },
-            { name = "is_wearing_on_bp", rval = "bool", args = { "itype_id&", "bodypart_id&" } },
+            { name = "is_wearing_on_bp", rval = "bool", args = { "itype_id", "bodypart_id" } },
             { name = "is_worn", rval = "bool", args = { "item" } },
             -- { name = "limb_color", rval = "nc_color", args = { "body_part", "bool", "bool", "bool" } },
-            { name = "limb_color", rval = "nc_color", args = { "bodypart_id&", "bool", "bool", "bool" } },
+            { name = "limb_color", rval = "nc_color", args = { "bodypart_id", "bool", "bool", "bool" } },
             { name = "made_of", rval = "bool", args = { "material_id" } },
             { name = "mod_int_bonus", rval = nil, args = { "int" } },
             { name = "mod_stat", rval = nil, args = { "string", "int" } },
