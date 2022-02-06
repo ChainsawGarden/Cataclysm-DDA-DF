@@ -101,6 +101,7 @@ using tripoint_abs_omt = coords::coord_point<tripoint, coords::origin::abs, coor
 using bodypart_id = int_id<body_part_type>; // bodypart id... an integer ID i believe. interesting.
 using flag_id = string_id<json_flag>; // JSON flag stuff
 using field_type_str_id = string_id<field_type>;
+using field_type_id = string_id<field_type>;
 
 // lua_State *lua_state = nullptr;
 

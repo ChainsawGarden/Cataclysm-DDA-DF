@@ -199,7 +199,7 @@ classes = {
         functions = {
             { name = "add_traits", rval = nil, args = { } },
             { name = "aim_per_move", rval = "float", args = { "item", "float" } },
-            { name = "bloodType", rval = "field_type_str_id", args = { } },
+            { name = "bloodType", rval = "field_type_id", args = { } },
             { name = "can_pickVolume", rval = "bool", args = { "item" }, optional_args = { "bool" } },
             { name = "can_pickWeight", rval = "bool", args = { "item" }, optional_args = { "bool" } },
             { name = "can_use", rval = "bool", args = { "item" }, optional_args = { "item" } },
@@ -1367,6 +1367,15 @@ classes = {
     },
     field_type_str_id = {
         string_id = "field_type_str_id",
+        attributes = {
+
+        },
+        functions = {
+
+        }
+    },
+    field_type_id = {
+        string_id = "field_type_id",
         attributes = {
 
         },
