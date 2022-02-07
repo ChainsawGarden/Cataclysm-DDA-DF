@@ -1228,7 +1228,7 @@ classes = {
     -- modern start
     bodypart = {
         by_value = true,
-        has_equal = true,
+        has_equal = false,
         attributes = {
 
         },
@@ -2178,7 +2178,7 @@ classes = {
             { name = "move_effects", rval = "bool", args = { "bool" } },
             { name = "normalize", rval = nil, args = { } },
             { name = "on_dodge", rval = nil, args = { "Creature", "float" } },
-            { name = "on_hit", rval = nil, args = { "Creature" }, optional_args = { "bodypart_id", "float" } },
+            -- { name = "on_hit", rval = nil, args = { "Creature" }, optional_args = { "bodypart_id", "float" } }, -- disable onhit for now
             { name = "pos", rval = "tripoint", args = { } },
             { name = "posx", rval = "int", args = { } },
             { name = "posy", rval = "int", args = { } },
