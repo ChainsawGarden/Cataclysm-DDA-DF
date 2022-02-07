@@ -62,6 +62,7 @@
 #include "int_id.h"
 #include "flag.h"
 #include "field_type.h"
+#include "projectile.h"
 
 // modernization
 // #include <lua.h>

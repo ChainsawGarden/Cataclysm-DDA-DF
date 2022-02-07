@@ -532,11 +532,11 @@ void Character::randomize_blood()
     };
     const double x = rng_float( 0.0, 1.0 );
     double cumulative_prob = 0.0;
-    for( const std::tuple<double, blood_type, bool> &type : blood_type_distribution ) {
-        cumulative_prob += std::get<0>( type );
-        if( x <= cumulative_prob ) {
-            my_blood_type = std::get<1>( type );
-            blood_rh_factor = std::get<2>( type );
+    for( const std::tuple<double, blood_type, bool> &type : blood_type_distribution ) { // for each blood type (?)
+        cumulative_prob += std::get<0>( type ); // make cumu. type
+        if( x <= cumulative_prob ) { // if randomness is less than cumulative probabilty
+            my_blood_type = std::get<1>( type ); // set chara bloodtype
+            blood_rh_factor = std::get<2>( type ); // set the rhfactor
             return;
         }
     }

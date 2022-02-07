@@ -799,9 +799,10 @@ classes = {
             { name = "num_bionics", rval = "int", args = { } },
             { name = "nutrition_for", rval = "int", args = { "item" } },
             { name = "on_dodge", rval = nil, args = { "Creature", "float" } },
-            { name = "on_hit", rval = nil, args = { "Creature" } },
-            { name = "on_hit", rval = nil, args = { "Creature", "bodypart_id" } },
-            { name = "on_hit", rval = nil, args = { "Creature", "bodypart_id", "float" } },
+            -- { name = "on_hit", rval = nil, args = { "Creature", "bodypart_id" }, optional_args = { "float", "dealt_projectile_attack" } }, -- IDK if structs are supported, but we can support them after a binary is sent out
+            -- { name = "on_hit", rval = nil, args = { "Creature" } },
+            -- { name = "on_hit", rval = nil, args = { "Creature", "bodypart_id" } },
+            -- { name = "on_hit", rval = nil, args = { "Creature", "bodypart_id", "float" } },
             { name = "on_hurt", rval = nil, args = { "Creature" }, optional_args = { "bool" } },
             { name = "overmap_los", rval = "bool", args = { "tripoint", "int" } },
             { name = "overmap_sight_range", rval = "int", args = { "int" } },
@@ -1241,7 +1242,7 @@ classes = {
             { name = "get_id", rval = "bodypart_id", args = { } },
             { name = "get_temp_cur", rval = "int", args = { } },
             { name = "get_temp_max", rval = "int", args = { } },
-            { name = "", rval = "", args = { } },
+            -- { name = "", rval = "", args = { } },
         }
     },
     energy = { -- units::energy
