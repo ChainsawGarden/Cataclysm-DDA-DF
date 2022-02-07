@@ -1376,7 +1376,7 @@ classes = {
         }
     },
     bodypart_id = {
-        string_id = "bodypart_id",
+        -- string_id = "bodypart_id",
         attributes = {
 
         },
