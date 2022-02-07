@@ -2318,9 +2318,9 @@ classes = {
             { name = "name", rval = "string", args = { }, optional_args = { "int" } },
             { name = "name_with_armor", rval = "string", args = { } },
             { name = "on_dodge", rval = nil, args = { "Creature", "float" } },
-            { name = "on_hit", rval = nil, args = { "Creature" } },
-            { name = "on_hit", rval = nil, args = { "Creature", "bodypart_id" } },
-            { name = "on_hit", rval = nil, args = { "Creature", "bodypart_id", "float" } },
+            -- { name = "on_hit", rval = nil, args = { "Creature" } }, -- fix these l8r TODO
+            -- { name = "on_hit", rval = nil, args = { "Creature", "bodypart_id" } },
+            -- { name = "on_hit", rval = nil, args = { "Creature", "bodypart_id", "float" } },
             { name = "on_load", rval = nil, args = { } },
             { name = "on_unload", rval = nil, args = { } },
             { name = "poly", rval = nil, args = { "mtype_id" } },
