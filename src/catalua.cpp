@@ -34,6 +34,7 @@
 
 #include "activity_type.h" // IWYU pragma: keep
 #include "bionics.h" // IWYU pragma: keep
+#include "bodypart.h" // for bodyparts
 #include "coordinates.h"
 #include "field.h" // IWYU pragma: keep
 #include "avatar.h" // avatar for avatar retrieval

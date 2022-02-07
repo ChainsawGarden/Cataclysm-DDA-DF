@@ -671,8 +671,6 @@ classes = {
             { name = "get_hit_base", rval = "float", args = { } },
             { name = "get_hit_weapon", rval = "float", args = { "item" } },
             -- { name = "get_hp", rval = "int", args = { "hp_part" } }, -- doesn't exist in modrn cata
-            { name = "get_hp_cur", rval = "int", args = { "bodypart_id" } },
-            { name = "get_hp_max", rval = "int", args = { "bodypart_id" } },
             { name = "get_item_position", rval = "int", args = { "item" } },
             { name = "get_melee", rval = "float", args = { } },
             { name = "get_rad", rval = "int", args = { } }, -- new, returns radiation value.
@@ -1227,6 +1225,20 @@ classes = {
         }
     },
     -- modern start
+    bodypart = {
+        by_value = true,
+        has_equal = true,
+        attributes = {
+
+        },
+        functions = {
+            { name = "get_hp_cur", rval = "int", args = { "bodypart_id" } },
+            { name = "get_hp_cur", rval = "int", args = { } },
+            { name = "get_hp_max", rval = "int", args = { "bodypart_id" } },
+            { name = "get_hp_max", rval = "int", args = { } },
+            { name = "", rval = "", args = { } },
+        }
+    },
     energy = { -- units::energy
         by_value = true,
         has_equal = true,
@@ -2106,10 +2118,6 @@ classes = {
             { name = "get_hit", rval = "float", args = { } },
             { name = "get_hit_base", rval = "float", args = { } },
             { name = "get_hit_bonus", rval = "float", args = { } },
-            { name = "get_hp_cur", rval = "int", args = { "bodypart_id" } },
-            { name = "get_hp_cur", rval = "int", args = { } },
-            { name = "get_hp_max", rval = "int", args = { "bodypart_id" } },
-            { name = "get_hp_max", rval = "int", args = { } },
             { name = "get_killer", rval = "Creature&", args = { } },
             { name = "get_melee", rval = "int", args = { } },
             { name = "get_melee_quiet", rval = "bool", args = { } },
@@ -2263,10 +2271,6 @@ classes = {
             { name = "get_armor_bash", rval = "int", args = { "bodypart_id" } },
             { name = "get_armor_cut", rval = "int", args = { "bodypart_id" } },
             { name = "get_dodge", rval = "float", args = { } },
-            { name = "get_hp_cur", rval = "int", args = { "bodypart_id" } },
-            { name = "get_hp_cur", rval = "int", args = { } },
-            { name = "get_hp_max", rval = "int", args = { "bodypart_id" } },
-            { name = "get_hp_max", rval = "int", args = { } },
             { name = "get_melee", rval = "float", args = { } },
             { name = "get_random_body_part", rval = "bodypart_id", args = { "bool" } },
             -- { name = "get_size", rval = "m_size", args = { } },
