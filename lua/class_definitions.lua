@@ -350,7 +350,7 @@ classes = {
             -- { name = "cancel_activity", rval = nil, args = { } }, -- TODO: find possible modern equivalent.
             { name = "clear_zombies", rval = nil, args = { } },
             { name = "critter_at", rval = "Creature&", args = { "tripoint" }, optional_args = { "bool" } },
-            { name = "critter_by_id", rval = "Creature&", args = { "int" } },
+            -- { name = "critter_by_id", rval = "Creature&", args = { "int" } }, -- TODO: fix after significant mods resurface
             -- { name = "do_blast", rval = nil, args = { "tripoint", "float", "float", "bool" } }, -- TODO: find possible modern equivalent.
             { name = "draw", rval = nil, args = { } },
             { name = "draw_critter", rval = nil, args = { "Creature", "tripoint" } },
@@ -424,8 +424,8 @@ classes = {
         attributes = {
         },
         functions = {
-            { name = "str", rval = "string", args = { } },
-            { name = "obj", rval = "activity_type&", args = { } },
+            -- { name = "str", rval = "string", args = { } },
+            { name = "obj", rval = "activity_type&", args = { } }
         }
     },
     activity_type = {
@@ -732,10 +732,10 @@ classes = {
             { name = "intimidation", rval = "int", args = { } },
             { name = "invalidate_crafting_inventory", rval = nil, args = { } },
             { name = "invlet_to_position", rval = "int", args = { "int" } },
-            { name = "invoke_item", rval = "bool", args = { "item" } },
-            { name = "invoke_item", rval = "bool", args = { "item", "string" } },
-            { name = "invoke_item", rval = "bool", args = { "item", "string", "tripoint" } },
-            { name = "invoke_item", rval = "bool", args = { "item", "tripoint" } },
+            -- { name = "invoke_item", rval = "bool", args = { "item" } }, -- TODO
+            -- { name = "invoke_item", rval = "bool", args = { "item", "string" } },
+            -- { name = "invoke_item", rval = "bool", args = { "item", "string", "tripoint" } },
+            -- { name = "invoke_item", rval = "bool", args = { "item", "tripoint" } },
             { name = "is_armed", rval = "bool", args = { } },
             { name = "is_dead_state", rval = "bool", args = { } },
             { name = "is_deaf", rval = "bool", args = { } },

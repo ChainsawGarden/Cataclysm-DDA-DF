@@ -105,6 +105,13 @@ using flag_id = string_id<json_flag>; // JSON flag stuff
 using field_type_str_id = string_id<field_type>;
 using field_type_id = int_id<field_type>;
 
+game::critter_by_id<Character>( const character_id & );
+game::critter_by_id<player>( const character_id & );
+game::critter_by_id<npc>( const character_id & );
+game::critter_by_id<Creature>( const character_id & );
+
+using critter_player = game::critter_by_id<Character>;
+
 // lua_State *lua_state = nullptr;
 
 // Keep track of the current mod from which we are executing, so that
