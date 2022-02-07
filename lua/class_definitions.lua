@@ -1241,7 +1241,7 @@ classes = {
             { name = "set_hp_max", rval = nil, args = { "int" } },
             { name = "get_id", rval = "bodypart_id", args = { } },
             { name = "get_temp_cur", rval = "int", args = { } },
-            { name = "get_temp_max", rval = "int", args = { } },
+            -- { name = "get_temp_max", rval = "int", args = { } }, -- there is no temp max
             -- { name = "", rval = "", args = { } },
         }
     },
