@@ -1232,10 +1232,15 @@ classes = {
 
         },
         functions = {
-            { name = "get_hp_cur", rval = "int", args = { "bodypart_id" } },
+            -- { name = "get_hp_cur", rval = "int", args = { "bodypart_id" } }, nonexistant?
             { name = "get_hp_cur", rval = "int", args = { } },
-            { name = "get_hp_max", rval = "int", args = { "bodypart_id" } },
+            -- { name = "get_hp_max", rval = "int", args = { "bodypart_id" } }, nonexistant?
             { name = "get_hp_max", rval = "int", args = { } },
+            { name = "set_hp_cur", rval = nil, args = { "int" } },
+            { name = "set_hp_max", rval = nil, args = { "int" } },
+            { name = "get_id", rval = "bodypart_id", args = { } },
+            { name = "get_temp_cur", rval = "int", args = { } },
+            { name = "get_temp_max", rval = "int", args = { } },
             { name = "", rval = "", args = { } },
         }
     },
