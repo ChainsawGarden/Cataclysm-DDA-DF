@@ -2089,7 +2089,8 @@ classes = {
         attributes = {
         },
         functions = {
-            { name = "add_effect", rval = nil, args = { "efftype_id", "time_duration" }, optional_args = { "bodypart_id", "bool", "int", "bool" } },
+            -- { name = "add_effect", rval = nil, args = { "efftype_id", "time_duration" }, optional_args = { "bodypart_id", "bool", "int", "bool" } }, -- TODO causes ambiguous call
+            { name = "add_effect", rval = nil, args = { "efftype_id", "time_duration" } },
             -- { name = "add_env_effect", rval = "bool", args = { "efftype_id", "bodypart_id", "int", "time_duration" }, optional_args = { "bodypart_id", "bool", "int", "bool" } },
             { name = "add_env_effect", rval = "bool", args = { "efftype_id", "bodypart_id", "int", "time_duration" } }, -- cease the ambiguous call errors
             { name = "apply_damage", rval = nil, args = { "Creature", "bodypart_id", "int" } },
