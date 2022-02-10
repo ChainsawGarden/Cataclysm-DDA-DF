@@ -1296,7 +1296,8 @@ classes = {
             { name = "x", rval = "int", args = { } },
             { name = "y", rval = "int", args = { } },
             { name = "z", rval = "int", args = { } },
-            { name = "xy", rval = "cppos", args = { "point" } } -- for the sake of sanity, leave this out.
+            -- { name = "xy", rval = "cppos", args = { "point" } } -- for the sake of sanity, leave this out.
+            { name = "xy", rval = "point", args = { "point" } } -- for the sake of sanity, leave this out.
         }
     },
     coord_point = {
@@ -1309,7 +1310,8 @@ classes = {
             { name = "x", rval = "int", args = { } },
             { name = "y", rval = "int", args = { } },
             { name = "z", rval = "int", args = { } },
-            { name = "xy", rval = "cppos", args = { "point" } } -- cppos == coord_point<point, Origin, Scale>( raw_.xy() )
+            -- { name = "xy", rval = "cppos", args = { "point" } } -- cppos == coord_point<point, Origin, Scale>( raw_.xy() )
+            { name = "xy", rval = "point", args = { "point" } } -- for the sake of sanity, leave this out.
         }
     },
     tripoint_om_sm = {
@@ -1322,7 +1324,8 @@ classes = {
             { name = "x", rval = "int", args = { } },
             { name = "y", rval = "int", args = { } },
             { name = "z", rval = "int", args = { } },
-            { name = "xy", rval = "cppos", args = { "point" } }
+            -- { name = "xy", rval = "cppos", args = { "point" } }
+            { name = "xy", rval = "point", args = { "point" } } -- for the sake of sanity, leave this out.
         }
     },
     tripoint_abs_omt = {
@@ -1335,7 +1338,8 @@ classes = {
             { name = "x", rval = "int", args = { } },
             { name = "y", rval = "int", args = { } },
             { name = "z", rval = "int", args = { } },
-            { name = "xy", rval = "cppos", args = { "point" } }
+            -- { name = "xy", rval = "cppos", args = { "point" } }
+            { name = "xy", rval = "point", args = { "point" } } -- for the sake of sanity, leave this out.
         }
     },
     point_om_sm = {
@@ -1345,7 +1349,8 @@ classes = {
         },
         functions = {
             { name = "to_string", rval = "string", args = { } },
-            { name = "xy", rval = "cppos", args = { } }
+            -- { name = "xy", rval = "cppos", args = { } }
+            { name = "xy", rval = "point", args = { "point" } } -- for the sake of sanity, leave this out.
         }
     },
     item_group_id = {
