@@ -1399,7 +1399,7 @@ classes = {
         }
     },
     field_type_id = {
-        string_id = "field_type_id",
+        -- string_id = "field_type_id",
         attributes = {
 
         },
