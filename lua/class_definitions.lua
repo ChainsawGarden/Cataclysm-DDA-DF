@@ -2708,7 +2708,7 @@ enums = {
         "LEFT_OF_INFO",
         "RIGHT_OF_INFO",
         "LEFT_TERMINAL_EDGE",
-    }
+    },
     overmap_direction = {
         "overmap_direction::invalid",
         "overmap_direction::none",
