@@ -374,7 +374,7 @@ classes = {
             -- { name = "increase_kill_count", rval = nil, args = { "mtype_id" } }, -- TODO: find possible modern equivalent.
             -- { name = "inv_for_all", rval = "int", args = { "string" } }, -- TODO: find possible modern equivalent.
             -- { name = "inv_for_flag", rval = "int", args = { "string", "string" } }, -- TODO: find possible modern equivalent.
-            { name = "inventory_item_menu", rval = "int", args = { "item_location" }, optional_args = { "uidim", "uidim", "" } },
+            { name = "inventory_item_menu", rval = "int", args = { "item_location" }, optional_args = { "uidim", "uidim", "inventory_item_menu_position" } },
             { name = "is_empty", rval = "bool", args = { "tripoint" } },
             { name = "is_hostile_nearby", rval = "Creature&", args = { } },
             { name = "is_hostile_very_close", rval = "Creature&", args = { } },
@@ -1229,6 +1229,12 @@ classes = {
         }
     },
     -- modern start
+    uidim = {
+        functions = {
+        }
+        attributes = {
+        }
+    },
     bodypart = {
         by_value = true,
         has_equal = false,
@@ -2697,6 +2703,12 @@ classes = {
 }
 
 enums = {
+    inventory_item_menu_position = {
+        "RIGHT_TERMINAL_EDGE",
+        "LEFT_OF_INFO",
+        "RIGHT_OF_INFO",
+        "LEFT_TERMINAL_EDGE",
+    }
     overmap_direction = {
         "overmap_direction::invalid",
         "overmap_direction::none",
