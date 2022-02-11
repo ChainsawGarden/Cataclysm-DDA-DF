@@ -1404,7 +1404,7 @@ classes = {
         },
     },
     flag_id = {
-        string_id = "flag_id",
+        -- string_id = "flag_id",
         attributes = {
 
         },
