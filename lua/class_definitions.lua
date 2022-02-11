@@ -1231,7 +1231,7 @@ classes = {
     -- modern start
     uidim = {
         functions = {
-        }
+        },
         attributes = {
         }
     },
