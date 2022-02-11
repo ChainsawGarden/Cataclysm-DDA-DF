@@ -364,7 +364,7 @@ classes = {
             -- { name = "emp_blast", rval = nil, args = { "tripoint" } }, -- TODO: find possible modern equivalent.
             -- { name = "explosion", rval = nil, args = { "tripoint", "float" }, optional_args = { "float", "int", "bool" } }, -- TODO: find possible modern equivalent.
             -- { name = "flashbang", rval = nil, args = { "tripoint" }, optional_args = { "bool" } }, -- TODO: find possible modern equivalent.
-            { name = "fling_creature", rval = nil, args = { "Creature", "int", "float" }, optional_args = { "bool" } },
+            { name = "fling_creature", rval = nil, args = { "Creature", "angle", "float" }, optional_args = { "bool" } },
             { name = "get_cur_om", rval = "overmap&", args = { } },
             -- { name = "get_levx", rval = "int", args = { } }, -- TODO: find possible modern equivalent.
             -- { name = "get_levy", rval = "int", args = { } }, -- TODO: find possible modern equivalent.
@@ -374,7 +374,7 @@ classes = {
             -- { name = "increase_kill_count", rval = nil, args = { "mtype_id" } }, -- TODO: find possible modern equivalent.
             -- { name = "inv_for_all", rval = "int", args = { "string" } }, -- TODO: find possible modern equivalent.
             -- { name = "inv_for_flag", rval = "int", args = { "string", "string" } }, -- TODO: find possible modern equivalent.
-            { name = "inventory_item_menu", rval = "int", args = { "int" }, optional_args = { "int", "int" } },
+            { name = "inventory_item_menu", rval = "int", args = { "item_location" }, optional_args = { "uidim", "uidim", "" } },
             { name = "is_empty", rval = "bool", args = { "tripoint" } },
             { name = "is_hostile_nearby", rval = "Creature&", args = { } },
             { name = "is_hostile_very_close", rval = "Creature&", args = { } },
@@ -1248,6 +1248,15 @@ classes = {
             -- { name = "", rval = "", args = { } },
         }
     },
+    angle = { -- units::angle
+        by_value = true,
+        has_equal = true,
+        attributes = {
+        },
+        functions = {
+            { name = "value", rval = "int", args = { } } -- warning(?) this assumes all energy types are integers
+        }
+    },
     energy = { -- units::energy
         by_value = true,
         has_equal = true,
@@ -1297,6 +1306,12 @@ classes = {
         },
         functions = {
             { name = "&str", rval = "string", args = { } },
+        }
+    },
+    character_id = {
+        attributes = {
+        },
+        functions = {
         }
     },
     cppos = {

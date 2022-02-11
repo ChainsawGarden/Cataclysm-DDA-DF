@@ -63,6 +63,7 @@
 #include "flag.h"
 #include "field_type.h"
 #include "projectile.h"
+#include "character_id.h" // for character_ids
 
 // modernization
 // #include <lua.h>
@@ -90,6 +91,7 @@ using npc_template_id = string_id<npc_template>; // for template IDs
 using overmap_direction = om_direction::type; // for map dirs
 using item_group_id = string_id<Item_spawn_data>;
 using energy = units::energy; // for energy, like bionics or batteries.
+using angle = units::angle;
 //using translation = translation
 using money = units::money; // for currency
 using itype_id = string_id<itype>; // for itype_ids
@@ -103,9 +105,13 @@ using cppos = coords::coord_point<point, coords::origin::overmap, coords::sm>; /
 using tripoint_abs_omt = coords::coord_point<tripoint, coords::origin::abs, coords::omt>; // absolute (global) overmap terrain position
 using bodypart_id = int_id<body_part_type>; // bodypart id... an integer ID i believe. interesting.
 using flag_id = string_id<json_flag>; // JSON flag stuff
+// using chara_id = character_id; // hopefully redundant like the `using translation`
 using field_type_str_id = string_id<field_type>;
 using field_type_id = int_id<field_type>;
 using snippet_id = string_id<translation>;
+
+// the wonky zone
+using uidim = std::function<int()>; // for UI dimensioning
 
 // using character_critter = game::critter_by_id<Character>;
 // using player_critter = game::critter_by_id<player>;
