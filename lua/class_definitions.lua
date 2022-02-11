@@ -1161,14 +1161,15 @@ classes = {
             { name = "process", rval = "bool", args = { "player", "tripoint", "bool" } },
             -- { name = "process_artifact", rval = nil, args = { "player", "tripoint" } }, -- TODO: find possible modern equivalent.
             { name = "processing_speed", rval = "int", args = { } },
-            { name = "put_in", rval = nil, args = { "item" } },
+            { name = "put_in", rval = nil, args = { "item", "int", "bool" } },
             { name = "ready_to_revive", rval = "bool", args = { "tripoint" } },
             { name = "mod_charges", rval = nil, args = { "int" } },
             { name = "reset_cable", rval = nil, args = { "player" } },
             { name = "rotten", rval = "bool", args = { } },
             { name = "set_mtype", rval = nil, args = { "mtype" } },
             { name = "set_relative_rot", rval = nil, args = { "float" } },
-            { name = "set_snippet", rval = nil, args = { "string" } },
+            -- { name = "set_snippet", rval = nil, args = { "string" } },
+            { name = "set_snippet", rval = nil, args = { "snippet_id" } },
             { name = "set_var", rval = nil, args = { "string", "float" } },
             { name = "set_var", rval = nil, args = { "string", "int" } },
             { name = "set_var", rval = nil, args = { "string", "int" } },
@@ -1177,7 +1178,7 @@ classes = {
             { name = "stacks_with", rval = "bool", args = { "item" } },
             { name = "symbol", rval = "string", args = { } },
             { name = "tname", rval = "string", args = { }, optional_args = { "int", "bool" } },
-            { name = "typeId", rval = "string", args = { } },
+            { name = "typeId", rval = "itype_id", args = { } },
             { name = "type_name", rval = "string", args = { }, optional_args = { "int" } },
             { name = "volume", rval = "volume", args = { } },
             { name = "melee_skill", rval = "skill_id", args = { } },
@@ -1191,7 +1192,7 @@ classes = {
         functions = {
             { name = "describe", rval = "string", args = { }, optional_args = { "Character" } },
             { name = "get_item", rval = "item&", args = { } },
-            { name = "obtain", rval = "int", args = { "Character" }, optional_args = { "int" } },
+            -- { name = "obtain", rval = "int", args = { "Character" }, optional_args = { "int" } },
             { name = "obtain_cost", rval = "int", args = { "Character" }, optional_args = { "int" } },
             { name = "remove_item", rval = nil, args = { } },
         }
@@ -1274,6 +1275,16 @@ classes = {
             { name = "translated", rval = "string", args = { } }
         }
     },
+    snippet_id = {
+        string_id = "string_id",
+        by_value = true,
+        has_equal = true,
+        attributes = {
+        },
+        functions = {
+            { name = "&str", rval = "string", args = { } },
+        }
+    },
     itype_id = {
         string_id = "string_id",
         by_value = true,
@@ -1350,13 +1361,11 @@ classes = {
         attributes = {
         },
         functions = {
-            { name = "to_string", rval = "string", args = { } },
-            -- { name = "xy", rval = "cppos", args = { } }
-            -- { name = "xy", rval = "point", args = { } } -- for the sake of sanity, leave this out.
+            { name = "to_string", rval = "string", args = { } }
         }
     },
     item_group_id = {
-        string_id = "item_group_id",
+        -- string_id = "item_group_id",
         attributes = {
 
         },
@@ -1392,7 +1401,7 @@ classes = {
         }
     },
     field_type_str_id = {
-        string_id = "field_type_str_id",
+        -- string_id = "field_type_str_id",
         attributes = {
 
         },

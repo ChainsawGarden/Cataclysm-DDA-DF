@@ -97,7 +97,7 @@ namespace coords
 
             constexpr coord_point() = default;
             explicit constexpr coord_point( const Point &p ) :
-                raw_( p )
+                raw_( p ) /* "raw_" is a Point (point specified by `typename Point` above; could be struct point or tripoint) object */
             {}
             template<typename T>
             constexpr coord_point( T x, T y ) : raw_( x, y ) {} 

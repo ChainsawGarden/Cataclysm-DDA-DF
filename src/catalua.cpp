@@ -105,6 +105,7 @@ using bodypart_id = int_id<body_part_type>; // bodypart id... an integer ID i be
 using flag_id = string_id<json_flag>; // JSON flag stuff
 using field_type_str_id = string_id<field_type>;
 using field_type_id = int_id<field_type>;
+using snippet_id = string_id<translation>;
 
 // using character_critter = game::critter_by_id<Character>;
 // using player_critter = game::critter_by_id<player>;
