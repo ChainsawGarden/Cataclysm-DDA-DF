@@ -1055,6 +1055,7 @@ distclean:
 
 bindist: $(BINDIST)
 
+# Specify "cataclysm-dda-df/" so that the compiler isn't confused.
 ifeq ($(TARGETSYSTEM), LINUX)
 DATA_PREFIX=$(DESTDIR)$(PREFIX)/share/cataclysm-dda/
 BIN_PREFIX=$(DESTDIR)$(PREFIX)/bin
