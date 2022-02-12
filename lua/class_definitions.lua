@@ -1229,6 +1229,18 @@ classes = {
         }
     },
     -- modern start
+    vehicle = {
+        -- we're definitely going to be adding stuff to this. For now, let's get to making a binary.
+        functions = {
+        },
+        attributes = {
+        }
+    },
+    relic_procgen_id = {
+        string_id = "relic_procgen_data",
+        attributes = {
+        }
+    },
     cpp_int_set = {
         functions = {
         },
@@ -2106,9 +2118,8 @@ classes = {
             { name = "set_radiation", rval = nil, args = { "tripoint", "int" } },
             { name = "set_signage", rval = nil, args = { "tripoint", "string" } },
             { name = "set_temperature", rval = nil, args = { "tripoint", "int" } },
-            { name = "smash_items", rval = nil, args = { "tripoint", "int" } },
-            { name = "spawn_an_item", rval = "item&", args = { "tripoint", "item", "int", "int" } },
-            { name = "spawn_artifact", rval = nil, args = { "tripoint" } },
+            { name = "smash_items", rval = nil, args = { "tripoint", "int", "string" } }, -- string: cause message.
+            { name = "spawn_artifact", rval = nil, args = { "tripoint", "relic_procgen_id" } },
             { name = "spawn_item", rval = nil, args = { "tripoint", "string" }, optional_args = { "int", "int", "time_point", "int" } },
             { name = "spawn_monsters", rval = nil, args = { "bool" } },
             { name = "stored_volume", rval = "volume", args = { "tripoint" } },
@@ -2118,7 +2129,6 @@ classes = {
             { name = "ter_set", rval = nil, args = { "tripoint", "ter_str_id" } },
             { name = "tername", rval = "string", args = { "tripoint" } },
             { name = "tr_at", rval = "trap&", args = { "tripoint" } },
-            { name = "trans", rval = "bool", args = { "tripoint" } },
             { name = "translate", rval = nil, args = { "ter_id", "ter_id" } },
             { name = "trap_set", rval = nil, args = { "tripoint", "trap_id" } },
             { name = "translate_radius", rval = nil, args = { "ter_id", "ter_id", "float", "tripoint" } },

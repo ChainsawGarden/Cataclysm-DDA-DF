@@ -69,6 +69,7 @@
 #include "enums.h"
 #include "ret_val.h"
 #include "item_pocket.h"
+#include "vehicle.h"
 
 // modernization
 // #include <lua.h>
