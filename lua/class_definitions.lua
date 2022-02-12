@@ -325,17 +325,17 @@ classes = {
             { name = "inc", rval = nil, cpp_name = "operator++", args = { } },
         }
     },
-    map_stack = {
-        by_value = true,
-        attributes = {
-        },
-        functions = {
-            -- { name = "empty", rval = "bool", args = { } },
-            -- { name = "erase", rval = "item_stack_iterator", args = { "item_stack_iterator" } },
-            -- { name = "push_back", rval = nil, args = { "item" } },
-            -- { name = "size", rval = "int", args = { } },
-        }
-    },
+    -- map_stack = {
+    --     by_value = true,
+    --     attributes = {
+    --     },
+    --     functions = {
+    --         -- { name = "empty", rval = "bool", args = { } },
+    --         -- { name = "erase", rval = "item_stack_iterator", args = { "item_stack_iterator" } },
+    --         -- { name = "push_back", rval = nil, args = { "item" } },
+    --         -- { name = "size", rval = "int", args = { } },
+    --     }
+    -- },
     game = {
         attributes = {
             -- lightning_active = { type = "bool", writable = true }, -- not present in class `game`. But, present in weather class.
@@ -2067,7 +2067,7 @@ classes = {
             { name = "has_zlevels", rval = "bool", args = { } },
             { name = "hit_with_acid", rval = "bool", args = { "tripoint" } },
             { name = "hit_with_fire", rval = "bool", args = { "tripoint" } },
-            { name = "i_at", rval = "map_stack", args = { "tripoint" } },
+            -- { name = "i_at", rval = "map_stack", args = { "tripoint" } }, -- map_stack is weird, we'll come back to it later
             { name = "i_clear", rval = nil, args = { "tripoint" } },
             -- { name = "i_rem", rval = "int", args = { "tripoint", "int" } }, -- TODO: add when needed
             -- { name = "i_rem", rval = "item_stack_iterator", args = { "tripoint", "item_stack_iterator" } },-- TODO: add when needed
