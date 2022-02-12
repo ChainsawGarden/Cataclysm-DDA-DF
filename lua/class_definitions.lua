@@ -1903,6 +1903,14 @@ classes = {
 
         }
     },
+    item_vector = {
+        attributes = {
+
+        },
+        functions = {
+
+        }
+    },
     -- modern stop
     uilist = {
         attributes = {
@@ -2081,11 +2089,11 @@ classes = {
             { name = "pl_sees", rval = "bool", args = { "tripoint", "int" } },
             { name = "place_gas_pump", rval = nil, args = { "point", "int", "string" } },
             { name = "place_gas_pump", rval = nil, args = { "point", "int" } },
-            { name = "place_npc", rval = "int", args = { "int", "int", "npc_template_id" } },
-            { name = "place_spawns", rval = nil, args = { "mongroup_id", "int", "int", "int", "int", "int", "float" } },
-            { name = "place_toilet", rval = nil, args = { "int", "int" }, optional_args = { "int" } },
-            { name = "place_vending", rval = nil, args = { "int", "int", "string" } },
-            { name = "put_items_from_loc", rval = nil, args = { "string", "tripoint" }, optional_args = { "time_point" } },
+            { name = "place_npc", rval = "int", args = { "point", "npc_template_id" } }, -- maybe we need to fix all the string_ids... the clutter, with this new info, is unneccesary.
+            { name = "place_spawns", rval = nil, args = { "mongroup_id", "int", "point", "point", "float", "bool", "bool", "string", "int" } },
+            { name = "place_toilet", rval = nil, args = { "point", "int" }, optional_args = { "int" } },
+            { name = "place_vending", rval = nil, args = { "point", "item_group_id", "bool" } },
+            { name = "put_items_from_loc", rval = "item_vector", args = { "item_group_id", "tripoint", "time_point" } },
             { name = "random_outdoor_tile", rval = "point", args = { } },
             -- { name = "remove_field", rval = nil, args = { "tripoint", "field_type_str_id" } }, -- TODO not present
             { name = "remove_trap", rval = nil, args = { "tripoint" } },
@@ -2472,13 +2480,13 @@ classes = {
     --     functions = {
     --     }
     -- },
-    -- ma_technique = {
-    --     string_id = "matec_id",
-    --     attributes = {
-    --     },
-    --     functions = {
-    --     }
-    -- },
+    ma_technique = {
+        string_id = "matec_id",
+        attributes = {
+        },
+        functions = {
+        }
+    },
     Skill = {
         string_id = "skill_id",
         attributes = {

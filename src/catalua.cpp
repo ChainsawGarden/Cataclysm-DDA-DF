@@ -123,6 +123,7 @@ using optional_int = cata::optional<int>;
 using uidim = std::function<int()>; // for UI dimensioning
 using pocket_type = item_pocket::pocket_type; // pocket enums
 using cpp_int_set = std::set<int>; // A set of integers, in C++
+using item_vector = std::vector<item *>;
 
 // using character_critter = game::critter_by_id<Character>;
 // using player_critter = game::critter_by_id<player>;
