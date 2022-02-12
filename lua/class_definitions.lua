@@ -1229,6 +1229,12 @@ classes = {
         }
     },
     -- modern start
+    optional_int = {
+        functions = {
+        },
+        attributes = {
+        }
+    },
     rbool = {
         functions = {
 
@@ -2674,8 +2680,8 @@ classes = {
             { name = "count_by_charges", rval = "bool", args = { } },
             { name = "get_item_type_string", rval = "string", args = { } },
             { name = "has_use", rval = "bool", args = { } },
-            { name = "invoke", rval = "int", args = { "player", "item", "tripoint" } },
-            { name = "invoke", rval = "int", args = { "player", "item", "tripoint", "string" } },
+            { name = "invoke", rval = "optional_int", args = { "player", "item", "tripoint" } },
+            { name = "invoke", rval = "optional_int", args = { "player", "item", "tripoint", "string" } },
             { name = "maximum_charges", rval = "int", args = { } },
             { name = "nname", rval = "string", args = { "int" } },
             { name = "tick", rval = "int", args = { "player", "item", "tripoint" } },
