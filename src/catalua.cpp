@@ -109,7 +109,7 @@ using flag_id = string_id<json_flag>; // JSON flag stuff
 using field_type_str_id = string_id<field_type>;
 using field_type_id = int_id<field_type>;
 using snippet_id = string_id<translation>;
-
+using inventory_item_menu_position = game::inventory_item_menu_position; // add inventory pos enum
 // the wonky zone
 using uidim = std::function<int()>; // for UI dimensioning
 
