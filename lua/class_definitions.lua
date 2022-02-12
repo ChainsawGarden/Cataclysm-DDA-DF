@@ -1095,8 +1095,8 @@ classes = {
             { name = "gun_recoil", rval = "int", args = { "player" }, optional_args = { "bool" } },
             { name = "gun_set_mode", rval = nil, args = { "gun_mode_id" } },
             { name = "gun_skill", rval = "skill_id", args = { } },
-            { name = "gunmod_find", rval = "item&", args = { "string" } },
-            { name = "has_flag", rval = "bool", args = { "string" } },
+            { name = "gunmod_find", rval = "item&", args = { "itype_id" } },
+            { name = "has_flag", rval = "bool", args = { "flag_id" } },
             { name = "has_label", rval = "bool", args = { } },
             { name = "has_property", rval = "bool", args = { "string" } },
             { name = "has_quality", rval = "bool", args = { "quality_id" }, optional_args = { "int", "int" } },
@@ -1143,9 +1143,9 @@ classes = {
             { name = "made_of", rval = "bool", args = { "phase_id" } },
             { name = "made_of", rval = "bool", args = { "material_id" } },
             { name = "magazine_current", rval = "item&", args = { } },
-            { name = "magazine_default", rval = "string", args = { }, optional_args = { "bool" } },
+            { name = "magazine_default", rval = "itype_id", args = { }, optional_args = { "bool" } },
             { name = "magazine_integral", rval = "bool", args = { } },
-            { name = "make_corpse", rval = nil, args = { "mtype_id", "time_point", "string", "int" }, optional_args = { "mtype_id", "time_point", "string", "int" } }, -- look into doing optional_args
+            { name = "make_corpse", rval = "item", args = { "mtype_id", "time_point", "string", "int" }, optional_args = { "mtype_id", "time_point", "string", "int" } }, -- look into doing optional_args
             { name = "mark_as_used_by_player", rval = nil, args = { "player" } },
             { name = "mark_chapter_as_read", rval = nil, args = { "player" } },
             { name = "max_damage", rval = "int", args = { } },
@@ -1161,7 +1161,7 @@ classes = {
             { name = "process", rval = "bool", args = { "player", "tripoint", "bool" } },
             -- { name = "process_artifact", rval = nil, args = { "player", "tripoint" } }, -- TODO: find possible modern equivalent.
             { name = "processing_speed", rval = "int", args = { } },
-            { name = "put_in", rval = nil, args = { "item", "int", "bool" } },
+            { name = "put_in", rval = "rbool", args = { "item", "pocket_type", "bool" } },
             { name = "ready_to_revive", rval = "bool", args = { "tripoint" } },
             { name = "mod_charges", rval = nil, args = { "int" } },
             { name = "reset_cable", rval = nil, args = { "player" } },
@@ -1229,6 +1229,14 @@ classes = {
         }
     },
     -- modern start
+    rbool = {
+        functions = {
+
+        },
+        attributes = {
+
+        }
+    },
     gunmod_location = {
         functions = {
 
@@ -2711,6 +2719,16 @@ classes = {
 }
 
 enums = {
+    pocket_type = {
+        "CONTAINER",
+        "MAGAZINE",
+        "MAGAZINE_WELL",
+        "MOD",
+        "CORPSE",
+        "SOFTWARE",
+        "MIGRATION",
+        "LAST"
+    },
     layer_level = {
         "PERSONAL",
         "UNDERWEAR",
