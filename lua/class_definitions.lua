@@ -391,7 +391,7 @@ classes = {
             { name = "peek", rval = nil, args = { "tripoint" } },
             { name = "peek", rval = nil, args = { } },
             -- { name = "plfire", rval = nil, args = { } }, -- TODO: find possible modern equivalent.
-            { name = "plswim", rval = nil, args = { "tripoint" } },
+            -- { name = "plswim", rval = nil, args = { "tripoint" } }, -- TODO: find possible modern equivalent.
             -- { name = "refresh_all", rval = nil, args = { } }, -- TODO: find possible modern equivalent.
             { name = "remove_zombie", rval = nil, args = { "monster" } },
             -- { name = "resonance_cascade", rval = nil, args = { "tripoint" } }, -- TODO: find possible modern equivalent.
@@ -408,7 +408,7 @@ classes = {
             { name = "use_computer", rval = nil, args = { "tripoint" } },
             { name = "reload_npcs", rval = nil, args = { } },
             { name = "place_player", rval = nil, args = { "tripoint" } },
-            { name = "place_player_overmap", rval = nil, args = { "tripoint" } },
+            { name = "place_player_overmap", rval = nil, args = { "tripoint_abs_omt" } },
         }
     },
     -- TODO: activity_id is to be moved into activity_type.string_id.
@@ -1026,27 +1026,27 @@ classes = {
             { name = "add_rain_to_container", rval = nil, args = { "bool" }, optional_args = { "int" } },
             { name = "add_technique", rval = nil, args = { "matec_id" } },
             { name = "already_used_by_player", rval = "bool", args = { "player" } },
-            { name = "ammo_capacity", rval = "int", args = { } },
-            { name = "ammo_current", rval = "string", args = { } },
+            { name = "ammo_capacity", rval = "int", args = { "ammotype" } },
+            { name = "ammo_current", rval = "itype_id", args = { } },
             { name = "ammo_data", rval = "itype&", args = { } },
             { name = "ammo_remaining", rval = "int", args = { } },
             { name = "ammo_required", rval = "int", args = { } },
-            { name = "ammo_type", rval = "ammotype", args = { }, optional_args = { "bool" } },
-            { name = "amount_of", rval = "int", args = { "string", "bool" } },
+            { name = "ammo_type", rval = "ammotype", args = { } },
+            -- { name = "amount_of", rval = "int", args = { "string", "bool" } }, -- doesn't seem to be in item.h
             { name = "attack_time", rval = "int", args = { } },
             { name = "bash_resist", rval = "int", args = { }, optional_args = { "bool" } },
             { name = "brewing_time", rval = "time_duration", args = { } },
-            { name = "calc_rot", rval = nil, args = { "tripoint" } },
+            { name = "calc_rot", rval = nil, args = { "int", "float", "time_duration" } },
             { name = "can_holster", rval = "bool", args = { "item" }, optional_args = { "bool" } },
             { name = "can_revive", rval = "bool", args = { } },
-            { name = "charges_of", rval = "int", args = { "string" } },
+            -- { name = "charges_of", rval = "int", args = { "string" } }, -- not in item.h
             { name = "chip_resistance", rval = "int", args = { }, optional_args = { "bool" } },
             { name = "clear_vars", rval = nil, args = { } },
             { name = "color", rval = "nc_color", args = { } },
             { name = "color_in_inventory", rval = "nc_color", args = { } },
             { name = "components_to_string", rval = "string", args = { } },
             { name = "conductive", rval = "bool", args = { } },
-            { name = "convert", rval = "item&", args = { "string" } },
+            { name = "convert", rval = "item&", args = { "itype_id" } }, -- address specifier causes issues in proper names. take note.
             { name = "count_by_charges", rval = "bool", args = { } },
             { name = "covers", rval = "bool", args = { "bodypart_id" } },
             { name = "craft_has_charges", rval = "bool", args = { } },
@@ -1059,12 +1059,12 @@ classes = {
             { name = "fire_resist", rval = "int", args = { }, optional_args = { "bool" } },
             { name = "flammable", rval = "bool", args = { } },
             { name = "get_chapters", rval = "int", args = { } },
-            { name = "get_coverage", rval = "int", args = { } },
-            { name = "get_encumber", rval = "int", args = { "Character" } },
+            { name = "get_coverage", rval = "int", args = { "bodypart_id" } },
+            { name = "get_encumber", rval = "int", args = { "Character", "bodypart_id" } }, -- TODO: come back to this. Encumber flag enums!
             { name = "get_env_resist", rval = "int", args = { } },
-            { name = "get_free_mod_locations", rval = "int", args = { "string" } },
+            { name = "get_free_mod_locations", rval = "int", args = { "gunmod_location" } },
             { name = "get_gun_ups_drain", rval = "int", args = { } },
-            { name = "get_layer", rval = "int", args = { } },
+            { name = "get_layer", rval = "layer_level", args = { } },
             { name = "get_mtype", rval = "mtype&", args = { } },
             { name = "get_plant_epoch", rval = "time_duration", args = { } },
             { name = "get_plant_name", rval = "string", args = { } },
@@ -1229,6 +1229,14 @@ classes = {
         }
     },
     -- modern start
+    gunmod_location = {
+        functions = {
+
+        },
+        attributes = {
+
+        }
+    },
     uidim = {
         functions = {
         },
@@ -2703,6 +2711,16 @@ classes = {
 }
 
 enums = {
+    layer_level = {
+        "PERSONAL",
+        "UNDERWEAR",
+        "REGULAR",
+        "WAIST",
+        "OUTER",
+        "BELTED",
+        "AURA",
+        "NUM_LAYER_LEVELS"
+    },
     inventory_item_menu_position = {
         "RIGHT_TERMINAL_EDGE",
         "LEFT_OF_INFO",

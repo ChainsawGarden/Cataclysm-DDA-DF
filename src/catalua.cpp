@@ -64,6 +64,8 @@
 #include "field_type.h"
 #include "projectile.h"
 #include "character_id.h" // for character_ids
+#include "ammo.h"
+#include "enums.h"
 
 // modernization
 // #include <lua.h>
@@ -110,6 +112,8 @@ using field_type_str_id = string_id<field_type>;
 using field_type_id = int_id<field_type>;
 using snippet_id = string_id<translation>;
 using inventory_item_menu_position = game::inventory_item_menu_position; // add inventory pos enum
+using ammotype = string_id<ammunition_type>;
+
 // the wonky zone
 using uidim = std::function<int()>; // for UI dimensioning
 
