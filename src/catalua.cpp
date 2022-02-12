@@ -67,6 +67,7 @@
 #include "ammo.h"
 #include "enums.h"
 #include "ret_val.h"
+#include "item_pocket.h"
 
 // modernization
 // #include <lua.h>
@@ -118,6 +119,7 @@ using rbool = ret_val<bool>;
 using optional_int = cata::optional<int>;
 // the wonky zone
 using uidim = std::function<int()>; // for UI dimensioning
+using pocket_type = item_pocket::pocket_type; // pocket enums
 
 // using character_critter = game::critter_by_id<Character>;
 // using player_critter = game::critter_by_id<player>;

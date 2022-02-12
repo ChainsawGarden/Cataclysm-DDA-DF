@@ -1333,7 +1333,7 @@ classes = {
             -- }
         },
         functions = {
-            { name = "&str", rval = "string", args = { } },
+            -- { name = "&str", rval = "string", args = { } },
         }
     },
     character_id = {
