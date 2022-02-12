@@ -104,16 +104,12 @@ classes = {
         string_id = "gun_mode_id",
         attributes = {
         },
-        functions = {
-        }
-    },
+        },
     effect_type = {
         string_id = "efftype_id",
         attributes = {
         },
-        functions = {
-        }
-    },
+        },
     -- calendar = { -- TO BE RE-ADDED. CALENDAR IS A NAMESPACE IN MODERN CDDA
     --     -- new = { -- modern cata doesn't have calendar as a class.
     --     --     { "calendar" },
@@ -518,9 +514,7 @@ classes = {
             armor_encumbrance = { type = "int", writable = true },
             layer_penalty = { type = "int", writable = true },
         },
-        functions = {
-        }
-    },
+        },
     -- stats = { -- old. we might end up making a whole new class... TODO: Fixme
     --     attributes = {
     --         damage_healed = { type = "int", writable = true },
@@ -917,9 +911,7 @@ classes = {
             position = { type = "tripoint_abs_omt", writable = true }, -- used to be a straight tripoint
             role_id = { type = "string", writable = true },
         },
-        functions = {
-        }
-    },
+        },
     npc_personality = {
         by_value = true,
         attributes = {
@@ -928,9 +920,7 @@ classes = {
             bravery = { type = "int", writable = true },
             collector = { type = "int", writable = true },
         },
-        functions = {
-        }
-    },
+        },
     npc_opinion = {
         by_value = true,
         attributes = {
@@ -940,9 +930,7 @@ classes = {
             owed = { type = "int", writable = true },
             value = { type = "int", writable = true },
         },
-        functions = {
-        }
-    },
+        },
     npc = {
         parent = "player",
         attributes = {
@@ -1355,9 +1343,7 @@ classes = {
     character_id = {
         attributes = {
         },
-        functions = {
-        }
-    },
+        },
     cppos = {
         by_value = true,
         has_equal = false,
@@ -1440,10 +1426,7 @@ classes = {
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     money = {
         by_value = true,
         attributes = {
@@ -1458,469 +1441,313 @@ classes = {
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     bodypart_id = {
         -- string_id = "bodypart_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     field_type_str_id = {
         -- string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     field_type_id = {
         -- string_id = "field_type_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     -- this next set of class objects is going to be... painful.
     fd_null = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
     },
     fd_fire = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
     },
     fd_blood = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_bile = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_extinguisher = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_gibs_flesh = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_gibs_veggy = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_web = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_slime = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
     },
     fd_acid = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_sap = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_sludge = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_smoke = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_toxic_gas = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_tear_gas = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_nuke_gas = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_gas_vent = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_fire_vent = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_flame_burst = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_electricity = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_fatigue = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_push_items = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_shock_vent = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_acid_vent = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_plasma = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_laser = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_dazzling = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_blood_veggy = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_blood_insect = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_blood_invertebrate = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_gibs_insect = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_gibs_invertebrate = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_bees = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_incendiary = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_relax_gas = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_fungal_haze = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_cold_air2 = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_cold_air3 = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_cold_air4 = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_hot_air1 = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_hot_air2 = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_hot_air3 = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_hot_air4 = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_fungicidal_gas = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_insecticidal_gas = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_smoke_vent = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     fd_tindalos_rift = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     item_vector = {
         attributes = {
 
         },
-        functions = {
-
-        }
-    },
+        },
     -- modern stop
     uilist = {
         attributes = {
@@ -2456,30 +2283,22 @@ classes = {
         string_id = "recipe_id",
         attributes = {
         },
-        functions = {
-        }
-    },
+        },
     martialart = {
         string_id = "matype_id",
         attributes = {
         },
-        functions = {
-        }
-    },
+        },
     material_type = {
         string_id = "material_id",
         attributes = {
         },
-        functions = {
-        }
-    },
+        },
     start_location = {
         string_id = "start_location_id",
         attributes = {
         },
-        functions = {
-        }
-    },
+        },
     -- ma_buff = {
     --     string_id = "mabuff_id",
     --     attributes = {
@@ -2491,45 +2310,33 @@ classes = {
         string_id = "matec_id",
         attributes = {
         },
-        functions = {
-        }
-    },
+        },
     Skill = {
         string_id = "skill_id",
         attributes = {
         },
-        functions = {
-        }
-    },
+        },
     quality = {
         string_id = "quality_id",
         attributes = {
             -- name = { type = "string", writable = false } -- this doesn't seem to have ever existed...?
         },
-        functions = {
-        }
-    },
+        },
     npc_template = {
         string_id = "npc_template_id",
         attributes = {
         },
-        functions = {
-        }
-    },
+        },
     species_type = {
         string_id = "species_id",
         attributes = {
         },
-        functions = {
-        }
-    },
+        },
     ammunition_type = {
         string_id = "ammotype",
         attributes = {
         },
-        functions = {
-        }
-    },
+        },
     MonsterGroup = {
         string_id = "mongroup_id",
         attributes = {
@@ -2655,9 +2462,7 @@ classes = {
         by_value = true,
         attributes = {
         },
-        functions = {
         },
-    },
     time_duration = {
         by_value = true,
         has_equal = true,
@@ -2666,9 +2471,7 @@ classes = {
         },
         attributes = {
         },
-        functions = {
         },
-    },
     time_point = {
         by_value = true,
         has_equal = true,
@@ -2679,9 +2482,7 @@ classes = {
         },
         attributes = {
         },
-        functions = {
         },
-    },
     itype = { -- itype != itype_id
         attributes = {
             color = { type = "nc_color", writable = true },
@@ -3088,20 +2889,20 @@ end
 --     { name = "add_effect", rval = nil, args = { "efftype_id", "time_duration", "body_part", "bool" } },
 --     { name = "add_effect", rval = nil, args = { "efftype_id", "time_duration", "body_part", "bool", "int" } },
 --     { name = "add_effect", rval = nil, args = { "efftype_id", "time_duration", "body_part", "bool", "int", "bool" } },
-for class_name, value in pairs(classes) do
+for class_name, value in pairs(classes) do -- loop through the classes, get get both `class_name` and the class content.
     local new_functions = { }
-    for _, func in ipairs(value.functions) do
-        if func.optional_args then
-            local i = 0
-            while i <= #func.optional_args do
-                local t = {
-                    name = func.name,
-                    rval = func.rval,
+    for _, func in ipairs(value.functions) do -- loop through the functions (and only get the function, not the index!)
+        if func.optional_args then -- if we have optional arguments 
+            local i = 0 -- iterator
+            while i <= #func.optional_args do -- loop through all optional args
+                local t = { -- create a structure containing a name, return value, and arguments
+                    name = func.name, -- function name
+                    rval = func.rval, -- function return value
                     args = { table_unpack_wrapper(func.args) } -- copy args
                 }
-                local j = 1
-                while j <= i do
-                    table.insert(t.args, func.optional_args[j])
+                local j = 1 -- j is another iterator?
+                while j <= i do -- while `j` is less than the number of optional args...
+                    table.insert(t.args, func.optional_args[j]) -- 
                     j = j + 1
                 end
                 table.insert(new_functions, t)
