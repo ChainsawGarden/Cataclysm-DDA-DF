@@ -330,12 +330,10 @@ classes = {
         attributes = {
         },
         functions = {
-            { name = "cppbegin", rval = "item_stack_iterator", cpp_name = "begin", args = { } },
-            { name = "cppend", rval = "item_stack_iterator", cpp_name = "end", args = {} },
-            { name = "empty", rval = "bool", args = { } },
-            { name = "erase", rval = "item_stack_iterator", args = { "item_stack_iterator" } },
-            { name = "push_back", rval = nil, args = { "item" } },
-            { name = "size", rval = "int", args = { } },
+            -- { name = "empty", rval = "bool", args = { } },
+            -- { name = "erase", rval = "item_stack_iterator", args = { "item_stack_iterator" } },
+            -- { name = "push_back", rval = nil, args = { "item" } },
+            -- { name = "size", rval = "int", args = { } },
         }
     },
     game = {
@@ -2132,7 +2130,6 @@ classes = {
             { name = "translate", rval = nil, args = { "ter_id", "ter_id" } },
             { name = "trap_set", rval = nil, args = { "tripoint", "trap_id" } },
             { name = "translate_radius", rval = nil, args = { "ter_id", "ter_id", "float", "tripoint" } },
-            { name = "trigger_rc_items", rval = nil, args = { "string" } },
             { name = "unboard_vehicle", rval = nil, args = { "tripoint" } },
             { name = "valid_move", rval = "bool", args = { "tripoint", "tripoint" }, optional_args = { "bool", "bool" } },
             { name = "water_from", rval = "item", args = { "tripoint" } },

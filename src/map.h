@@ -98,7 +98,7 @@ struct field_proc_data;
 
 using relic_procgen_id = string_id<relic_procgen_data>;
 
-class map_stack : public item_stack
+class especimap_stack : public item_stack
 {
     private:
         tripoint location;
