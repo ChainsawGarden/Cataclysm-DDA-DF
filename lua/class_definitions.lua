@@ -759,19 +759,19 @@ classes = {
             { name = "knock_back_from", rval = nil, args = { "tripoint" } },
             { name = "knows_trap", rval = "bool", args = { "tripoint" } },
             { name = "leak_level", rval = "int", args = { "string" } },
-            { name = "load_info", rval = nil, args = { "string" } },
+            -- { name = "load_info", rval = nil, args = { "string" } }, -- not in player class
             { name = "long_craft", rval = nil, args = { } },
-            { name = "ma_onattack_effects", rval = nil, args = { } },
-            { name = "ma_onblock_effects", rval = nil, args = { } },
-            { name = "ma_ondodge_effects", rval = nil, args = { } },
-            { name = "ma_ongethit_effects", rval = nil, args = { } },
-            { name = "ma_onhit_effects", rval = nil, args = { } },
-            { name = "ma_onmove_effects", rval = nil, args = { } },
-            { name = "ma_static_effects", rval = nil, args = { } },
-            { name = "mabuff_block_bonus", rval = "int", args = { } },
-            { name = "mabuff_dodge_bonus", rval = "int", args = { } },
-            { name = "mabuff_speed_bonus", rval = "int", args = { } },
-            { name = "mabuff_tohit_bonus", rval = "int", args = { } },
+            -- { name = "ma_onattack_effects", rval = nil, args = { } }, -- not in player class
+            -- { name = "ma_onblock_effects", rval = nil, args = { } }, -- not in player class
+            -- { name = "ma_ondodge_effects", rval = nil, args = { } }, -- not in player class
+            -- { name = "ma_ongethit_effects", rval = nil, args = { } }, -- not in player class
+            -- { name = "ma_onhit_effects", rval = nil, args = { } },
+            -- { name = "ma_onmove_effects", rval = nil, args = { } },
+            -- { name = "ma_static_effects", rval = nil, args = { } },
+            -- { name = "mabuff_block_bonus", rval = "int", args = { } },
+            -- { name = "mabuff_dodge_bonus", rval = "int", args = { } },
+            -- { name = "mabuff_speed_bonus", rval = "int", args = { } },
+            -- { name = "mabuff_tohit_bonus", rval = "int", args = { } },
             { name = "make_all_craft", rval = nil, args = { "recipe_id", "int" } },
             { name = "make_craft", rval = nil, args = { "recipe_id", "int" } },
             { name = "make_craft_with_command", rval = nil, args = { "recipe_id", "int" }, optional_args = { "bool" } },
@@ -1229,6 +1229,12 @@ classes = {
         }
     },
     -- modern start
+    cpp_int_set = {
+        functions = {
+        },
+        attributes = {
+        }
+    },
     optional_int = {
         functions = {
         },
@@ -1368,6 +1374,18 @@ classes = {
             -- { name = "z", rval = "int", args = { } }, -- ? ? ? is this really treated like a pointstruct?
             -- { name = "xy", rval = "cppos", args = { "point" } } -- cppos == coord_point<point, Origin, Scale>( raw_.xy() )
             -- { name = "xy", rval = "point", args = { } } -- for the sake of sanity, leave this out.
+        }
+    },
+    tripoint_abs_sm = {
+        by_value = true,
+        has_equal = false,
+        attributes = {
+        },
+        functions = {
+            { name = "to_string", rval = "string", args = { } },
+            { name = "x", rval = "int", args = { } },
+            { name = "y", rval = "int", args = { } },
+            { name = "z", rval = "int", args = { } }
         }
     },
     tripoint_om_sm = {
@@ -1941,16 +1959,16 @@ classes = {
         },
         functions = {
             { name = "accessible_items", rval = "bool", args = { "tripoint" } },
-            { name = "add_camp", rval = nil, args = { "tripoint", "string" } },
+            { name = "add_camp", rval = nil, args = { "tripoint_abs_omt", "string" } },
             { name = "add_corpse", rval = nil, args = { "tripoint" } },
             { name = "add_field", rval = "bool", args = { "tripoint", "field_type_id", "int", "time_duration" } },
             { name = "add_item", rval = "item&", args = { "tripoint", "item" } },
             { name = "add_item_or_charges", rval = "item&", args = { "tripoint", "item" }, optional_args = { "bool" } },
-            { name = "add_spawn", rval = nil, args = { "mtype_id", "int", "int", "int" }, optional_args = { "bool", "int", "int", "string" } },
+            { name = "add_spawn", rval = nil, args = { "mtype_id", "int", "tripoint", "bool", "int", "int" } },
             -- { name = "adjust_field_age", rval = "time_duration", args = { "tripoint", "field_type_str_id", "time_duration" } }, -- TODO: exact name not in modern cata (ENNIM)
             -- { name = "adjust_field_strength", rval = "int", args = { "tripoint", "field_type_str_id", "int" } }, -- ENNIM
             { name = "adjust_radiation", rval = nil, args = { "tripoint", "int" } },
-            { name = "allow_camp", rval = "bool", args = { "tripoint", "int" } },
+            -- { name = "allow_camp", rval = "bool", args = { "tripoint", "int" } },
             { name = "ambient_light_at", rval = "float", args = { "tripoint" } },
             { name = "bash_rating", rval = "int", args = { "int", "tripoint" }, optional_args = { "bool" } },
             { name = "bash_resistance", rval = "int", args = { "tripoint" }, optional_args = { "bool" } },
@@ -1975,29 +1993,29 @@ classes = {
             { name = "delete_signage", rval = nil, args = { "tripoint" } },
             { name = "destroy", rval = nil, args = { "tripoint" }, optional_args = { "bool" } },
             { name = "destroy_furn", rval = nil, args = { "tripoint" }, optional_args = { "bool" } },
-            { name = "disarm_trap", rval = nil, args = { "tripoint" } },
+            -- { name = "disarm_trap", rval = nil, args = { "tripoint" } },
             { name = "disp_name", rval = "string", args = { "tripoint" } },
-            { name = "displace_vehicle", rval = nil, args = { "tripoint", "tripoint" } },
+            { name = "displace_vehicle", rval = nil, args = { "vehicle", "tripoint", "bool", "cpp_int_set" } },
             { name = "displace_water", rval = "bool", args = { "tripoint" } },
-            { name = "draw_circle_furn", rval = nil, args = { "furn_id", "int", "int", "int" } },
-            { name = "draw_circle_furn", rval = nil, args = { "furn_str_id", "int", "int", "int" } },
-            { name = "draw_circle_ter", rval = nil, args = { "ter_str_id", "int", "int", "int" } },
-            { name = "draw_circle_ter", rval = nil, args = { "ter_id", "float", "float", "float" } },
-            { name = "draw_circle_ter", rval = nil, args = { "ter_id", "int", "int", "int" } },
-            { name = "draw_fill_background", rval = nil, args = { "ter_id" } },
-            { name = "draw_fill_background", rval = nil, args = { "ter_str_id" } },
-            { name = "draw_line_furn", rval = nil, args = { "furn_id", "int", "int", "int", "int" } },
-            { name = "draw_line_furn", rval = nil, args = { "furn_str_id", "int", "int", "int", "int" } },
-            { name = "draw_line_ter", rval = nil, args = { "ter_id", "int", "int", "int", "int" } },
-            { name = "draw_line_ter", rval = nil, args = { "ter_str_id", "int", "int", "int", "int" } },
-            { name = "draw_rough_circle_ter", rval = nil, args = { "ter_id", "int", "int", "int" } },
-            { name = "draw_rough_circle_ter", rval = nil, args = { "ter_str_id", "int", "int", "int" } },
-            { name = "draw_rough_circle_furn", rval = nil, args = { "furn_id", "int", "int", "int" } },
-            { name = "draw_rough_circle_furn", rval = nil, args = { "furn_str_id", "int", "int", "int" } },
-            { name = "draw_square_furn", rval = nil, args = { "furn_id", "int", "int", "int", "int" } },
-            { name = "draw_square_furn", rval = nil, args = { "furn_str_id", "int", "int", "int", "int" } },
-            { name = "draw_square_ter", rval = nil, args = { "ter_id", "int", "int", "int", "int" } },
-            { name = "draw_square_ter", rval = nil, args = { "ter_str_id", "int", "int", "int", "int" } },
+            -- { name = "draw_circle_furn", rval = nil, args = { "furn_id", "int", "int", "int" } }, -- TODO: add this when needed
+            -- { name = "draw_circle_furn", rval = nil, args = { "furn_str_id", "int", "int", "int" } }, -- TODO: add this when needed
+            -- { name = "draw_circle_ter", rval = nil, args = { "ter_str_id", "int", "int", "int" } },-- TODO: add this when needed
+            -- { name = "draw_circle_ter", rval = nil, args = { "ter_id", "float", "float", "float" } },-- TODO: add this when needed
+            -- { name = "draw_circle_ter", rval = nil, args = { "ter_id", "int", "int", "int" } },-- TODO: add this when needed
+            -- { name = "draw_fill_background", rval = nil, args = { "ter_id" } },-- TODO: add this when needed
+            -- { name = "draw_fill_background", rval = nil, args = { "ter_str_id" } },-- TODO: add this when needed
+            -- { name = "draw_line_furn", rval = nil, args = { "furn_id", "int", "int", "int", "int" } },-- TODO: add this when needed
+            -- { name = "draw_line_furn", rval = nil, args = { "furn_str_id", "int", "int", "int", "int" } },-- TODO: add this when needed
+            -- { name = "draw_line_ter", rval = nil, args = { "ter_id", "int", "int", "int", "int" } },-- TODO: add this when needed
+            -- { name = "draw_line_ter", rval = nil, args = { "ter_str_id", "int", "int", "int", "int" } },-- TODO: add this when needed
+            -- { name = "draw_rough_circle_ter", rval = nil, args = { "ter_id", "int", "int", "int" } },
+            -- { name = "draw_rough_circle_ter", rval = nil, args = { "ter_str_id", "int", "int", "int" } },
+            -- { name = "draw_rough_circle_furn", rval = nil, args = { "furn_id", "int", "int", "int" } },
+            -- { name = "draw_rough_circle_furn", rval = nil, args = { "furn_str_id", "int", "int", "int" } },
+            -- { name = "draw_square_furn", rval = nil, args = { "furn_id", "int", "int", "int", "int" } },
+            -- { name = "draw_square_furn", rval = nil, args = { "furn_str_id", "int", "int", "int", "int" } },
+            -- { name = "draw_square_ter", rval = nil, args = { "ter_id", "int", "int", "int", "int" } },
+            -- { name = "draw_square_ter", rval = nil, args = { "ter_str_id", "int", "int", "int", "int" } },
             { name = "features", rval = "string", args = { "tripoint" } },
             { name = "field_at", rval = "field&", args = { "tripoint" } },
             { name = "flammable_items_at", rval = "bool", args = { "tripoint" } },
@@ -2017,7 +2035,7 @@ classes = {
             { name = "getlocal", rval = "tripoint", args = { "tripoint" } },
             { name = "getmapsize", rval = "int", args = { } },
             { name = "graffiti_at", rval = "string", args = { "tripoint" } },
-            { name = "has_adjacent_furniture", rval = "bool", args = { "tripoint" } },
+            -- { name = "has_adjacent_furniture", rval = "bool", args = { "tripoint" } },
             { name = "has_flag", rval = "bool", args = { "string", "tripoint" } },
             { name = "has_flag_furn", rval = "bool", args = { "string", "tripoint" } },
             { name = "has_flag_ter", rval = "bool", args = { "string", "tripoint" } },
@@ -2033,8 +2051,8 @@ classes = {
             { name = "hit_with_fire", rval = "bool", args = { "tripoint" } },
             { name = "i_at", rval = "map_stack", args = { "tripoint" } },
             { name = "i_clear", rval = nil, args = { "tripoint" } },
-            { name = "i_rem", rval = "int", args = { "tripoint", "int" } },
-            { name = "i_rem", rval = "item_stack_iterator", args = { "tripoint", "item_stack_iterator" } },
+            -- { name = "i_rem", rval = "int", args = { "tripoint", "int" } }, -- TODO: add when needed
+            -- { name = "i_rem", rval = "item_stack_iterator", args = { "tripoint", "item_stack_iterator" } },-- TODO: add when needed
             { name = "i_rem", rval = nil, args = { "tripoint", "item" } },
             { name = "impassable", rval = "bool", args = { "tripoint" } },
             { name = "impassable_ter_furn", rval = "bool", args = { "tripoint" } },
@@ -2046,9 +2064,8 @@ classes = {
             { name = "is_bashable_ter_furn", rval = "bool", args = { "tripoint" }, optional_args = { "bool" } },
             { name = "is_divable", rval = "bool", args = { "tripoint" } },
             { name = "is_outside", rval = "bool", args = { "tripoint" } },
-            { name = "item_from", rval = "item&", args = { "tripoint", "int" } },
             { name = "light_transparency", rval = "float", args = { "tripoint" } },
-            { name = "load", rval = nil, args = { "int", "int", "int", "bool" } },
+            { name = "load", rval = nil, args = { "tripoint_abs_sm", "bool" } },
             { name = "make_rubble", rval = nil, args = { "tripoint" } },
             { name = "make_rubble", rval = nil, args = { "tripoint", "furn_id", "bool" } },
             { name = "make_rubble", rval = nil, args = { "tripoint", "furn_id", "bool", "ter_id" }, optional_args = { "bool" } },
@@ -2062,8 +2079,8 @@ classes = {
             { name = "passable", rval = "bool", args = { "tripoint" } },
             { name = "passable_ter_furn", rval = "bool", args = { "tripoint" } },
             { name = "pl_sees", rval = "bool", args = { "tripoint", "int" } },
-            { name = "place_gas_pump", rval = nil, args = { "int", "int", "int" } },
-            { name = "place_gas_pump", rval = nil, args = { "int", "int", "int", "string" } },
+            { name = "place_gas_pump", rval = nil, args = { "point", "int", "string" } },
+            { name = "place_gas_pump", rval = nil, args = { "point", "int" } },
             { name = "place_npc", rval = "int", args = { "int", "int", "npc_template_id" } },
             { name = "place_spawns", rval = nil, args = { "mongroup_id", "int", "int", "int", "int", "int", "float" } },
             { name = "place_toilet", rval = nil, args = { "int", "int" }, optional_args = { "int" } },
@@ -2448,20 +2465,20 @@ classes = {
         functions = {
         }
     },
-    ma_buff = {
-        string_id = "mabuff_id",
-        attributes = {
-        },
-        functions = {
-        }
-    },
-    ma_technique = {
-        string_id = "matec_id",
-        attributes = {
-        },
-        functions = {
-        }
-    },
+    -- ma_buff = {
+    --     string_id = "mabuff_id",
+    --     attributes = {
+    --     },
+    --     functions = {
+    --     }
+    -- },
+    -- ma_technique = {
+    --     string_id = "matec_id",
+    --     attributes = {
+    --     },
+    --     functions = {
+    --     }
+    -- },
     Skill = {
         string_id = "skill_id",
         attributes = {
