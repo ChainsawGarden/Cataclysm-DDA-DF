@@ -1243,7 +1243,7 @@ classes = {
     relic_procgen_id = {
         string_id = "relic_procgen_data",
         attributes = {
-        }
+        },
         functions = {   
         }
     },
@@ -1363,7 +1363,10 @@ classes = {
     character_id = {
         attributes = {
         },
-        },
+        functions = {
+            
+        }
+    },
     cppos = {
         by_value = true,
         has_equal = false,
@@ -1446,6 +1449,9 @@ classes = {
         attributes = {
 
         },
+        functions = {
+            
+        }
         },
     money = {
         by_value = true,
@@ -1459,27 +1465,38 @@ classes = {
     flag_id = {
         -- string_id = "flag_id",
         attributes = {
-
         },
-        },
+        functions = {
+            
+        }
+    },
     bodypart_id = {
         -- string_id = "bodypart_id",
         attributes = {
 
         },
-        },
+        functions = {
+            
+        }
+    },
     field_type_str_id = {
         -- string_id = "field_type_str_id",
         attributes = {
 
         },
-        },
+        functions = {
+            
+        }
+    },
     field_type_id = {
         -- string_id = "field_type_id",
         attributes = {
 
         },
-        },
+        functions = {
+            
+        }
+    },
     -- this next set of class objects is going to be... painful.
     fd_null = {
         string_id = "field_type_str_id",
