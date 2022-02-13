@@ -104,12 +104,18 @@ classes = {
         string_id = "gun_mode_id",
         attributes = {
         },
-        },
+        functions = {
+
+        }
+    },
     effect_type = {
         string_id = "efftype_id",
         attributes = {
         },
-        },
+        functions = {
+            
+        }
+    },
     -- calendar = { -- TO BE RE-ADDED. CALENDAR IS A NAMESPACE IN MODERN CDDA
     --     -- new = { -- modern cata doesn't have calendar as a class.
     --     --     { "calendar" },
@@ -514,7 +520,10 @@ classes = {
             armor_encumbrance = { type = "int", writable = true },
             layer_penalty = { type = "int", writable = true },
         },
-        },
+        functions = {
+            
+        }
+    },
     -- stats = { -- old. we might end up making a whole new class... TODO: Fixme
     --     attributes = {
     --         damage_healed = { type = "int", writable = true },
@@ -911,7 +920,10 @@ classes = {
             position = { type = "tripoint_abs_omt", writable = true }, -- used to be a straight tripoint
             role_id = { type = "string", writable = true },
         },
-        },
+        functions = {
+            
+        }
+    },
     npc_personality = {
         by_value = true,
         attributes = {
@@ -920,7 +932,10 @@ classes = {
             bravery = { type = "int", writable = true },
             collector = { type = "int", writable = true },
         },
-        },
+        functions = {
+            
+        }
+    },
     npc_opinion = {
         by_value = true,
         attributes = {
@@ -930,7 +945,10 @@ classes = {
             owed = { type = "int", writable = true },
             value = { type = "int", writable = true },
         },
-        },
+        functions = {
+            
+        }
+    },
     npc = {
         parent = "player",
         attributes = {
@@ -1225,6 +1243,8 @@ classes = {
     relic_procgen_id = {
         string_id = "relic_procgen_data",
         attributes = {
+        }
+        functions = {   
         }
     },
     cpp_int_set = {
@@ -2890,7 +2910,7 @@ end
 --     { name = "add_effect", rval = nil, args = { "efftype_id", "time_duration", "body_part", "bool", "int" } },
 --     { name = "add_effect", rval = nil, args = { "efftype_id", "time_duration", "body_part", "bool", "int", "bool" } },
 for class_name, value in pairs(classes) do -- loop through the classes, get get both `class_name` and the class content.
-    local new_functions = { }
+    local new_functions = { } -- the "new functions" table
     for _, func in ipairs(value.functions) do -- loop through the functions (and only get the function, not the index!)
         if func.optional_args then -- if we have optional arguments 
             local i = 0 -- iterator
