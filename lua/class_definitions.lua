@@ -1871,8 +1871,8 @@ classes = {
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     item_vector = {
         attributes = {
