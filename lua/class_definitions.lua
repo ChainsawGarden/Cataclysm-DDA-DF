@@ -1784,6 +1784,8 @@ classes = {
         attributes = {
 
         },
+        functions = {
+        }
         },
     -- modern stop
     uilist = {
@@ -2499,6 +2501,8 @@ classes = {
         by_value = true,
         attributes = {
         },
+        functions = {
+        }
         },
     time_duration = {
         by_value = true,
@@ -2508,6 +2512,8 @@ classes = {
         },
         attributes = {
         },
+        functions = {
+        }
         },
     time_point = {
         by_value = true,
@@ -2519,6 +2525,8 @@ classes = {
         },
         attributes = {
         },
+        functions = {
+        }
         },
     itype = { -- itype != itype_id
         attributes = {
@@ -2928,6 +2936,11 @@ end
 --     { name = "add_effect", rval = nil, args = { "efftype_id", "time_duration", "body_part", "bool", "int", "bool" } },
 for class_name, value in pairs(classes) do -- loop through the classes, get get both `class_name` and the class content.
     local new_functions = { } -- the "new functions" table
+    -- warning: the below attempts to actually access class funcs.
+    -- this is not an if statement, so it won't actually check if the functions exist.
+    -- due to this, it will try to treat a `nil` as if it was a table.
+    -- it can't do that, and therefore we get the `bad argument #1 to 'ipairs' (table expected, got nil)` error.
+    -- tl;dr *every class needs a function. even if it's empty.*
     for _, func in ipairs(value.functions) do -- loop through the functions (and only get the function, not the index!)
         if func.optional_args then -- if we have optional arguments 
             local i = 0 -- iterator
