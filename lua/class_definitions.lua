@@ -975,7 +975,6 @@ classes = {
             { name = "is_dead", rval = "bool", args = { } },
             { name = "is_enemy", rval = "bool", args = { } },
             { name = "is_following", rval = "bool", args = { } },
-            { name = "is_friend", rval = "bool", args = { } },
             { name = "is_guarding", rval = "bool", args = { } },
             { name = "is_leader", rval = "bool", args = { } },
             { name = "is_minion", rval = "bool", args = { } },
@@ -1871,8 +1870,8 @@ classes = {
         attributes = {
 
         },
-        -- functions = {
-        -- }
+        functions = {
+        }
         },
     item_vector = {
         attributes = {
