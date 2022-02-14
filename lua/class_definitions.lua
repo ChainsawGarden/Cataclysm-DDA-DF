@@ -1364,7 +1364,6 @@ classes = {
         attributes = {
         },
         functions = {
-            
         }
     },
     cppos = {
@@ -1503,282 +1502,377 @@ classes = {
         attributes = {
 
         },
+        
+        functions = {
+        }
     },
     fd_fire = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
     },
     fd_blood = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_bile = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_extinguisher = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_gibs_flesh = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_gibs_veggy = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_web = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_slime = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
     },
     fd_acid = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_sap = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_sludge = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_smoke = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_toxic_gas = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_tear_gas = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_nuke_gas = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_gas_vent = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_fire_vent = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_flame_burst = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_electricity = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_fatigue = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_push_items = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_shock_vent = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_acid_vent = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_plasma = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_laser = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_dazzling = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_blood_veggy = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_blood_insect = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_blood_invertebrate = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_gibs_insect = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_gibs_invertebrate = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_bees = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_incendiary = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_relax_gas = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_fungal_haze = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_cold_air2 = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_cold_air3 = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_cold_air4 = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_hot_air1 = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_hot_air2 = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_hot_air3 = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_hot_air4 = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_fungicidal_gas = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_insecticidal_gas = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_smoke_vent = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     fd_tindalos_rift = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
+        functions = {
+        }
         },
     item_vector = {
         attributes = {
@@ -2322,21 +2416,29 @@ classes = {
         string_id = "recipe_id",
         attributes = {
         },
+        functions = {
+        }
         },
     martialart = {
         string_id = "matype_id",
         attributes = {
         },
+        functions = {
+        }
         },
     material_type = {
         string_id = "material_id",
         attributes = {
         },
+        functions = {
+        }
         },
     start_location = {
         string_id = "start_location_id",
         attributes = {
         },
+        functions = {
+        }
         },
     -- ma_buff = {
     --     string_id = "mabuff_id",
@@ -2349,32 +2451,44 @@ classes = {
         string_id = "matec_id",
         attributes = {
         },
+        functions = {
+        }
         },
     Skill = {
         string_id = "skill_id",
         attributes = {
         },
+        functions = {
+        }
         },
     quality = {
         string_id = "quality_id",
         attributes = {
             -- name = { type = "string", writable = false } -- this doesn't seem to have ever existed...?
         },
+        functions = {
+        }
         },
     npc_template = {
         string_id = "npc_template_id",
         attributes = {
         },
+        functions = {
+        }
         },
     species_type = {
         string_id = "species_id",
         attributes = {
         },
+        functions = {
+        }
         },
     ammunition_type = {
         string_id = "ammotype",
         attributes = {
         },
+        functions = {
+        }
         },
     MonsterGroup = {
         string_id = "mongroup_id",
