@@ -706,7 +706,7 @@ classes = {
             { name = "has_item", rval = "bool", args = { "item" } },
             { name = "has_item_with_flag", rval = "bool", args = { "string" } },
             { name = "has_lower_trait", rval = "bool", args = { "trait_id" } },
-            { name = "has_mabuff", rval = "bool", args = { "mabuff_id" } },
+            -- { name = "has_mabuff", rval = "bool", args = { "mabuff_id" } }, -- TODO cbtt
             { name = "has_martialart", rval = "bool", args = { "matype_id" } },
             { name = "has_miss_recovery_tec", rval = "bool", args = { "item" } },
             { name = "has_mission_item", rval = "bool", args = { "int" } },
