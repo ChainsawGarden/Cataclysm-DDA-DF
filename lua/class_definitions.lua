@@ -3122,7 +3122,7 @@ for class_name, value in pairs(classes) do
                 end
             end
         end -- if the class didn't have functions, we'd go to the next classname/value pair.
-    END
+    end
 end
 
 -- This adds the int_id wrappers from the class definition as real classes.
