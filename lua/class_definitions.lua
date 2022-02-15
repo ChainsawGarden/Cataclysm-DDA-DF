@@ -3091,38 +3091,43 @@ Now player::is_player is wrapped twice: once through the heritage from Creature 
 
 The following snippet tries to correct this. It simply removes all the redundantly declared
 functions in the subclasses.
+
+tl;dr below code block prevents double-wrapping.
 --]]
 
 for class_name, value in pairs(classes) do
     -- Collect all defined functions of the *parent* classes in this table
     local existing = { };
     value = classes[value.parent]
-    while value do
-        for _, func in ipairs(value.functions) do
+    if value.functions != nil then -- if the class has functions
+        while value do
+            for _, func in ipairs(value.functions) do
+                local n = func.name .. "_" .. table.concat(func.args, "|")
+                existing[n] = true
+            end
+            value = classes[value.parent]
+        end
+        -- Now back to the actual class, remove all the functions that are in the table
+        -- and therefor exist in at least on of the parent classes.
+        value = classes[class_name]
+        local i = 1
+        while i <= #value.functions do
+            local func = value.functions[i]
             local n = func.name .. "_" .. table.concat(func.args, "|")
-            existing[n] = true
+            if existing[n] then
+                table.remove(value.functions, i)
+            else
+                i = i + 1
+            end
         end
-        value = classes[value.parent]
-    end
-    -- Now back to the actual class, remove all the functions that are in the table
-    -- and therefor exist in at least on of the parent classes.
-    value = classes[class_name]
-    local i = 1
-    while i <= #value.functions do
-        local func = value.functions[i]
-        local n = func.name .. "_" .. table.concat(func.args, "|")
-        if existing[n] then
-            table.remove(value.functions, i)
-        else
-            i = i + 1
-        end
-    end
+    end -- if the class didn't have functions, we'd go to the next classname/value pair.
 end
 
 -- This adds the int_id wrappers from the class definition as real classes.
 -- All int_id<T>s have the same interface, so we only need to add some mark to T, that this class
 -- T has an int_id of some name.
 -- In the class definition: add "int_id" = "XXX" (XXX is the typedef id that is used by C++).
+-- tl;dr adds *_id wrappers (which, in the modernizations, shouldn't require the `functions` attribute...)
 new_classes = {}
 for name, value in pairs(classes) do
     if value.int_id then
