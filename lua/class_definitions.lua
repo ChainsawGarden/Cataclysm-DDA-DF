@@ -3099,7 +3099,7 @@ for class_name, value in pairs(classes) do
     -- Collect all defined functions of the *parent* classes in this table
     local existing = { };
     value = classes[value.parent]
-    if value.functions nil then -- if the class has functions
+    if value.functions then -- if the class has functions
         while value do
             for _, func in ipairs(value.functions) do
                 local n = func.name .. "_" .. table.concat(func.args, "|")
