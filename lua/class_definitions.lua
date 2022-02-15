@@ -2490,7 +2490,7 @@ classes = {
         }
         },
     MonsterGroup = {
-      -- string_id = "mongroup_id",
+        string_id = "mongroup_id",
         attributes = {
             -- defaultMonster = { type = "mtype_id", writable = true },
             is_safe = { type = "bool", writable = true },
@@ -2499,9 +2499,9 @@ classes = {
             new_monster_group = { type = "mongroup_id", writable = true },
             replace_monster_group = { type = "bool", writable = true },
         },
-        functions = {
-            -- { name = "IsMonsterInGroup", rval = "bool", args = { "mtype_id" } },
-        }
+        -- functions = {
+        --     -- { name = "IsMonsterInGroup", rval = "bool", args = { "mtype_id" } },
+        -- }
     },
     mtype = {
       -- string_id = "mtype_id",
