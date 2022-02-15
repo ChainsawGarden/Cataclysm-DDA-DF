@@ -3099,28 +3099,30 @@ for class_name, value in pairs(classes) do
     -- Collect all defined functions of the *parent* classes in this table
     local existing = { };
     value = classes[value.parent]
-    if value.functions then -- if the class has functions
-        while value do
-            for _, func in ipairs(value.functions) do
+    if value then -- if value has content
+        if value.functions then -- if the class has functions
+            while value do
+                for _, func in ipairs(value.functions) do
+                    local n = func.name .. "_" .. table.concat(func.args, "|")
+                    existing[n] = true
+                end
+                value = classes[value.parent]
+            end
+            -- Now back to the actual class, remove all the functions that are in the table
+            -- and therefor exist in at least on of the parent classes.
+            value = classes[class_name]
+            local i = 1
+            while i <= #value.functions do
+                local func = value.functions[i]
                 local n = func.name .. "_" .. table.concat(func.args, "|")
-                existing[n] = true
+                if existing[n] then
+                    table.remove(value.functions, i)
+                else
+                    i = i + 1
+                end
             end
-            value = classes[value.parent]
-        end
-        -- Now back to the actual class, remove all the functions that are in the table
-        -- and therefor exist in at least on of the parent classes.
-        value = classes[class_name]
-        local i = 1
-        while i <= #value.functions do
-            local func = value.functions[i]
-            local n = func.name .. "_" .. table.concat(func.args, "|")
-            if existing[n] then
-                table.remove(value.functions, i)
-            else
-                i = i + 1
-            end
-        end
-    end -- if the class didn't have functions, we'd go to the next classname/value pair.
+        end -- if the class didn't have functions, we'd go to the next classname/value pair.
+    END
 end
 
 -- This adds the int_id wrappers from the class definition as real classes.
