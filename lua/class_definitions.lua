@@ -3054,7 +3054,7 @@ for class_name, value in pairs(classes) do -- loop through the classes, get get 
     -- due to this, it will try to treat a `nil` as if it was a table.
     -- it can't do that, and therefore we get the `bad argument #1 to 'ipairs' (table expected, got nil)` error.
     -- tl;dr *every class needs a function. even if it's empty.*
-    if(value.functions != nil) then -- if the class has functions, continue
+    if value.functions != nil then -- if the class has functions, continue
         for _, func in ipairs(value.functions) do -- loop through the functions (and only get the function, not the index!)
             if func.optional_args then -- if we have optional arguments 
                 local i = 0 -- iterator
