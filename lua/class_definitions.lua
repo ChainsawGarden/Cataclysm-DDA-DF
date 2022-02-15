@@ -1506,7 +1506,7 @@ classes = {
         }
     },
     fd_fire = {
-      -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1941,7 +1941,7 @@ classes = {
             { name = "add_field", rval = "bool", args = { "tripoint", "field_type_id", "int", "time_duration" } },
             { name = "add_item", rval = "item&", args = { "tripoint", "item" } },
             { name = "add_item_or_charges", rval = "item&", args = { "tripoint", "item" } },
-            { name = "add_spawn", rval = nil, args = { "mtype_id", "int", "tripoint", "bool", "int", "int" } },
+            -- { name = "add_spawn", rval = nil, args = { "mtype_id", "int", "tripoint", "bool", "int", "int" } },
             -- { name = "adjust_field_age", rval = "time_duration", args = { "tripoint", "field_type_str_id", "time_duration" } }, -- TODO: exact name not in modern cata (ENNIM)
             -- { name = "adjust_field_strength", rval = "int", args = { "tripoint", "field_type_str_id", "int" } }, -- ENNIM
             { name = "adjust_radiation", rval = nil, args = { "tripoint", "int" } },
@@ -2374,7 +2374,7 @@ classes = {
             -- { name = "on_hit", rval = nil, args = { "Creature", "bodypart_id", "float" } },
             { name = "on_load", rval = nil, args = { } },
             { name = "on_unload", rval = nil, args = { } },
-            { name = "poly", rval = nil, args = { "mtype_id" } },
+            -- { name = "poly", rval = nil, args = { "mtype_id" } },
             { name = "pos", rval = "tripoint", args = { } },
             { name = "posx", rval = "int", args = { } },
             { name = "posy", rval = "int", args = { } },
@@ -2492,7 +2492,7 @@ classes = {
     MonsterGroup = {
       -- string_id = "mongroup_id",
         attributes = {
-            defaultMonster = { type = "mtype_id", writable = true },
+            -- defaultMonster = { type = "mtype_id", writable = true },
             is_safe = { type = "bool", writable = true },
             monster_group_time = { type = "time_duration", writable = true },
             name = { type = "mongroup_id", writable = true },
@@ -2500,7 +2500,7 @@ classes = {
             replace_monster_group = { type = "bool", writable = true },
         },
         functions = {
-            { name = "IsMonsterInGroup", rval = "bool", args = { "mtype_id" } },
+            -- { name = "IsMonsterInGroup", rval = "bool", args = { "mtype_id" } },
         }
     },
     mtype = {
@@ -2519,7 +2519,7 @@ classes = {
             def_chance = { type = "int", writable = true },
             difficulty = { type = "int", writable = true },
             hp = { type = "int", writable = true },
-            id = { type = "mtype_id" },
+            -- id = { type = "mtype_id" },
             luminance = { type = "float", writable = true },
             melee_dice = { type = "int", writable = true },
             melee_sides = { type = "int", writable = true },
@@ -2536,7 +2536,7 @@ classes = {
             upgrade_group = { type = "mongroup_id", writable = true },
             upgrades = { type = "bool", writable = true },
             half_life = { type = "int", writable = true },
-            upgrade_into = { type = "mtype_id", writable = true },
+            -- upgrade_into = { type = "mtype_id", writable = true },
             vision_day = { type = "int", writable = true },
             vision_night = { type = "int", writable = true },
         },
@@ -2987,7 +2987,7 @@ global_functions = {
     },
     create_monster = {
         cpp_name = "create_monster",
-        args = { "mtype_id", "tripoint" },
+        -- args = { "mtype_id", "tripoint" },
         rval = "monster&",
         desc = "Creates and spawns a new monster of given type. Returns a refernce to it, *or* nil if it could not be spawned."
     },
@@ -3054,28 +3054,30 @@ for class_name, value in pairs(classes) do -- loop through the classes, get get 
     -- due to this, it will try to treat a `nil` as if it was a table.
     -- it can't do that, and therefore we get the `bad argument #1 to 'ipairs' (table expected, got nil)` error.
     -- tl;dr *every class needs a function. even if it's empty.*
-    for _, func in ipairs(value.functions) do -- loop through the functions (and only get the function, not the index!)
-        if func.optional_args then -- if we have optional arguments 
-            local i = 0 -- iterator
-            while i <= #func.optional_args do -- loop through all optional args
-                local t = { -- create a structure containing a name, return value, and arguments
-                    name = func.name, -- function name
-                    rval = func.rval, -- function return value
-                    args = { table_unpack_wrapper(func.args) } -- copy args
-                }
-                local j = 1 -- j is another iterator?
-                while j <= i do -- while `j` is less than the number of optional args...
-                    table.insert(t.args, func.optional_args[j]) -- 
-                    j = j + 1
+    if(value.functions != nil) then -- if the class has functions, continue
+        for _, func in ipairs(value.functions) do -- loop through the functions (and only get the function, not the index!)
+            if func.optional_args then -- if we have optional arguments 
+                local i = 0 -- iterator
+                while i <= #func.optional_args do -- loop through all optional args
+                    local t = { -- create a structure containing a name, return value, and arguments
+                        name = func.name, -- function name
+                        rval = func.rval, -- function return value
+                        args = { table_unpack_wrapper(func.args) } -- copy args
+                    }
+                    local j = 1 -- j is another iterator?
+                    while j <= i do -- while `j` is less than the number of optional args...
+                        table.insert(t.args, func.optional_args[j]) -- 
+                        j = j + 1
+                    end
+                    table.insert(new_functions, t)
+                    i = i + 1
                 end
-                table.insert(new_functions, t)
-                i = i + 1
             end
         end
-    end
-    for _, new_func in ipairs(new_functions) do
-        table.insert(value.functions, new_func)
-    end
+        for _, new_func in ipairs(new_functions) do
+            table.insert(value.functions, new_func)
+        end
+    end -- the class didn't have functions.
 end
 
 --[[
