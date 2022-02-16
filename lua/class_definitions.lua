@@ -109,7 +109,7 @@ classes = {
         -- }
     },
     effect_type = {
-       -- string_id = "efftype_id",
+       string_id = "efftype_id",
         attributes = {
         },
         functions = {
@@ -155,7 +155,7 @@ classes = {
     --     }
     -- },
     mutation_branch = {
-       -- string_id = "trait_id",
+       string_id = "trait_id",
         attributes = {
             activated = { type = "bool", writable = true },
             bodytemp_max = { type = "int", writable = true },
@@ -481,7 +481,7 @@ classes = {
         }
     },
     bionic_data = {
-       -- string_id = "bionic_id",
+       string_id = "bionic_id",
         attributes = {
             activated = { type = "bool", writable = true },
             -- armor_interface = { type = "bool", writable = true },
@@ -513,7 +513,7 @@ classes = {
         },
     },
     morale_type_data = {
-       -- string_id = "morale_type",
+       string_id = "morale_type",
         attributes = {
             id = { type = "morale_type", writable = true },
         },
@@ -1252,7 +1252,7 @@ classes = {
         }
     },
     relic_procgen_id = {
-       -- string_id = "relic_procgen_data",
+       string_id = "relic_procgen_data",
         attributes = {
         },
         functions = {   
@@ -1348,7 +1348,7 @@ classes = {
         }
     },
     snippet_id = {
-       -- string_id = "string_id",
+       string_id = "string_id",
         by_value = true,
         has_equal = true,
         attributes = {
@@ -1358,7 +1358,7 @@ classes = {
         }
     },
     itype_id = {
-       -- string_id = "string_id",
+       string_id = "string_id",
         by_value = true,
         has_equal = true,
         attributes = {
@@ -1455,7 +1455,7 @@ classes = {
         }
     },
     item_group_id = {
-        -- string_id = "item_group_id",
+        string_id = "item_group_id",
         attributes = {
 
         },
@@ -1473,7 +1473,7 @@ classes = {
         },
     },
     flag_id = {
-        -- string_id = "flag_id",
+        string_id = "flag_id",
         attributes = {
         },
         functions = {
@@ -1481,7 +1481,7 @@ classes = {
         }
     },
     bodypart_id = {
-        -- string_id = "bodypart_id",
+        string_id = "bodypart_id",
         attributes = {
 
         },
@@ -1490,7 +1490,7 @@ classes = {
         }
     },
     field_type_str_id = {
-        -- string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1499,7 +1499,7 @@ classes = {
         }
     },
     field_type_id = {
-        -- string_id = "field_type_id",
+        string_id = "field_type_id",
         attributes = {
 
         },
@@ -1509,7 +1509,7 @@ classes = {
     },
     -- this next set of class objects is going to be... painful.
     fd_null = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1526,7 +1526,7 @@ classes = {
         }
     },
     fd_blood = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1534,7 +1534,7 @@ classes = {
         }
         },
     fd_bile = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1542,7 +1542,7 @@ classes = {
         }
         },
     fd_extinguisher = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1550,7 +1550,7 @@ classes = {
         }
         },
     fd_gibs_flesh = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1558,7 +1558,7 @@ classes = {
         }
         },
     fd_gibs_veggy = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1566,7 +1566,7 @@ classes = {
         }
         },
     fd_web = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1574,7 +1574,7 @@ classes = {
         }
         },
     fd_slime = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1582,7 +1582,7 @@ classes = {
         }
     },
     fd_acid = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1590,7 +1590,7 @@ classes = {
         }
         },
     fd_sap = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1598,7 +1598,7 @@ classes = {
         }
         },
     fd_sludge = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1606,7 +1606,7 @@ classes = {
         }
         },
     fd_smoke = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1614,7 +1614,7 @@ classes = {
         }
         },
     fd_toxic_gas = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1622,7 +1622,7 @@ classes = {
         }
         },
     fd_tear_gas = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1630,7 +1630,7 @@ classes = {
         }
         },
     fd_nuke_gas = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1638,7 +1638,7 @@ classes = {
         }
         },
     fd_gas_vent = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1646,7 +1646,7 @@ classes = {
         }
         },
     fd_fire_vent = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1654,7 +1654,7 @@ classes = {
         }
         },
     fd_flame_burst = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1662,7 +1662,7 @@ classes = {
         }
         },
     fd_electricity = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1670,7 +1670,7 @@ classes = {
         }
         },
     fd_fatigue = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1678,7 +1678,7 @@ classes = {
         }
         },
     fd_push_items = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1686,7 +1686,7 @@ classes = {
         }
         },
     fd_shock_vent = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1694,7 +1694,7 @@ classes = {
         }
         },
     fd_acid_vent = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1702,7 +1702,7 @@ classes = {
         }
         },
     fd_plasma = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1710,7 +1710,7 @@ classes = {
         }
         },
     fd_laser = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1718,7 +1718,7 @@ classes = {
         }
         },
     fd_dazzling = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1726,7 +1726,7 @@ classes = {
         }
         },
     fd_blood_veggy = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1734,7 +1734,7 @@ classes = {
         }
         },
     fd_blood_insect = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1742,7 +1742,7 @@ classes = {
         }
         },
     fd_blood_invertebrate = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1750,7 +1750,7 @@ classes = {
         }
         },
     fd_gibs_insect = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1758,7 +1758,7 @@ classes = {
         }
         },
     fd_gibs_invertebrate = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1766,7 +1766,7 @@ classes = {
         }
         },
     fd_bees = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1774,7 +1774,7 @@ classes = {
         }
         },
     fd_incendiary = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1782,7 +1782,7 @@ classes = {
         }
         },
     fd_relax_gas = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1790,7 +1790,7 @@ classes = {
         }
         },
     fd_fungal_haze = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1798,7 +1798,7 @@ classes = {
         }
         },
     fd_cold_air2 = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1806,7 +1806,7 @@ classes = {
         }
         },
     fd_cold_air3 = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1814,7 +1814,7 @@ classes = {
         }
         },
     fd_cold_air4 = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1822,7 +1822,7 @@ classes = {
         }
         },
     fd_hot_air1 = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1830,7 +1830,7 @@ classes = {
         }
         },
     fd_hot_air2 = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1838,7 +1838,7 @@ classes = {
         }
         },
     fd_hot_air3 = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1846,7 +1846,7 @@ classes = {
         }
         },
     fd_hot_air4 = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1854,7 +1854,7 @@ classes = {
         }
         },
     fd_fungicidal_gas = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1862,7 +1862,7 @@ classes = {
         }
         },
     fd_insecticidal_gas = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1870,7 +1870,7 @@ classes = {
         }
         },
     fd_smoke_vent = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1878,7 +1878,7 @@ classes = {
         }
         },
     fd_tindalos_rift = {
-      -- string_id = "field_type_str_id",
+      string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -2108,7 +2108,7 @@ classes = {
     },
     ter_t = {
         int_id = "ter_id",
-      -- string_id = "ter_str_id",
+      string_id = "ter_str_id",
 
         attributes = {
             close = { type = "ter_str_id", writable = true },
@@ -2133,7 +2133,7 @@ classes = {
     },
     furn_t = {
         int_id = "furn_id",
-      -- string_id = "furn_str_id",
+      string_id = "furn_str_id",
 
         attributes = {
             close = { type = "furn_str_id", writable = true },
@@ -2435,49 +2435,49 @@ classes = {
         },
         },
     martialart = {
-      -- string_id = "matype_id",
+      string_id = "matype_id",
         attributes = {
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     material_type = {
-      -- string_id = "material_id",
+        string_id = "material_id",
         attributes = {
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     start_location = {
-      -- string_id = "start_location_id",
+      string_id = "start_location_id",
         attributes = {
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     -- ma_buff = {
-    --   -- string_id = "mabuff_id",
+    --   string_id = "mabuff_id",
     --     attributes = {
     --     },
     --     functions = {
     --     }
     -- },
     ma_technique = {
-      -- string_id = "matec_id",
+      string_id = "matec_id",
         attributes = {
         },
         functions = {
         }
         },
     Skill = {
-      -- string_id = "skill_id",
+      string_id = "skill_id",
         attributes = {
         },
         functions = {
         }
         },
     quality = {
-      -- string_id = "quality_id",
+      string_id = "quality_id",
         attributes = {
             -- name = { type = "string", writable = false } -- this doesn't seem to have ever existed...?
         },
@@ -2485,21 +2485,21 @@ classes = {
         }
         },
     npc_template = {
-      -- string_id = "npc_template_id",
+      string_id = "npc_template_id",
         attributes = {
         },
         functions = {
         }
         },
     species_type = {
-      -- string_id = "species_id",
+      string_id = "species_id",
         attributes = {
         },
         functions = {
         }
         },
     ammunition_type = {
-      -- string_id = "ammotype",
+      string_id = "ammotype",
         attributes = {
         },
         functions = {
@@ -2520,7 +2520,7 @@ classes = {
         -- }
     },
     mtype = {
-      -- string_id = "mtype_id",
+      string_id = "mtype_id",
         attributes = {
             agro = { type = "int", writable = true },
             armor_acid = { type = "int", writable = true },
@@ -2696,7 +2696,7 @@ classes = {
     },
     trap = {
         int_id = "trap_id",
-      -- string_id = "trap_str_id",
+      string_id = "trap_str_id",
         attributes = {
             id = { type = "trap_str_id" },
             loadid = { type = "trap_id" },
