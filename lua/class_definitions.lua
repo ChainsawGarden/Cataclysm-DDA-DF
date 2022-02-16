@@ -474,6 +474,12 @@ classes = {
             { name = "get_quality", rval = "int", args = { "quality_id" } },
         }
     },
+    bionic_id = {
+        string_id = "bionic_id",
+        attributes = {
+
+        }
+    },
     bionic_data = {
        -- string_id = "bionic_id",
         attributes = {
