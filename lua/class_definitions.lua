@@ -507,7 +507,7 @@ classes = {
         }
     },
     morale_type = {
-        string_id = "morale_type"
+        string_id = "morale_type",
         attributes = {
 
         },
