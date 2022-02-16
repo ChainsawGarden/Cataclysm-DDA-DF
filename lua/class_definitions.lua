@@ -112,9 +112,9 @@ classes = {
        string_id = "efftype_id",
         attributes = {
         },
-        functions = {
+        -- functions = {
             
-        }
+        -- }
     },
     -- calendar = { -- TO BE RE-ADDED. CALENDAR IS A NAMESPACE IN MODERN CDDA
     --     -- new = { -- modern cata doesn't have calendar as a class.
@@ -1255,8 +1255,8 @@ classes = {
        string_id = "relic_procgen_data",
         attributes = {
         },
-        functions = {   
-        }
+        -- functions = {   
+        -- }
     },
     cpp_int_set = {
         functions = {
@@ -1367,9 +1367,9 @@ classes = {
             --     writable = false
             -- }
         },
-        functions = {
-            -- { name = "&str", rval = "string", args = { } },
-        }
+        -- functions = {
+        --     -- { name = "&str", rval = "string", args = { } },
+        -- }
     },
     character_id = {
         attributes = {
@@ -1459,9 +1459,9 @@ classes = {
         attributes = {
 
         },
-        functions = {
+        -- functions = {
             
-        }
+        -- }
         },
     money = {
         by_value = true,
@@ -1476,36 +1476,36 @@ classes = {
         string_id = "flag_id",
         attributes = {
         },
-        functions = {
+        -- functions = {
             
-        }
+        -- }
     },
     bodypart_id = {
         string_id = "bodypart_id",
         attributes = {
 
         },
-        functions = {
+        -- functions = {
             
-        }
+        -- }
     },
     field_type_str_id = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
+        -- functions = {
             
-        }
+        -- }
     },
     field_type_id = {
         string_id = "field_type_id",
         attributes = {
 
         },
-        functions = {
+        -- functions = {
             
-        }
+        -- }
     },
     -- this next set of class objects is going to be... painful.
     fd_null = {
@@ -1514,312 +1514,312 @@ classes = {
 
         },
         
-        functions = {
-        }
+        -- functions = {
+        -- }
     },
     fd_fire = {
         string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
     },
     fd_blood = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_bile = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_extinguisher = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_gibs_flesh = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_gibs_veggy = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_web = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_slime = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
     },
     fd_acid = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_sap = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_sludge = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_smoke = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_toxic_gas = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_tear_gas = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_nuke_gas = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_gas_vent = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_fire_vent = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_flame_burst = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_electricity = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_fatigue = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_push_items = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_shock_vent = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_acid_vent = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_plasma = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_laser = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_dazzling = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_blood_veggy = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_blood_insect = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_blood_invertebrate = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_gibs_insect = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_gibs_invertebrate = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_bees = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_incendiary = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_relax_gas = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_fungal_haze = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_cold_air2 = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_cold_air3 = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_cold_air4 = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_hot_air1 = {
       string_id = "field_type_str_id",
@@ -2466,44 +2466,44 @@ classes = {
       string_id = "matec_id",
         attributes = {
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     Skill = {
       string_id = "skill_id",
         attributes = {
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     quality = {
       string_id = "quality_id",
         attributes = {
             -- name = { type = "string", writable = false } -- this doesn't seem to have ever existed...?
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     npc_template = {
       string_id = "npc_template_id",
         attributes = {
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     species_type = {
       string_id = "species_id",
         attributes = {
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     ammunition_type = {
       string_id = "ammotype",
         attributes = {
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     MonsterGroup = {
         string_id = "mongroup_id",
