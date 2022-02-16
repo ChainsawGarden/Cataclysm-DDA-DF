@@ -1826,16 +1826,16 @@ classes = {
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_hot_air2 = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_hot_air3 = {
       string_id = "field_type_str_id",
