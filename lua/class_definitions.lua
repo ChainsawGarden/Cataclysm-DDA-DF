@@ -506,6 +506,12 @@ classes = {
             { name = "is_included", rval = "bool", args = { "bionic_id" } },
         }
     },
+    morale_type = {
+        string_id = "morale_type"
+        attributes = {
+
+        },
+    }
     morale_type_data = {
        -- string_id = "morale_type",
         attributes = {
