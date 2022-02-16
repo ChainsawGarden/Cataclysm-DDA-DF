@@ -2119,6 +2119,12 @@ classes = {
             { name = "symbol", rval = "int", args = { } },
         }
     },
+    furn_str_id = {
+        string_id = "furn_str_id",
+        attributes = {
+
+        },
+    },
     furn_t = {
         int_id = "furn_id",
       -- string_id = "furn_str_id",
