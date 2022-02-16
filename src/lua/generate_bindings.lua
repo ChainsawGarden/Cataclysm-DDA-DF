@@ -226,41 +226,43 @@ Leafs are marked by the presence of rval entries.
 --]]
 function generate_overload_tree(classes)
     for class_name, value in pairs(classes) do
-        local functions_by_name = {}
-        for _, func in ipairs(value.functions) do
-            if not func.name then
-                print("Every function of " .. class_name .. " needs a name, doesn't it?")
-            end
-            -- Create the table now. In the next loop below, we can simply assume it already exists
-            functions_by_name[func.name] = {}
-        end
-        -- This creates the mentioned tree: each entry has the key matching the parameter type,
-        -- and the final table (the leaf) has a `r` entry.
-        for _, func in ipairs(value.functions) do
-            local root = functions_by_name[func.name]
-            for _, arg in pairs(func.args) do
-                if not root[arg] then
-                    root[arg] = {}
+        if value.functions then -- if the class has functions
+            local functions_by_name = {}
+            for _, func in ipairs(value.functions) do
+                if not func.name then
+                    print("Every function of " .. class_name .. " needs a name, doesn't it?")
                 end
-                root = root[arg]
+                -- Create the table now. In the next loop below, we can simply assume it already exists
+                functions_by_name[func.name] = {}
             end
-            root.r = { rval = func.rval, cpp_name = func.cpp_name or func.name }
-        end
-        value.functions = functions_by_name
-
-        if value.new then
-            local new_root = {}
-            for _, func in ipairs(value.new) do
-                local root = new_root
-                for _, arg in pairs(func) do
+            -- This creates the mentioned tree: each entry has the key matching the parameter type,
+            -- and the final table (the leaf) has a `r` entry.
+            for _, func in ipairs(value.functions) do
+                local root = functions_by_name[func.name]
+                for _, arg in pairs(func.args) do
                     if not root[arg] then
                         root[arg] = {}
                     end
                     root = root[arg]
                 end
-                root.r = { rval = nil, cpp_name = class_name .. "::" .. class_name }
+                root.r = { rval = func.rval, cpp_name = func.cpp_name or func.name }
             end
-            value.new = new_root
+            value.functions = functions_by_name
+
+            if value.new then
+                local new_root = {}
+                for _, func in ipairs(value.new) do
+                    local root = new_root
+                    for _, arg in pairs(func) do
+                        if not root[arg] then
+                            root[arg] = {}
+                        end
+                        root = root[arg]
+                    end
+                    root.r = { rval = nil, cpp_name = class_name .. "::" .. class_name }
+                end
+                value.new = new_root
+            end
         end
     end
 end
