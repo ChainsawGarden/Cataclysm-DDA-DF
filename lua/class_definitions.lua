@@ -511,7 +511,7 @@ classes = {
         attributes = {
 
         },
-    }
+    },
     morale_type_data = {
        -- string_id = "morale_type",
         attributes = {
