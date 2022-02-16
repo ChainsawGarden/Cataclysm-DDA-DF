@@ -2429,11 +2429,11 @@ classes = {
             { name = "will_reach", rval = "bool", args = { "int", "int" } },
         }
     },
-    -- recipe = {
-    --   -- string_id = "recipe_id",
-    --     attributes = {
-    --     },
-    --     },
+    recipe = {
+        string_id = "recipe_id",
+        attributes = {
+        },
+        },
     martialart = {
       -- string_id = "matype_id",
         attributes = {
