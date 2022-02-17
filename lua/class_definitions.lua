@@ -1842,48 +1842,48 @@ classes = {
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_hot_air4 = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_fungicidal_gas = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_insecticidal_gas = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_smoke_vent = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     fd_tindalos_rift = {
       string_id = "field_type_str_id",
         attributes = {
 
         },
-        functions = {
-        }
+        -- functions = {
+        -- }
         },
     item_vector = {
         attributes = {
@@ -3141,6 +3141,7 @@ for class_name, value in pairs(classes) do
     end
 end
 
+-- == _ID SECTION ==
 -- This adds the int_id wrappers from the class definition as real classes.
 -- All int_id<T>s have the same interface, so we only need to add some mark to T, that this class
 -- T has an int_id of some name.
