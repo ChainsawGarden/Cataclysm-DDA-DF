@@ -475,19 +475,19 @@ for class_name, class in sorted_pairs(classes) do
     end
 end
 
-for class_name, class in sorted_pairs(classes) do
-    local cur_class_name = class_name
+for class_name, class in sorted_pairs(classes) do -- iterate through classes
+    local cur_class_name = class_name -- get current class name (table / "map" key)
     while class do
         if(class.functions) then -- if this class has functions
-            generate_class_function_wrappers(class.functions, class_name, cur_class_name)
-            if class.new then
-                cpp_output = cpp_output .. generate_constructor(class_name, class.new)
+            generate_class_function_wrappers(class.functions, class_name, cur_class_name) -- generate the wrappers
+            if class.new then -- if the class has a newmethod
+                cpp_output = cpp_output .. generate_constructor(class_name, class.new) -- generate its constructor
             end
-            if class.has_equal then
-                cpp_output = cpp_output .. generate_operator(class_name, "eq", "==")
+            if class.has_equal then -- if the class has an equal method
+                cpp_output = cpp_output .. generate_operator(class_name, "eq", "==") -- generate equalmetho
             end
-            cur_class_name = class.parent
-            class = classes[class.parent]
+            cur_class_name = class.parent -- classname is assigned to be its parent's
+            class = classes[class.parent] -- the class is now its parents
         end
     end
 end
