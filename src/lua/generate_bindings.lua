@@ -226,7 +226,7 @@ Leafs are marked by the presence of rval entries.
 --]]
 function generate_overload_tree(classes)
     for class_name, value in pairs(classes) do
-        if value.functions then -- if the class has functions
+        -- if value.functions then -- if the class has functions
             local functions_by_name = {}
             for _, func in ipairs(value.functions) do
                 if not func.name then
@@ -263,7 +263,7 @@ function generate_overload_tree(classes)
                 end
                 value.new = new_root
             end
-        end
+        -- end
     end
 end
 
@@ -478,7 +478,7 @@ end
 for class_name, class in sorted_pairs(classes) do -- iterate through classes
     local cur_class_name = class_name -- get current class name (table / "map" key)
     while class do
-        if(class.functions) then -- if this class has functions
+        -- if(class.functions) then -- if this class has functions
             generate_class_function_wrappers(class.functions, class_name, cur_class_name) -- generate the wrappers
             if class.new then -- if the class has a newmethod
                 cpp_output = cpp_output .. generate_constructor(class_name, class.new) -- generate its constructor
@@ -488,7 +488,7 @@ for class_name, class in sorted_pairs(classes) do -- iterate through classes
             end
             cur_class_name = class.parent -- classname is assigned to be its parent's
             class = classes[class.parent] -- the class is now its parents
-        end
+        -- end
     end
 end
 

@@ -3070,7 +3070,7 @@ for class_name, value in pairs(classes) do -- loop through the classes, get get 
     -- due to this, it will try to treat a `nil` as if it was a table.
     -- it can't do that, and therefore we get the `bad argument #1 to 'ipairs' (table expected, got nil)` error.
     -- tl;dr *every class needs a function. even if it's empty.*
-    if value.functions then -- if the class has functions, continue
+    -- if value.functions then -- if the class has functions, continue
         for _, func in ipairs(value.functions) do -- loop through the functions (and only get the function, not the index!)
             if func.optional_args then -- if we have optional arguments 
                 local i = 0 -- iterator
@@ -3093,7 +3093,7 @@ for class_name, value in pairs(classes) do -- loop through the classes, get get 
         for _, new_func in ipairs(new_functions) do
             table.insert(value.functions, new_func)
         end
-    end -- the class didn't have functions.
+    -- end -- the class didn't have functions.
 end
 
 --[[
@@ -3116,7 +3116,7 @@ for class_name, value in pairs(classes) do
     local existing = { };
     value = classes[value.parent]
     if value then -- if value has content
-        if value.functions then -- if the class has functions
+        -- if value.functions then -- if the class has functions
             while value do
                 for _, func in ipairs(value.functions) do
                     local n = func.name .. "_" .. table.concat(func.args, "|")
@@ -3137,7 +3137,7 @@ for class_name, value in pairs(classes) do
                     i = i + 1
                 end
             end
-        end -- if the class didn't have functions, we'd go to the next classname/value pair.
+        -- end -- if the class didn't have functions, we'd go to the next classname/value pair.
     end
 end
 
