@@ -525,7 +525,7 @@ classes = {
             { name = "is_permanent", rval = "bool", args = { } },
         }
     },
-    encumbrance_data = {
+    encumbrance_data = { -- modrn: cata's lua *does* recognize structs. They seem to be the reason why by_value must be used. P.S. structs and classes may behave similarly, too.
         by_value = true,
         new = {
             { "encumbrance_data" },
@@ -1482,6 +1482,7 @@ classes = {
         }
     },
     bodypart_id = {
+        by_value = true,
         int_id = "bodypart_id",
         -- string_id = "bodypart_id",
         attributes = {
@@ -1499,6 +1500,7 @@ classes = {
         }
     },
     field_type_id = {
+        by_value = true,
         string_id = "field_type_id",
         attributes = {
 
