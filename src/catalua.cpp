@@ -70,6 +70,7 @@
 #include "ret_val.h"
 #include "item_pocket.h"
 #include "vehicle.h"
+#include "string_id.h"
 
 // modernization
 // #include <lua.h>
