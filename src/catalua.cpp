@@ -341,10 +341,10 @@ struct LuaType<float> : public LuaType<int> { // inherit checking because it's a
         lua_pushnumber( L, value );
     }
 };
-template<typename T> // typing functions but for lua values for cata's lua...?
+template<typename T> // LuaType template (which uses a LuaValue type)
 struct LuaType<LuaValue<T>> : public LuaValue<T> {
 };
-template<typename T> // typing functions but for LuaReferences for cata's lua...?
+template<typename T> // LuaType template (which uses a LuaReference type)
 struct LuaType<LuaReference<T>> : public LuaReference<T> {
 };
 
