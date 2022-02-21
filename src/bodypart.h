@@ -107,6 +107,10 @@ struct stat_hp_mods {
 
 struct body_part_type {
     public:
+        // constructor and copy constructor
+        body_part_type();
+        body_part_type(const body_part_type &obj);
+
         bodypart_str_id id;
         bool was_loaded = false;
 
