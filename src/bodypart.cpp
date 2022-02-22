@@ -168,10 +168,12 @@ const bodypart_str_id &convert_bp( body_part bp )
     return body_parts[static_cast<size_t>( bp )];
 }
 
-// void body_part_type::body_part_type( const body_part_type &obj )
-// {
+body_part_type::body_part_type( )
+{
 
-// }
+}
+
+body_part_type::~body_part_type() = default;
 
 void body_part_type::load_bp( const JsonObject &jo, const std::string &src )
 {
