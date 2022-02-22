@@ -173,7 +173,7 @@ body_part_type::body_part_type( )
 
 }
 
-body_part_type::~body_part_type() = default;
+//body_part_type::~body_part_type() = default;
 
 void body_part_type::load_bp( const JsonObject &jo, const std::string &src )
 {
