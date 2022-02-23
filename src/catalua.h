@@ -1,6 +1,8 @@
 #pragma once
 #pragma GCC diagnostic push 
 #pragma GCC diagnostic ignored "-Wunused-function" // ignores the function
+#pragma GCC diagnostic ignored "-Wzero-as-null-pointer-constant" // should fix linux errors
+
 
 #ifndef CATALUA_H
 #define CATALUA_H
