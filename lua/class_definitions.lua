@@ -2423,13 +2423,13 @@ classes = {
             { name = "symbol", rval = "string", args = { } },
             { name = "symbol_color", rval = "nc_color", args = { } },
             { name = "to_item", rval = "item", args = { } },
-            { name = "turns_to_reach", rval = "int", args = { "int", "int" } },
+            { name = "turns_to_reach", rval = "int", args = { "point" } },
             { name = "try_upgrade", rval = nil, args = { "bool" } },
             { name = "hasten_upgrade", rval = nil, args = { } },
             { name = "unset_dest", rval = nil, args = { } },
             { name = "wander", rval = "bool", args = { } },
             { name = "wander_to", rval = nil, args = { "tripoint", "int" } },
-            { name = "will_reach", rval = "bool", args = { "int", "int" } },
+            { name = "will_reach", rval = "bool", args = { "point" } },
         }
     },
     recipe = {
