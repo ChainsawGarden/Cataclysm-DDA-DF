@@ -1986,7 +1986,7 @@ classes = {
             { name = "destroy", rval = nil, args = { "tripoint" } },
             { name = "destroy_furn", rval = nil, args = { "tripoint" } },
             -- { name = "disarm_trap", rval = nil, args = { "tripoint" } },
-            { name = "disp_name", rval = "string", args = { "tripoint" } },
+            { name = "disp_name", rval = "string", args = { "tripoint" } }, -- modern: yep, it is a tripoint. src/map.h
             { name = "displace_vehicle", rval = nil, args = { "vehicle", "tripoint", "bool", "cpp_int_set" } },
             { name = "displace_water", rval = "bool", args = { "tripoint" } },
             -- { name = "draw_circle_furn", rval = nil, args = { "furn_id", "int", "int", "int" } }, -- TODO: add this when needed
@@ -2174,7 +2174,7 @@ classes = {
             { name = "clear_effects", rval = nil, args = { } },
             { name = "die", rval = nil, args = { "Creature" } },
             { name = "digging", rval = "bool", args = { } },
-            { name = "disp_name", rval = "string", args = { } },
+            { name = "disp_name", rval = "string", args = { "bool", "bool" } },
             { name = "dodge_roll", rval = "float", args = { } },
             { name = "fall_damage_mod", rval = "float", args = { } },
             { name = "get_armor_bash", rval = "int", args = { "bodypart_id" } },
@@ -2341,7 +2341,7 @@ classes = {
             { name = "die", rval = nil, args = { "Creature" } },
             { name = "die_in_explosion", rval = nil, args = { "Creature" } },
             { name = "digging", rval = "bool", args = { } },
-            { name = "disp_name", rval = "string", args = { "bool", "bool" } }, -- (possessive, capitalize_first)
+            -- { name = "disp_name", rval = "string", args = { "bool", "bool" } }, -- (possessive, capitalize_first)
             { name = "dodge_roll", rval = "float", args = { } },
             { name = "drop_items_on_death", rval = nil, args = { } },
             { name = "explode", rval = nil, args = { } },
