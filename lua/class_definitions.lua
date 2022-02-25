@@ -2073,7 +2073,7 @@ classes = {
             { name = "pl_sees", rval = "bool", args = { "tripoint", "int" } },
             { name = "place_gas_pump", rval = nil, args = { "point", "int", "string" } },
             { name = "place_gas_pump", rval = nil, args = { "point", "int" } },
-            { name = "place_npc", rval = "int", args = { "point", "npc_template_id" } }, -- maybe we need to fix all the string_ids... the clutter, with this new info, is unneccesary.
+            { name = "place_npc", rval = "character_id", args = { "point", "npc_template_id" } },
             { name = "place_spawns", rval = nil, args = { "mongroup_id", "int", "point", "point", "float", "bool", "bool", "string", "int" } },
             { name = "place_toilet", rval = nil, args = { "point", "int" } },
             { name = "place_vending", rval = nil, args = { "point", "item_group_id", "bool" } },
