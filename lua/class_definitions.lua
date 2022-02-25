@@ -2413,7 +2413,7 @@ classes = {
             { name = "set_special", rval = nil, args = { "string", "int" } },
             { name = "disable_special", rval = nil, args = { "string" } },
             { name = "setpos", rval = nil, args = { "tripoint" } },
-            { name = "shift", rval = nil, args = { "int", "int" } },
+            { name = "shift", rval = nil, args = { "point" } },
             { name = "sight_range", rval = "int", args = { "int" } },
             { name = "skin_name", rval = "string", args = { } },
             { name = "spawn", rval = nil, args = { "tripoint" } },
