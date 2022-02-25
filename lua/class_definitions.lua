@@ -1358,7 +1358,7 @@ classes = {
         },
         functions = {
             -- { name = "&str", rval = "string", args = { } },
-            { name = "str&", rval = "string", args = { } },
+            -- { name = "str&", rval = "string", args = { } },
         }
     },
     itype_id = {
@@ -1373,7 +1373,7 @@ classes = {
         },
         functions = {
             -- { name = "&str", rval = "string", args = { } },
-            { name = "str&", rval = "string", args = { } },
+            -- { name = "str&", rval = "string", args = { } },
         }
     },
     character_id = {
