@@ -1485,7 +1485,7 @@ classes = {
     },
     bodypart_id = {
         by_value = true,
-        int_id = "bodypart_id",
+        -- int_id = "bodypart_id",
         -- string_id = "bodypart_id",
         attributes = {
 
