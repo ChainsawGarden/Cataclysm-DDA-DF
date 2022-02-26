@@ -1494,7 +1494,7 @@ classes = {
         }
     },
     field_type_str_id = {
-        string_id = "field_type_str_id",
+        -- string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1503,7 +1503,7 @@ classes = {
     },
     field_type_id = {
         by_value = true,
-        string_id = "field_type_id",
+        -- string_id = "field_type_id",
         attributes = {
 
         },
