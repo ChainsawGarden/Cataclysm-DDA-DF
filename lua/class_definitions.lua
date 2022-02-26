@@ -1512,7 +1512,7 @@ classes = {
     },
     -- this next set of class objects is going to be... painful.
     fd_null = {
-      string_id = "field_type_str_id",
+        string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1633,7 +1633,7 @@ classes = {
         }
         },
     fd_nuke_gas = {
-      string_id = "field_type_str_id",
+        -- string_id = "field_type_str_id",
         attributes = {
 
         },
