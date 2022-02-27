@@ -127,7 +127,8 @@ using pocket_type = item_pocket::pocket_type; // pocket enums
 using cpp_int_set = std::set<int>; // A set of integers, in C++
 using item_vector = std::vector<item *>;
 using stdfun_chargesof_filter = std::function<bool( const item & )>; // wonk supreme
-using stdfun_chargesof_filter = std::function<void( int )>;
+using stdfun_chargesof_visitor = std::function<void( int )>;
+using optional_tripoint = cata::optional<tripoint>;
 
 // using character_critter = game::critter_by_id<Character>;
 // using player_critter = game::critter_by_id<player>;
