@@ -47,8 +47,11 @@ for classname, class in pairs(classes) do
     io.write("## "..classname.."\n")
     
     io.write("### Functions\n")
-    for name, func in pairs(class.functions) do
-        write_function(name, func)
+    -- for name, func in pairs(class.functions) do
+    --     write_function(name, func)
+    -- end
+    for _, obj in pairs(class.functions) do
+        write_function(obj.name, obj)
     end
     
     io.write("### Attributes\n")
