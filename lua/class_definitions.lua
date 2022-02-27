@@ -508,7 +508,6 @@ classes = {
         }
     },
     morale_type = {
-        string_id = "morale_type",
         attributes = {
 
         },
@@ -1460,7 +1459,6 @@ classes = {
         }
     },
     item_group_id = {
-        string_id = "item_group_id",
         attributes = {
 
         },
@@ -2128,7 +2126,7 @@ classes = {
         }
     },
     furn_str_id = {
-        string_id = "furn_str_id",
+        -- string_id = "furn_str_id",
         attributes = {
 
         },
