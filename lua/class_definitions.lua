@@ -197,6 +197,8 @@ classes = {
             weapon = { type = "item", writable = true },
         },
         functions = {
+            { name = "change_side", rval = "bool", args = { "int", "bool" } },
+            { name = "change_side", rval = "bool", args = { "item_location", "bool" } },
             { name = "amount_worn", rval = "int", args = { "itype_id" } },
             { name = "add_traits", rval = nil, args = { } },
             { name = "aim_per_move", rval = "float", args = { "item", "float" } },
@@ -634,19 +636,16 @@ classes = {
             { name = "bonus_item_warmth", rval = "int", args = { "bodypart_id" } },
             { name = "mod_skill_level", rval = nil, args = { "skill_id", "int" } },
             { name = "burn_move_stamina", rval = nil, args = { "int" } },
-            { name = "calc_focus_equilibrium", rval = "int", args = { } },
-            { name = "can_arm_block", rval = "bool", args = { } },
+            -- { name = "calc_focus_equilibrium", rval = "int", args = { } }, -- avatar class
+            -- { name = "can_arm_block", rval = "bool", args = { } }, -- martial arts
             { name = "can_hear", rval = "bool", args = { "tripoint", "int" } },
-            { name = "can_leg_block", rval = "bool", args = { } },
-            { name = "can_limb_block", rval = "bool", args = { } },
+            -- { name = "can_leg_block", rval = "bool", args = { } }, -- martial arts
+            -- { name = "can_limb_block", rval = "bool", args = { } }, -- martial arts
             { name = "can_melee", rval = "bool", args = { } },
             { name = "can_sleep", rval = "bool", args = { } },
             { name = "can_reload", rval = "bool", args = { "item" } },
             { name = "cancel_activity", rval = nil, args = { } },
-            { name = "change_side", rval = "bool", args = { "int" } },
-            { name = "change_side", rval = "bool", args = { "item" } },
-            { name = "charge_power", rval = nil, args = { "int" } },
-            { name = "charges_of", rval = "int", args = { "string" } },
+            { name = "charges_of", rval = "int", args = { "itype_id", "int", "stdfun_chargesof_filter", "stdfun_chargesof_visitor", "" } },
             { name = "clairvoyance", rval = "int", args = { } },
             { name = "clear_destination", rval = nil, args = { } },
             { name = "clear_miss_reasons", rval = nil, args = { } },
