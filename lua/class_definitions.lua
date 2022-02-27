@@ -200,7 +200,6 @@ classes = {
             { name = "use_charges_if_avail", rval = "bool", args = { "itype_id", "int" } },
             { name = "shift_destination", rval = nil, args = { "point" } },
             { name = "disassemble", rval = "bool", args = { } },
-            { name = "change_side", rval = "bool", args = { "int", "bool" } },
             { name = "change_side", rval = "bool", args = { "item_location", "bool" } },
             { name = "amount_worn", rval = "int", args = { "itype_id" } },
             { name = "add_traits", rval = nil, args = { } },
@@ -968,7 +967,6 @@ classes = {
             { name = "set_companion_mission", rval = nil, args = { "npc", "string" } },
             { name = "shop_restock", rval = nil, args = { } },
             { name = "spawn_at_precise", rval = nil, args = { "point", "tripoint" } },
-            { name = "will_talk_to_u", rval = "bool", args = { "player", "bool" } },
         }
     },
     item = { -- item.h
@@ -1278,7 +1276,7 @@ classes = {
         }
     },
     relic_procgen_id = {
-       string_id = "relic_procgen_data",
+    --    string_id = "relic_procgen_data",
         attributes = {
         },
         functions = {   
@@ -2627,7 +2625,7 @@ classes = {
     overmap = {
         by_value_and_reference = true,
         new = {
-            { "int", "int" },
+            { "point_abs_om" },
         },
         attributes = {
         },
