@@ -121,6 +121,8 @@ using inventory_item_menu_position = game::inventory_item_menu_position; // add 
 using ammotype = string_id<ammunition_type>;
 using rbool = ret_val<bool>;
 using optional_int = cata::optional<int>;
+using point_abs_omt = coords::coord_point<point, coords::origin::abs, coords::omt>;
+using tripoint_om_omt = coords::coord_point<tripoint, coords::origin::overmap, coords::omt>;
 // the wonky zone
 using uidim = std::function<int()>; // for UI dimensioning
 using pocket_type = item_pocket::pocket_type; // pocket enums

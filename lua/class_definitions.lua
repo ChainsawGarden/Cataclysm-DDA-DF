@@ -1215,6 +1215,12 @@ classes = {
         }
     },
     -- modern start
+    tripoint_om_omt = {
+        attributes = {
+        },
+        functions = {
+        }
+    },
     ot_match_pair = {
         attributes = {
         },
@@ -1445,6 +1451,12 @@ classes = {
             { name = "z", rval = "int", args = { } },
             -- { name = "xy", rval = "cppos", args = { "point" } }
             -- { name = "xy", rval = "point", args = { } } -- for the sake of sanity, leave this out.
+        }
+    },
+    point_abs_omt = {
+        attributes = {
+        },
+        functions = {
         }
     },
     tripoint_abs_omt = {
@@ -2614,14 +2626,14 @@ classes = {
         attributes = {
         },
         functions = {
-            { name = "pos", rval = "point", args = { } },
+            { name = "pos", rval = "point_abs_om", args = { } },
             { name = "find_random_omt", rval = "tripoint_om_omt", args = { "string" } },
-            { name = "is_explored", rval = "bool", args = { "int", "int", "int" } },
-            { name = "has_note", rval = "bool", args = { "int", "int", "int" } },
-            { name = "note", rval = "string", args = { "int", "int", "int" } },
+            { name = "is_explored", rval = "bool", args = { "tripoint_om_omt" } },
+            { name = "has_note", rval = "bool", args = { "tripoint_om_omt" } },
+            { name = "note", rval = "string", args = { "tripoint_om_omt" } },
             { name = "add_note", rval = nil, args = { "tripoint_om_omt", "string" } },
             { name = "delete_note", rval = nil, args = { "tripoint_om_omt" } },
-            { name = "global_base_point", rval = "point", args = { } },
+            { name = "global_base_point", rval = "point_abs_omt", args = { } },
             { name = "clear_mon_groups", rval = nil, args = { } },
         }
     },
