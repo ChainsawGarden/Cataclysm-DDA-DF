@@ -1215,6 +1215,12 @@ classes = {
         }
     },
     -- modern start
+    point_abs_om = {
+        attributes = {
+        },
+        functions = {
+        }
+    },
     tripoint_om_omt = {
         attributes = {
         },
