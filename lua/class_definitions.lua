@@ -197,6 +197,7 @@ classes = {
             weapon = { type = "item", writable = true },
         },
         functions = {
+            { name = "use_charges_if_avail", rval = "bool", args = { "itype_id", "int" } },
             { name = "shift_destination", rval = nil, args = { "point" } },
             { name = "disassemble", rval = "bool", args = { } },
             { name = "change_side", rval = "bool", args = { "int", "bool" } },
@@ -663,8 +664,6 @@ classes = {
             { name = "deactivate_bionic", rval = "bool", args = { "int" } },
             { name = "digging", rval = "bool", args = { } },
             { name = "disp_info", rval = nil, args = { } },
-            { name = "disp_name", rval = "string", args = { "bool" } },
-            { name = "disp_name", rval = "string", args = { } },
             { name = "dodge_roll", rval = "float", args = { } },
             { name = "drench_mut_calc", rval = nil, args = { } },
             { name = "apply_wetness_morale", rval = nil, args = { "int" } },
@@ -844,9 +843,6 @@ classes = {
             { name = "rust_rate", rval = "int", args = { } },
             { name = "scored_crit", rval = "bool", args = { "float", "item" } },
             { name = "search_surroundings", rval = nil, args = { } },
-            { name = "sees", rval = "bool", args = { "Creature" } },
-            { name = "sees", rval = "bool", args = { "tripoint" } },
-            { name = "sees", rval = "bool", args = { "tripoint", "bool" } },
             { name = "sees_with_infrared", rval = "bool", args = { "Creature" } },
             { name = "set_highest_cat_level", rval = nil, args = { } },
             { name = "get_skill_level", rval = "int", args = { "skill_id" } },
@@ -881,13 +877,10 @@ classes = {
             { name = "unimpaired_range", rval = "int", args = { } },
             { name = "update_body_wetness", rval = nil, args = { "w_point" } },
             { name = "update_bodytemp", rval = nil, args = { } },
-            { name = "update_health", rval = nil, args = { "int" } },
-            { name = "update_health", rval = nil, args = { } },
             { name = "update_morale", rval = nil, args = { } },
             { name = "update_needs", rval = nil, args = { "int" } },
             { name = "update_stamina", rval = nil, args = { "int" } },
             { name = "use", rval = nil, args = { "int" } },
-            { name = "use_charges_if_avail", rval = "bool", args = { "string", "int" } },
             { name = "use_wielded", rval = nil, args = { } },
             { name = "visibility", rval = "int", args = { } },
             { name = "vomit", rval = nil, args = { } },
@@ -1222,6 +1215,12 @@ classes = {
         }
     },
     -- modern start
+    ot_match_pair = {
+        attributes = {
+        },
+        functions = {
+        }
+    },
     optional_tripoint = {
         attributes = {
         },
@@ -1253,10 +1252,10 @@ classes = {
         },
         attributes = {
             bandage = { type = "bool", writable = true },
-            bandage = { type = "disinfect", writable = true },
-            bandage = { type = "bleed", writable = true },
-            bandage = { type = "bite", writable = true },
-            bandage = { type = "infect", writable = true },
+            disinfect = { type = "bool", writable = true },
+            bleed = { type = "bool", writable = true },
+            bite = { type = "bool", writable = true },
+            infect = { type = "bool", writable = true },
         }
     },
     vehicle = {
@@ -2616,12 +2615,12 @@ classes = {
         },
         functions = {
             { name = "pos", rval = "point", args = { } },
-            { name = "find_random_omt", rval = "tripoint", args = { "string" } },
+            { name = "find_random_omt", rval = "tripoint_om_omt", args = { "string" } },
             { name = "is_explored", rval = "bool", args = { "int", "int", "int" } },
             { name = "has_note", rval = "bool", args = { "int", "int", "int" } },
             { name = "note", rval = "string", args = { "int", "int", "int" } },
-            { name = "add_note", rval = nil, args = { "int", "int", "int", "string" } },
-            { name = "delete_note", rval = nil, args = { "int", "int", "int" } },
+            { name = "add_note", rval = nil, args = { "tripoint_om_omt", "string" } },
+            { name = "delete_note", rval = nil, args = { "tripoint_om_omt" } },
             { name = "global_base_point", rval = "point", args = { } },
             { name = "clear_mon_groups", rval = nil, args = { } },
         }
