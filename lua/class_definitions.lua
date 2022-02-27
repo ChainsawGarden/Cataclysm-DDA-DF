@@ -1512,7 +1512,7 @@ classes = {
     },
     -- this next set of class objects is going to be... painful.
     fd_null = {
-        string_id = "field_type_str_id",
+        -- string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1521,7 +1521,7 @@ classes = {
         }
     },
     fd_fire = {
-        string_id = "field_type_str_id",
+        -- string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1529,7 +1529,7 @@ classes = {
         }
     },
     fd_blood = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1537,7 +1537,7 @@ classes = {
         }
         },
     fd_bile = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1545,7 +1545,7 @@ classes = {
         }
         },
     fd_extinguisher = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1553,7 +1553,7 @@ classes = {
         }
         },
     fd_gibs_flesh = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1561,7 +1561,7 @@ classes = {
         }
         },
     fd_gibs_veggy = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1569,7 +1569,7 @@ classes = {
         }
         },
     fd_web = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1577,7 +1577,7 @@ classes = {
         }
         },
     fd_slime = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1585,7 +1585,7 @@ classes = {
         }
     },
     fd_acid = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1593,7 +1593,7 @@ classes = {
         }
         },
     fd_sap = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1601,7 +1601,7 @@ classes = {
         }
         },
     fd_sludge = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1609,7 +1609,7 @@ classes = {
         }
         },
     fd_smoke = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1617,7 +1617,7 @@ classes = {
         }
         },
     fd_toxic_gas = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1625,7 +1625,7 @@ classes = {
         }
         },
     fd_tear_gas = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1641,7 +1641,7 @@ classes = {
         }
         },
     fd_gas_vent = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1649,7 +1649,7 @@ classes = {
         }
         },
     fd_fire_vent = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1657,7 +1657,7 @@ classes = {
         }
         },
     fd_flame_burst = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1665,7 +1665,7 @@ classes = {
         }
         },
     fd_electricity = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1673,7 +1673,7 @@ classes = {
         }
         },
     fd_fatigue = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1681,7 +1681,7 @@ classes = {
         }
         },
     fd_push_items = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1689,7 +1689,7 @@ classes = {
         }
         },
     fd_shock_vent = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1697,7 +1697,7 @@ classes = {
         }
         },
     fd_acid_vent = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1705,7 +1705,7 @@ classes = {
         }
         },
     fd_plasma = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1713,7 +1713,7 @@ classes = {
         }
         },
     fd_laser = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1721,7 +1721,7 @@ classes = {
         }
         },
     fd_dazzling = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1729,7 +1729,7 @@ classes = {
         }
         },
     fd_blood_veggy = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1737,7 +1737,7 @@ classes = {
         }
         },
     fd_blood_insect = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1745,7 +1745,7 @@ classes = {
         }
         },
     fd_blood_invertebrate = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1753,7 +1753,7 @@ classes = {
         }
         },
     fd_gibs_insect = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1761,7 +1761,7 @@ classes = {
         }
         },
     fd_gibs_invertebrate = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1769,7 +1769,7 @@ classes = {
         }
         },
     fd_bees = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1777,7 +1777,7 @@ classes = {
         }
         },
     fd_incendiary = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1785,7 +1785,7 @@ classes = {
         }
         },
     fd_relax_gas = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1793,7 +1793,7 @@ classes = {
         }
         },
     fd_fungal_haze = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1801,7 +1801,7 @@ classes = {
         }
         },
     fd_cold_air2 = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1809,7 +1809,7 @@ classes = {
         }
         },
     fd_cold_air3 = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1817,7 +1817,7 @@ classes = {
         }
         },
     fd_cold_air4 = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1825,7 +1825,7 @@ classes = {
         }
         },
     fd_hot_air1 = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1833,7 +1833,7 @@ classes = {
         }
         },
     fd_hot_air2 = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1841,7 +1841,7 @@ classes = {
         }
         },
     fd_hot_air3 = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1849,7 +1849,7 @@ classes = {
         }
         },
     fd_hot_air4 = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1857,7 +1857,7 @@ classes = {
         }
         },
     fd_fungicidal_gas = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1865,7 +1865,7 @@ classes = {
         }
         },
     fd_insecticidal_gas = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1873,7 +1873,7 @@ classes = {
         }
         },
     fd_smoke_vent = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
@@ -1881,7 +1881,7 @@ classes = {
         }
         },
     fd_tindalos_rift = {
-      string_id = "field_type_str_id",
+    --   string_id = "field_type_str_id",
         attributes = {
 
         },
