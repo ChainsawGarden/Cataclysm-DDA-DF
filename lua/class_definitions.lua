@@ -556,10 +556,10 @@ classes = {
     -- },
     avatar = { -- modern addition (src/avatar.h)
         attributes = {
-            str_upgrade = { type = "int", writable = true },
-            dex_upgrade = { type = "int", writable = true },
-            int_upgrade = { type = "int", writable = true },
-            per_upgrade = { type = "int", writable = true }
+            -- str_upgrade = { type = "int", writable = true },
+            -- dex_upgrade = { type = "int", writable = true },
+            -- int_upgrade = { type = "int", writable = true },
+            -- per_upgrade = { type = "int", writable = true }
             -- { type = "", writable = true },
         },
         functions = {
