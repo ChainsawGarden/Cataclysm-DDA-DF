@@ -981,7 +981,7 @@ classes = {
             { name = "current_target", rval = "Creature&", args = { } },
             { name = "get_attitude", rval = "npc_attitude", args = { } },
             { name = "get_companion_mission", rval = "npc_companion_mission", args = { } },
-            { name = "get_healing_item", rval = "item&", args = { "bool", "bool", "bool", "bool" } },
+            { name = "get_healing_item", rval = "item&", args = { "healing_options", "bool" } },
             { name = "guaranteed_hostile", rval = "bool", args = { } },
             { name = "has_companion_mission", rval = "bool", args = { } },
             { name = "hostile_anger_level", rval = "int", args = { } },
@@ -1246,6 +1246,21 @@ classes = {
         }
     },
     -- modern start
+    healing_options = {
+        functions = {
+            { name = "clear_all", rval = nil, args = { } }, -- all attributes have to be present, even if empty!
+            { name = "set_all", rval = nil, args = { } },
+            { name = "any_true", rval = "bool", args = { } },
+            { name = "all_false", rval = "bool", args = { } }
+        },
+        attributes = {
+            bandage = { type = "bool", writable = true },
+            bandage = { type = "disinfect", writable = true },
+            bandage = { type = "bleed", writable = true },
+            bandage = { type = "bite", writable = true },
+            bandage = { type = "infect", writable = true },
+        }
+    },
     vehicle = {
         -- we're definitely going to be adding stuff to this. For now, let's get to making a binary.
         functions = {
