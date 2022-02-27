@@ -197,6 +197,7 @@ classes = {
             weapon = { type = "item", writable = true },
         },
         functions = {
+            { name = "amount_worn", rval = "int", args = { "itype_id" } },
             { name = "add_traits", rval = nil, args = { } },
             { name = "aim_per_move", rval = "float", args = { "item", "float" } },
             { name = "bloodType", rval = "field_type_id", args = { } },
@@ -548,6 +549,25 @@ classes = {
     --     functions = {
     --     }
     -- },
+    avatar = { -- modern addition (src/avatar.h)
+        attributes = {
+            { type = "str_upgrade", writable = true },
+            { type = "dex_upgrade", writable = true },
+            { type = "int_upgrade", writable = true },
+            { type = "per_upgrade", writable = true }
+            -- { type = "", writable = true },
+        },
+        functions = {
+            -- { name = "", rval = "", args = {  } },
+            { name = "bionic_by_invlet", rval = "bionic&", args = { "int" } },
+            { name = "disp_morale", rval = nil, args = {  } },
+            { name = "calc_focus_equilibrium", rval = "int", args = { "bool" } },
+            { name = "calc_focus_change", rval = "int", args = {  } },
+            { name = "update_mental_focus", rval = nil, args = {  } },
+            { name = "reset_stats", rval = nil, args = {  } },
+            { name = "get_active_mission_target", rval = "tripoint_abs_omt", args = {  } },
+        }
+    },
     player = {
         parent = "Character",
         attributes = {
@@ -592,15 +612,13 @@ classes = {
             { name = "add_addiction", rval = nil, args = { "add_type", "int" } },
             { name = "add_bionic", rval = nil, args = { "bionic_id" } },
             { name = "add_known_trap", rval = nil, args = { "tripoint", "trap" } },
-            { name = "add_martialart", rval = nil, args = { "matype_id" } },
+            -- { name = "add_martialart", rval = nil, args = { "matype_id" } }, -- src/character_martial_arts.*
             { name = "add_morale", rval = nil, args = { "morale_type", "int" } },
             { name = "add_pain_msg", rval = nil, args = { "int", "bodypart_id" } },
             { name = "addiction_level", rval = "int", args = { "add_type" } },
             { name = "adjacent_tile", rval = "tripoint", args = { } },
             { name = "adjust_for_focus", rval = "int", args = { "int" } },
             { name = "allergy_type", rval = "morale_type", args = { "item" } },
-            { name = "amount_of", rval = "int", args = { "string" } },
-            { name = "amount_worn", rval = "int", args = { "string" } },
             { name = "apply_damage", rval = nil, args = { "Creature", "bodypart_id", "int" } },
             { name = "apply_persistent_morale", rval = nil, args = { } },
             { name = "assign_activity", rval = nil, args = { "activity_id" } },
@@ -611,9 +629,8 @@ classes = {
             { name = "bonus_damage", rval = "float", args = { "bool" } },
             { name = "basic_symbol_color", rval = "nc_color", args = { } },
             { name = "bionic_at_index", rval = "bionic&", args = { "int" } },
-            { name = "bionic_by_invlet", rval = "bionic&", args = { "int" } },
             { name = "blossoms", rval = nil, args = { } },
-            { name = "bodytemp_color", rval = "nc_color", args = { "int" } },
+            { name = "bodytemp_color", rval = "nc_color", args = { "bodypart_id" } },
             { name = "bonus_item_warmth", rval = "int", args = { "bodypart_id" } },
             { name = "mod_skill_level", rval = nil, args = { "skill_id", "int" } },
             { name = "burn_move_stamina", rval = nil, args = { "int" } },
@@ -999,7 +1016,7 @@ classes = {
             { name = "set_companion_mission", rval = nil, args = { "npc", "string" } },
             { name = "shop_restock", rval = nil, args = { } },
             { name = "spawn_at_precise", rval = nil, args = { "point", "tripoint" } },
-            { name = "talk_to_u", rval = nil, args = { } },
+            { name = "will_talk_to_u", rval = "bool", args = { "player", "bool" } },
         }
     },
     item = { -- item.h
