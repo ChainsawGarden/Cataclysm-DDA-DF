@@ -101,7 +101,7 @@ no connection at all to the monster.
 
 classes = {
     gun_mode = {
-       string_id = "gun_mode_id",
+        -- string_id = "gun_mode_id", -- is it needed?
         attributes = {
         },
         functions = {
