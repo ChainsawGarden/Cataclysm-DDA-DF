@@ -101,7 +101,7 @@ no connection at all to the monster.
 
 classes = {
     gun_mode = {
-        -- string_id = "gun_mode_id", -- is it needed?
+        string_id = "gun_mode_id", -- is it needed?
         attributes = {
         },
         functions = {
@@ -1372,7 +1372,7 @@ classes = {
         }
     },
     snippet_id = {
-       string_id = "string_id",
+    --    string_id = "string_id", translation
         by_value = true,
         has_equal = true,
         attributes = {
@@ -1383,7 +1383,7 @@ classes = {
         }
     },
     itype_id = {
-       string_id = "string_id",
+    --    string_id = "string_id",
         by_value = true,
         has_equal = true,
         attributes = {
