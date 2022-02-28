@@ -452,7 +452,7 @@ dofile "../../lua/class_definitions.lua"
 
 -- include our headers
 for _, header in pairs(headers) do
-    cpp_output = cpp_output .. "#include \"" .. header .. "\""..br..br
+    cpp_output = cpp_output .. "#include \"../" .. header .. "\""..br..br
 end
 
 generate_overload_tree(classes)
