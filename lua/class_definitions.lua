@@ -1570,7 +1570,7 @@ classes = {
     --     },
     --     functions = {
     --     }
-    },
+    -- },
     field_type_id = {
         by_value = true,
         -- string_id = "field_type_id",
@@ -1964,7 +1964,7 @@ classes = {
         },
         functions = {
         }
-        },
+    },
     -- modern stop
     uilist = {
         attributes = {
