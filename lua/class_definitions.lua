@@ -1242,15 +1242,18 @@ classes = {
         by_value = true,
         has_equal = true,
         attributes = {
+            x = { type = "int", writable = true },
+            y = { type = "int", writable = true }
+            z = { type = "int", writable = true }
         },
         new = {
             { "tripoint" },
             { "int", "int", "int" },
         },
         functions = {
-            { name = "x", rval = "int", args = { } },
-            { name = "y", rval = "int", args = { } },
-            { name = "z", rval = "int", args = { } },
+            -- { name = "x", rval = "int", args = { } },
+            -- { name = "y", rval = "int", args = { } },
+            -- { name = "z", rval = "int", args = { } },
         }
     },
     -- modern start
