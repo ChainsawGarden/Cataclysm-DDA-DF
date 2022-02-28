@@ -1243,7 +1243,7 @@ classes = {
         has_equal = true,
         attributes = {
             x = { type = "int", writable = true },
-            y = { type = "int", writable = true }
+            y = { type = "int", writable = true },
             z = { type = "int", writable = true }
         },
         new = {
