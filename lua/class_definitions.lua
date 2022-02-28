@@ -3114,14 +3114,14 @@ global_functions = {
     },
     distance = {
         cpp_name = "rl_dist",
-        args = {"int", "int", "int", "int"},
+        args = {"point", "point" },
         rval = "int"
     },
-    trig_dist = {
-        cpp_name = "trig_dist",
-        args = {"int", "int", "int", "int"},
-        rval = "int"
-    },
+    -- trig_dist = { -- cbtt
+    --     cpp_name = "trig_dist",
+    --     args = {"point", "point"},
+    --     rval = "int"
+    -- },
     add_item_to_group = {
         cpp_name = "item_controller->add_item_to_group",
         args = { "string", "string", "int" },
@@ -3147,8 +3147,7 @@ global_functions = {
     },
     create_monster = {
         cpp_name = "create_monster",
-        -- args = { "mtype_id", "tripoint" },
-        args = {}, -- i think this might be required...
+        args = { "mtype_id", "tripoint" }, -- i think this might be required...
         rval = "monster&",
         desc = "Creates and spawns a new monster of given type. Returns a refernce to it, *or* nil if it could not be spawned."
     },
@@ -3181,8 +3180,8 @@ global_functions = {
     },
     omap_choose_point = {
         cpp_name = "ui::omap::choose_point",
-        args = { "tripoint" },
-        rval = "tripoint"
+        args = { "tripoint_abs_omt" },
+        rval = "tripoint_abs_omt"
     }
 }
 
