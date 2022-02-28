@@ -451,8 +451,13 @@ local lua_output = ""
 dofile "../../lua/class_definitions.lua"
 
 -- include our headers
-for _, header in pairs(headers) do
-    cpp_output = cpp_output .. "#include \"../" .. header .. "\""..br..br
+for tmp_n, header in pairs(headers) do
+    if(tmp_n == #headers) then
+        cpp_output = cpp_output .. "#include \"../" .. header .. "\""..br..br
+        cpp_output = cpp_output .. "// Modernized by SambaFidelity/DigiFidelity/ChainsawGarden!"..br..br
+    else
+        cpp_output = cpp_output .. "#include \"../" .. header .. "\""..br
+    end
 end
 
 generate_overload_tree(classes)
