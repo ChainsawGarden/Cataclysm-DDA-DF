@@ -1563,13 +1563,13 @@ classes = {
         functions = {
         }
     },
-    field_type_str_id = {
-        string_id = "field_type_str_id",
-        attributes = {
+    -- field_type_str_id = {
+    --     string_id = "field_type_str_id",
+    --     attributes = {
 
-        },
-        functions = {
-        }
+    --     },
+    --     functions = {
+    --     }
     },
     field_type_id = {
         by_value = true,
