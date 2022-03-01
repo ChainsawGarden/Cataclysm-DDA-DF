@@ -2874,7 +2874,6 @@ enums = {
         "MF_ABSORBS_SPLITS",
         "MF_CBM_CIV",
         "MF_CBM_POWER",
-        "MF_CBM_wev",
         "MF_CBM_SCI",
         "MF_CBM_OP",
         "MF_CBM_TECH",
@@ -2979,9 +2978,12 @@ enums = {
     --     "num_hp_parts",
     -- },
     side = {
-        "side::BOTH",
-        "side::LEFT",
-        "side::RIGHT"
+        -- "side::BOTH",
+        -- "side::LEFT",
+        -- "side::RIGHT"
+        "BOTH",
+        "LEFT",
+        "RIGHT"
     },
     phase_id = {
         "PNULL",
