@@ -394,14 +394,14 @@ function generate_class_function_wrapper(class_name, function_name, func, cur_cl
 end
 
 function generate_constructor(class_name, args)
-    local text = "static int new_" .. class_name .. "(lua_State *L) {"..br
+    local text = "static int new_" .. class_name .. "( lua_State *L ) {"..br
 
     local cbc = function(indentation, stack_index, rval, function_to_call)
         local tab = string.rep("    ", indentation)
 
         -- Push is always done on a value, never on a pointer/reference, therefor don't use
         -- `push_lua_value` (which uses member_type_to_cpp_type to get either LuaValue or LuaReference).
-        local text = tab .. "LuaValue<" .. class_name .. ">::push(L"
+        local text = tab .. "LuaValue<" .. class_name .. ">::push( L"
 
         for i = 1,stack_index do
             text = text .. ", parameter"..i
@@ -420,7 +420,7 @@ function generate_constructor(class_name, args)
 end
 
 function generate_operator(class_name, operator_id, cppname)
-    local text = "static int op_" .. class_name .. "_" .. operator_id .. "(lua_State *L) {"..br
+    local text = "static int op_" .. class_name .. "_" .. operator_id .. "( lua_State *L ) {"..br
 
     text = text .. tab .. "const " .. class_name .. " &lhs = " .. retrieve_lua_value(class_name, 1) .. ";"..br
     text = text .. tab .. "const " .. class_name .. " &rhs = " .. retrieve_lua_value(class_name, 2) .. ";"..br
@@ -508,12 +508,12 @@ end
 
 -- luaL_Reg is the name of the struct in C which this creates and returns.
 function luaL_Reg(cpp_name, lua_name)
-    return tab .. '{"' .. lua_name .. '", ' .. cpp_name .. '},' .. br
+    return tab .. '{ "' .. lua_name .. '", ' .. cpp_name .. ' },' .. br
 end
 -- Creates the LuaValue<T>::FUNCTIONS array, containing all the public functions of the class.
 function generate_functions_static(cpp_type, class, class_name)
     cpp_output = cpp_output .. "template<>" .. br
-    cpp_output = cpp_output .. "const luaL_Reg " .. cpp_type .. "::FUNCTIONS[] = {" .. br
+    cpp_output = cpp_output .. "const luaL_Reg " .. cpp_type .. "::FUNCTIONS[] = { " .. br
     while class do
         for name, _ in sorted_pairs(class.functions) do
             cpp_output = cpp_output .. luaL_Reg("func_" .. class_name .. "_" .. name, name)
@@ -527,7 +527,7 @@ function generate_functions_static(cpp_type, class, class_name)
         class = classes[class.parent]
     end
     cpp_output = cpp_output .. tab .. "{NULL, NULL}" .. br -- sentinel to indicate end of array
-    cpp_output = cpp_output .. "};" .. br
+    cpp_output = cpp_output .. " };" .. br
 end
 -- Creates the LuaValue<T>::READ_MEMBERS map, containing the getters. Example:
 -- const LuaValue<foo>::MRMap LuaValue<foo>::READ_MEMBERS{ { "id", foo_get_id }, ... };
@@ -645,7 +645,7 @@ for enum_name, values in sorted_pairs(enums) do
     cpp_output = cpp_output .. "template<>" .. br
     cpp_output = cpp_output .. "const "..cpp_name.."::EMap "..cpp_name.."::BINDINGS = {"..br
     for _, name in ipairs(values) do
-        cpp_output = cpp_output .. tab.."{\""..name.."\", "..name.."},"..br
+        cpp_output = cpp_output .. tab.."{\" "..name.."\", "..enum_name.."::"..name.." },"..br
     end
     cpp_output = cpp_output .. "};" .. br
 end
@@ -654,10 +654,10 @@ end
 cpp_output = cpp_output .. "static const struct luaL_Reg gamelib [] = {"..br
 
 for name, func in sorted_pairs(global_functions) do
-    cpp_output = cpp_output .. tab .. '{"'..name..'", global_'..name..'},'..br
+    cpp_output = cpp_output .. tab .. '{ "'..name..'", global_'..name..' },'..br
 end
 
-cpp_output = cpp_output .. tab .. "{NULL, NULL}"..br.."};"..br
+cpp_output = cpp_output .. tab .. "{ NULL, NULL }"..br.."};"..br
 
 -- We generated our binding, now write it to a .cpp file for inclusion in
 -- the main source code.
