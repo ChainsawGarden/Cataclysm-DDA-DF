@@ -1042,8 +1042,12 @@ void game::init_lua()
     // Load lua-side metatables etc.
     // lua_dofile( lua_state, FILENAMES["class_defslua"].c_str() );
     // lua_dofile( lua_state, FILENAMES["autoexeclua"].c_str() );
-    lua_dofile( lua_state, PATH_INFO::class_defslua.c_str() );
-    lua_dofile( lua_state, PATH_INFO::autoexeclua.c_str() );
+
+    // lua_dofile( lua_state, PATH_INFO::class_defslua.c_str() );
+    // lua_dofile( lua_state, PATH_INFO::autoexeclua.c_str() );
+
+    lua_dofile( lua_state, PATH_INFO::class_defslua );
+    lua_dofile( lua_state, PATH_INFO::autoexeclua );
 }
 
 #endif // #ifdef LUA; ends the "if lua was defined" preprocessor definitions
