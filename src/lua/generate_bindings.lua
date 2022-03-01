@@ -557,7 +557,7 @@ function generate_write_members_static(cpp_type, class, class_name)
         end
         class = classes[class.parent]
     end
-    cpp_output = cpp_output .. "};" .. br
+    cpp_output = cpp_output .. "}" .. br -- this particular classthing does not need a semicolon
 end
 
 -- The static constant is always define in LuaValue (LuaReference gets it via inheritance)
