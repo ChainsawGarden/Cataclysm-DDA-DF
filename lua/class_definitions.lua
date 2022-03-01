@@ -100,7 +100,7 @@ no connection at all to the monster.
 --]]
 
 headers = {
-    "catalua.h", -- maybe this should fix stuff
+    -- "catalua.h", -- maybe this should fix stuff
     "activity_type.h",
     "bionics.h",
     "bodypart.h",
