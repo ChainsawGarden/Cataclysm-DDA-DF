@@ -154,7 +154,7 @@ function generate_setter(class_name, member_name, member_type, cpp_name)
 
     text = text .. tab .. load_instance(class_name)..br
 
-    text = text .. tab .. check_lua_value(member_type, 2)..";"..br
+    text = text .. tab .. check_lua_value(member_type, 2)..br
     text = text .. tab .. "instance."..cpp_name.." = " .. retrieve_lua_value(member_type, 2)..";"..br
 
     text = text .. tab .. "return 0;  // 0 return values"..br

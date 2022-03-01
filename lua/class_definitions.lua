@@ -368,7 +368,7 @@ classes = {
         attributes = {
         },
         functions = {
-            { name = "elem", rval = "item&", cpp_name = "operator*"; args = { } },
+            { name = "elem", rval = "item&", cpp_name = "operator*", args = { } },
             { name = "inc", rval = nil, cpp_name = "operator++", args = { } },
         }
     },
