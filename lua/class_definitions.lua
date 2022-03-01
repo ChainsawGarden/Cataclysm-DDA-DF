@@ -1465,6 +1465,7 @@ classes = {
     coord_point = {
         -- by_value = true,
         -- has_equal = false,
+        parent = "cppos",
         attributes = {
         },
         functions = {
@@ -1524,8 +1525,9 @@ classes = {
     },
     point_om_sm = {
         -- disable metadata for now?
-        -- by_value = true,
-        -- has_equal = false,
+        parent = "cppos",
+        by_value = true,
+        has_equal = false,
         attributes = {
         },
         functions = {

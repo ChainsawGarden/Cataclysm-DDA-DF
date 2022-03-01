@@ -102,11 +102,13 @@ using angle = units::angle;
 //using translation = translation
 using money = units::money; // for currency
 using itype_id = string_id<itype>; // for itype_ids
-using coord_point = coords::coord_point<point, coords::origin::overmap, coords::sm>; // just get the name out there
+// using coord_point = coords::coord_point<point, coords::origin::overmap, coords::sm>; // just get the name out there
 using tripoint_abs_sm = coords::coord_point<tripoint, coords::origin::abs, coords::sm>;
 using tripoint_om_sm = coords::coord_point<tripoint, coords::origin::overmap, coords::sm>; // for overmap submap tripoints
-using point_om_sm = coords::coord_point<point, coords::origin::overmap, coords::sm>;
+// using point_om_sm = coords::coord_point<point, coords::origin::overmap, coords::sm>;
+
 // using coords::coord_point<point, Origin, Scale>( raw_.xy() );
+
 // using cppos = coords::coord_point<point, Origin, Scale>; // (p)oint (o)rigin and (s)cale
 // using cppos = coords::coord_point<point, coords::origin, coords::scale>; // (p)oint (o)rigin and (s)cale // might end up doing this another way, ditto for be-low.
 using cppos = coords::coord_point<point, coords::origin::overmap, coords::sm>; // monkey see, monkey do
