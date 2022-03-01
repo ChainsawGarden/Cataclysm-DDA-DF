@@ -112,6 +112,8 @@ using tripoint_om_sm = coords::coord_point<tripoint, coords::origin::overmap, co
 // using cppos = coords::coord_point<point, Origin, Scale>; // (p)oint (o)rigin and (s)cale
 // using cppos = coords::coord_point<point, coords::origin, coords::scale>; // (p)oint (o)rigin and (s)cale // might end up doing this another way, ditto for be-low.
 using cppos = coords::coord_point<point, coords::origin::overmap, coords::sm>; // monkey see, monkey do
+using coord_point = cppos;
+using 
 using tripoint_abs_omt = coords::coord_point<tripoint, coords::origin::abs, coords::omt>; // absolute (global) overmap terrain position
 using bodypart_id = int_id<body_part_type>; // bodypart id... an integer ID i believe. interesting.
 using flag_id = string_id<json_flag>; // JSON flag stuff
@@ -184,7 +186,8 @@ static void luaL_setfuncs( lua_State *const L, const luaL_Reg arrary[], const in
 }
 #endif
 
-void lua_dofile( lua_State *L, const char *path );
+// void lua_dofile( lua_State *L, const char *path );
+void lua_dofile( lua_State *L, std::string path );
 
 // Helper functions for making working with the lua API more straightforward.
 // --------------------------------------------------------------------------
@@ -916,7 +919,8 @@ void lua_loadmod( const std::string &base_path, const std::string &main_file_nam
     std::string full_path = base_path + "/" + main_file_name;
     if( file_exist( full_path ) ) {
         lua_file_path = base_path;
-        lua_dofile( lua_state, full_path.c_str() );
+        // lua_dofile( lua_state, full_path.c_str() );
+        lua_dofile( lua_state, full_path );
         lua_file_path.clear();
     }
     // debugmsg("Loading from %s", full_path.c_str());
@@ -973,7 +977,8 @@ static int game_dofile( lua_State *L )
     const char *path = luaL_checkstring( L, 1 );
 
     std::string full_path = lua_file_path + "/" + path;
-    lua_dofile( L, full_path.c_str() );
+    // lua_dofile( L, full_path.c_str() );
+    lua_dofile( L, full_path );
     return 0;
 }
 
