@@ -3171,7 +3171,7 @@ global_functions = {
     -- },
     add_item_to_group = {
         cpp_name = "item_controller->add_item_to_group",
-        args = { "string", "string", "int" },
+        args = { "item_group_id", "itype_id", "int" },
         rval = "bool"
     },
     get_monster_at = {
