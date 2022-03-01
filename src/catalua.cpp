@@ -952,7 +952,8 @@ static int traceback( lua_State *L )
 }
 
 // Load an arbitrary lua file
-void lua_dofile( lua_State *L, const char *path )
+// void lua_dofile( lua_State *L, const char *path )
+void lua_dofile( lua_State *L, std::string path )
 {
     lua_pushcfunction( L, &traceback );
     int err = luaL_loadfile( L, path );
