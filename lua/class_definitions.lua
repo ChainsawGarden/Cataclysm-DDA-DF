@@ -1462,8 +1462,8 @@ classes = {
     --     }
     -- },
     coord_point = {
-        by_value = true,
-        has_equal = false,
+        -- by_value = true,
+        -- has_equal = false,
         attributes = {
         },
         functions = {
@@ -1522,8 +1522,9 @@ classes = {
         }
     },
     point_om_sm = {
-        by_value = true,
-        has_equal = false,
+        -- disable metadata for now?
+        -- by_value = true,
+        -- has_equal = false,
         attributes = {
         },
         functions = {
