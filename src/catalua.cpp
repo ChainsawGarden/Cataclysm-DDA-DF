@@ -1,6 +1,7 @@
 #include "catalua.h"
 
 #include <memory>
+#include <string>
 
 #include "action.h"
 #include "calendar.h"
@@ -186,8 +187,8 @@ static void luaL_setfuncs( lua_State *const L, const luaL_Reg arrary[], const in
 }
 #endif
 
-// void lua_dofile( lua_State *L, const char *path );
-void lua_dofile( lua_State *L, std::string path );
+void lua_dofile( lua_State *L, const char *path );
+// void lua_dofile( lua_State *L, std::string path );
 
 // Helper functions for making working with the lua API more straightforward.
 // --------------------------------------------------------------------------
@@ -919,8 +920,8 @@ void lua_loadmod( const std::string &base_path, const std::string &main_file_nam
     std::string full_path = base_path + "/" + main_file_name;
     if( file_exist( full_path ) ) {
         lua_file_path = base_path;
-        // lua_dofile( lua_state, full_path.c_str() );
-        lua_dofile( lua_state, full_path );
+        lua_dofile( lua_state, full_path.c_str() );
+        // lua_dofile( lua_state, full_path );
         lua_file_path.clear();
     }
     // debugmsg("Loading from %s", full_path.c_str());
@@ -956,8 +957,7 @@ static int traceback( lua_State *L )
 }
 
 // Load an arbitrary lua file
-// void lua_dofile( lua_State *L, const char *path )
-void lua_dofile( lua_State *L, std::string path )
+void lua_dofile( lua_State *L, const char *path )
 {
     lua_pushcfunction( L, &traceback );
     int err = luaL_loadfile( L, path );
@@ -977,8 +977,8 @@ static int game_dofile( lua_State *L )
     const char *path = luaL_checkstring( L, 1 );
 
     std::string full_path = lua_file_path + "/" + path;
-    // lua_dofile( L, full_path.c_str() );
-    lua_dofile( L, full_path );
+    lua_dofile( L, full_path.c_str() );
+    // lua_dofile( L, full_path );
     return 0;
 }
 
@@ -1051,11 +1051,11 @@ void game::init_lua()
     // lua_dofile( lua_state, FILENAMES["class_defslua"].c_str() );
     // lua_dofile( lua_state, FILENAMES["autoexeclua"].c_str() );
 
-    // lua_dofile( lua_state, PATH_INFO::class_defslua.c_str() );
-    // lua_dofile( lua_state, PATH_INFO::autoexeclua.c_str() );
+    lua_dofile( lua_state, PATH_INFO::class_defslua.c_str() );
+    lua_dofile( lua_state, PATH_INFO::autoexeclua.c_str() );
 
-    lua_dofile( lua_state, PATH_INFO::class_defslua );
-    lua_dofile( lua_state, PATH_INFO::autoexeclua );
+    // lua_dofile( lua_state, PATH_INFO::class_defslua );
+    // lua_dofile( lua_state, PATH_INFO::autoexeclua );
 }
 
 #endif // #ifdef LUA; ends the "if lua was defined" preprocessor definitions
