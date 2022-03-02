@@ -620,7 +620,7 @@ void CallbackArgument::Save()
             break;
         case CallbackArgumentType::Id_BodyPart:
             // LuaValue<const int_id<body_part_type>>::push( L, value_body_part_id ); // CAT_BDP
-            LuaValue<body_part_type>::push( L, value_body_part_id ); // CAT_BDP
+            LuaValue<int_id<body_part_type>>::push( L, value_body_part_id ); // CAT_BDP
             break;
         case CallbackArgumentType::Character_Id:
             LuaValue<character_id>::push( L, value_character_id ); // CAT_CHARACTER_ID
@@ -1051,8 +1051,8 @@ void game::init_lua()
     // lua_dofile( lua_state, FILENAMES["class_defslua"].c_str() );
     // lua_dofile( lua_state, FILENAMES["autoexeclua"].c_str() );
 
-    lua_dofile( lua_state, PATH_INFO::class_defslua.c_str() );
-    lua_dofile( lua_state, PATH_INFO::autoexeclua.c_str() );
+    lua_dofile( lua_state, PATH_INFO::class_defslua().c_str() ); // i forgot that PATH_INFO::* are functions.
+    lua_dofile( lua_state, PATH_INFO::autoexeclua().c_str() );
 
     // lua_dofile( lua_state, PATH_INFO::class_defslua );
     // lua_dofile( lua_state, PATH_INFO::autoexeclua );
