@@ -619,7 +619,8 @@ void CallbackArgument::Save()
             LuaEnum<body_part>::push( L, value_body_part );
             break;
         case CallbackArgumentType::Id_BodyPart:
-            LuaValue<const int_id<body_part_type>>::push( L, value_body_part_id ); // CAT_BDP
+            // LuaValue<const int_id<body_part_type>>::push( L, value_body_part_id ); // CAT_BDP
+            LuaValue<body_part_type>::push( L, value_body_part_id ); // CAT_BDP
             break;
         case CallbackArgumentType::Character_Id:
             LuaValue<character_id>::push( L, value_character_id ); // CAT_CHARACTER_ID
