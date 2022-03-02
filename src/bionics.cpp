@@ -464,6 +464,18 @@ bionic_data::bionic_data() : name( no_translation( "bad bionic" ) ),
 {
 }
 
+bionic_data::bionic_data( const bionic_data & ) const
+{
+}
+
+bionic_data::operator==( const bionic_data & ) const
+{
+}
+
+bionic_data::operator==( bionic_data && ) const
+{
+}
+
 static void force_comedown( effect &eff )
 {
     if( eff.is_null() || eff.get_effect_type() == nullptr || eff.get_duration() <= 1_turns ) {
