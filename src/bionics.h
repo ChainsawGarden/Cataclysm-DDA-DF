@@ -30,8 +30,8 @@ struct bionic_data {
     bionic_data();
     bionic_data( const bionic_data & ); // copy constructor
     bionic_data( bionic_data && ); // copy constructor
-    bionic_data &operator=( const bionic_data & ); // operator=
-    bionic_data &operator=( bionic_data && );
+    bionic_data operator=( const bionic_data & ); // operator=
+    bionic_data operator=( bionic_data && );
 
     bionic_id id;
 
