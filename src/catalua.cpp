@@ -572,6 +572,21 @@ void Item_factory::register_iuse_lua( const std::string &name, int lua_function 
                 
 }
 
+void lua_mattack_wrapper::load_internal( const JsonObject &, const std::string & ) {
+    // check out leap actor (src/mattack_actors.cpp):
+    // void leap_actor::load_internal( const JsonObject &obj, const std::string & )
+    // {
+    //     // Mandatory:
+    //     //     max_range = obj.get_float( "max_range" );
+    //     //     // Optional:
+    //     //     min_range = obj.get_float( "min_range", 1.0f );
+    //     //     allow_no_target = obj.get_bool( "allow_no_target", false );
+    //     //     move_cost = obj.get_int( "move_cost", 150 );
+    //     //     min_consider_range = obj.get_float( "min_consider_range", 0.0f );
+    //     //     max_consider_range = obj.get_float( "max_consider_range", 200.0f );
+    //     // }
+}
+
 // register a monster's attack
 void MonsterGenerator::register_monattack_lua( const std::string &name, int lua_function )
 {
