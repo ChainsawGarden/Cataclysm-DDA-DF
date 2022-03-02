@@ -114,7 +114,6 @@ using tripoint_om_sm = coords::coord_point<tripoint, coords::origin::overmap, co
 // using cppos = coords::coord_point<point, coords::origin, coords::scale>; // (p)oint (o)rigin and (s)cale // might end up doing this another way, ditto for be-low.
 using cppos = coords::coord_point<point, coords::origin::overmap, coords::sm>; // monkey see, monkey do
 using coord_point = cppos;
-using 
 using tripoint_abs_omt = coords::coord_point<tripoint, coords::origin::abs, coords::omt>; // absolute (global) overmap terrain position
 using bodypart_id = int_id<body_part_type>; // bodypart id... an integer ID i believe. interesting.
 using flag_id = string_id<json_flag>; // JSON flag stuff
