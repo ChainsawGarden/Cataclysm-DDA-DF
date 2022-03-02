@@ -468,11 +468,11 @@ bionic_data::bionic_data( const bionic_data & )
 {
 }
 
-bionic_data::operator=( const bionic_data & )
+&bionic_data::operator=( const bionic_data & )
 {
 }
 
-bionic_data::operator=( bionic_data && )
+&bionic_data::operator=( bionic_data && )
 {
 }
 
