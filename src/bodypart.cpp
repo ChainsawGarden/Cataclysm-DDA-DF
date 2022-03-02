@@ -168,9 +168,17 @@ const bodypart_str_id &convert_bp( body_part bp )
     return body_parts[static_cast<size_t>( bp )];
 }
 
+
 body_part_type::body_part_type( )
 {
+}
 
+body_part_type::body_part_type( const body_part_type & )
+{
+}
+
+body_part_type::operator=() const
+{
 }
 
 //body_part_type::~body_part_type() = default;
