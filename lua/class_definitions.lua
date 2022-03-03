@@ -537,13 +537,11 @@ classes = {
             capacity = { type = "energy", writable = true },
             charge_time = { type = "int", writable = true },
             description = { type = "translation", writable = true }, -- no longer a simple string; it's a `translation` now.
-            -- fake_item = { type = "string", writable = true },
             fake_item = { type = "itype_id", writable = false },
             name = { type = "translation", writable = true },
             power_activate = { type = "energy", writable = true },
             power_deactivate = { type = "energy", writable = true },
             power_over_time = { type = "energy", writable = true },
-            -- power_source = { type = "bool", writable = true }, -- doesn't exist in bionic_data nor regular bionic struct
             upgraded_bionic = { type = "bionic_id", writable = true },
 
         },
