@@ -539,8 +539,6 @@ classes = {
             description = { type = "translation", writable = true }, -- no longer a simple string; it's a `translation` now.
             -- fake_item = { type = "string", writable = true },
             fake_item = { type = "itype_id", writable = false },
-            -- faulty = { type = "bool", writable = true }, -- doesn't exist in bionic_data nor regular bionic struct
-            -- gun_bionic = { type = "bool", writable = true }, -- doesn't exist in bionic_data nor regular bionic struct
             name = { type = "translation", writable = true },
             power_activate = { type = "energy", writable = true },
             power_deactivate = { type = "energy", writable = true },
