@@ -546,9 +546,8 @@ classes = {
             power_deactivate = { type = "energy", writable = true },
             power_over_time = { type = "energy", writable = true },
             -- power_source = { type = "bool", writable = true }, -- doesn't exist in bionic_data nor regular bionic struct
-            -- toggled = { type = "bool", writable = true }, -- may have been replaced by activated
             upgraded_bionic = { type = "bionic_id", writable = true },
-            -- weapon_bionic = { type = "bool", writable = true }, -- doesn't exist in bionic_data nor regular bionic struct
+
         },
         functions = {
             { name = "is_included", rval = "bool", args = { "bionic_id" } },
