@@ -532,7 +532,6 @@ classes = {
         string_id = "bionic_id",
         attributes = {
             activated = { type = "bool", writable = true },
-            -- armor_interface = { type = "bool", writable = true },
             -- capacity = { type = "int", writable = true },
             capacity = { type = "energy", writable = true },
             charge_time = { type = "int", writable = true },
