@@ -64,13 +64,13 @@ jobs:
           - name: Windows Tiles x64
             mxe: x86_64
             artifact: windows-tiles-x64
-            os: windows-2019
+            os: ubuntu-18.04
             ext: zip
             content: application/zip
           - name: Windows Tiles x32
             mxe: i686
             artifact: windows-tiles-x32
-            os: windows-2019
+            os: ubuntu-18.04
             ext: zip
             content: application/zip
           - name: Linux Tiles x64
@@ -131,25 +131,17 @@ jobs:
       - name: Install dependencies (windows)
         if: matrix.mxe != 'none'
         run: |
-          # sudo apt-get install lua5.3 liblua5.3-dev lua5.2 liblua5.2 astyle autoconf automake autopoint bash bison bzip2 cmake flex gettext git g++ gperf intltool \
-          #   libffi-dev libgdk-pixbuf2.0-dev libtool libltdl-dev libssl-dev libxml-parser-perl lzip make mingw-w64 openssl \
-          #   p7zip-full patch perl pkg-config python ruby scons sed unzip wget xz-utils g++-multilib libc6-dev-i386 libtool-bin
-          vcpkg integrate install
+          sudo apt-get install lua5.3 liblua5.3-dev lua5.2 liblua5.2 astyle autoconf automake autopoint bash bison bzip2 cmake flex gettext git g++ gperf intltool \
+            libffi-dev libgdk-pixbuf2.0-dev libtool libltdl-dev libssl-dev libxml-parser-perl lzip make mingw-w64 openssl \
+            p7zip-full patch perl pkg-config python ruby scons sed unzip wget xz-utils g++-multilib libc6-dev-i386 libtool-bin
       - name: Install MXE
         if: matrix.mxe != 'none'
         run: |
-          # sudo apt-get install software-properties-common lsb-release
-          # sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 86B72ED9
-          # sudo add-apt-repository "deb [arch=amd64] https://pkg.mxe.cc/repos/apt `lsb_release -sc` main"
-          # sudo apt update
-          # sudo apt-get install mxe-{i686,x86-64}-w64-mingw32.static-{sdl2,sdl2-ttf,sdl2-image,sdl2-mixer,gettext,lua}
-          curl -L -o mxe-${{ matrix.mxe }}.tar.xz https://github.com/BrettDong/MXE-GCC/releases/download/mxe-gcc-11.2/mxe-${{ matrix.mxe }}.tar.xz
-          curl -L -o mxe-${{ matrix.mxe }}.tar.xz.sha256 https://github.com/BrettDong/MXE-GCC/releases/download/mxe-gcc-11.2/mxe-${{ matrix.mxe }}.tar.xz.sha256
-          shasum -a 256 -c ./mxe-${{ matrix.mxe }}.tar.xz.sha256
-          sudo tar xJf mxe-${{ matrix.mxe }}.tar.xz -C /opt
-          curl -L -o libbacktrace-${{ matrix.mxe }}-w64-mingw32.tar.gz https://github.com/Qrox/libbacktrace/releases/download/2020-01-03/libbacktrace-${{ matrix.mxe }}-w64-mingw32.tar.gz
-          shasum -a 256 -c ./build-scripts/libbacktrace-${{ matrix.mxe }}-w64-mingw32-sha256
-          sudo tar -xzf libbacktrace-${{ matrix.mxe }}-w64-mingw32.tar.gz --exclude=LICENSE -C /opt/mxe/usr/${{ matrix.mxe }}-w64-mingw32.static.gcc11
+          sudo apt-get install software-properties-common lsb-release
+          sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 86B72ED9
+          sudo add-apt-repository "deb [arch=amd64] https://pkg.mxe.cc/repos/apt `lsb_release -sc` main"
+          sudo apt update
+          sudo apt-get install mxe-{i686,x86-64}-w64-mingw32.static-{sdl2,sdl2-ttf,sdl2-image,sdl2-mixer,gettext,lua}
       - name: Install dependencies (Linux)
         if: runner.os == 'Linux' && matrix.mxe == 'none' && matrix.android == 'none' 
         run: |
