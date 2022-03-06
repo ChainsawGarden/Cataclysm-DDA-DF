@@ -8,7 +8,7 @@ on:
 jobs:
   release:
     name: Create Release
-    runs-on: ubuntu-latest
+    runs-on: debian-latest
     outputs:
       upload_url: ${{ steps.create_release.outputs.upload_url }}
       timestamp: ${{ steps.get-timestamp.outputs.time }}
@@ -104,21 +104,21 @@ jobs:
             ext: dmg
             content: application/x-apple-diskimage
           - name: Android x64
-            os: ubuntu-latest
+            os: debian-latest
             mxe: none
             android: arm64
             artifact: android-x64
             ext: apk
             content: application/apk
           - name: Android x32
-            os: ubuntu-latest
+            os: debian-latest
             mxe: none
             android: arm32
             artifact: android-x32
             ext: apk
             content: application/apk 
           - name: Android Bundle
-            os: ubuntu-latest
+            os: debian-latest
             mxe: none
             android: bundle
             artifact: android-bundle
