@@ -8,7 +8,7 @@ on:
 jobs:
   release:
     name: Create Release
-    runs-on: debian-latest
+    runs-on: ubuntu-latest
     outputs:
       upload_url: ${{ steps.create_release.outputs.upload_url }}
       timestamp: ${{ steps.get-timestamp.outputs.time }}
@@ -64,13 +64,13 @@ jobs:
           - name: Windows Tiles x64
             mxe: x86_64
             artifact: windows-tiles-x64
-            os: ubuntu-20.04
+            os: windows-2019
             ext: zip
             content: application/zip
           - name: Windows Tiles x32
             mxe: i686
             artifact: windows-tiles-x32
-            os: ubuntu-20.04
+            os: windows-2019
             ext: zip
             content: application/zip
           - name: Linux Tiles x64
@@ -104,21 +104,21 @@ jobs:
             ext: dmg
             content: application/x-apple-diskimage
           - name: Android x64
-            os: debian-latest
+            os: ubuntu-latest
             mxe: none
             android: arm64
             artifact: android-x64
             ext: apk
             content: application/apk
           - name: Android x32
-            os: debian-latest
+            os: ubuntu-latest
             mxe: none
             android: arm32
             artifact: android-x32
             ext: apk
             content: application/apk 
           - name: Android Bundle
-            os: debian-latest
+            os: ubuntu-latest
             mxe: none
             android: bundle
             artifact: android-bundle
