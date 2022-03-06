@@ -131,7 +131,6 @@ jobs:
       - name: Install dependencies (windows)
         if: matrix.mxe != 'none'
         run: |
-          sudo sed 's@http://in.archive.ubuntu.com/@http://archive.ubuntu.com/@' -i /etc/sources.list
           sudo apt-get update
           sudo apt-get upgrade
           sudo apt-get install lua5.3 liblua5.3-dev lua5.2 liblua5.2 astyle autoconf automake autopoint bash bison bzip2 cmake flex gettext git g++ gperf intltool \
