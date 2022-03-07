@@ -385,7 +385,6 @@ classes = {
     },
     game = {
         attributes = {
-            -- lightning_active = { type = "bool", writable = true }, -- not present in class `game`. But, present in weather class.
         },
         functions = {
             -- { name = "add_zombie", rval = "bool", args = { "monster" } }, -- TODO: find possible modern equivalent.
