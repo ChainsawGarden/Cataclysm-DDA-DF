@@ -468,17 +468,21 @@ bionic_data::bionic_data( const bionic_data & )
 {
 }
 
-bionic_data bionic_data::operator=( const bionic_data & )
+bionic_data bionic_data::operator=( const bionic_data &other )
 {
+    name = other.name;
+    description = other.description;
+    capacity = other.capacity;
+    return *this;
 }
 
-bionic_data bionic_data::operator=( bionic_data && )
+bionic_data bionic_data::operator=( bionic_data &&other )
 {
+    name = other.name;
+    description = other.description;
+    capacity = other.capacity;
+    return *this;
 }
-
-bionic_data bionic_data::operator=( const bionic_data & ) = default;
-
-bionic_data bionic_data::operator=( bionic_data && ) = default;
 
 static void force_comedown( effect &eff )
 {
