@@ -177,9 +177,10 @@ body_part_type::body_part_type( const body_part_type & )
 {
 }
 
-// body_part_type body_part_type::operator=()
-// {
-// }
+body_part_type body_part_type::operator=()
+{
+    return *this;
+}
 
 //body_part_type::~body_part_type() = default;
 
