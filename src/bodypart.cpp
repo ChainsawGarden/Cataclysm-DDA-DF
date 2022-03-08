@@ -177,8 +177,9 @@ body_part_type::body_part_type( const body_part_type & )
 {
 }
 
-body_part_type &body_part_type::operator=( const body_part_type &other )
+body_part_type &body_part_type::operator=( const body_part_type & )
 {
+    // TODO: Actually copy values to this b_p_t.
     return *this;
 }
 
