@@ -144,8 +144,7 @@ using ot_match_pair = std::pair<std::string, ot_match_type>;
 
 // using critter_player = game::critter_by_id<Character>;
 
-// lua_state = nullptr; // let lua be defined in a .cpp file
-*lua_state = nullptr;
+extern lua_State *lua_state = nullptr; // let lua be defined in a .cpp file
 
 // Keep track of the current mod from which we are executing, so that
 // we know where to load files from.
