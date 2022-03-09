@@ -145,6 +145,7 @@ using ot_match_pair = std::pair<std::string, ot_match_type>;
 // using critter_player = game::critter_by_id<Character>;
 
 // lua_state = nullptr; // let lua be defined in a .cpp file
+*lua_state = nullptr;
 
 // Keep track of the current mod from which we are executing, so that
 // we know where to load files from.
@@ -936,7 +937,6 @@ void lua_loadmod( const std::string &base_path, const std::string &main_file_nam
     if( file_exist( full_path ) ) {
         lua_file_path = base_path;
         lua_dofile( lua_state, full_path.c_str() );
-        // lua_dofile( lua_state, full_path );
         lua_file_path.clear();
     }
     // debugmsg("Loading from %s", full_path.c_str());

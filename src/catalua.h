@@ -141,7 +141,7 @@ extern std::stringstream lua_output_stream; // string fstream for general output
 extern std::stringstream lua_error_stream; // string fstream for errors?
 
 #ifdef LUA // second lua section; outside of the CallbackArgument struct.
-    lua_State *lua_state = nullptr; // the lua state variable
+    lua_State *lua_state; // the lua state variable
 
     using overmap_direction = om_direction::type; // alias for overmap direction type
     int luah_store_in_registry( lua_State *L, int stackpos );
