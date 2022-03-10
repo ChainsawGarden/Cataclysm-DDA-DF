@@ -103,10 +103,8 @@ using angle = units::angle;
 //using translation = translation
 using money = units::money; // for currency
 using itype_id = string_id<itype>; // for itype_ids
-// using coord_point = coords::coord_point<point, coords::origin::overmap, coords::sm>; // just get the name out there
 using tripoint_abs_sm = coords::coord_point<tripoint, coords::origin::abs, coords::sm>;
 using tripoint_om_sm = coords::coord_point<tripoint, coords::origin::overmap, coords::sm>; // for overmap submap tripoints
-// using point_om_sm = coords::coord_point<point, coords::origin::overmap, coords::sm>;
 
 // using coords::coord_point<point, Origin, Scale>( raw_.xy() );
 
@@ -144,7 +142,7 @@ using ot_match_pair = std::pair<std::string, ot_match_type>;
 
 // using critter_player = game::critter_by_id<Character>;
 
-extern lua_State *lua_state = nullptr; // let lua be defined in a .cpp file
+lua_State *lua_state = nullptr; // let lua be defined in a .cpp file
 
 // Keep track of the current mod from which we are executing, so that
 // we know where to load files from.
