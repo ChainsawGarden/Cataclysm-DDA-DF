@@ -1433,21 +1433,7 @@ classes = {
         functions = {
         }
     },
-    -- cppos = {
-    --     by_value = true,
-    --     has_equal = false,
-    --     attributes = {
-    --     },
-    --     functions = {
-    --         { name = "to_string", rval = "string", args = { } },
-    --         { name = "x", rval = "int", args = { } },
-    --         { name = "y", rval = "int", args = { } },
-    --         -- { name = "z", rval = "int", args = { } },
-    --         -- { name = "xy", rval = "cppos", args = { "point" } } -- for the sake of sanity, leave this out.
-    --         -- { name = "xy", rval = "point", args = { } } -- for the sake of sanity, leave this out.
-    --     }
-    -- },
-    coord_point = {
+    coord_point = { -- cppos is kill
         -- by_value = true,
         -- has_equal = false,
         attributes = {
