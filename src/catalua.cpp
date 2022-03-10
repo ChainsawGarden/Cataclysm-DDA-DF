@@ -924,7 +924,8 @@ static int game_register_monattack( lua_State *L )
     return 0; // 0 return values
 }
 
-#include "lua/catabindings.cpp"
+// #include "lua/catabindings.cpp"
+#include "catabindings.cpp"
 
 // Load the main file of a mod
 void lua_loadmod( const std::string &base_path, const std::string &main_file_name )

@@ -107,7 +107,8 @@
 #include "live_view.h"
 #include "loading_ui.h"
 // lua console include
-#include "lua/lua_console.h" 
+// #include "lua/lua_console.h" 
+#include "lua_console.h" 
 // lua console include
 #include "location.h"
 #include "magic.h"
