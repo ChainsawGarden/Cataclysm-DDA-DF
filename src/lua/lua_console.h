@@ -11,7 +11,7 @@
 
 class nc_color;
 
-extern class lua_console
+class lua_console
 {
     public:
         lua_console();
