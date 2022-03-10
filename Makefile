@@ -703,7 +703,8 @@ ifdef LUA
   CXXFLAGS += $(LUA_CFLAGS) # add C++ Flags
 
   CXXFLAGS += -DLUA # C++ flag for lua is -DLUA
-  LUA_DEPENDENCIES = $(LUASRC_DIR)/catabindings.cpp # set the lua deps to the catabindings file
+  # LUA_DEPENDENCIES = $(LUASRC_DIR)/catabindings.cpp # set the lua deps to the catabindings file
+  LUA_DEPENDENCIES = $(SRC_DIR)/catabindings.cpp # set the lua deps to the catabindings file
   BINDIST_EXTRAS  += $(LUA_DIR) # extra stuff to bind (lua dir specifically) ? bind to what?
 endif
 # lua bloc pkg installation end
@@ -1015,8 +1016,9 @@ src/version.h: version
 
 src/version.cpp: src/version.h
 # The below switches to the lua directory and runs lua
-$(LUASRC_DIR)/catabindings.cpp: $(LUA_DIR)/class_definitions.lua $(LUASRC_DIR)/generate_bindings.lua # does something with a catabindings C++ srcfile and two lua files (class defs & gen bindings) ?
-	cd $(LUASRC_DIR) && /usr/bin/$(LUA_BINARY) generate_bindings.lua 
+# $(LUASRC_DIR)/catabindings.cpp: $(LUA_DIR)/class_definitions.lua $(LUASRC_DIR)/generate_bindings.lua # does something with a catabindings C++ srcfile and two lua files (class defs & gen bindings) ?
+$(SRC_DIR)/catabindings.cpp: $(LUA_DIR)/class_definitions.lua $(SRC_DIR)/generate_bindings.lua # does something with a catabindings C++ srcfile and two lua files (class defs & gen bindings) ?
+	cd $(SRC_DIR) && /usr/bin/$(LUA_BINARY) generate_bindings.lua 
 #cd $(LUASRC_DIR) && $(LUA_BINARY) generate_bindings.lua # original
 # the above is the most problematic
 # For our linux targets, it can not find Lua. The following will be displayed whenever the linux target tries to run the line:
@@ -1040,7 +1042,7 @@ clean: clean-tests clean-object_creator clean-pch
 	rm -rf *$(TARGET_NAME) *$(TILES_TARGET_NAME)
 	rm -rf *$(TILES_TARGET_NAME).exe *$(TARGET_NAME).exe *$(TARGET_NAME).a
 	rm -rf *obj *objwin
-	rm -f $(SRC_DIR)/version.h $(LUASRC_DIR)/catabindings.cpp
+	rm -f $(SRC_DIR)/version.h $(SRC_DIR)/catabindings.cpp
 	rm -rf *$(BINDIST_DIR) *cataclysmdda-*.tar.gz *cataclysmdda-*.zip
 	rm -f $(CHKJSON_BIN)
 

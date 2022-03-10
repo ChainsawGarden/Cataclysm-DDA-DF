@@ -26,9 +26,8 @@
 #include <vector>
 
 // lua bloc include start
-extern "C" {
-    #include "lua/lua_console.h"
-}
+// #include "lua/lua_console.h"
+#include "lua_console.h"
 // lua bloc include end
 #include "achievement.h"
 #include "action.h"

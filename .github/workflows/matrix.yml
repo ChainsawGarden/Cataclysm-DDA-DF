@@ -105,7 +105,7 @@ jobs:
     - name: install dependencies (mac)
       if: runner.os == 'macOS'
       run: |
-          HOMEBREW_NO_AUTO_UPDATE=yes HOMEBREW_NO_INSTALL_CLEANUP=yes brew install sdl2 sdl2_image sdl2_ttf sdl2_mixer gettext ccache parallel
+          HOMEBREW_NO_AUTO_UPDATE=yes HOMEBREW_NO_INSTALL_CLEANUP=yes brew install lua@5.1 lua@5.3 sdl2 sdl2_image sdl2_ttf sdl2_mixer gettext ccache parallel
     - name: prepare
       run: bash ./build-scripts/requirements.sh
     - name: Get Date

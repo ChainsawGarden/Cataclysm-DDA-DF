@@ -285,3 +285,30 @@ if (MINGW AND NOT RELEASE)
             ${RuntimeLib_SDL_SOUND}
             DESTINATION ${BIN_PREFIX})
 endif ()
+
+# lua section
+
+MESSAGE(STATUS "Searching for Lua library --\n")
+
+SET(CATACLYSM_DDA_LUA_BINDING_SOURCES
+    # ${CMAKE_SOURCE_DIR}/lua/class_definitions.lua
+    # ${CMAKE_SOURCE_DIR}/src/lua/generate_bindings.lua
+    ${CMAKE_SOURCE_DIR}/src/generate_bindings.lua
+)
+
+add_custom_target (
+	lua_bindings
+	ALL
+	# DEPENDS ${CMAKE_SOURCE_DIR}/src/lua/catabindings.cpp
+	DEPENDS ${CMAKE_SOURCE_DIR}/src/catabindings.cpp
+	WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+)
+
+ADD_CUSTOM_COMMAND (
+	# OUTPUT ${CMAKE_SOURCE_DIR}/src/lua/catabindings.cpp
+	OUTPUT ${CMAKE_SOURCE_DIR}/src/catabindings.cpp
+	COMMAND ${LUA_BINARY} generate_bindings.lua
+	DEPENDS ${CATACLYSM_DDA_LUA_BINDING_SOURCES}
+	# WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/src/lua
+	WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/src
+)
