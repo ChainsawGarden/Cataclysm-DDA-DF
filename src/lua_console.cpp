@@ -8,8 +8,9 @@
 #include "point.h" // has `struct point` predefs
 
 // lua_console::lua_console() : cWin( catacurses::newwin( lines, width, 0, 0 ) ),
-lua_console::lua_console() : cWin( catacurses::newwin( lines, width, point_zero ),
-    iWin( catacurses::newwin( 1, width, point_zero ) )
+lua_console::lua_console() : 
+    cWin( catacurses::newwin( lines, width, point_zero ),
+    iWin( catacurses::newwin( 1, width, point_zero )
 {
 #ifndef LUA
     text_stack.push_back( {_( "This build does not support Lua." ), c_red} );
