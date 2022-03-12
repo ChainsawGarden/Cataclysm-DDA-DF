@@ -10,14 +10,14 @@
 // lua_console::lua_console() : cWin( catacurses::newwin( lines, width, 0, 0 ) ),
 lua_console::lua_console() : 
     cWin( catacurses::newwin( lines, width, point_zero ),
-    iWin( catacurses::newwin( 1, width, point_zero )
+    iWin( catacurses::newwin( 1, width, point_zero ) )
 {
-#ifndef LUA
-    text_stack.push_back( {_( "This build does not support Lua." ), c_red} );
-#else
-    text_stack.push_back( {_( "Welcome to the Lua console! Here you can enter Lua code." ), c_green} );
-#endif
-    text_stack.push_back( {_( "Press [Esc] to close the Lua console." ), c_blue} );
+    #ifndef LUA
+        text_stack.push_back( {_( "This build does not support Lua." ), c_red} );
+    #else
+        text_stack.push_back( {_( "Welcome to the Lua console! Here you can enter Lua code." ), c_green} );
+    #endif
+        text_stack.push_back( {_( "Press [Esc] to close the Lua console." ), c_blue} );
 }
 
 lua_console::~lua_console() = default;
