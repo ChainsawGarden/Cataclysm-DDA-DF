@@ -463,10 +463,10 @@ dofile "../lua/class_definitions.lua"
 -- end
 for tmp_n, header in pairs(headers) do
     if(tmp_n == #headers) then
-        cpp_output = cpp_output .. "#include \" .. header .. "\""..br..br
+        cpp_output = cpp_output .. "#include \"" .. header .. "\""..br..br
         cpp_output = cpp_output .. "// Modernized by SambaFidelity/ChainsawGarden!"..br..br
     else
-        cpp_output = cpp_output .. "#include \" .. header .. "\""..br
+        cpp_output = cpp_output .. "#include \"" .. header .. "\""..br
     end
 end
 
