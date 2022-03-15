@@ -363,9 +363,6 @@ template<> // typing functions for cata's Lua (pertaining to coordstuff)
 struct LuaType<coords::coord_point<tripoint, coords::origin::overmap, coords::omt>> { // inherit checking because it's all the same to Lua
 };
 template<> // typing functions for cata's Lua (pertaining to coordstuff)
-struct LuaType<coords::coord_point<point, coords::origin::overmap, coords::sm>> { // inherit checking because it's all the same to Lua
-};
-template<> // typing functions for cata's Lua (pertaining to coordstuff)
 struct LuaType<coords::coord_point<tripoint, coords::origin::abs, coords::omt>> { // inherit checking because it's all the same to Lua
 };
 template<> // typing functions for cata's Lua (pertaining to coordstuff)
