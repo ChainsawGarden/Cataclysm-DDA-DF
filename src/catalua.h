@@ -38,7 +38,6 @@ extern "C" {
 #include "overmap.h" // for overmap class and stuff
 #include "omdata.h" // for overmap data
 
-
 // callback arg types
 enum CallbackArgumentType : int {
     Integer,

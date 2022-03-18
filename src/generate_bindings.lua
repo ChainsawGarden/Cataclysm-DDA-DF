@@ -470,13 +470,13 @@ for tmp_n, header in pairs(headers) do
     end
 end
 
-for tmp_n, using_var in pairs(usings) do
-    if(tmp_n == #usings) then
-        cpp_output = cpp_output .. "// `using` directives are such a pain!"..br..br
-    else
-        cpp_output = cpp_output .. using_var ..br
-    end
-end
+-- for tmp_n, using_var in pairs(usings) do
+--     if(tmp_n == #usings) then
+--         cpp_output = cpp_output .. "// `using` directives are such a pain!"..br..br
+--     else
+--         cpp_output = cpp_output .. using_var ..br
+--     end
+-- end
 
 generate_overload_tree(classes)
 

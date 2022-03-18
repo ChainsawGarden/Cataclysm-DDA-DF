@@ -103,15 +103,26 @@ using angle = units::angle;
 //using translation = translation
 using money = units::money; // for currency
 using itype_id = string_id<itype>; // for itype_ids
-using tripoint_abs_sm = coords::coord_point<tripoint, coords::origin::abs, coords::sm>;
-using tripoint_om_sm = coords::coord_point<tripoint, coords::origin::overmap, coords::sm>; // for overmap submap tripoints
 
 // using coords::coord_point<point, Origin, Scale>( raw_.xy() );
 
 // using cppos = coords::coord_point<point, Origin, Scale>; // (p)oint (o)rigin and (s)cale
 // using cppos = coords::coord_point<point, coords::origin, coords::scale>; // (p)oint (o)rigin and (s)cale // might end up doing this another way, ditto for be-low.
-using coord_point = coords::coord_point<point, coords::origin::overmap, coords::sm>;
-using tripoint_abs_omt = coords::coord_point<tripoint, coords::origin::abs, coords::omt>; // absolute (global) overmap terrain position
+
+// using coord_point = coords::coord_point<point, coords::origin::overmap, coords::sm>;
+// using tripoint_abs_sm = coords::coord_point<tripoint, coords::origin::abs, coords::sm>;
+// using tripoint_om_sm = coords::coord_point<tripoint, coords::origin::overmap, coords::sm>; // for overmap submap tripoints
+// using tripoint_abs_omt = coords::coord_point<tripoint, coords::origin::abs, coords::omt>; // absolute (global) overmap terrain position
+// using point_abs_omt = coords::coord_point<point, coords::origin::abs, coords::omt>;
+// using tripoint_om_omt = coords::coord_point<tripoint, coords::origin::overmap, coords::omt>;
+
+static const coord_point coord_point_var;
+static const tripoint_abs_sm tripoint_abs_sm_var;
+static const tripoint_om_sm tripoint_om_sm_var;
+static const tripoint_abs_omt tripoint_abs_omt_var;
+static const point_abs_omt point_abs_omt_var;
+static const tripoint_om_omt tripoint_om_omt_var;
+
 using bodypart_id = int_id<body_part_type>; // bodypart id... an integer ID i believe. interesting.
 using flag_id = string_id<json_flag>; // JSON flag stuff
 // using chara_id = character_id; // hopefully redundant like the `using translation`
@@ -122,8 +133,7 @@ using inventory_item_menu_position = game::inventory_item_menu_position; // add 
 using ammotype = string_id<ammunition_type>;
 using rbool = ret_val<bool>;
 using optional_int = cata::optional<int>;
-using point_abs_omt = coords::coord_point<point, coords::origin::abs, coords::omt>;
-using tripoint_om_omt = coords::coord_point<tripoint, coords::origin::overmap, coords::omt>;
+
 // the wonky zone
 using uidim = std::function<int()>; // for UI dimensioning
 using pocket_type = item_pocket::pocket_type; // pocket enums
