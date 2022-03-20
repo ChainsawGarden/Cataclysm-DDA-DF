@@ -1286,7 +1286,7 @@ classes = {
         functions = {
         }
     },
-    tripoint_om_omt = {
+    tripoint_om_omt_var = {
         by_value = true,
         attributes = {
         },
@@ -1471,20 +1471,34 @@ classes = {
         functions = {
         }
     },
-    coord_point = { -- cppos is kill
+    -- coord_point = { -- coord_point is kill
+    --     by_value = true,
+    --     -- has_equal = false,
+    --     attributes = {
+    --     },
+    --     functions = {
+    --         { name = "to_string", rval = "string", args = { } },
+    --         { name = "x", rval = "int", args = { } },
+    --         { name = "y", rval = "int", args = { } },
+    --         -- { name = "z", rval = "int", args = { } }, -- ? ? ? is this really treated like a pointstruct?
+    --         -- { name = "xy", rval = "cppos", args = { "point" } } -- cppos == coord_point<point, Origin, Scale>( raw_.xy() )
+    --         -- { name = "xy", rval = "point", args = { } } -- for the sake of sanity, leave this out.
+    --     }
+    -- },
+
+    -- point_om_sm_var 
+    point_om_sm = {
+        -- disable metadata for now?
+        -- parent = "cppos",
         by_value = true,
-        -- has_equal = false,
+        has_equal = false,
         attributes = {
         },
         functions = {
-            { name = "to_string", rval = "string", args = { } },
-            { name = "x", rval = "int", args = { } },
-            { name = "y", rval = "int", args = { } },
-            -- { name = "z", rval = "int", args = { } }, -- ? ? ? is this really treated like a pointstruct?
-            -- { name = "xy", rval = "cppos", args = { "point" } } -- cppos == coord_point<point, Origin, Scale>( raw_.xy() )
-            -- { name = "xy", rval = "point", args = { } } -- for the sake of sanity, leave this out.
+            { name = "to_string", rval = "string", args = { } }
         }
     },
+    -- tripoint_abs_sm_var 
     tripoint_abs_sm = {
         by_value = true,
         has_equal = false,
@@ -1497,6 +1511,7 @@ classes = {
             { name = "z", rval = "int", args = { } }
         }
     },
+    -- tripoint_om_sm_var
     tripoint_om_sm = {
         by_value = true,
         has_equal = false,
@@ -1507,17 +1522,9 @@ classes = {
             { name = "x", rval = "int", args = { } },
             { name = "y", rval = "int", args = { } },
             { name = "z", rval = "int", args = { } },
-            -- { name = "xy", rval = "cppos", args = { "point" } }
-            -- { name = "xy", rval = "point", args = { } } -- for the sake of sanity, leave this out.
         }
     },
-    point_abs_omt = {
-        by_value = true,        
-        attributes = {
-        },
-        functions = {
-        }
-    },
+    -- tripoint_abs_omt_var
     tripoint_abs_omt = {
         by_value = true,
         has_equal = false,
@@ -1528,19 +1535,14 @@ classes = {
             { name = "x", rval = "int", args = { } },
             { name = "y", rval = "int", args = { } },
             { name = "z", rval = "int", args = { } },
-            -- { name = "xy", rval = "cppos", args = { "point" } }
-            -- { name = "xy", rval = "point", args = { } } -- for the sake of sanity, leave this out.
         }
     },
-    point_om_sm = {
-        -- disable metadata for now?
-        -- parent = "cppos",
-        by_value = true,
-        has_equal = false,
+    -- point_abs_omt_var
+    point_abs_omt = {
+        by_value = true,        
         attributes = {
         },
         functions = {
-            { name = "to_string", rval = "string", args = { } }
         }
     },
     item_group_id = {

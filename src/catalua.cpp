@@ -109,14 +109,14 @@ using itype_id = string_id<itype>; // for itype_ids
 // using cppos = coords::coord_point<point, Origin, Scale>; // (p)oint (o)rigin and (s)cale
 // using cppos = coords::coord_point<point, coords::origin, coords::scale>; // (p)oint (o)rigin and (s)cale // might end up doing this another way, ditto for be-low.
 
-// using coord_point = coords::coord_point<point, coords::origin::overmap, coords::sm>;
+// using point_om_sm = coords::coord_point<point, coords::origin::overmap, coords::sm>;
 // using tripoint_abs_sm = coords::coord_point<tripoint, coords::origin::abs, coords::sm>;
 // using tripoint_om_sm = coords::coord_point<tripoint, coords::origin::overmap, coords::sm>; // for overmap submap tripoints
 // using tripoint_abs_omt = coords::coord_point<tripoint, coords::origin::abs, coords::omt>; // absolute (global) overmap terrain position
 // using point_abs_omt = coords::coord_point<point, coords::origin::abs, coords::omt>;
 // using tripoint_om_omt = coords::coord_point<tripoint, coords::origin::overmap, coords::omt>;
 
-static const coord_point coord_point_var;
+static const point_om_sm point_om_sm_var;
 static const tripoint_abs_sm tripoint_abs_sm_var;
 static const tripoint_om_sm tripoint_om_sm_var;
 static const tripoint_abs_omt tripoint_abs_omt_var;
