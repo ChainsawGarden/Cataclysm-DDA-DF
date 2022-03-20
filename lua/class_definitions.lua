@@ -1279,20 +1279,6 @@ classes = {
         }
     },
     -- modern start
-    point_abs_om = {
-        by_value = true,
-        attributes = {
-        },
-        functions = {
-        }
-    },
-    tripoint_om_omt_var = {
-        by_value = true,
-        attributes = {
-        },
-        functions = {
-        }
-    },
     ot_match_pair = {
         attributes = {
         },
@@ -1485,7 +1471,21 @@ classes = {
     --         -- { name = "xy", rval = "point", args = { } } -- for the sake of sanity, leave this out.
     --     }
     -- },
-
+    point_abs_om = {
+        by_value = true,
+        attributes = {
+        },
+        functions = {
+        }
+    },
+    -- tripoint_om_omt_var
+    tripoint_om_omt = {
+        by_value = true,
+        attributes = {
+        },
+        functions = {
+        }
+    },
     -- point_om_sm_var 
     point_om_sm = {
         -- disable metadata for now?
