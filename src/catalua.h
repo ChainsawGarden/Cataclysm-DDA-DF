@@ -29,6 +29,7 @@ extern "C" {
 
 
 // modern additions
+#include "weather_type.h" // for weather typing stuff
 #include "string_input_popup.h" // for string input
 #include "item_factory.h" // for item factory stuff
 #include "monstergenerator.h" // for mongen stuff
