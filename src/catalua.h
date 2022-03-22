@@ -122,10 +122,10 @@ struct CallbackArgument {
     //     type( CallbackArgumentType::Weather_Id ), value_weather_id( arg_value ) {
     // }
     CallbackArgument( Character_Type arg_value ) :
-        type( CallbackArgumentType::Character_Type ), value_character_id( arg_value ) {
+        type( CallbackArgumentType::Character_Type ), value_character( arg_value ) {
     }
     CallbackArgument( weather_type arg_value ) :
-        type( CallbackArgumentType::Weather ), value_weather_id( arg_value ) {
+        type( CallbackArgumentType::Weather ), value_weather( arg_value ) {
     }
     // CallbackArgument(  arg_value ) :
     //     type( CallbackArgumentType:: ), value_character_id( arg_value ) {
