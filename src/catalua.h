@@ -72,7 +72,7 @@ struct CallbackArgument {
     const int_id<body_part_type> value_body_part_id; // value body part id is modern
     // character_id value_character_id; // value character is modern
     // weather_type_id value_weather_id; // value weather is modern 
-    Character value_character; // value character is modern
+    struct Character value_character; // value character is modern
     weather_type value_weather; // value weather is modern 
 
     // the below `CallbackArgument` "things" are constructors with various overloads.
