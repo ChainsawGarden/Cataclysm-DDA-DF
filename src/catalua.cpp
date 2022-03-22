@@ -126,7 +126,7 @@ using itype_id = string_id<itype>; // for itype_ids
 
 using bodypart_id = int_id<body_part_type>; // bodypart id... an integer ID i believe. interesting.
 using flag_id = string_id<json_flag>; // JSON flag stuff
-using chara_id = character_id; // hopefully redundant like the `using translation`
+// using chara_id = character_id; // hopefully redundant like the `using translation`
 using field_type_str_id = string_id<field_type>;
 using field_type_id = int_id<field_type>;
 using snippet_id = string_id<translation>;
@@ -386,24 +386,24 @@ template<typename T> // LuaType template (which uses a LuaReference type)
 struct LuaType<LuaReference<T>> : public LuaReference<T> {
 };
 
-template<> // typing functions for cata's Lua (pertaining to coordstuff)
-struct LuaType<coords::coord_point<point, coords::origin::abs, coords::omt>> { // inherit checking because it's all the same to Lua
-};
-template<> // typing functions for cata's Lua (pertaining to coordstuff)
-struct LuaType<coords::coord_point<tripoint, coords::origin::overmap, coords::omt>> { // inherit checking because it's all the same to Lua
-};
-template<> // typing functions for cata's Lua (pertaining to coordstuff)
-struct LuaType<coords::coord_point<tripoint, coords::origin::abs, coords::omt>> { // inherit checking because it's all the same to Lua
-};
-template<> // typing functions for cata's Lua (pertaining to coordstuff)
-struct LuaType<coords::coord_point<point, coords::origin::overmap, coords::sm>> { // inherit checking because it's all the same to Lua
-};
-template<> // typing functions for cata's Lua (pertaining to coordstuff)
-struct LuaType<coords::coord_point<tripoint, coords::origin::abs, coords::sm>> { // inherit checking because it's all the same to Lua
-};
-template<> // typing functions for cata's Lua (pertaining to coordstuff)
-struct LuaType<coords::coord_point<tripoint, coords::origin::overmap, coords::sm>> { // inherit checking because it's all the same to Lua
-};
+// template<> // typing functions for cata's Lua (pertaining to coordstuff)
+// struct LuaType<coords::coord_point<point, coords::origin::abs, coords::omt>> { // inherit checking because it's all the same to Lua
+// };
+// template<> // typing functions for cata's Lua (pertaining to coordstuff)
+// struct LuaType<coords::coord_point<tripoint, coords::origin::overmap, coords::omt>> { // inherit checking because it's all the same to Lua
+// };
+// template<> // typing functions for cata's Lua (pertaining to coordstuff)
+// struct LuaType<coords::coord_point<tripoint, coords::origin::abs, coords::omt>> { // inherit checking because it's all the same to Lua
+// };
+// template<> // typing functions for cata's Lua (pertaining to coordstuff)
+// struct LuaType<coords::coord_point<point, coords::origin::overmap, coords::sm>> { // inherit checking because it's all the same to Lua
+// };
+// template<> // typing functions for cata's Lua (pertaining to coordstuff)
+// struct LuaType<coords::coord_point<tripoint, coords::origin::abs, coords::sm>> { // inherit checking because it's all the same to Lua
+// };
+// template<> // typing functions for cata's Lua (pertaining to coordstuff)
+// struct LuaType<coords::coord_point<tripoint, coords::origin::overmap, coords::sm>> { // inherit checking because it's all the same to Lua
+// };
 
 /** This basically transforms a string (therefore inheriting from LuaType<string>) into a C++
  * enumeration value. It simply contains a table of string-to-enum-values. */
