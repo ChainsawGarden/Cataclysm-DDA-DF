@@ -133,36 +133,36 @@ using snippet_id = string_id<translation>;
 using inventory_item_menu_position = game::inventory_item_menu_position; // add inventory pos enum
 using ammotype = string_id<ammunition_type>;
 
-// using rbool = ret_val<bool>;
-ret_val<bool> rbool;
+// using rbool = ret_val<bool>; // fixme
+// ret_val<bool> rbool;
 
 // using optional_int = cata::optional<int>;
-cata::optional<int> optional_int;
+// cata::optional<int> optional_int;
 
 // the wonky zone
 // using uidim = std::function<int()>; // for UI dimensioning
-std::function<int()> uidim; // for UI dimensioning
+// std::function<int()> uidim; // for UI dimensioning
 
-// using pocket_type = item_pocket::pocket_type; // pocket enums
-item_pocket::pocket_type pocket_type; // pocket enums
+using pocket_type = item_pocket::pocket_type; // pocket enums
+// item_pocket::pocket_type pocket_type; // pocket enums
 
-// using cpp_int_set = std::set<int>; // A set of integers, in C++
-std::set<int> cpp_int_set; // A set of integers, in C++
+using cpp_int_set = std::set<int>; // A set of integers, in C++
+// std::set<int> cpp_int_set; // A set of integers, in C++
 
-// using item_vector = std::vector<item *>;
-std::vector<item *> item_vector;
+using item_vector = std::vector<item *>;
+// std::vector<item *> item_vector;
 
-// using stdfun_chargesof_filter = std::function<bool( const item & )>; // wonk supreme
-std::function<bool( const item & )> stdfun_chargesof_filter; // wonk supreme
+using stdfun_chargesof_filter = std::function<bool( const item & )>; // wonk supreme
+// std::function<bool( const item & )> stdfun_chargesof_filter; // wonk supreme
 
-// using stdfun_chargesof_visitor = std::function<void( int )>;
-std::function<void( int )> stdfun_chargesof_visitor;
+using stdfun_chargesof_visitor = std::function<void( int )>;
+// std::function<void( int )> stdfun_chargesof_visitor;
 
-// using optional_tripoint = cata::optional<tripoint>;
-cata::optional<tripoint> optional_tripoint;
+using optional_tripoint = cata::optional<tripoint>;
+// cata::optional<tripoint> optional_tripoint;
 
-// using ot_match_pair = std::pair<std::string, ot_match_type>;
-std::pair<std::string, ot_match_type> ot_match_pair;
+using ot_match_pair = std::pair<std::string, ot_match_type>;
+// std::pair<std::string, ot_match_type> ot_match_pair;
 
 // using character_critter = game::critter_by_id<Character>;
 // using player_critter = game::critter_by_id<player>;

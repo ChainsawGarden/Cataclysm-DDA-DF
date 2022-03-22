@@ -141,42 +141,6 @@ headers = {
     "string_id.h",
 }
 
--- usings = {
---     "using item_stack_iterator = std::list<item>::iterator;",
---     "using volume = units::volume;", 
---     "using mass = units::mass;", 
---     "using npc_template_id = string_id<npc_template>;",
---     "using overmap_direction = om_direction::type;",
---     "using item_group_id = string_id<Item_spawn_data>;",
---     "using energy = units::energy;",
---     "using angle = units::angle;",
---     "using money = units::money;", 
---     "using itype_id = string_id<itype>;", 
---     "using tripoint_abs_sm = coords::coord_point<tripoint, coords::origin::abs, coords::sm>;",
---     "using tripoint_om_sm = coords::coord_point<tripoint, coords::origin::overmap, coords::sm>;", 
---     "using coord_point = coords::coord_point<point, coords::origin::overmap, coords::sm>;",
---     "using tripoint_abs_omt = coords::coord_point<tripoint, coords::origin::abs, coords::omt>;", 
---     "using bodypart_id = int_id<body_part_type>;", 
---     "using flag_id = string_id<json_flag>;", 
---     "using field_type_str_id = string_id<field_type>;",
---     "using field_type_id = int_id<field_type>;",
---     "using snippet_id = string_id<translation>;",
---     "using inventory_item_menu_position = game::inventory_item_menu_position;",
---     "using ammotype = string_id<ammunition_type>;",
---     "using rbool = ret_val<bool>;",
---     "using optional_int = cata::optional<int>;",
---     "using point_abs_omt = coords::coord_point<point, coords::origin::abs, coords::omt>;",
---     "using tripoint_om_omt = coords::coord_point<tripoint, coords::origin::overmap, coords::omt>;",
---     "using uidim = std::function<int()>;", 
---     "using pocket_type = item_pocket::pocket_type;", 
---     "using cpp_int_set = std::set<int>;",
---     "using item_vector = std::vector<item *>;",
---     "using stdfun_chargesof_filter = std::function<bool( const item & )>;",
---     "using stdfun_chargesof_visitor = std::function<void( int )>;",
---     "using optional_tripoint = cata::optional<tripoint>;",
---     "using ot_match_pair = std::pair<std::string, ot_match_type>;"
--- }
-
 classes = {
     gun_mode = {
         string_id = "gun_mode_id", -- is it needed?
@@ -1208,7 +1172,7 @@ classes = {
             { name = "process", rval = "bool", args = { "player", "tripoint", "bool" } },
             -- { name = "process_artifact", rval = nil, args = { "player", "tripoint" } }, -- TODO: find possible modern equivalent.
             { name = "processing_speed", rval = "int", args = { } },
-            { name = "put_in", rval = "rbool", args = { "item", "pocket_type", "bool" } },
+            -- { name = "put_in", rval = "rbool", args = { "item", "pocket_type", "bool" } },
             { name = "ready_to_revive", rval = "bool", args = { "tripoint" } },
             { name = "mod_charges", rval = nil, args = { "int" } },
             { name = "reset_cable", rval = nil, args = { "player" } },
@@ -1342,20 +1306,20 @@ classes = {
         attributes = {
         }
     },
-    optional_int = {
-        functions = {
-        },
-        attributes = {
-        }
-    },
-    rbool = {
-        functions = {
+    -- optional_int = { -- fixme
+    --     functions = {
+    --     },
+    --     attributes = {
+    --     }
+    -- },
+    -- rbool = { -- fixme
+    --     functions = {
 
-        },
-        attributes = {
+    --     },
+    --     attributes = {
 
-        }
-    },
+    --     }
+    -- },
     gunmod_location = {
         functions = {
 
@@ -1364,12 +1328,12 @@ classes = {
 
         }
     },
-    uidim = {
-        functions = {
-        },
-        attributes = {
-        }
-    },
+    -- uidim = {
+    --     functions = {
+    --     },
+    --     attributes = {
+    --     }
+    -- },
     bodypart = {
         by_value = true,
         has_equal = false,
@@ -2777,8 +2741,8 @@ classes = {
             { name = "count_by_charges", rval = "bool", args = { } },
             { name = "get_item_type_string", rval = "string", args = { } },
             { name = "has_use", rval = "bool", args = { } },
-            { name = "invoke", rval = "optional_int", args = { "player", "item", "tripoint" } },
-            { name = "invoke", rval = "optional_int", args = { "player", "item", "tripoint", "string" } },
+            -- { name = "invoke", rval = "optional_int", args = { "player", "item", "tripoint" } },
+            -- { name = "invoke", rval = "optional_int", args = { "player", "item", "tripoint", "string" } },
             { name = "maximum_charges", rval = "int", args = { } },
             { name = "nname", rval = "string", args = { "int" } },
             { name = "tick", rval = "int", args = { "player", "item", "tripoint" } },
