@@ -107,7 +107,8 @@ void activity_type::check_consistency()
     }
 }
 // handles turn activities
-void activity_type::call_do_turn( player_activity *act, player *p ) const
+// void activity_type::call_do_turn( player_activity *act, player *p ) const
+void activity_type::call_do_turn() const
 {
     const auto &pair = activity_handlers::do_turn_functions.find( id_ ); // initiate the pair variable
     if( pair != activity_handlers::do_turn_functions.end() ) { // if the pair isn't what do_turn_fns's end returns?
