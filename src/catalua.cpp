@@ -124,14 +124,14 @@ using itype_id = string_id<itype>; // for itype_ids
 // static const point_abs_omt point_abs_omt_var;
 // static const tripoint_om_omt tripoint_om_omt_var;
 
-using bodypart_id = int_id<body_part_type>; // bodypart id... an integer ID i believe. interesting.
-using flag_id = string_id<json_flag>; // JSON flag stuff
+// using bodypart_id = int_id<body_part_type>; // bodypart id... an integer ID i believe. interesting. // cbtt
+// using flag_id = string_id<json_flag>; // JSON flag stuff // cbtt
 // using chara_id = character_id; // hopefully redundant like the `using translation`
-using field_type_str_id = string_id<field_type>;
-using field_type_id = int_id<field_type>;
-using snippet_id = string_id<translation>;
+// using field_type_str_id = string_id<field_type>; // cbtt
+// using field_type_id = int_id<field_type>; // cbtt
+// using snippet_id = string_id<translation>;
 using inventory_item_menu_position = game::inventory_item_menu_position; // add inventory pos enum
-using ammotype = string_id<ammunition_type>;
+// using ammotype = string_id<ammunition_type>;
 
 // using rbool = ret_val<bool>; // fixme
 // ret_val<bool> rbool;
@@ -149,19 +149,19 @@ using pocket_type = item_pocket::pocket_type; // pocket enums
 using cpp_int_set = std::set<int>; // A set of integers, in C++
 // std::set<int> cpp_int_set; // A set of integers, in C++
 
-using item_vector = std::vector<item *>;
+// using item_vector = std::vector<item *>;
 // std::vector<item *> item_vector;
 
-using stdfun_chargesof_filter = std::function<bool( const item & )>; // wonk supreme
+// using stdfun_chargesof_filter = std::function<bool( const item & )>; // wonk supreme
 // std::function<bool( const item & )> stdfun_chargesof_filter; // wonk supreme
 
-using stdfun_chargesof_visitor = std::function<void( int )>;
+// using stdfun_chargesof_visitor = std::function<void( int )>;
 // std::function<void( int )> stdfun_chargesof_visitor;
 
 using optional_tripoint = cata::optional<tripoint>;
 // cata::optional<tripoint> optional_tripoint;
 
-using ot_match_pair = std::pair<std::string, ot_match_type>;
+// using ot_match_pair = std::pair<std::string, ot_match_type>;
 // std::pair<std::string, ot_match_type> ot_match_pair;
 
 // using character_critter = game::critter_by_id<Character>;

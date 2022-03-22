@@ -674,7 +674,7 @@ classes = {
             { name = "can_sleep", rval = "bool", args = { } },
             { name = "can_reload", rval = "bool", args = { "item" } },
             { name = "cancel_activity", rval = nil, args = { } },
-            { name = "charges_of", rval = "int", args = { "itype_id", "int", "stdfun_chargesof_filter", "stdfun_chargesof_visitor" } },
+            -- { name = "charges_of", rval = "int", args = { "itype_id", "int", "stdfun_chargesof_filter", "stdfun_chargesof_visitor" } },
             { name = "clairvoyance", rval = "int", args = { } },
             { name = "clear_destination", rval = nil, args = { } },
             { name = "clear_miss_reasons", rval = nil, args = { } },
@@ -1243,34 +1243,34 @@ classes = {
         }
     },
     -- modern start
-    ot_match_pair = {
-        attributes = {
-        },
-        functions = {
-        }
-    },
+    -- ot_match_pair = {
+    --     attributes = {
+    --     },
+    --     functions = {
+    --     }
+    -- },
     optional_tripoint = {
         attributes = {
         },
         functions = {
         }
     },
-    stdfun_chargesof_filter = {
-        attributes = {
+    -- stdfun_chargesof_filter = {
+    --     attributes = {
 
-        },
-        functions = {
+    --     },
+    --     functions = {
 
-        }
-    },
-    stdfun_chargesof_visitor = {
-        attributes = {
+    --     }
+    -- },
+    -- stdfun_chargesof_visitor = {
+    --     attributes = {
 
-        },
-        functions = {
+    --     },
+    --     functions = {
             
-        }
-    },
+    --     }
+    -- },
     healing_options = {
         functions = {
             { name = "clear_all", rval = nil, args = { } }, -- all attributes have to be present, even if empty!
@@ -1937,13 +1937,13 @@ classes = {
     --     functions = {
     --     }
     --     },
-    item_vector = {
-        attributes = {
+    -- item_vector = {
+    --     attributes = {
 
-        },
-        functions = {
-        }
-    },
+    --     },
+    --     functions = {
+    --     }
+    -- },
     -- modern stop
     uilist = {
         attributes = {
@@ -2126,7 +2126,7 @@ classes = {
             { name = "place_spawns", rval = nil, args = { "mongroup_id", "int", "point", "point", "float", "bool", "bool", "string", "int" } },
             { name = "place_toilet", rval = nil, args = { "point", "int" } },
             { name = "place_vending", rval = nil, args = { "point", "item_group_id", "bool" } },
-            { name = "put_items_from_loc", rval = "item_vector", args = { "item_group_id", "tripoint", "time_point" } },
+            -- { name = "put_items_from_loc", rval = "item_vector", args = { "item_group_id", "tripoint", "time_point" } },
             { name = "random_outdoor_tile", rval = "point", args = { } },
             -- { name = "remove_field", rval = nil, args = { "tripoint", "field_type_str_id" } }, -- TODO not present
             { name = "remove_trap", rval = nil, args = { "tripoint" } },
