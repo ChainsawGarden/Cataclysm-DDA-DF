@@ -390,7 +390,7 @@ classes = {
             -- { name = "add_zombie", rval = "bool", args = { "monster" } }, -- TODO: find possible modern equivalent.
             -- { name = "add_zombie", rval = "bool", args = { "monster", "bool" } }, -- TODO: find possible modern equivalent.
             { name = "assign_mission_id", rval = "int", args = { } },
-            { name = "assign_npc_id", rval = "character_id", args = { } },
+            -- { name = "assign_npc_id", rval = "character_id", args = { } }, -- cbtt
             -- { name = "cancel_activity", rval = nil, args = { } }, -- TODO: find possible modern equivalent.
             { name = "clear_zombies", rval = nil, args = { } },
             { name = "critter_at", rval = "Creature&", args = { "tripoint" } },
@@ -1415,13 +1415,13 @@ classes = {
             -- { name = "str&", rval = "string", args = { } },
         }
     },
-    character_id = {
-        string_id = "character_id"
-        attributes = {
-        },
-        functions = {
-        }
-    },
+    -- character_id = { -- cbtt
+    --     string_id = "character_id"
+    --     attributes = {
+    --     },
+    --     functions = {
+    --     }
+    -- },
     -- coord_point = { -- coord_point is kill
     --     by_value = true,
     --     -- has_equal = false,
@@ -2123,7 +2123,7 @@ classes = {
             { name = "pl_sees", rval = "bool", args = { "tripoint", "int" } },
             { name = "place_gas_pump", rval = nil, args = { "point", "int", "string" } },
             { name = "place_gas_pump", rval = nil, args = { "point", "int" } },
-            { name = "place_npc", rval = "character_id", args = { "point", "npc_template_id" } },
+            -- { name = "place_npc", rval = "character_id", args = { "point", "npc_template_id" } }, -- cbtt
             { name = "place_spawns", rval = nil, args = { "mongroup_id", "int", "point", "point", "float", "bool", "bool", "string", "int" } },
             { name = "place_toilet", rval = nil, args = { "point", "int" } },
             { name = "place_vending", rval = nil, args = { "point", "item_group_id", "bool" } },
