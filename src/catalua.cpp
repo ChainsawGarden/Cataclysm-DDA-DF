@@ -683,11 +683,17 @@ void CallbackArgument::Save()
             // LuaValue<const int_id<body_part_type>>::push( L, value_body_part_id ); // CAT_BDP
             LuaValue<int_id<body_part_type>>::push( L, value_body_part_id ); // CAT_BDP
             break;
-        case CallbackArgumentType::Character_Id:
-            LuaValue<character_id>::push( L, value_character_id ); // CAT_CHARACTER_ID
+        // case CallbackArgumentType::Character_Id:
+        //     LuaValue<character_id>::push( L, value_character_id ); // CAT_CHARACTER_ID
+        //     break;
+        // case CallbackArgumentType::Weather_Id:
+        //     LuaValue<weather_type_id>::push( L, value_weather_id ); // CAT_WEATHER_ID
+        //     break;
+        case CallbackArgumentType::Character:
+            LuaValue<Character>::push( L, value_character ); // CAT_CHARACTER_ID
             break;
-        case CallbackArgumentType::Weather_Id:
-            LuaValue<weather_type_id>::push( L, value_weather_id ); // CAT_WEATHER_ID
+        case CallbackArgumentType::Weather:
+            LuaValue<weather_type>::push( L, value_weather ); // CAT_WEATHER_ID
             break;
         default:
             lua_pushnil( L );

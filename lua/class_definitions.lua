@@ -1416,6 +1416,7 @@ classes = {
         }
     },
     character_id = {
+        string_id = "character_id"
         attributes = {
         },
         functions = {

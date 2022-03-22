@@ -52,8 +52,10 @@ enum CallbackArgumentType : int {
     Reference_Creature,
     Enum_BodyPart, // bodypart Enum
     Id_BodyPart, // bodypart ID
-    Character_Id,
-    Weather_Id
+    // Character_Id,
+    // Weather_Id
+    Character,
+    Weather
 };
 // callback args
 struct CallbackArgument {
@@ -68,8 +70,10 @@ struct CallbackArgument {
     Creature *value_creature;
     body_part value_body_part; // is value body part modern?
     const int_id<body_part_type> value_body_part_id; // value body part id is modern
-    character_id value_character_id; // value character is modern
-    weather_type_id value_weather_id; // value weather is modern 
+    // character_id value_character_id; // value character is modern
+    // weather_type_id value_weather_id; // value weather is modern 
+    Character value_character; // value character is modern
+    weather_type value_weather; // value weather is modern 
 
     // the below `CallbackArgument` "things" are constructors with various overloads.
     // The weird syntax spooked me, but rest assured, ":type(xyz)" & ":value_integer(xyz)" initialize private variables.
@@ -111,11 +115,17 @@ struct CallbackArgument {
     CallbackArgument( const int_id<body_part_type> arg_value) : // Bodypart ID
         type( CallbackArgumentType::Id_BodyPart ), value_body_part_id( arg_value ) {
     }
-    CallbackArgument( character_id arg_value ) :
-        type( CallbackArgumentType::Character_Id ), value_character_id( arg_value ) {
+    // CallbackArgument( character_id arg_value ) :
+    //     type( CallbackArgumentType::Character_Id ), value_character_id( arg_value ) {
+    // }
+    // CallbackArgument( string_id<weather_type> arg_value ) :
+    //     type( CallbackArgumentType::Weather_Id ), value_weather_id( arg_value ) {
+    // }
+    CallbackArgument( Character arg_value ) :
+        type( CallbackArgumentType::Character ), value_character_id( arg_value ) {
     }
-    CallbackArgument( string_id<weather_type> arg_value ) :
-        type( CallbackArgumentType::Weather_Id ), value_weather_id( arg_value ) {
+    CallbackArgument( weather_type arg_value ) :
+        type( CallbackArgumentType::Weather ), value_weather_id( arg_value ) {
     }
     // CallbackArgument(  arg_value ) :
     //     type( CallbackArgumentType:: ), value_character_id( arg_value ) {
