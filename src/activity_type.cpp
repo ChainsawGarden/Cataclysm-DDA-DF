@@ -107,8 +107,7 @@ void activity_type::check_consistency()
     }
 }
 // handles turn activities
-// void activity_type::call_do_turn( player_activity *act, player *p ) const
-void activity_type::call_do_turn() const
+void activity_type::call_do_turn( player_activity *act, player *p ) const
 {
     const auto &pair = activity_handlers::do_turn_functions.find( id_ ); // initiate the pair variable
     if( pair != activity_handlers::do_turn_functions.end() ) { // if the pair isn't what do_turn_fns's end returns?
@@ -119,7 +118,7 @@ void activity_type::call_do_turn() const
         // // visualization: <activity_id>, <player_id>
         // lua_callback( "on_activity_call_do_turn_started", lua_callback_args_info ); // event listener? for turn starts
         // // lua block end
-        // pair->second( act, p ); // access the second stored value; and call it i guess.
+        pair->second( act, p ); // access the second stored value; and call it i guess.
         // // sneaky lua addition
         // lua_callback( "on_activity_call_do_turn_finished", lua_callback_args_info ); // event listener? for turn ends
         // end 2nd lua block
