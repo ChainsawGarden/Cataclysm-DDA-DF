@@ -54,7 +54,7 @@ enum CallbackArgumentType : int {
     Id_BodyPart, // bodypart ID
     // Character_Id,
     // Weather_Id
-    Character,
+    Character_Type,
     Weather
 };
 // callback args
@@ -121,8 +121,8 @@ struct CallbackArgument {
     // CallbackArgument( string_id<weather_type> arg_value ) :
     //     type( CallbackArgumentType::Weather_Id ), value_weather_id( arg_value ) {
     // }
-    CallbackArgument( Character arg_value ) :
-        type( CallbackArgumentType::Character ), value_character_id( arg_value ) {
+    CallbackArgument( Character_Type arg_value ) :
+        type( CallbackArgumentType::Character_Type ), value_character_id( arg_value ) {
     }
     CallbackArgument( weather_type arg_value ) :
         type( CallbackArgumentType::Weather ), value_weather_id( arg_value ) {
