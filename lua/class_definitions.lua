@@ -1415,13 +1415,12 @@ classes = {
             -- { name = "str&", rval = "string", args = { } },
         }
     },
-    -- character_id = { -- cbtt
-    --     string_id = "character_id"
-    --     attributes = {
-    --     },
-    --     functions = {
-    --     }
-    -- },
+    character_id = { -- cbtt
+        attributes = {
+        },
+        functions = {
+        }
+    },
     -- coord_point = { -- coord_point is kill
     --     by_value = true,
     --     -- has_equal = false,

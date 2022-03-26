@@ -238,10 +238,10 @@ void avatar::on_mission_assignment( mission &new_mission )
     active_missions.push_back( &new_mission );
     set_active_mission( new_mission );
     // lua bloc start (upon mission assignment)
-    // CallbackArgumentContainer lua_callback_args_info;
-    // lua_callback_args_info.emplace_back( getID() );
-    // lua_callback_args_info.emplace_back( new_mission.get_id() );
-    // lua_callback( "on_player_mission_assignment", lua_callback_args_info );
+    CallbackArgumentContainer lua_callback_args_info;
+    lua_callback_args_info.emplace_back( getID() );
+    lua_callback_args_info.emplace_back( new_mission.get_id() );
+    lua_callback( "on_player_mission_assignment", lua_callback_args_info );
     // lua bloc end
 }
 
@@ -269,10 +269,10 @@ void avatar::on_mission_finished( mission &cur_mission )
         }
     }
     // lua bloc start (when the mission is completed)
-    // CallbackArgumentContainer lua_callback_args_info;
-    // lua_callback_args_info.emplace_back( getID() );
-    // lua_callback_args_info.emplace_back( cur_mission.get_id() );
-    // lua_callback( "on_player_mission_finished", lua_callback_args_info );
+    CallbackArgumentContainer lua_callback_args_info;
+    lua_callback_args_info.emplace_back( getID() );
+    lua_callback_args_info.emplace_back( cur_mission.get_id() );
+    lua_callback( "on_player_mission_finished", lua_callback_args_info );
     // lua bloc end
 }
 
@@ -706,14 +706,14 @@ void avatar::do_read( item &book )
                     add_msg( m_good, _( "%s increases their %s level." ), learner->disp_name(), skill_name );
                 }
             // lua bloc start (player skill increased from book)
-            // const std::string skill_increase_source = "book";
-            // CallbackArgumentContainer lua_callback_args_info;
-            // lua_callback_args_info.emplace_back( getID() );
-            // lua_callback_args_info.emplace_back( skill_increase_source );
-            // lua_callback_args_info.emplace_back( skill.str() );
-            // lua_callback_args_info.emplace_back( originalSkillLevel + 1 );
-            // lua_callback( "on_player_skill_increased", lua_callback_args_info );
-            // lua_callback( "on_skill_increased" ); // Legacy callback
+            const std::string skill_increase_source = "book";
+            CallbackArgumentContainer lua_callback_args_info;
+            lua_callback_args_info.emplace_back( getID() );
+            lua_callback_args_info.emplace_back( skill_increase_source );
+            lua_callback_args_info.emplace_back( skill.str() );
+            lua_callback_args_info.emplace_back( originalSkillLevel + 1 );
+            lua_callback( "on_player_skill_increased", lua_callback_args_info );
+            lua_callback( "on_skill_increased" ); // Legacy callback
             // lua bloc end
             } else { // if the skill level is the same
                 //skill_level == originalSkillLevel

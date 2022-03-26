@@ -1418,11 +1418,11 @@ void Character::on_dodge( Creature *source, float difficulty )
         }
     }
     // lua bloc start
-    // CallbackArgumentContainer lua_callback_args_info;
-    // lua_callback_args_info.emplace_back( getID() );
-    // lua_callback_args_info.emplace_back( source );
-    // lua_callback_args_info.emplace_back( difficulty );
-    // lua_callback( "on_player_dodge", lua_callback_args_info );
+    CallbackArgumentContainer lua_callback_args_info;
+    lua_callback_args_info.emplace_back( getID() );
+    lua_callback_args_info.emplace_back( source );
+    lua_callback_args_info.emplace_back( difficulty );
+    lua_callback( "on_player_dodge", lua_callback_args_info );
     // lua bloc end
 }
 
@@ -2422,14 +2422,14 @@ void Character::practice( const skill_id &id, int amount, int cap, bool suppress
         if( is_player() && newLevel > oldLevel ) {
             add_msg( m_good, _( "Your skill in %s has increased to %d!" ), skill_name, newLevel );
             // lua bloc start (training, skill increased)
-            // const std::string skill_increase_source = "training";
-            // CallbackArgumentContainer lua_callback_args_info;
-            // lua_callback_args_info.emplace_back( getID() );
-            // lua_callback_args_info.emplace_back( skill_increase_source );
-            // lua_callback_args_info.emplace_back( id.str() );
-            // lua_callback_args_info.emplace_back( newLevel );
-            // lua_callback( "on_player_skill_increased", lua_callback_args_info );
-            // lua_callback( "on_skill_increased" ); //Legacy callback
+            const std::string skill_increase_source = "training";
+            CallbackArgumentContainer lua_callback_args_info;
+            lua_callback_args_info.emplace_back( getID() );
+            lua_callback_args_info.emplace_back( skill_increase_source );
+            lua_callback_args_info.emplace_back( id.str() );
+            lua_callback_args_info.emplace_back( newLevel );
+            lua_callback( "on_player_skill_increased", lua_callback_args_info );
+            lua_callback( "on_skill_increased" ); //Legacy callback
             // lua bloc end
         }
         if( is_player() && newLevel > cap ) {
@@ -10001,12 +10001,12 @@ void Character::on_hit( Creature *source, bodypart_id bp_hit,
         }
     }
     // lua bloc start
-    // CallbackArgumentContainer lua_callback_args_info;
-    // lua_callback_args_info.emplace_back( getID() );
-    // lua_callback_args_info.emplace_back( source );
-    // lua_callback_args_info.emplace_back( bp_hit );
-    // //lua_callback_args_info.emplace_back( proj ); // this comment is canonical; it was already in the pre-lua-removal source
-    // lua_callback( "on_player_hit", lua_callback_args_info );
+    CallbackArgumentContainer lua_callback_args_info;
+    lua_callback_args_info.emplace_back( getID() );
+    lua_callback_args_info.emplace_back( source );
+    lua_callback_args_info.emplace_back( bp_hit );
+    //lua_callback_args_info.emplace_back( proj ); // this comment is canonical; it was already in the pre-lua-removal source
+    lua_callback( "on_player_hit", lua_callback_args_info );
     // lua bloc end
     enchantment_cache->cast_hit_me( *this, source ); // some magic stuff
 }
@@ -11652,11 +11652,11 @@ void Character::on_item_wear( const item &it )
     }
     morale->on_item_wear( it );
     // lua bloc start (upon the a character wearing an item)
-    // CallbackArgumentContainer lua_callback_args_info;
-    // lua_callback_args_info.emplace_back( getID() );
-    // lua_callback_args_info.emplace_back( it );
-    // lua_callback( "on_player_item_wear", lua_callback_args_info );
-    //lua_callback( "on_chara_item_wear", lua_callback_args_info ); TODO: THIS IS THE NEW ONE. MAKE SURE TO CHANGE THE OTHERS TOO!
+    CallbackArgumentContainer lua_callback_args_info;
+    lua_callback_args_info.emplace_back( getID() );
+    lua_callback_args_info.emplace_back( it );
+    lua_callback( "on_player_item_wear", lua_callback_args_info );
+    lua_callback( "on_chara_item_wear", lua_callback_args_info ); TODO: THIS IS THE NEW ONE. MAKE SURE TO CHANGE THE OTHERS TOO!
     // lua bloc end
 }
 
@@ -11673,10 +11673,10 @@ void Character::on_item_takeoff( const item &it )
     }
     morale->on_item_takeoff( it );
     //lua bloc start (taking off an item)
-    // CallbackArgumentContainer lua_callback_args_info;
-    // lua_callback_args_info.emplace_back( getID() );
-    // lua_callback_args_info.emplace_back( it );
-    // lua_callback( "on_player_item_takeoff", lua_callback_args_info );
+    CallbackArgumentContainer lua_callback_args_info;
+    lua_callback_args_info.emplace_back( getID() );
+    lua_callback_args_info.emplace_back( it );
+    lua_callback( "on_player_item_takeoff", lua_callback_args_info );
     //lua bloc end
 }
 
@@ -11691,12 +11691,12 @@ void Character::on_effect_int_change( const efftype_id &eid, int intensity, cons
 
     morale->on_effect_int_change( eid, intensity, bp );
     // lua bloc start (when the intelligence changes)
-    // CallbackArgumentContainer lua_callback_args_info;
-    // lua_callback_args_info.emplace_back( getID() );
-    // lua_callback_args_info.emplace_back( eid.str() );
-    // lua_callback_args_info.emplace_back( intensity );
-    // lua_callback_args_info.emplace_back( bp );
-    // lua_callback( "on_player_effect_int_change", lua_callback_args_info );
+    CallbackArgumentContainer lua_callback_args_info;
+    lua_callback_args_info.emplace_back( getID() );
+    lua_callback_args_info.emplace_back( eid.str() );
+    lua_callback_args_info.emplace_back( intensity );
+    lua_callback_args_info.emplace_back( bp );
+    lua_callback( "on_player_effect_int_change", lua_callback_args_info );
     // lua bloc end
 }
 
@@ -11707,10 +11707,10 @@ void Character::on_mutation_gain( const trait_id &mid )
     update_type_of_scent( mid );
     recalculate_enchantment_cache(); // mutations can have enchantments
     // lua bloc start
-    // CallbackArgumentContainer lua_callback_args_info;
-    // lua_callback_args_info.emplace_back( getID() );
-    // lua_callback_args_info.emplace_back( mid.str() );
-    // lua_callback( "on_player_mutation_gain", lua_callback_args_info );
+    CallbackArgumentContainer lua_callback_args_info;
+    lua_callback_args_info.emplace_back( getID() );
+    lua_callback_args_info.emplace_back( mid.str() );
+    lua_callback( "on_player_mutation_gain", lua_callback_args_info );
     // lua bloc end
 }
 
@@ -11721,10 +11721,10 @@ void Character::on_mutation_loss( const trait_id &mid )
     update_type_of_scent( mid, false );
     recalculate_enchantment_cache(); // mutations can have enchantments
     // lua bloc start (mutation loss)
-    // CallbackArgumentContainer lua_callback_args_info;
-    // lua_callback_args_info.emplace_back( getID() );
-    // lua_callback_args_info.emplace_back( mid.str() );
-    // lua_callback( "on_player_mutation_loss", lua_callback_args_info );
+    CallbackArgumentContainer lua_callback_args_info;
+    lua_callback_args_info.emplace_back( getID() );
+    lua_callback_args_info.emplace_back( mid.str() );
+    lua_callback( "on_player_mutation_loss", lua_callback_args_info );
     // lua bloc end
 }
 
@@ -11732,11 +11732,11 @@ void Character::on_stat_change( const std::string &stat, int value )
 {
     morale->on_stat_change( stat, value );
     // lua bloc start
-    // CallbackArgumentContainer lua_callback_args_info;
-    // lua_callback_args_info.emplace_back( getID() );
-    // lua_callback_args_info.emplace_back( stat );
-    // lua_callback_args_info.emplace_back( value );
-    // lua_callback( "on_player_stat_change", lua_callback_args_info );
+    CallbackArgumentContainer lua_callback_args_info;
+    lua_callback_args_info.emplace_back( getID() );
+    lua_callback_args_info.emplace_back( stat );
+    lua_callback_args_info.emplace_back( value );
+    lua_callback( "on_player_stat_change", lua_callback_args_info );
     // lua bloc stop
 }
 

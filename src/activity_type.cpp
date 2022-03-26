@@ -112,15 +112,15 @@ void activity_type::call_do_turn( player_activity *act, player *p ) const
     const auto &pair = activity_handlers::do_turn_functions.find( id_ ); // initiate the pair variable
     if( pair != activity_handlers::do_turn_functions.end() ) { // if the pair isn't what do_turn_fns's end returns?
         // lua block start; starting to think this can be automated very easily.
-        // CallbackArgumentContainer lua_callback_args_info; // lua callback info object
-        // lua_callback_args_info.emplace_back( act->id().str() ); // the activity id (act is incomplete type)
-        // lua_callback_args_info.emplace_back( p->getID() ); // the player id (player is incomplete type)
-        // // visualization: <activity_id>, <player_id>
-        // lua_callback( "on_activity_call_do_turn_started", lua_callback_args_info ); // event listener? for turn starts
-        // // lua block end
+        CallbackArgumentContainer lua_callback_args_info; // lua callback info object
+        lua_callback_args_info.emplace_back( act->id().str() ); // the activity id (act is incomplete type)
+        lua_callback_args_info.emplace_back( p->getID() ); // the player id (player is incomplete type)
+        // visualization: <activity_id>, <player_id>
+        lua_callback( "on_activity_call_do_turn_started", lua_callback_args_info ); // event listener? for turn starts
+        // lua block end
         pair->second( act, p ); // access the second stored value; and call it i guess.
-        // // sneaky lua addition
-        // lua_callback( "on_activity_call_do_turn_finished", lua_callback_args_info ); // event listener? for turn ends
+        // sneaky lua addition
+        lua_callback( "on_activity_call_do_turn_finished", lua_callback_args_info ); // event listener? for turn ends
         // end 2nd lua block
     }
 }

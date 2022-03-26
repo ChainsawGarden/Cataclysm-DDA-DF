@@ -5,6 +5,7 @@
 
 #include "action.h"
 #include "calendar.h"
+#include "character_id.h"
 #include "cata_algo.h"
 #include "debug.h"
 #include "game.h"
@@ -65,7 +66,7 @@
 #include "flag.h"
 #include "field_type.h"
 #include "projectile.h"
-#include "character_id.h" // for character_ids
+// #include "character_id.h" // for character_ids
 #include "ammo.h"
 #include "enums.h"
 #include "ret_val.h"
@@ -683,9 +684,9 @@ void CallbackArgument::Save()
             // LuaValue<const int_id<body_part_type>>::push( L, value_body_part_id ); // CAT_BDP
             LuaValue<int_id<body_part_type>>::push( L, value_body_part_id ); // CAT_BDP
             break;
-        // case CallbackArgumentType::Character_Id:
-        //     LuaValue<character_id>::push( L, value_character_id ); // CAT_CHARACTER_ID
-        //     break;
+        case CallbackArgumentType::Character_Id:
+            LuaValue<character_id>::push( L, value_character_id ); // CAT_CHARACTER_ID
+            break;
         // case CallbackArgumentType::Weather_Id:
         //     LuaValue<weather_type_id>::push( L, value_weather_id ); // CAT_WEATHER_ID
         //     break;
