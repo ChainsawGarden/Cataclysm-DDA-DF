@@ -1389,6 +1389,14 @@ classes = {
             { name = "translated", rval = "string", args = { } }
         }
     },
+    weather_type_id = {
+        by_value = true,
+        has_equal = true,
+        attributes = {
+        },
+        functions = {
+        }
+    },
     snippet_id = {
     --    string_id = "string_id", translation
         by_value = true,
