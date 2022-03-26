@@ -687,9 +687,9 @@ void CallbackArgument::Save()
         case CallbackArgumentType::Character_Id:
             LuaValue<character_id>::push( L, value_character_id ); // CAT_CHARACTER_ID
             break;
-        // case CallbackArgumentType::Weather_Id:
-        //     LuaValue<weather_type_id>::push( L, value_weather_id ); // CAT_WEATHER_ID
-        //     break;
+        case CallbackArgumentType::Weather_Id:
+            LuaValue<weather_type_id>::push( L, value_weather_id ); // CAT_WEATHER_ID
+            break;
 
         // case CallbackArgumentType::Character:
         //     LuaValue<Character>::push( L, value_character ); // CAT_CHARACTER_ID
@@ -1167,7 +1167,7 @@ void game::init_lua()
 // {
 //     return actor->use( p, it, active, pos );
 // }
-// "iuse"s were redefined here for some reason. I think it'd be best to commend this entire "iuse" code out 
+// "iuse"s were redefined here for some reason. I think it'd be best to comment this entire "iuse" code out 
 #ifndef LUA // if LUA is not defined...
 /* Empty functions for builds without Lua: */
 int lua_monster_move( monster * )

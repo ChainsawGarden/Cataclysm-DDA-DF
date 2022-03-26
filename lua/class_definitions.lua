@@ -49,7 +49,7 @@ it maps to a map with the following values:
 - `type` (required): the type of the member (see below).
 
 The functions table contains the member functions of the C++ class. Each entry (no keys, it's an
-array) should have the following values:
+array) is required to have the following values:
 
 - `name` (required, string): the name of the function as it appears in Lua.
 
@@ -1416,6 +1416,7 @@ classes = {
         }
     },
     character_id = { -- cbtt
+        by_value = true,
         attributes = {
         },
         functions = {

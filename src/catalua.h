@@ -53,7 +53,7 @@ enum CallbackArgumentType : int {
     Enum_BodyPart, // bodypart Enum
     Id_BodyPart, // bodypart ID
     Character_Id,
-    // Weather_Id
+    Weather_Id
     // Character_Type,
     // Weather
 };
