@@ -11656,7 +11656,7 @@ void Character::on_item_wear( const item &it )
     lua_callback_args_info.emplace_back( getID() );
     lua_callback_args_info.emplace_back( it );
     lua_callback( "on_player_item_wear", lua_callback_args_info );
-    lua_callback( "on_chara_item_wear", lua_callback_args_info ); TODO: THIS IS THE NEW ONE. MAKE SURE TO CHANGE THE OTHERS TOO!
+    lua_callback( "on_chara_item_wear", lua_callback_args_info ); //TODO: THIS IS THE NEW ONE. MAKE SURE TO CHANGE THE OTHERS TOO!
     // lua bloc end
 }
 

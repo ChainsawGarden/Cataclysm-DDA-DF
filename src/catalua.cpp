@@ -296,6 +296,7 @@ bool lua_report_error( lua_State *L, int err, const char *path, bool simple = fa
     return true;
 }
 
+// IGNORE THIS: "Lyin' Templates Section"
 /**
  * This is the basic type-checking interface for the Lua bindings generator.
  * Instead of "if type is string, call lua_isstring, if it's int, call lua_isnumber, ...", the
@@ -387,24 +388,6 @@ template<typename T> // LuaType template (which uses a LuaReference type)
 struct LuaType<LuaReference<T>> : public LuaReference<T> {
 };
 
-// template<> // typing functions for cata's Lua (pertaining to coordstuff)
-// struct LuaType<coords::coord_point<point, coords::origin::abs, coords::omt>> { // inherit checking because it's all the same to Lua
-// };
-// template<> // typing functions for cata's Lua (pertaining to coordstuff)
-// struct LuaType<coords::coord_point<tripoint, coords::origin::overmap, coords::omt>> { // inherit checking because it's all the same to Lua
-// };
-// template<> // typing functions for cata's Lua (pertaining to coordstuff)
-// struct LuaType<coords::coord_point<tripoint, coords::origin::abs, coords::omt>> { // inherit checking because it's all the same to Lua
-// };
-// template<> // typing functions for cata's Lua (pertaining to coordstuff)
-// struct LuaType<coords::coord_point<point, coords::origin::overmap, coords::sm>> { // inherit checking because it's all the same to Lua
-// };
-// template<> // typing functions for cata's Lua (pertaining to coordstuff)
-// struct LuaType<coords::coord_point<tripoint, coords::origin::abs, coords::sm>> { // inherit checking because it's all the same to Lua
-// };
-// template<> // typing functions for cata's Lua (pertaining to coordstuff)
-// struct LuaType<coords::coord_point<tripoint, coords::origin::overmap, coords::sm>> { // inherit checking because it's all the same to Lua
-// };
 
 /** This basically transforms a string (therefore inheriting from LuaType<string>) into a C++
  * enumeration value. It simply contains a table of string-to-enum-values. */
