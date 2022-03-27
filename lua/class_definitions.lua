@@ -1597,7 +1597,7 @@ classes = {
     --     }
     -- },
     fd_fire = {
-        string_id = "field_type_str_id",
+        -- string_id = "field_type_str_id",
         attributes = {
 
         },
