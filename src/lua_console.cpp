@@ -48,7 +48,8 @@ std::string lua_console::get_input()
         } };
     string_input_popup popup;
     // popup.window( iWin, 0, 0, width )
-    popup.window(iWin, point_zero, width)
+    // popup.window(iWin, point_zero, width)
+    popup.window(iWin, {0, 10}, width) // this new code should put the input console at the bottom of the window
     .max_length( width )
     .identifier( "LUA" );
     popup.callbacks = callbacks;
