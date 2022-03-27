@@ -386,7 +386,7 @@ classes = {
         },
         functions = {
             { name = "empty", rval = "bool", args = { } },
-            { name = "erase", rval = "item_stack_iterator", args = { "item_stack_iterator" } },
+            -- { name = "erase", rval = "item_stack_iterator", args = { "item_stack_iterator" } },
             { name = "insert", rval = nil, args = { "item" } },
             { name = "size", rval = "int", args = { } }
             -- { name = "begin", rval = "iterator", args = { } },
