@@ -1596,14 +1596,14 @@ classes = {
     --     functions = {
     --     }
     -- },
-    -- fd_fire = {
-    --     string_id = "field_type_str_id",
-    --     attributes = {
+    fd_fire = {
+        string_id = "field_type_str_id",
+        attributes = {
 
-    --     },
-    --     functions = {
-    --     }
-    -- },
+        },
+        functions = {
+        }
+    },
     -- fd_blood = {
     --     string_id = "field_type_str_id",
     --     attributes = {
