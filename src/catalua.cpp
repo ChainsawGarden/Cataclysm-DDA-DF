@@ -74,6 +74,7 @@
 #include "vehicle.h"
 #include "string_id.h"
 
+
 // modernization
 // #include <lua.h>
 // #include <lualib.h>
@@ -104,6 +105,7 @@ using angle = units::angle;
 //using translation = translation
 using money = units::money; // for currency
 using itype_id = string_id<itype>; // for itype_ids
+// using iterator = cata::colony<item>::iterator;
 
 // using coords::coord_point<point, Origin, Scale>( raw_.xy() );
 

@@ -359,6 +359,14 @@ classes = {
             { name = "mod_stat", rval = nil, args = { "string", "int" } }
         }
     },
+    -- iterator = {
+    --     attributes = {
+
+    --     },
+    --     functions = {
+
+    --     }
+    -- },
     item_stack_iterator = {
         by_value = true,
         has_equal = true,
@@ -381,6 +389,8 @@ classes = {
             { name = "erase", rval = "item_stack_iterator", args = { "item_stack_iterator" } },
             { name = "insert", rval = nil, args = { "item" } },
             { name = "size", rval = "int", args = { } },
+            { name = "begin", rval = "iterator", args = { } },
+            { name = "end", rval = "iterator", args = { } }
         }
     },
     game = {
@@ -1243,10 +1253,18 @@ classes = {
         }
     },
     -- modern start
-    -- ot_match_pair = {
+    -- player_activity = {
     --     attributes = {
+    --         moves_total = { type = "int", writable = true },
+    --         moves_left = { type = "int", writable = true },
+    --         interruptable = { type = "bool", writable = true },
+    --         interruptable_with_kb = { type = "bool", writable = true }, -- can be cancelled w/ pause
+    --         name = { type = "string", writable = true },
+    --         placement = { type = "tripoint", writable = true }
+    --         -- x = { type = "int", writable = true }
     --     },
     --     functions = {
+    --         { name = "get_value", rval = "int", args = {  } }
     --     }
     -- },
     optional_tripoint = {
