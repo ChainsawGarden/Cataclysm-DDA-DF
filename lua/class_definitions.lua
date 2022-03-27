@@ -1964,13 +1964,13 @@ classes = {
     --     functions = {
     --     }
     --     },
-    item_vector = {
-        attributes = {
+    -- item_vector = {
+    --     attributes = {
 
-        },
-        functions = {
-        }
-    },
+    --     },
+    --     functions = {
+    --     }
+    -- },
     -- modern stop
     uilist = {
         attributes = {
