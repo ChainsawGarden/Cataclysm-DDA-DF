@@ -2399,7 +2399,7 @@ classes = {
             { name = "die", rval = nil, args = { "Creature" } },
             { name = "die_in_explosion", rval = nil, args = { "Creature" } },
             { name = "digging", rval = "bool", args = { } },
-            -- { name = "disp_name", rval = "string", args = { "bool", "bool" } }, -- (possessive, capitalize_first)
+            { name = "disp_name", rval = "string", args = { "bool", "bool" } }, -- (possessive, capitalize_first)
             { name = "dodge_roll", rval = "float", args = { } },
             { name = "drop_items_on_death", rval = nil, args = { } },
             { name = "explode", rval = nil, args = { } },
@@ -3103,11 +3103,11 @@ global_functions = {
         args = {"point", "point" },
         rval = "int"
     },
-    -- trig_dist = { -- cbtt
-    --     cpp_name = "trig_dist",
-    --     args = {"point", "point"},
-    --     rval = "int"
-    -- },
+    trig_dist = {
+        cpp_name = "trig_dist",
+        args = {"point", "point"},
+        rval = "int"
+    },
     add_item_to_group = {
         cpp_name = "item_controller->add_item_to_group",
         args = { "item_group_id", "itype_id", "int" },
