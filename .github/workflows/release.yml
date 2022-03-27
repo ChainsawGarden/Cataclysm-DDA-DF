@@ -239,7 +239,7 @@ jobs:
           upload_url: ${{ needs.release.outputs.upload_url }} 
           asset_path: cdda-df-${{ matrix.artifact }}-${{ needs.release.outputs.timestamp }}.${{ matrix.ext }}
           asset_name: cdda-df-${{ matrix.artifact }}-${{ needs.release.outputs.timestamp }}.${{ matrix.ext }}
-      #     asset_content_type: ${{ matrix.content }}
+          asset_content_type: ${{ matrix.content }}
       # - name: Trigger GitHub pages rebuild
       #   run: |
       #     curl --fail --request POST \
