@@ -644,7 +644,7 @@ classes = {
             -- style_selected = { type = "matype_id", writable = true }, -- TODO: find possible modern equivalent.
             -- tank_plut = { type = "int", writable = true }, -- TODO: find possible modern equivalent.
             view_offset = { type = "tripoint", writable = true },
-            volume = { type = "int", writable = true },
+            volume = { type = "int", writable = true }
         },
         functions = {
             { name = "pos", rval = "tripoint", args = { } }, -- returns the player's current pos.
@@ -930,7 +930,7 @@ classes = {
             { name = "wear_item", rval = "bool", args = { "item" } },
             { name = "wearing_something_on", rval = "bool", args = { "bodypart_id" } },
             { name = "wield", rval = "bool", args = { "item" } },
-            { name = "wield_contents", rval = "bool", args = { "item" } },
+            { name = "wield_contents", rval = "bool", args = { "item" } }
         }
     },
     npc_companion_mission = { -- npc.h
