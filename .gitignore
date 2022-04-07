@@ -25,7 +25,7 @@
 /obj/
 /objwin/
 /save/
-/src/lua/catabindings.cpp
+src/catabindings.cpp
 /src/version.h
 /sound/
 /templates/
@@ -43,6 +43,8 @@ chkjson*
 debug.log
 logg.txt
 json_formatter
+wikidocs.md
+
 
 # Visual Studio files
 *.code-workspace
