@@ -606,7 +606,7 @@ classes = {
             { name = "calc_focus_change", rval = "int", args = {  } },
             { name = "update_mental_focus", rval = nil, args = {  } },
             { name = "reset_stats", rval = nil, args = {  } },
-            { name = "get_active_mission_target", rval = "tripoint_abs_omt", args = {  } },
+            { name = "get_active_mission_target", rval = "tripoint_abs_omt", args = {  } }
         }
     },
     player = {
