@@ -596,6 +596,11 @@ classes = {
             -- dex_upgrade = { type = "int", writable = true },
             -- int_upgrade = { type = "int", writable = true },
             -- per_upgrade = { type = "int", writable = true }
+            dialogue_by_radio = { type = "bool", writable = true },
+            preferred_aiming_mode = { type = "string", writable = true },
+            x = { type = "", writable = true },
+            -- { type = "", writable = true },
+            -- { type = "", writable = true },
             -- { type = "", writable = true },
         },
         functions = {
@@ -681,7 +686,6 @@ classes = {
             { name = "can_hear", rval = "bool", args = { "tripoint", "int" } },
             -- { name = "can_leg_block", rval = "bool", args = { } }, -- martial arts
             -- { name = "can_limb_block", rval = "bool", args = { } }, -- martial arts
-            { name = "can_melee", rval = "bool", args = { } },
             { name = "can_sleep", rval = "bool", args = { } },
             { name = "can_reload", rval = "bool", args = { "item" } },
             { name = "cancel_activity", rval = nil, args = { } },
