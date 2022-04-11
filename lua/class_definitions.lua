@@ -683,7 +683,6 @@ classes = {
             { name = "burn_move_stamina", rval = nil, args = { "int" } },
             -- { name = "calc_focus_equilibrium", rval = "int", args = { } }, -- avatar class
             -- { name = "can_arm_block", rval = "bool", args = { } }, -- martial arts
-            { name = "can_hear", rval = "bool", args = { "tripoint", "int" } },
             -- { name = "can_leg_block", rval = "bool", args = { } }, -- martial arts
             -- { name = "can_limb_block", rval = "bool", args = { } }, -- martial arts
             { name = "can_sleep", rval = "bool", args = { } },
