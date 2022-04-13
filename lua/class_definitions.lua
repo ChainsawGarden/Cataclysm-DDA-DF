@@ -598,7 +598,7 @@ classes = {
             -- per_upgrade = { type = "int", writable = true }
             dialogue_by_radio = { type = "bool", writable = true },
             preferred_aiming_mode = { type = "string", writable = true },
-            x = { type = "", writable = true },
+            -- x = { type = "", writable = true },
             -- { type = "", writable = true },
             -- { type = "", writable = true },
             -- { type = "", writable = true },
