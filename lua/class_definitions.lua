@@ -604,7 +604,27 @@ classes = {
             -- { type = "", writable = true },
         },
         functions = {
-            -- { name = "", rval = "", args = {  } },
+            -- { name = "", rval = "", args = {  }, desc = "" },
+
+            { name = "get_str_base", rval = "int", args = {  }, desc = "Gets the player's (avatar) base-level strength value." },
+            { name = "get_dex_base", rval = "int", args = {  }, desc = "Gets the player's (avatar) base-level dexterity value." },
+            { name = "get_int_base", rval = "int", args = {  }, desc = "Gets the player's (avatar) base-level intelligence value." },
+            { name = "get_per_base", rval = "int", args = {  }, desc = "Gets the player's (avatar) base-level perception value." },
+
+            { name = "wield", rval = "bool", args = { "item" }, desc = "Simply wields the specified item."},
+            { name = "cycle_move_mode", rval = nil, args = {  } },
+            { name = "reset_move_mode", rval = nil, args = {  } },
+            { name = "toggle_run_mode", rval = nil, args = {  } },
+            { name = "toggle_crouch_mode", rval = nil, args = {  } },
+            { name = "activate_crouch_mode", rval = nil, args = {  } },
+            
+            { name = "get_memorized_symbol", rval = "int", args = { "tripoint" } },
+            { name = "memorize_symbol", rval = nil, args = { "tripoint", "int" } },
+            { name = "steal", rval = nil, args = { "npc" } },
+            { name = "add_pain_msg", rval = nil, args = { "int", "bodypart_id" } },
+            { name = "wake_up", rval = nil, args = {  } },
+            { name = "disarm", rval = nil, args = { "npc" } },
+            { name = "vomit", rval = nil, args = {  } }, -- handles player vomitting
             { name = "bionic_by_invlet", rval = "bionic&", args = { "int" } },
             { name = "disp_morale", rval = nil, args = {  } },
             { name = "calc_focus_equilibrium", rval = "int", args = { "bool" } },
