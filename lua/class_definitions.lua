@@ -1499,75 +1499,124 @@ classes = {
             --         { name = "", rval = "", args = { } },
             { name = "raw", rval = "Point", args = { } },
             { name = "to_string", rval = "string", args = { } },
+            { name = "x", rval = "int", args = { } },
+            { name = "y", rval = "int", args = { } },
+            { name = "z", rval = "int", args = { } },
         },
         desc = "This is the class for the Absolute Overmap point."
     },
     -- tripoint_om_omt_var
     tripoint_om_omt = {
         by_value = true,
+        new = {
+            { "int", "int", "int" }
+        },
         attributes = {
+            dimension = { type = "int", writable = true }
         },
         functions = {
-        }
+            --         { name = "", rval = "", args = { } },
+            { name = "raw", rval = "Point", args = { } },
+            { name = "to_string", rval = "string", args = { } },
+            { name = "x", rval = "int", args = { } },
+            { name = "y", rval = "int", args = { } },
+            { name = "z", rval = "int", args = { } },
+        },
+        desc = "This is the class for the Overmap Overmap-Terrain Tripoint."
     },
     -- point_om_sm_var 
     point_om_sm = {
-        -- disable metadata for now?
-        -- parent = "cppos",
         by_value = true,
-        has_equal = false,
+        new = {
+            { "int", "int", "int" }
+        },
         attributes = {
+            dimension = { type = "int", writable = true }
         },
         functions = {
-            { name = "to_string", rval = "string", args = { } }
-        }
+            --         { name = "", rval = "", args = { } },
+            { name = "raw", rval = "Point", args = { } },
+            { name = "to_string", rval = "string", args = { } },
+            { name = "x", rval = "int", args = { } },
+            { name = "y", rval = "int", args = { } },
+            { name = "z", rval = "int", args = { } },
+        },
+        desc = "This is the class for the Overmap Submap point."
     },
     -- tripoint_abs_sm_var 
     tripoint_abs_sm = {
         by_value = true,
-        has_equal = false,
+        new = {
+            { "int", "int", "int" }
+        },
         attributes = {
+            dimension = { type = "int", writable = true }
         },
         functions = {
+            { name = "raw", rval = "Point", args = { } },
             { name = "to_string", rval = "string", args = { } },
             { name = "x", rval = "int", args = { } },
             { name = "y", rval = "int", args = { } },
-            { name = "z", rval = "int", args = { } }
-        }
+            { name = "z", rval = "int", args = { } },
+        },
+        desc = "This is the class for the Absolute Submap tripoint."
     },
     -- tripoint_om_sm_var
     tripoint_om_sm = {
         by_value = true,
-        has_equal = false,
+        new = {
+            { "int", "int", "int" }
+        },
         attributes = {
+            dimension = { type = "int", writable = true }
         },
         functions = {
+            --         { name = "", rval = "", args = { } },
+            { name = "raw", rval = "Point", args = { } },
             { name = "to_string", rval = "string", args = { } },
             { name = "x", rval = "int", args = { } },
             { name = "y", rval = "int", args = { } },
             { name = "z", rval = "int", args = { } },
-        }
+        },
+        desc = "This is the class for the Overmap Submap tripoint."
     },
     -- tripoint_abs_omt_var
     tripoint_abs_omt = {
         by_value = true,
-        has_equal = false,
+        new = {
+            { "int", "int", "int" }
+        },
         attributes = {
+            dimension = { type = "int", writable = true }
         },
         functions = {
+            --         { name = "", rval = "", args = { } },
+            { name = "raw", rval = "Point", args = { } },
             { name = "to_string", rval = "string", args = { } },
             { name = "x", rval = "int", args = { } },
             { name = "y", rval = "int", args = { } },
             { name = "z", rval = "int", args = { } },
-        }
+        },
+        desc = "This is the class for the Absolute Overmap-terrain tripoint."
     },
     -- point_abs_omt_var
     point_abs_omt = {
-        by_value = true,        
+        by_value = true,
+        new = {
+            { "int", "int", "int" }
+        },
         attributes = {
+            dimension = { type = "int", writable = true }
         },
         functions = {
-        }
+            --         { name = "", rval = "", args = { } },
+            { name = "raw", rval = "Point", args = { } },
+            { name = "to_string", rval = "string", args = { } },
+            { name = "x", rval = "int", args = { } },
+            { name = "y", rval = "int", args = { } },
+            { name = "z", rval = "int", args = { } },
+        },
+        desc = "This is the class for the Absolute Overmap-terrain point."
     },
     item_group_id = {
         attributes = {
