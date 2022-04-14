@@ -240,7 +240,7 @@ classes = {
         },
         functions = {
             { name = "use_charges_if_avail", rval = "bool", args = { "itype_id", "int" } },
-            { name = "shift_destination", rval = nil, args = { "point" } },
+            { name = "shift_destination", rval = nil, args = { "Point" } },
             { name = "disassemble", rval = "bool", args = { } },
             { name = "change_side", rval = "bool", args = { "item_location", "bool" } },
             { name = "amount_worn", rval = "int", args = { "itype_id" } },
@@ -1028,7 +1028,7 @@ classes = {
             { name = "set_attitude", rval = nil, args = { "npc_attitude" } },
             { name = "set_companion_mission", rval = nil, args = { "npc", "string" } },
             { name = "shop_restock", rval = nil, args = { } },
-            { name = "spawn_at_precise", rval = nil, args = { "point", "tripoint" } },
+            { name = "spawn_at_precise", rval = nil, args = { "Point", "tripoint" } },
         }
     },
     item = { -- item.h
@@ -1243,7 +1243,7 @@ classes = {
             { name = "remove_item", rval = nil, args = { } },
         }
     },
-    point = {
+    Point = {
         by_value = true,
         -- has_equal = true,
         attributes = {
@@ -1251,7 +1251,7 @@ classes = {
             y = { type = "int", writable = true }
         },
         new = {
-            { "point" },
+            { "Point" },
             { "int", "int" },
         },
         functions = {
@@ -1490,12 +1490,17 @@ classes = {
     point_abs_om = {
         by_value = true,
         new = {
-
+            { "int", "int", "int" }
         },
         attributes = {
+            dimension = { type = "int", writable = true }
         },
         functions = {
-        }
+            --         { name = "", rval = "", args = { } },
+            { name = "raw", rval = "Point", args = { } },
+            { name = "to_string", rval = "string", args = { } },
+        },
+        desc = "This is the class for the Absolute Overmap point."
     },
     -- tripoint_om_omt_var
     tripoint_om_omt = {
@@ -1757,7 +1762,7 @@ classes = {
             { name = "i_rem", rval = nil, args = { "tripoint", "item" } },
             { name = "impassable", rval = "bool", args = { "tripoint" } },
             { name = "impassable_ter_furn", rval = "bool", args = { "tripoint" } },
-            { name = "inbounds", rval = "bool", args = { "point" } },
+            { name = "inbounds", rval = "bool", args = { "Point" } },
             { name = "inbounds", rval = "bool", args = { "tripoint" } },
             { name = "is_bashable", rval = "bool", args = { "tripoint" } },
             { name = "is_bashable_furn", rval = "bool", args = { "tripoint" } },
@@ -1780,14 +1785,14 @@ classes = {
             { name = "passable", rval = "bool", args = { "tripoint" } },
             { name = "passable_ter_furn", rval = "bool", args = { "tripoint" } },
             { name = "pl_sees", rval = "bool", args = { "tripoint", "int" } },
-            { name = "place_gas_pump", rval = nil, args = { "point", "int", "string" } },
-            { name = "place_gas_pump", rval = nil, args = { "point", "int" } },
-            -- { name = "place_npc", rval = "character_id", args = { "point", "npc_template_id" } }, -- cbtt
-            { name = "place_spawns", rval = nil, args = { "mongroup_id", "int", "point", "point", "float", "bool", "bool", "string", "int" } },
-            { name = "place_toilet", rval = nil, args = { "point", "int" } },
-            { name = "place_vending", rval = nil, args = { "point", "item_group_id", "bool" } },
+            { name = "place_gas_pump", rval = nil, args = { "Point", "int", "string" } },
+            { name = "place_gas_pump", rval = nil, args = { "Point", "int" } },
+            -- { name = "place_npc", rval = "character_id", args = { "Point", "npc_template_id" } }, -- cbtt
+            { name = "place_spawns", rval = nil, args = { "mongroup_id", "int", "Point", "Point", "float", "bool", "bool", "string", "int" } },
+            { name = "place_toilet", rval = nil, args = { "Point", "int" } },
+            { name = "place_vending", rval = nil, args = { "Point", "item_group_id", "bool" } },
             -- { name = "put_items_from_loc", rval = "item_vector", args = { "item_group_id", "tripoint", "time_point" } },
-            { name = "random_outdoor_tile", rval = "point", args = { } },
+            { name = "random_outdoor_tile", rval = "Point", args = { } },
             -- { name = "remove_field", rval = nil, args = { "tripoint", "field_type_str_id" } }, -- TODO not present
             { name = "remove_trap", rval = nil, args = { "tripoint" } },
             { name = "save", rval = nil, args = { } },
@@ -2122,7 +2127,7 @@ classes = {
             { name = "set_special", rval = nil, args = { "string", "int" } },
             { name = "disable_special", rval = nil, args = { "string" } },
             { name = "setpos", rval = nil, args = { "tripoint" } },
-            { name = "shift", rval = nil, args = { "point" } },
+            { name = "shift", rval = nil, args = { "Point" } },
             { name = "sight_range", rval = "int", args = { "int" } },
             { name = "skin_name", rval = "string", args = { } },
             { name = "spawn", rval = nil, args = { "tripoint" } },
@@ -2132,13 +2137,13 @@ classes = {
             { name = "symbol", rval = "string", args = { } },
             { name = "symbol_color", rval = "nc_color", args = { } },
             { name = "to_item", rval = "item", args = { } },
-            { name = "turns_to_reach", rval = "int", args = { "point" } },
+            { name = "turns_to_reach", rval = "int", args = { "Point" } },
             { name = "try_upgrade", rval = nil, args = { "bool" } },
             { name = "hasten_upgrade", rval = nil, args = { } },
             { name = "unset_dest", rval = nil, args = { } },
             { name = "wander", rval = "bool", args = { } },
             { name = "wander_to", rval = nil, args = { "tripoint", "int" } },
-            { name = "will_reach", rval = "bool", args = { "point" } },
+            { name = "will_reach", rval = "bool", args = { "Point" } },
         }
     },
     recipe = {
@@ -2751,12 +2756,12 @@ global_functions = {
     },
     distance = {
         cpp_name = "rl_dist",
-        args = {"point", "point" },
+        args = {"Point", "Point" },
         rval = "int"
     },
     trig_dist = {
         cpp_name = "trig_dist",
-        args = {"point", "point"},
+        args = {"Point", "Point"},
         rval = "int"
     },
     add_item_to_group = {
