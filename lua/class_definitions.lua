@@ -591,6 +591,7 @@ classes = {
     --     }
     -- },
     avatar = { -- modern addition (src/avatar.h)
+        parent = "player",
         attributes = {
             -- str_upgrade = { type = "int", writable = true },
             -- dex_upgrade = { type = "int", writable = true },
@@ -605,7 +606,7 @@ classes = {
         },
         functions = {
             -- { name = "", rval = "", args = {  }, desc = "" },
-
+            -- { name = "pos", rval = "tripoint", args = { } }, -- returns the player's current pos.
             { name = "get_str_base", rval = "int", args = {  }, desc = "Gets the player's (avatar) base-level strength value." },
             { name = "get_dex_base", rval = "int", args = {  }, desc = "Gets the player's (avatar) base-level dexterity value." },
             { name = "get_int_base", rval = "int", args = {  }, desc = "Gets the player's (avatar) base-level intelligence value." },
@@ -1488,6 +1489,9 @@ classes = {
     -- },
     point_abs_om = {
         by_value = true,
+        new = {
+
+        }
         attributes = {
         },
         functions = {
