@@ -1491,7 +1491,7 @@ classes = {
         by_value = true,
         new = {
 
-        }
+        },
         attributes = {
         },
         functions = {
