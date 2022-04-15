@@ -2864,7 +2864,8 @@ std::pair<item_location, item_pocket *> Character::best_pocket( const item &it, 
     return ret;
 }
 
-item *Character::try_add( item it, const item *avoid, const bool allow_wield )
+item *Character::try_add( item it, const item *avoid, const item *original_inventory_item,
+                          const bool allow_wield )
 {
     invalidate_inventory_validity_cache();
     itype_id item_type_id = it.typeId();
@@ -2891,6 +2892,9 @@ item *Character::try_add( item it, const item *avoid, const bool allow_wield )
     } else {
         // this will set ret to either it, or to stack where it was placed
         pocket.second->add( it, &ret );
+        if( !keep_invlet && ( !it.count_by_charges() || it.charges == ret->charges ) ) {
+            inv->update_invlet( *ret, true, original_inventory_item );
+        }
         pocket.first.on_contents_changed();
         pocket.second->on_contents_changed();
     }
@@ -2903,11 +2907,12 @@ item *Character::try_add( item it, const item *avoid, const bool allow_wield )
     return ret;
 }
 
-item &Character::i_add( item it, bool /* should_stack */, const item *avoid, const bool allow_drop,
+item &Character::i_add( item it, bool /* should_stack */, const item *avoid,
+                        const item *original_inventory_item, const bool allow_drop,
                         const bool allow_wield )
 {
     invalidate_inventory_validity_cache();
-    item *added = try_add( it, avoid, /*allow_wield=*/allow_wield );
+    item *added = try_add( it, avoid, original_inventory_item, allow_wield );
     if( added == nullptr ) {
         if( !allow_wield || !wield( it ) ) {
             if( allow_drop ) {
@@ -3055,7 +3060,8 @@ void Character::i_rem_keep_contents( const item *const it )
     i_rem( it ).spill_contents( pos() );
 }
 
-bool Character::i_add_or_drop( item &it, int qty, const item *avoid )
+bool Character::i_add_or_drop( item &it, int qty, const item *avoid,
+                               const item *original_inventory_item )
 {
     bool retval = true;
     bool drop = it.made_of( phase_id::LIQUID );
@@ -3067,7 +3073,8 @@ bool Character::i_add_or_drop( item &it, int qty, const item *avoid )
         if( drop ) {
             retval &= !here.add_item_or_charges( pos(), it ).is_null();
         } else if( add ) {
-            i_add( it, true, avoid, /*allow_drop=*/true, /*allow_wield=*/!has_wield_conflicts( it ) );
+            i_add( it, true, avoid,
+                   original_inventory_item, /*allow_drop=*/true, /*allow_wield=*/!has_wield_conflicts( it ) );
         }
     }
 
@@ -3439,6 +3446,24 @@ void find_ammo_helper( T &src, const item &obj, bool empty, Output out, bool nes
                 return VisitResponse::SKIP;
             }
 
+            // ammo is inside some sort of a container
+            if( parent != nullptr && parent->is_container() ) {
+                for( const ammotype &at : ammo ) {
+                    if( node->ammo_type() == at ) {
+                        out = item_location( item_location( src, parent ), node );
+                    }
+                }
+                if( node->is_magazine() &&
+                    ( parent == nullptr || node != parent->magazine_current() ) &&
+                    node->has_flag( flag_SPEEDLOADER ) ) {
+                    if( node->ammo_remaining() ) {
+                        out = item_location( item_location( src, parent ), node );
+                    }
+                }
+                return VisitResponse::NEXT;
+            }
+
+            // everything else, probably?
             for( const ammotype &at : ammo ) {
                 if( node->ammo_type() == at ) {
                     out = item_location( src, node );
@@ -3458,6 +3483,15 @@ void find_ammo_helper( T &src, const item &obj, bool empty, Output out, bool nes
         const auto mags = obj.magazine_compatible();
 
         src.visit_items( [&src, &nested, &out, mags, empty]( item * node, item * parent ) {
+            // magazine is inside some sort of a container
+            if( node->is_magazine() &&
+                ( parent != nullptr && node != parent->magazine_current() && parent->is_container() ) ) {
+                if( mags.count( node->typeId() ) && ( node->ammo_remaining() || empty ) ) {
+                    out = item_location( item_location( src, parent ), node );
+                }
+                return VisitResponse::SKIP;
+            }
+            //everything else, probably?
             if( node->is_magazine() &&
                 ( parent == nullptr || node != parent->magazine_current() ) ) {
                 if( mags.count( node->typeId() ) && ( node->ammo_remaining() || empty ) ) {
@@ -5500,7 +5534,7 @@ void Character::update_health( int external_modifiers )
 
     // And healthy_mod decays over time.
     // Slowly near 0, but it's hard to overpower it near +/-100
-    set_healthy_mod( std::round( get_healthy_mod() * 0.95f ) );
+    set_healthy_mod( roll_remainder( get_healthy_mod() * 0.95f ) );
 
     add_msg_debug( "Health: %d, Health mod: %d", get_healthy(), get_healthy_mod() );
 }
@@ -7495,8 +7529,6 @@ bool Character::is_immune_effect( const efftype_id &eff ) const
     } else if( eff == effect_corroding ) {
         return is_immune_damage( damage_type::ACID ) || has_trait( trait_SLIMY ) ||
                has_trait( trait_VISCOUS );
-    } else if( eff == effect_nausea ) {
-        return has_trait( trait_STRONGSTOMACH );
     }
 
     return false;
@@ -8782,7 +8814,7 @@ bool Character::dispose_item( item_location &&obj, const std::string &prompt )
             }
 
             moves -= item_handling_cost( *obj );
-            this->i_add( *obj, true, &*obj );
+            this->i_add( *obj, true, &*obj, &*obj );
             obj.remove_item();
             return true;
         }
@@ -9830,7 +9862,7 @@ std::string Character::weapname() const
                 const item *mag = weapon.magazine_current();
                 mag_ammo = string_format( " (0/%d)",
                                           mag->ammo_capacity( item( mag->ammo_default() ).ammo_type() ) );
-            } else {
+            } else if( weapon.is_reloadable() ) {
                 mag_ammo = _( " (empty)" );
             }
         }
@@ -10939,7 +10971,7 @@ void Character::migrate_items_to_storage( bool disintegrate )
 {
     inv->visit_items( [&]( const item * it, item * ) {
         if( disintegrate ) {
-            if( try_add( *it ) == nullptr ) {
+            if( try_add( *it, /*avoid=*/nullptr, it ) == nullptr ) {
                 std::string profession_id = "<none>";
                 if( const player *me = as_player() ) {
                     profession_id = me->prof->ident().str();
@@ -10950,7 +10982,7 @@ void Character::migrate_items_to_storage( bool disintegrate )
                 return VisitResponse::ABORT;
             }
         } else {
-            item &added = i_add( *it, true, /*avoid=*/nullptr,
+            item &added = i_add( *it, true, /*avoid=*/nullptr, it,
                                  /*allow_drop=*/false, /*allow_wield=*/!has_wield_conflicts( *it ) );
             if( added.is_null() ) {
                 put_into_vehicle_or_drop( *this, item_drop_reason::tumbling, { *it } );
@@ -12807,7 +12839,8 @@ bool Character::defer_move( const tripoint &next )
     return true;
 }
 
-bool Character::add_or_drop_with_msg( item &it, const bool /*unloading*/, const item *avoid )
+bool Character::add_or_drop_with_msg( item &it, const bool /*unloading*/, const item *avoid,
+                                      const item *original_inventory_item )
 {
     if( it.made_of( phase_id::LIQUID ) ) {
         liquid_handler::consume_liquid( it, 1, avoid );
@@ -12829,7 +12862,8 @@ bool Character::add_or_drop_with_msg( item &it, const bool /*unloading*/, const 
         }
         const bool allow_wield = !wielded_has_it && weapon.magazine_current() != &it;
         const int prev_charges = it.charges;
-        auto &ni = this->i_add( it, true, avoid, /*allow_drop=*/false, /*allow_wield=*/allow_wield );
+        auto &ni = this->i_add( it, true, avoid,
+                                original_inventory_item, /*allow_drop=*/false, /*allow_wield=*/allow_wield );
         if( ni.is_null() ) {
             // failed to add
             put_into_vehicle_or_drop( *this, item_drop_reason::tumbling, { it } );
@@ -12947,7 +12981,8 @@ bool Character::unload( item_location &loc, bool bypass_activity )
         return true;
 
     } else if( target->magazine_current() ) {
-        if( !this->add_or_drop_with_msg( *target->magazine_current(), true ) ) {
+        if( !this->add_or_drop_with_msg( *target->magazine_current(), true, nullptr,
+                                         target->magazine_current() ) ) {
             return false;
         }
         // Eject magazine consuming half as much time as required to insert it

@@ -810,6 +810,7 @@
     "weight": "10 g",
     "volume": "25 ml",
     "to_hit": -5,
+    "milling": { "into": "meal_bone_tainted", "conversion_rate": 0.16 },
     "qualities": [ [ "COOK", 1 ] ]
   },
   {
@@ -867,6 +868,7 @@
     "material": [ "steel", "iron" ],
     "weight": "22680 g",
     "volume": "6250 ml",
+    "longest_side": "1 meter",
     "bashing": 6,
     "to_hit": -4
   },
@@ -3389,7 +3391,8 @@
           "id_military",
           "id_industrial",
           "fp_loyalty_card",
-          "robofac_test_data"
+          "robofac_test_data",
+          "condom"
         ]
       }
     ]

@@ -1188,7 +1188,6 @@
       [ "peacoat", 30 ],
       [ "greatcoat", 15 ],
       [ "vest", 15 ],
-      [ "mag_porn", 20 ],
       [ "photo_album", 10 ],
       { "item": "lighter", "prob": 60, "charges-min": 0 },
       { "item": "ref_lighter", "prob": 2, "charges-min": 0 },

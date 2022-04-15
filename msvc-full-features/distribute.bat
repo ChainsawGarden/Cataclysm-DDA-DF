@@ -6,5 +6,7 @@ xcopy /s /e /i ..\config distribution\config
 xcopy /s /e /i ..\gfx distribution\gfx
 xcopy /s /e /i ..\lang\mo distribution\lang\mo
 copy ..\Cataclysm*.exe distribution\
+copy ..\UndeadPeopleTileset*.zip distribution\
+echo [+] === UNDEAD VICTORY ! ===
 echo Distribution files has been put into `distribution\' directory.
 pause

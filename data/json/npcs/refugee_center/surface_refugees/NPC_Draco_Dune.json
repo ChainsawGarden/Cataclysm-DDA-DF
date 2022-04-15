@@ -74,7 +74,7 @@
       "context": "meeting",
       "value": "yes",
       "yes": "Always good to see you, friend.",
-      "no": "Well now, good to see another new face!  Welcome to the center, friend, I'm Draco."
+      "no": "Well now, good to see another new face!  Welcome to the center, brother, name's Draco."
     },
     "responses": [
       {
@@ -153,17 +153,23 @@
     "dynamic_line": "Oh you don't have time for all that, do you?  Well, I'll give you the short version.  I've gotten kinda tired of it in the telling.  Frankly, it's not as heroic, not as inspiring, not as tragic, and certainly not as funny as some of the tales around here.  But it's mine, ya know?  I'm a musician.  Guitar's my baby.  You like folk and the blues, friend?  Well, that was my bag and I sure could please my own ear with em, anyway.  Folks who's bein' generous might also say it pleased theirs.  Problem is, I seem to be between guitars right now, you know?  Temporarily guitar-light, if you get my saying.  Problem is, in the run for my life, I had to use old Jasmine as a bit of a billy club.  Had to curb some rowdy dudes on my way here.  It was her or me, you understand?  You wouldn't begrudge a man breakin' his instrument to save his life, would ya?",
     "responses": [
       { "text": "I think I would've done the same.  Nobody around here has a guitar?", "topic": "TALK_REFUGEE_Draco_4" },
-      { "text": "Yes, yes I would… you monster.", "topic": "TALK_DONE" }
+      {
+        "text": "No, no.  There's plenty of music shops around here.  A new piece wouldn't be necessarily hard to get.",
+        "topic": "TALK_NONE"
+      },
+      { "text": "Nah, it's just a guitar man.  Anyway… let's back to business.", "topic": "TALK_NONE" },
+      { "text": "Yes, yes I would… you monster.  Kidding, I'll see you later though.", "topic": "TALK_DONE" },
+      { "text": "Nope.  Gotta go.", "topic": "TALK_DONE" }
     ]
   },
   {
     "type": "talk_topic",
     "id": "TALK_REFUGEE_Draco_4",
-    "dynamic_line": "Would you believe that they don't!  Not a one in the whole place.  Well, maybe downstairs, but that's a different matter, isn't it?  Say, you're not planning on sticking around, right?  You're a free-roller, not a settler, seems like to me.  Don't know if I could beg or cajole you into maybe keepin' an ear out for a new guitar for me?  There gotta still be plenty out there not gettin' any love these days.  Whattya say?  Help an old man play some blues?  Would be good to have some real music around this place.  Be good for PEOPLE, you know what I'm sayin'?",
+    "dynamic_line": "Would you believe that they don't!  Not a one in the whole place.  Well, maybe downstairs, but that's a different matter, isn't it?  Say, you're not planning on sticking around, right?  You're a free-roller, not a settler, seems like to me.  Don't know if I could beg or cajole you into maybe keepin' an ear out for a new guitar for me?  There gotta still be plenty out there not gettin' any love these days.  Whattya say?  Help an old man play some blues?  Would be good to have some real music around this place.  Just somethin' to ease nerves around here, yeah?",
     "responses": [
       { "text": "Where would we be without music?", "topic": "TALK_REFUGEE_Draco_5a" },
       {
-        "text": "You're aware that the world has ended, right?  I've got real problems to deal with.  You're on your own.",
+        "text": "I guess I don't value music all that much.  I'll be back later.",
         "topic": "TALK_DONE"
       }
     ]
@@ -236,13 +242,15 @@
     "dynamic_line": "Me too.  It's fight a stay afloat in these times.  Some music would lift all spirits, though, don't you think?",
     "responses": [
       { "text": "Can you play heavy metal on an acoustic guitar?", "topic": "TALK_REFUGEE_Draco_7" },
-      { "text": "Boring.  I'm going to go destroy something.", "topic": "TALK_DONE" }
+      { "text": "It sure does.", "topic": "TALK_NONE" },
+      { "text": "The sound of heavy machine guns keep me afloat.", "topic": "TALK_DONE" },
+      { "text": "I'd rather get eaten by zombies.", "topic": "TALK_DONE" }
     ]
   },
   {
     "type": "talk_topic",
     "id": "TALK_REFUGEE_Draco_6e",
-    "dynamic_line": "Me too!  For now, anyway, that's not really possible for me.  I mean, I guess you know better than me about that.  Man, I used to travel all around.  Saw halfa the States with my guitar on my back.  Now, though, well, I think I'll stay inside til this all flies over.",
+    "dynamic_line": "Me too!  For now, anyway, that's not really possible for me.  I mean, I guess you know better than me about that.  Man, I used to travel all around.  Saw half'a the States with my guitar on my back.  Now, though, well, I think I'll stay inside til this all flies over.",
     "responses": [
       { "text": "Maybe I could help with something?", "topic": "TALK_REFUGEE_Draco_7" },
       { "text": "Well then, I'll leave you here where it's safe.", "topic": "TALK_DONE" }
@@ -283,22 +291,26 @@
   {
     "type": "talk_topic",
     "id": "TALK_REFUGEE_Draco_8",
-    "dynamic_line": "Well now, my friend-o!  You just asked a mighty fine question.  Folks have been missing the little things in life.  New shoes, new cellphones, can't exactly go shopping, or, well, I guess you sorta can, if you mind the broken glass.  I left my wallet in an outdoorsman's store when I 'bought' this warmer coat.  Figured that's kinda it, you know?  It didn't matter anymore.  I don't think my insurance's going to pay out for any health care I get now.  I did what you see in the movies though, I rolled a joint with a hundred dollar bill.  Ended up coughing and rerolling it in regular paper though.  Was too harsh.  Just letting you know in case you get the smart idea of trying it.",
+    "dynamic_line": "Well now, brotha!  You just asked a mighty fine question.  Folks have been missing the little things in life.  New shoes, new cellphones, can't exactly go shopping, or, well, I guess you sorta can, if you mind the broken glass.  I left my wallet in an outdoorsman's store when I 'bought' this warmer coat.  Figured that's kinda it, you know?  It didn't matter anymore.  I don't think my insurance's going to pay out for any health care I get now.  I did what you see in the movies though, I rolled a joint with a hundred dollar bill.  Ended up coughing and rerolling it in regular paper though.  Was too harsh.  Just letting you know in case you get the smart idea of trying it.",
     "responses": [ { "text": "Go on.", "topic": "TALK_REFUGEE_Draco_9" } ]
   },
   {
     "type": "talk_topic",
     "id": "TALK_REFUGEE_Draco_9",
-    "dynamic_line": "Say, I don't mean to get you in any trouble or nothing, if any folks still care about that, but you haven't seen any green around town, have ya?",
+    "dynamic_line": "Say, I don't mean to get you in any trouble or nothing, if any folks still care about that, but you haven't seen any green 'round town, have ya?",
     "responses": [
-      { "text": "What?", "topic": "TALK_REFUGEE_Draco_10_question" },
-      { "text": "WHAT.", "topic": "TALK_REFUGEE_Draco_10_disapprove" },
       {
         "text": "Oh yeah, some people've been growing it in their basements.",
         "topic": "TALK_REFUGEE_Draco_10_approve",
         "effect": { "u_add_var": "Draco_Dune_convo_depth", "type": "general", "context": "meeting", "value": "3" }
       },
-      { "text": "I'm not comfortable with where this is going.", "topic": "TALK_REFUGEE_Draco_10_disapprove" }
+      { "text": "Some what?", "topic": "TALK_REFUGEE_Draco_10_question" },
+      { "text": "…Dollars?  Green, as in, greenbacks?", "topic": "TALK_REFUGEE_Draco_10_question" },
+      {
+        "text": "I remember seeing an acidic zombie puke, is that what you meant?",
+        "topic": "TALK_REFUGEE_Draco_10_question2"
+      },
+      { "text": "Drugs…  during an apocalypse?  C'mon, Draco…", "topic": "TALK_REFUGEE_Draco_10_disapprove" }
     ]
   },
   {
@@ -318,8 +330,23 @@
   },
   {
     "type": "talk_topic",
+    "id": "TALK_REFUGEE_Draco_10_question2",
+    "dynamic_line": "Heh.  I see you've got jokes.  No, I'm talking about marijuana brother.  Ah…  that was funny though.",
+    "responses": [
+      { "text": "Yeah.", "topic": "TALK_REFUGEE_Draco_10_approve" },
+      {
+        "text": "Uh…  yeah, I know where a few grow labs are.",
+        "topic": "TALK_REFUGEE_Draco_10_approve",
+        "effect": { "u_add_var": "Draco_Dune_convo_depth", "type": "general", "context": "meeting", "value": "3" }
+      },
+      { "text": "Nope, sorry.", "topic": "TALK_REFUGEE_Draco_10_hasnt_found_weed" },
+      { "text": "I'm not doing this, dude.", "topic": "TALK_DONE" }
+    ]
+  },
+  {
+    "type": "talk_topic",
     "id": "TALK_REFUGEE_Draco_10_disapprove",
-    "dynamic_line": "Hey, don't get all serious on me all of a sudden.  It helps me relax.  Lubricates my joints.  Eases the pain, ya know?  Makes every day a bit more bearable.",
+    "dynamic_line": "It's not bad, it's medicinal.  It helps me relax.  Lubricates my joints.  Eases the pain, ya know?  Makes every day a bit more bearable.  'Preciate the concern, though.",
     "responses": [
       {
         "text": "I can help.",

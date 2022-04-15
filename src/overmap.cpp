@@ -1732,13 +1732,13 @@ bool overmap::generate_sub( const int z )
         tripoint_om_sm sm_pos = project_to<coords::sm>( omt_pos );
         // Sewers and city subways are present at z == -1 and z == -2. Don't spawn CHUD on other z-levels.
         if( ( z == -1 || z == -2 ) && one_in( 3 ) ) {
-            add_mon_group( mongroup( GROUP_CHUD,
-                                     sm_pos, i.size, i.size * 20 ) );
+            spawn_mon_group( mongroup( GROUP_CHUD,
+                                       sm_pos, i.size, i.size * 20 ) );
         }
         // Sewers are present at z == -1. Don't spawn sewer monsters on other z-levels.
         if( z == -1 && !one_in( 8 ) ) {
-            add_mon_group( mongroup( GROUP_SEWER,
-                                     sm_pos, ( i.size * 7 ) / 2, i.size * 70 ) );
+            spawn_mon_group( mongroup( GROUP_SEWER,
+                                       sm_pos, ( i.size * 7 ) / 2, i.size * 70 ) );
         }
     }
 
@@ -1757,7 +1757,7 @@ bool overmap::generate_sub( const int z )
         }
         mongroup_id ant_group( ter( p_loc + tripoint_above ) == "anthill" ?
                                "GROUP_ANT" : "GROUP_ANT_ACID" );
-        add_mon_group(
+        spawn_mon_group(
             mongroup( ant_group, tripoint_om_sm( project_to<coords::sm>( i.pos ), z ),
                       ( i.size * 3 ) / 2, rng( 6000, 8000 ) ) );
         build_anthill( p_loc, i.size, ter( p_loc + tripoint_above ) == "anthill" );
@@ -1929,7 +1929,7 @@ void overmap::place_special_forced( const overmap_special_id &special_id, const 
                                     om_direction::type dir )
 {
     static city invalid_city;
-    place_special( *special_id, p, dir, invalid_city, false, false );
+    place_special( *special_id, p, dir, invalid_city, false, true );
 }
 
 void mongroup::wander( const overmap &om )
@@ -4099,6 +4099,7 @@ void overmap::place_special(
     }
 
     const bool blob = special.flags.count( "BLOB" ) > 0;
+    const bool is_safe_zone = special.flags.count( "SAFE_AT_WORLDGEN" ) > 0;
 
     for( const auto &elem : special.terrains ) {
         const tripoint_om_omt location = p + om_direction::rotate( elem.p, dir );
@@ -4106,6 +4107,9 @@ void overmap::place_special(
 
         overmap_special_placements[location] = special.id;
         ter_set( location, tid );
+        if( is_safe_zone ) {
+            safe_at_worldgen.emplace( location );
+        }
 
         if( blob ) {
             for( int x = -2; x <= 2; x++ ) {
@@ -4122,18 +4126,26 @@ void overmap::place_special(
         }
     }
     // Make connections.
-    if( cit ) {
-        for( const auto &elem : special.connections ) {
-            if( elem.connection ) {
-                const tripoint_om_omt rp = p + om_direction::rotate( elem.p, dir );
-                om_direction::type initial_dir = elem.initial_dir;
+    for( const auto &elem : special.connections ) {
+        if( elem.connection ) {
+            const tripoint_om_omt rp = p + om_direction::rotate( elem.p, dir );
+            om_direction::type initial_dir = elem.initial_dir;
 
-                if( initial_dir != om_direction::type::invalid ) {
-                    initial_dir = om_direction::add( initial_dir, dir );
-                }
-
+            if( initial_dir != om_direction::type::invalid ) {
+                initial_dir = om_direction::add( initial_dir, dir );
+            }
+            if( cit ) {
                 build_connection( cit.pos, rp.xy(), elem.p.z, *elem.connection, must_be_unexplored,
                                   initial_dir );
+            }
+            // if no city present, search for nearby road within 50 tiles and make connection to it instead
+            else {
+                for( const tripoint_om_omt &nearby_point : closest_points_first( rp, 50 ) ) {
+                    if( check_ot( "road", ot_match_type::contains, nearby_point ) ) {
+                        build_connection( nearby_point.xy(), rp.xy(), elem.p.z, *elem.connection, must_be_unexplored,
+                                          initial_dir );
+                    }
+                }
             }
         }
     }
@@ -4142,7 +4154,18 @@ void overmap::place_special(
         const overmap_special_spawns &spawns = special.spawns;
         const int pop = rng( spawns.population.min, spawns.population.max );
         const int rad = rng( spawns.radius.min, spawns.radius.max );
-        add_mon_group( mongroup( spawns.group, project_to<coords::sm>( p ), rad, pop ) );
+        spawn_mon_group( mongroup( spawns.group, project_to<coords::sm>( p ), rad, pop ) );
+    }
+    // If it's a safe zone, remove existing spawns
+    if( is_safe_zone ) {
+        for( auto it = zg.begin(); it != zg.end(); ) {
+            tripoint_om_omt pos = project_to<coords::omt>( it->second.pos );
+            if( safe_at_worldgen.find( pos ) != safe_at_worldgen.end() ) {
+                zg.erase( it++ );
+            } else {
+                ++it;
+            }
+        }
     }
 }
 
@@ -4365,22 +4388,6 @@ void overmap::place_specials( overmap_special_batch &enabled_specials )
 
 void overmap::place_mongroups()
 {
-    // Cities are full of zombies
-    for( city &elem : cities ) {
-        if( get_option<bool>( "WANDER_SPAWNS" ) ) {
-            if( !one_in( 16 ) || elem.size > 5 ) {
-                mongroup m( GROUP_ZOMBIE,
-                            tripoint_om_sm( project_to<coords::sm>( elem.pos ), 0 ),
-                            static_cast<int>( elem.size * 2.5 ),
-                            elem.size * 80 );
-                //                m.set_target( zg.back().posx, zg.back().posy );
-                m.horde = true;
-                m.wander( *this );
-                add_mon_group( m );
-            }
-        }
-    }
-
     if( get_option<bool>( "DISABLE_ANIMAL_CLASH" ) ) {
         // Figure out where swamps are, and place swamp monsters
         for( int x = 3; x < OMAPX - 3; x += 7 ) {
@@ -4394,8 +4401,8 @@ void overmap::place_mongroups()
                     }
                 }
                 if( swamp_count >= 25 ) {
-                    add_mon_group( mongroup( GROUP_SWAMP, tripoint( x * 2, y * 2, 0 ), 3,
-                                             rng( swamp_count * 8, swamp_count * 25 ) ) );
+                    spawn_mon_group( mongroup( GROUP_SWAMP, tripoint( x * 2, y * 2, 0 ), 3,
+                                               rng( swamp_count * 8, swamp_count * 25 ) ) );
                 }
             }
         }
@@ -4413,8 +4420,8 @@ void overmap::place_mongroups()
                 }
             }
             if( river_count >= 25 ) {
-                add_mon_group( mongroup( GROUP_RIVER, tripoint( x * 2, y * 2, 0 ), 3,
-                                         rng( river_count * 8, river_count * 25 ) ) );
+                spawn_mon_group( mongroup( GROUP_RIVER, tripoint( x * 2, y * 2, 0 ), 3,
+                                           rng( river_count * 8, river_count * 25 ) ) );
             }
         }
     }
@@ -4422,9 +4429,9 @@ void overmap::place_mongroups()
     // Place the "put me anywhere" groups
     int numgroups = rng( 0, 3 );
     for( int i = 0; i < numgroups; i++ ) {
-        add_mon_group( mongroup( GROUP_WORM, tripoint( rng( 0, OMAPX * 2 - 1 ), rng( 0,
-                                 OMAPY * 2 - 1 ), 0 ),
-                                 rng( 20, 40 ), rng( 30, 50 ) ) );
+        spawn_mon_group( mongroup( GROUP_WORM, tripoint( rng( 0, OMAPX * 2 - 1 ), rng( 0,
+                                   OMAPY * 2 - 1 ), 0 ),
+                                   rng( 20, 40 ), rng( 30, 50 ) ) );
     }
 }
 
@@ -4500,6 +4507,15 @@ void overmap::save() const
     write_to_file( overmapbuffer::terrain_filename( loc ), [&]( std::ostream & stream ) {
         serialize( stream );
     } );
+}
+
+void overmap::spawn_mon_group( const mongroup &group )
+{
+    tripoint_om_omt pos = project_to<coords::omt>( group.pos );
+    if( safe_at_worldgen.find( pos ) != safe_at_worldgen.end() ) {
+        return;
+    }
+    add_mon_group( group );
 }
 
 void overmap::add_mon_group( const mongroup &group )

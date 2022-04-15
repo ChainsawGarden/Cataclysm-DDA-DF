@@ -217,24 +217,10 @@
       "TALK_EVAC_MERCHANT_MERCH",
       "TALK_EVAC_MERCHANT_HORDES",
       "TALK_EVAC_MERCHANT_PRIME_LOOT",
-      "TALK_EVAC_MERCHANT_BACKGROUND",
-      "TALK_EVAC_MERCHANT_Boris_Mission_1b",
-      "TALK_EVAC_MERCHANT_Boris_Mission_1c"
+      "TALK_EVAC_MERCHANT_BACKGROUND"
     ],
     "type": "talk_topic",
     "responses": [
-      {
-        "text": "I'm trying to put a cleanup crew together to tidy up the back room.  Can you offer any help?",
-        "condition": {
-          "and": [
-            { "u_has_mission": "MISSION_REFUGEE_Boris_CLEANUP" },
-            {
-              "not": { "npc_has_var": "cleanup_asked", "type": "mission", "context": "Boris_mission_1", "value": "yes" }
-            }
-          ]
-        },
-        "topic": "TALK_EVAC_MERCHANT_Boris_Mission_1"
-      },
       { "text": "I heard this place was a refugee center…", "topic": "TALK_EVAC_MERCHANT_NEW" },
       { "text": "What are you doing here?", "topic": "TALK_EVAC_MERCHANT_PLANS" },
       { "text": "Heard anything about the outside world?", "topic": "TALK_EVAC_MERCHANT_WORLD" },
@@ -464,36 +450,6 @@
     "id": "TALK_EVAC_MERCHANT_MERCH",
     "type": "talk_topic",
     "dynamic_line": "Oh, they're just what we're using for local cash.  We started out paying each other in regular cash, but there's so much paper money out there that it's just useless now.  For our internal use, we started certifying bills that represent food and labour in the center here.  Pretty quickly we started trading them among ourselves, and from there, others started adopting them."
-  },
-  {
-    "type": "talk_topic",
-    "id": "TALK_EVAC_MERCHANT_Boris_Mission_1",
-    "dynamic_line": "Hmm.  Most of the people downstairs aren't willing to come up for things like that.  If you sweeten the pot a bit, we could get a few folks I'm sure.",
-    "speaker_effect": { "effect": { "npc_add_var": "cleanup_asked", "type": "mission", "context": "Boris_mission_1", "value": "yes" } },
-    "responses": [
-      {
-        "text": "How about five Merch to do it?",
-        "condition": { "u_has_items": { "item": "FMCNote", "count": 5 } },
-        "effect": { "u_adjust_var": "Boris_mission_1", "type": "mission", "context": "cleanup_promises", "adjustment": 1 },
-        "topic": "TALK_EVAC_MERCHANT_Boris_Mission_1b"
-      },
-      {
-        "text": "How about ten Merch to do it?",
-        "condition": { "u_has_items": { "item": "FMCNote", "count": 10 } },
-        "effect": { "u_adjust_var": "Boris_mission_1", "type": "mission", "context": "cleanup_promises", "adjustment": 3 },
-        "topic": "TALK_EVAC_MERCHANT_Boris_Mission_1c"
-      }
-    ]
-  },
-  {
-    "type": "talk_topic",
-    "id": "TALK_EVAC_MERCHANT_Boris_Mission_1b",
-    "dynamic_line": "Sure.  Five Merch is definitely enough to get someone off guard duty to help you out."
-  },
-  {
-    "type": "talk_topic",
-    "id": "TALK_EVAC_MERCHANT_Boris_Mission_1c",
-    "dynamic_line": "Woah, you're really intent hey?  Okay, if you feel so strongly, ten Merch is enough to get a couple people out of guard duty to help, and you know what?  If you feel that strongly about it, I'll come help out in my down time too.  I respect someone putting their money where their mouth is."
   },
   {
     "id": "MISSION_FREE_MERCHANTS_EVAC_1",

@@ -1234,7 +1234,15 @@
     "time": "1 m",
     "autolearn": true,
     "components": [
-      [ [ "splinter", 40 ], [ "2x4", 6 ], [ "stick", 8 ], [ "bone_any", 40, "LIST" ], [ "pine_bough", 20 ], [ "log", 1 ] ],
+      [
+        [ "splinter", 40 ],
+        [ "2x4", 6 ],
+        [ "stick", 8 ],
+        [ "bone_any", 40, "LIST" ],
+        [ "skewer_bone", 1000 ],
+        [ "pine_bough", 20 ],
+        [ "log", 1 ]
+      ],
       [ [ "char_kiln", 1 ] ]
     ]
   },
@@ -1435,7 +1443,7 @@
     "activity_level": "fake",
     "result": "toolbox_workshop_empty",
     "category": "CC_OTHER",
-    "subcategory": "CSC_OTHER_TOOLS",
+    "subcategory": "CSC_OTHER_CONTAINERS",
     "skill_used": "fabrication",
     "skills_required": [ "mechanics", 5 ],
     "difficulty": 6,

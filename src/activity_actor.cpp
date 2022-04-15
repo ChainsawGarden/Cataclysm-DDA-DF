@@ -1623,7 +1623,7 @@ void unload_activity_actor::unload( Character &who, item_location &target )
         bool changed = false;
         for( item *contained : it.contents.all_items_top() ) {
             int old_charges = contained->charges;
-            const bool consumed = who.add_or_drop_with_msg( *contained, true, &it );
+            const bool consumed = who.add_or_drop_with_msg( *contained, true, &it, contained );
             if( consumed || contained->charges != old_charges ) {
                 changed = true;
                 handler.unseal_pocket_containing( item_location( target, contained ) );
@@ -1646,7 +1646,7 @@ void unload_activity_actor::unload( Character &who, item_location &target )
         if( contained->ammo_type() == ammotype( "plutonium" ) ) {
             contained->charges /= PLUTONIUM_CHARGES;
         }
-        if( who.as_player()->add_or_drop_with_msg( *contained, true, &it ) ) {
+        if( who.as_player()->add_or_drop_with_msg( *contained, true, &it, contained ) ) {
             qty += contained->charges;
             remove_contained.push_back( contained );
             actually_unloaded = true;
@@ -2429,7 +2429,8 @@ void insert_item_activity_actor::finish( player_activity &act, Character &who )
             if( charges > 0 && holster->can_contain_partial( it ) ) {
                 int result = holster->fill_with( it, charges,
                                                  /*unseal_pockets=*/true,
-                                                 /*allow_sealed=*/true );
+                                                 /*allow_sealed=*/true,
+                                                 /*ignore_settings*/true );
                 success = result > 0;
 
                 if( success ) {
@@ -2733,6 +2734,7 @@ void disassemble_activity_actor::start( player_activity &act, Character &who )
         target = who.create_in_progress_disassembly( act.targets.back() );
     } else {
         target = act.targets.back();
+        act.position = target->charges;
     }
     act.targets.pop_back();
 

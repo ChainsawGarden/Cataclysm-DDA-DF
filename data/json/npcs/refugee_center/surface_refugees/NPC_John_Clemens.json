@@ -15,15 +15,14 @@
     "type": "npc_class",
     "id": "NC_REFUGEE_John",
     "name": { "str": "Refugee" },
-    "job_description": "I'm just trying to survive.",
+    "job_description": "I'm just tryin' to survive.",
     "common": false,
-    "//": "John is a pseudonym.  This guy probably lived in a city before the Cataclysm, but now he either thinks or pretends to be a cowboy..",
+    "//": "Clemens was a singer and a rancher in Florida who enjoyed rural living.  Military checkpoints and increasing FEMA activity spooked him and his family, and they moved up north.  Reluctantly.",
     "bonus_str": { "rng": [ -1, 2 ] },
     "bonus_dex": { "rng": [ -3, 2 ] },
     "bonus_int": { "rng": [ -2, 1 ] },
     "bonus_per": { "rng": [ -1, 3 ] },
     "worn_override": "REFUGEE_John_worn",
-    "carry_override": "REFUGEE_John_carried",
     "weapon_override": "REFUGEE_John_wield",
     "traits": [ { "group": "NPC_starting_traits" }, { "group": "Appearance_Caucasian" } ],
     "skills": [
@@ -42,51 +41,17 @@
       { "item": "flag_shirt" },
       { "item": "jeans" },
       { "item": "leather_belt" },
-      { "item": "bandana" },
       { "item": "holster" },
-      { "item": "duster_leather" },
-      { "item": "sunglasses" },
+      { "item": "jacket_flannel" },
       { "item": "cowboy_hat" },
-      { "item": "boots_western" }
+      { "item": "boots" }
     ]
-  },
-  {
-    "type": "item_group",
-    "id": "REFUGEE_John_carried",
-    "subtype": "collection",
-    "entries": [ { "item": "novel_western" } ]
   },
   {
     "type": "item_group",
     "id": "REFUGEE_John_wield",
     "subtype": "collection",
-    "entries": [ { "item": "colt_army" } ]
-  },
-  {
-    "type": "talk_topic",
-    "//": "common talk responses",
-    "id": [
-      "TALK_REFUGEE_John_2",
-      "TALK_REFUGEE_John_Background",
-      "TALK_REFUGEE_John_Background_cataclysm",
-      "TALK_REFUGEE_John_Situation"
-    ],
-    "responses": [
-      {
-        "text": "I'm trying to put a cleanup crew together to tidy up the back room.  Can you help?",
-        "condition": {
-          "and": [
-            { "u_has_mission": "MISSION_REFUGEE_Boris_CLEANUP" },
-            {
-              "not": { "npc_has_var": "cleanup_asked", "type": "mission", "context": "Boris_mission_1", "value": "yes" }
-            }
-          ]
-        },
-        "topic": "TALK_REFUGEE_Refuse_Boris_Mission_1"
-      },
-      { "text": "What's your story?", "topic": "TALK_REFUGEE_John_Background" },
-      { "text": "How are things here?", "topic": "TALK_REFUGEE_John_Situation" }
-    ]
+    "entries": [ { "item": "m1911" } ]
   },
   {
     "type": "talk_topic",
@@ -97,7 +62,7 @@
       "context": "meeting",
       "value": "yes",
       "yes": "Howdy, pardner.",
-      "no": "Howdy, pardner.  They call me Clemens.  John Clemens.  I'm an ol' cowhand."
+      "no": "Howdy.  Name's John Clemens.  What brings you here brother?"
     },
     "responses": [
       {
@@ -127,27 +92,102 @@
   {
     "type": "talk_topic",
     "id": "TALK_REFUGEE_John_1_firstmeet",
-    "dynamic_line": "Nice to meet you too.  I reckon' you got some questions 'bout this place.",
+    "dynamic_line": "Nice to meet you too.  I figure you've got some questions 'bout the center.",
     "responses": [
-      { "text": "Yeah, I sure do.", "topic": "TALK_REFUGEE_John_2" },
+      { "text": "I sure do.", "topic": "TALK_REFUGEE_John_2" },
       { "text": "Actually I'm just heading out.", "topic": "TALK_DONE" }
     ]
   },
   {
     "type": "talk_topic",
     "id": "TALK_REFUGEE_John_2",
-    "dynamic_line": "What can I do ya for?",
-    "responses": [ { "text": "I'd better get going.", "topic": "TALK_DONE" } ]
+    "//": "What's the spiel for today, feller?",
+    "dynamic_line": "Alright.",
+    "responses": [
+      { "text": "Where can I get some food?", "topic": "TALK_REFUGEE_John_food" },
+      { "text": "What's up with the room back there?", "topic": "TALK_REFUGEE_John_room" },
+      { "text": "What's your story?", "topic": "TALK_REFUGEE_John_Background" },
+      { "text": "Are you a cowboy?", "topic": "TALK_REFUGEE_John_cowboy" },
+      {
+        "text": "It's not really about the center…  but, do you have any advice on life?",
+        "topic": "TALK_REFUGEE_John_advice"
+      },
+      { "text": "Nevermind.  What were you saying before?", "topic": "TALK_NONE" },
+      { "text": "Gotta go.", "topic": "TALK_DONE" }
+    ]
+  },
+  {
+    "type": "talk_topic",
+    "id": "TALK_REFUGEE_John_food",
+    "dynamic_line": "As long as you've got money or valuables, the merchants should have somethin'.",
+    "responses": [
+      { "text": "Cool.", "topic": "TALK_NONE" },
+      {
+        "text": "Why don't the beggars get fed anything?  Surely, there's got to be some food to spare.",
+        "topic": "TALK_REFUGEE_John_food2"
+      },
+      { "text": "Alright, I'm going to get some chow.  See ya later.", "topic": "TALK_DONE" },
+      { "text": "Okay.  I'll see you later, Clemens.", "topic": "TALK_DONE" }
+    ]
+  },
+  {
+    "type": "talk_topic",
+    "id": "TALK_REFUGEE_John_food2",
+    "dynamic_line": "Friend, we ain't exactly got a surplus a' food 'round here.  I'd help put some food on the table…  but I'd need some help.  Maybe, in the future, we could do some charity work.  But as for now, the only thing we can really provide those poor folk is shelter.",
+    "responses": [
+      { "text": "That's a shame, but it's understandable.  So, anyways…", "topic": "TALK_NONE" },
+      { "text": "That sucks.  Thanks for the chat, I'll be seeing you later.", "topic": "TALK_DONE" },
+      {
+        "text": "If you guys can't provide them with food, I'll do it myself.  I'll be back in a bit.",
+        "topic": "TALK_DONE"
+      },
+      {
+        "text": "You guys are pretty stingy with your resources, locking them behind a paywall…  but whatever.  See you later.",
+        "topic": "TALK_DONE"
+      }
+    ]
+  },
+  {
+    "type": "talk_topic",
+    "id": "TALK_REFUGEE_John_room",
+    "dynamic_line": "Poor souls back there got bit and turned into zombies.  Ain't it weird how it's…  kinda like the movies?  'Least, sort of.  Movie got some parts of it right, like the undead being undead n' dumb…  but, there ain't never been a movie I seen with huge zombies with arms the girth 'a trashcans, neither fast zombies.  Who pissed off the Lord 'nuff for 'em to make zombies fast?",
+    "responses": [
+      { "text": "Yeah…", "topic": "TALK_NONE" },
+      { "text": "Yeah, someone must've pissed off a mad scientist or something.", "topic": "TALK_NONE" },
+      { "text": "Those fast zombies are a bitch to take out.  Thanks for the banter, I'll see you later.", "topic": "TALK_DONE" },
+      { "text": "Someone really racked his nerve, I see.  Heading out now.  See you.", "topic": "TALK_DONE" },
+      { "text": "Yeah.  I'll be heading out now.", "topic": "TALK_DONE" }
+    ]
+  },
+  {
+    "type": "talk_topic",
+    "id": "TALK_REFUGEE_John_cowboy",
+    "dynamic_line": "Haha!  I'm a rancher.  Got property down south that I had to abandon though.  Spent the majority of my life buyin' that place, paying off the mortgage.  It was either I waited 'till federal agents came to put us in FEMA camps and put our second amendment to use, or get out of dodge and keep our hides intact.  I chose the latter.  Would've done the former had I not had grandkids.  It surely would'a been satisfying to turn one of those idiots into swiss cheese, though.",
+    "responses": [
+      { "text": "Yeah, they suck.", "topic": "TALK_NONE" },
+      { "text": "Nice to know that.  Today I learned that ranchers aren't cowboys…", "topic": "TALK_NONE" },
+      { "text": "Nice story.  I've gotta head out.  See ya.", "topic": "TALK_DONE" }
+    ]
+  },
+  {
+    "type": "talk_topic",
+    "id": "TALK_REFUGEE_John_advice",
+    "dynamic_line": "I'll give you the same advice that I gave my brothers, wife, and children: No matter where you are in life, no matter how deep in shit you are, you've gotta pull yourself by the bootstraps and get out of your shitty situation.  Because otherwise, you'll be swimmin' in shit, dealin' with shit, and you'll drown in shit if you don't get out quick.",
+    "responses": [
+      { "text": "Thank you.", "topic": "TALK_NONE" },
+      { "text": "That was beautiful.", "topic": "TALK_NONE" },
+      { "text": "That was awesome.", "topic": "TALK_NONE" },
+      { "text": "You sure do love saying shit.", "topic": "TALK_NONE" },
+      { "text": "Could've been worded better, but it'll suffice.", "topic": "TALK_NONE" },
+      { "text": "Pretty shitty advice.  I'll see you soon.", "topic": "TALK_DONE" }
+    ]
   },
   {
     "type": "talk_topic",
     "id": "TALK_REFUGEE_John_Background",
-    "dynamic_line": "My story?  Just a wanderin' cowhand, eatin' dust on the trail.  I settled here for a spell after I came upon some hard times.",
+    "dynamic_line": "My story?  Man, where should I start.  I'm an ol'e florida boy.  A rancher.  Singer.  Dancer.  'Least, I think I can dance.  Before everythin' went to shit, I worked on a ranch down in Tallahassee.  Got a lotta kinfolk due west that was suppose'ta come over for a wedding afterparty.  See, the government started makin' camps to put infected people in long before this.  Who would'a guessed the snakes in suits started putting more people, 'specially people they didn't like, in 'em.  I got everyone right before things got crazy, grabbed some guns and had a jarhead friend a' mine break off and join us.  We called 'em Jarhead Johnny.  We got past one checkpoint, but our car broke down.  A few more checkpoints and we'd hit the beach.  Sure 'nuff, we saw some boats…  we could've stole one.  I know how to hotwire boats.  But, then we saw someone pushing a boat, 'bout to head off and fish.  We asked him to take us somewhere up north and we'd pay 'em.  He said sure.  During our trip, this cocky moron asked for more money.  Johnny boy won't havin' that.  Fisherman pointed his gun at Johnny, and Johnny was pullin' his pistol out when he shot 'em.  Johnny fell, and right as soon as he did, he blew Fisherboy's head off.  Fell right in the water.  Couldn't save Johnny boy, though.  Bullet hit him in a bad spot.  We made it up here soon afterward and managed to find the center after taking refuge in an empty shelter for a few weeks.",
     "responses": [
-      {
-        "text": "You… you do know what's going on here, right?  With the evacuation and stuff?",
-        "topic": "TALK_REFUGEE_John_Background_cataclysm"
-      },
+      { "text": "Sounds rough.  I'm glad you guys made it out.", "topic": "TALK_REFUGEE_John_Background_cataclysm" },
       { "text": "What were you saying before?", "topic": "TALK_NONE" },
       { "text": "I'd better get going.", "topic": "TALK_DONE" }
     ]
@@ -155,16 +195,16 @@
   {
     "type": "talk_topic",
     "id": "TALK_REFUGEE_John_Background_cataclysm",
-    "dynamic_line": "Course I do, I ain't an idjit.  It's all the folks here c'n talk about.",
+    "dynamic_line": "I am, I am glad too.  Just wish'd some folks could'a made it.  Life ain't fair but it ain't gotta be shit…",
     "responses": [
-      { "text": "What were you saying before?", "topic": "TALK_NONE" },
+      { "text": "True that, and what were you saying before?", "topic": "TALK_NONE" },
       { "text": "I'd better get going.", "topic": "TALK_DONE" }
     ]
   },
   {
     "type": "talk_topic",
     "id": "TALK_REFUGEE_John_Situation",
-    "dynamic_line": "Folks don't like bein' kept from the blue sky for too long.  Cooped up like cattle in a barn… we need pastures to run free, if'n y'get my drift.  'Til we got 'em, it's gonna be tense in here.",
+    "dynamic_line": "Pretty tight'n 'ere.  I ain't a sittin' down type'a person, you know?  Lotta people here ain't.  I wanna kick a bunch'a zom-bitch ass…  but there ain't a lotta people here willing to put in the effort.  Ain't wanna come here to be no couch potato!  Arrgh.",
     "responses": [
       { "text": "What were you saying before?", "topic": "TALK_NONE" },
       { "text": "I'd better get going.", "topic": "TALK_DONE" }

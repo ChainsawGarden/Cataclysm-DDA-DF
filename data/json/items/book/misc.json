@@ -242,7 +242,7 @@
     "type": "BOOK",
     "name": { "str": "crime novel" },
     "copy-from": "novel_crime",
-    "description": "A story about three people in the fictional city of Los Santos, a gangster, an upper-class man, and a psychopath, eventually banding together to pull-off the biggest heist in the city's history",
+    "description": "After picking up a hitchhiker, the driver decides to follow her into her house..  surprised to see a plethora of human heads on her wall.",
     "time": "18 m",
     "relative": { "chapters": -3 }
   },

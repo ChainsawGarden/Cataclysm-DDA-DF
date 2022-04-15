@@ -6134,10 +6134,20 @@ void game::peek( const tripoint &p )
     u.moves -= 200;
     tripoint prev = u.pos();
     u.setpos( p );
+    const bool is_same_pos = u.pos() == prev;
+    const bool is_standup_peek = is_same_pos && u.is_crouching();
     tripoint center = p;
-    const look_around_result result = look_around( /*show_window=*/true, center, center, false, false,
-                                      true );
-    u.setpos( prev );
+
+    look_around_result result;
+    const look_around_params looka_params = { true, center, center, false, false, true };
+    if( is_standup_peek ) {   // Non moving peek from crouch is a standup peek
+        u.reset_move_mode();
+        result = look_around( looka_params );
+        u.activate_crouch_mode();
+    } else {                // Else is normal peek
+        result = look_around( looka_params );
+        u.setpos( prev );
+    }
 
     if( result.peek_action && *result.peek_action == PA_BLIND_THROW ) {
         item_location loc;
@@ -6145,6 +6155,7 @@ void game::peek( const tripoint &p )
     }
     m.invalidate_map_cache( p.z );
 }
+
 ////////////////////////////////////////////////////////////////////////////////////////////
 cata::optional<tripoint> game::look_debug()
 {
@@ -7055,6 +7066,8 @@ cata::optional<tripoint> game::look_around()
     return result.position;
 }
 
+//look_around_result game::look_around( const bool show_window, tripoint &center,
+//                                      const tripoint &start_point, bool has_first_point, bool select_zone, bool peeking )
 look_around_result game::look_around( const bool show_window, tripoint &center,
                                       const tripoint &start_point, bool has_first_point, bool select_zone, bool peeking )
 {
@@ -7371,6 +7384,13 @@ look_around_result game::look_around( const bool show_window, tripoint &center,
     }
 
     return result;
+}
+
+look_around_result game::look_around( look_around_params looka_params )
+{
+    return look_around( looka_params.show_window, looka_params.center, looka_params.start_point,
+                        looka_params.has_first_point,
+                        looka_params.select_zone, looka_params.peeking );
 }
 
 std::vector<map_item_stack> game::find_nearby_items( int iRadius )
@@ -8627,12 +8647,12 @@ static void butcher_submenu( const std::vector<map_stack::iterator> &corpses, in
     };
     const bool enough_light = player_character.fine_detail_vision_mod() <= 4;
 
-    const int factor = player_character.max_quality( quality_id( "BUTCHER" ) );
+    const int factor = player_character.max_quality( quality_id( "BUTCHER" ), PICKUP_RANGE );
     const std::string msgFactor = factor > INT_MIN
                                   ? string_format( _( "Your best tool has <color_cyan>%d butchering</color>." ), factor )
                                   :  _( "You have no butchering tool." );
 
-    const int factorD = player_character.max_quality( quality_id( "CUT_FINE" ) );
+    const int factorD = player_character.max_quality( quality_id( "CUT_FINE" ), PICKUP_RANGE );
     const std::string msgFactorD = factorD > INT_MIN
                                    ? string_format( _( "Your best tool has <color_cyan>%d fine cutting</color>." ), factorD )
                                    :  _( "You have no fine cutting tool." );
@@ -8787,8 +8807,8 @@ void game::butcher()
         return;
     }
 
-    const int factor = u.max_quality( quality_id( "BUTCHER" ) );
-    const int factorD = u.max_quality( quality_id( "CUT_FINE" ) );
+    const int factor = u.max_quality( quality_id( "BUTCHER" ), PICKUP_RANGE );
+    const int factorD = u.max_quality( quality_id( "CUT_FINE" ), PICKUP_RANGE );
     const std::string no_knife_msg = _( "You don't have a butchering tool." );
     const std::string no_corpse_msg = _( "There are no corpses here to butcher." );
 
@@ -9099,7 +9119,7 @@ void game::reload( item_location &loc, bool prompt, bool empty )
     }
 
     bool use_loc = true;
-    if( !it->has_flag( flag_ALLOWS_REMOTE_USE ) ) {
+    if( !u.has_item( *it ) && !it->has_flag( flag_ALLOWS_REMOTE_USE ) ) {
         it = loc.obtain( u ).get_item();
         if( !it ) {
             add_msg( _( "Never mind." ) );
@@ -9308,7 +9328,7 @@ void game::wield( item_location loc )
                     std::advance( it, worn_index );
                     u.worn.insert( it, to_wield );
                 } else {
-                    u.i_add( to_wield );
+                    u.i_add( to_wield, true, nullptr, loc.get_item() );
                 }
                 break;
             case item_location::type::map:
@@ -10085,7 +10105,8 @@ point game::place_player( const tripoint &dest_loc )
         }
 
         const std::string pulp_butcher = get_option<std::string>( "AUTO_PULP_BUTCHER" );
-        if( pulp_butcher == "butcher" && u.max_quality( quality_id( "BUTCHER" ) ) > INT_MIN ) {
+        if( pulp_butcher == "butcher" &&
+            u.max_quality( quality_id( "BUTCHER" ), PICKUP_RANGE ) > INT_MIN ) {
             std::vector<item *> corpses;
 
             for( item &it : m.i_at( u.pos() ) ) {

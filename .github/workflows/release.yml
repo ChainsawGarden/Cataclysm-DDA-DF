@@ -22,8 +22,8 @@ jobs:
       - name: Generate environmental variables
         id: generate_env_vars
         run: |
-          echo "::set-output name=tag_name::cdda-experimental-${{ steps.get-timestamp.outputs.time }}"
-          echo "::set-output name=release_name::Cataclysm-DDA experimental build ${{ steps.get-timestamp.outputs.time }}"
+          echo "::set-output name=tag_name::cdda-df-experimental-${{ steps.get-timestamp.outputs.time }}"
+          echo "::set-output name=release_name::Cataclysm-DDA-DF experimental build ${{ steps.get-timestamp.outputs.time }}"
       - name: Check if there is existing git tag
         id: tag_check
         uses: mukunku/tag-exists-action@v1.0.0
@@ -162,7 +162,7 @@ jobs:
           commit url: https://github.com/${{ github.repository }}/commit/${{ github.sha }}
           EOL
           make -j$((`nproc`+0)) TILES=${{ matrix.tiles }} SOUND=${{ matrix.tiles }} RELEASE=1 LOCALIZE=1 LANGUAGES=all BACKTRACE=0 PCH=0 bindist
-          mv cataclysmdda-0.F.tar.gz cdda-${{ matrix.artifact }}-${{ needs.release.outputs.timestamp }}.tar.gz
+          mv cataclysmdda-0.F.tar.gz cdda-df-${{ matrix.artifact }}-${{ needs.release.outputs.timestamp }}.tar.gz
       - name: Build CDDA (windows)
         if: matrix.mxe != 'none'
         env:
@@ -175,11 +175,9 @@ jobs:
           commit url: https://github.com/${{ github.repository }}/commit/${{ github.sha }}
           EOL
           make -j$((`nproc`+0)) CROSS="${PLATFORM}" TILES=1 SOUND=1 RELEASE=1 LOCALIZE=1 LANGUAGES=all BACKTRACE=0 PCH=0 bindist
-          mv cataclysmdda-0.F.zip cdda-${{ matrix.artifact }}-${{ needs.release.outputs.timestamp }}.zip
+          mv cataclysmdda-0.F.zip cdda-df-${{ matrix.artifact }}-${{ needs.release.outputs.timestamp }}.zip
       - name: Build CDDA (osx)
         if: runner.os == 'macOS'
-        env:
-          USE_HOME_DIR: 1
         run: |
           cat >VERSION.txt <<EOL
           build type: ${{ matrix.artifact }}
@@ -187,8 +185,8 @@ jobs:
           commit sha: ${{ github.sha }}
           commit url: https://github.com/${{ github.repository }}/commit/${{ github.sha }}
           EOL
-          make -j3 TILES=${{ matrix.tiles }} SOUND=${{ matrix.tiles }} RELEASE=1 LOCALIZE=1 LANGUAGES=all BACKTRACE=0 PCH=0 dmgdist
-          mv Cataclysm.dmg cdda-${{ matrix.artifact }}-${{ needs.release.outputs.timestamp }}.dmg
+          make -j3 TILES=${{ matrix.tiles }} SOUND=${{ matrix.tiles }} RELEASE=1 LOCALIZE=1 LANGUAGES=all BACKTRACE=0 PCH=0 USE_HOME_DIR=1 OSX_MIN=10.12 dmgdist
+          mv Cataclysm.dmg cdda-df-${{ matrix.artifact }}-${{ needs.release.outputs.timestamp }}.dmg
       - name: Set up JDK 8 (android)
         if: runner.os == 'Linux' && matrix.android != 'none' && matrix.mxe == 'none'
         uses: actions/setup-java@v2
@@ -219,15 +217,15 @@ jobs:
           if [ ${{ matrix.android }} = arm64 ]
           then
                ./gradlew -Pj=$((`nproc`+0)) -Pabi_arm_32=false assembleExperimentalRelease
-               mv ./app/build/outputs/apk/experimental/release/*.apk ../cdda-${{ matrix.artifact }}-${{ needs.release.outputs.timestamp }}.apk
+               mv ./app/build/outputs/apk/experimental/release/*.apk ../cdda-df-${{ matrix.artifact }}-${{ needs.release.outputs.timestamp }}.apk
           elif [ ${{ matrix.android }} = arm32 ]
           then
                ./gradlew -Pj=$((`nproc`+0)) -Pabi_arm_64=false assembleExperimentalRelease
-               mv ./app/build/outputs/apk/experimental/release/*.apk ../cdda-${{ matrix.artifact }}-${{ needs.release.outputs.timestamp }}.apk 
+               mv ./app/build/outputs/apk/experimental/release/*.apk ../cdda-df-${{ matrix.artifact }}-${{ needs.release.outputs.timestamp }}.apk 
           elif [ ${{ matrix.android }} = bundle ]
           then
                ./gradlew -Pj=$((`nproc`+0)) bundleExperimentalRelease
-               mv ./app/build/outputs/bundle/experimentalRelease/*.aab ../cdda-${{ matrix.artifact }}-${{ needs.release.outputs.timestamp }}.aab     
+               mv ./app/build/outputs/bundle/experimentalRelease/*.aab ../cdda-df-${{ matrix.artifact }}-${{ needs.release.outputs.timestamp }}.aab     
           fi
       - name: Upload release asset
         id: upload-release-asset 
@@ -236,8 +234,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ needs.release.outputs.upload_url }} 
-          asset_path: cdda-${{ matrix.artifact }}-${{ needs.release.outputs.timestamp }}.${{ matrix.ext }}
-          asset_name: cdda-${{ matrix.artifact }}-${{ needs.release.outputs.timestamp }}.${{ matrix.ext }}
+          asset_path: cdda-df-${{ matrix.artifact }}-${{ needs.release.outputs.timestamp }}.${{ matrix.ext }}
+          asset_name: cdda-df-${{ matrix.artifact }}-${{ needs.release.outputs.timestamp }}.${{ matrix.ext }}
           asset_content_type: ${{ matrix.content }}
       - name: Trigger GitHub pages rebuild
         run: |

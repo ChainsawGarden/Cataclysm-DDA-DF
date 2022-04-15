@@ -52,7 +52,7 @@
     "id": "military_patrol_food",
     "subtype": "collection",
     "entries": [
-      { "group": "MRE", "count": [ 1, 3 ], "prob": 70 },
+      { "group": "any_MRE", "count": [ 1, 3 ], "prob": 70 },
       { "item": "chocolate", "prob": 20, "charges": [ 1, 3 ] },
       { "item": "neccowafers", "prob": 20 },
       { "item": "water_clean", "container-item": "canteen", "prob": 80, "charges": [ 0, 6 ] }
@@ -350,7 +350,6 @@
       { "item": "blanket", "prob": 70 },
       { "item": "pillow", "prob": 70 },
       { "item": "sheet", "prob": 70 },
-      { "item": "mag_porn", "prob": 40 },
       { "item": "mag_comic", "prob": 10 },
       { "item": "mag_guns", "prob": 10 },
       { "item": "manual_brawl", "prob": 5 },

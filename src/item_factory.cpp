@@ -1158,7 +1158,9 @@ void Item_factory::check_definitions() const
                     for( const bodypart_str_id &bp : *portion.covers ) {
                         if( portion.covers->test( bp ) ) {
                             if( observed_bps.count( bp ) ) {
-                                msg += "multiple portions with same body_part defined\n";
+                                msg += string_format(
+                                           "multiple portions with same body_part %s defined\n",
+                                           bp.str() );
                             }
                             observed_bps.insert( bp );
                         }
@@ -2614,7 +2616,7 @@ void Item_factory::check_and_create_magazine_pockets( itype &def )
         return;
     }
     // the item we're trying to migrate must actually have data for ammo
-    if( def.magazines.empty() && !( def.gun || def.magazine || def.tool ) ) {
+    if( def.magazines.empty() && !( def.magazine || def.tool ) ) {
         return;
     }
     if( def.tool && def.tool->ammo_id.empty() ) {
@@ -2659,11 +2661,6 @@ void Item_factory::check_and_create_magazine_pockets( itype &def )
         if( def.magazine ) {
             for( const ammotype &amtype : def.magazine->type ) {
                 mag_data.ammo_restriction.emplace( amtype, def.magazine->capacity );
-            }
-        }
-        if( def.gun ) {
-            for( const ammotype &amtype : def.gun->ammo ) {
-                mag_data.ammo_restriction.emplace( amtype, def.gun->clip );
             }
         }
         if( def.tool ) {

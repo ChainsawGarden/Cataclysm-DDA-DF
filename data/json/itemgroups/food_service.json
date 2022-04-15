@@ -265,7 +265,6 @@
       { "item": "syringe", "prob": 30 },
       { "item": "meth", "prob": 20, "charges": [ 1, 6 ] },
       { "item": "heroin", "prob": 7, "charges": [ 1, 4 ] },
-      { "item": "mag_porn", "prob": 35 },
       { "item": "hairpin", "prob": 5 },
       { "item": "purse", "prob": 15 }
     ]
@@ -379,7 +378,6 @@
       { "item": "coke", "prob": 20, "charges": [ 1, 8 ] },
       { "item": "meth", "prob": 1, "charges": [ 1, 6 ] },
       { "item": "aspirin", "prob": 15, "charges": [ 1, 20 ] },
-      [ "mag_porn", 30 ],
       [ "purse", 10 ],
       [ "hairpin", 3 ]
     ]

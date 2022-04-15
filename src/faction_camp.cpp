@@ -29,6 +29,7 @@
 #include "debug.h"
 #include "enums.h"
 #include "faction.h"
+#include "flag.h"
 #include "game.h"
 #include "game_constants.h"
 #include "iexamine.h"
@@ -783,7 +784,7 @@ void basecamp::get_available_missions_by_dir( mission_data &mission_key, const p
         entry = string_format( _( "Notes:\n"
                                   "Send a companion to a nearby forest to cut logs.\n\n"
                                   "Skill used: fabrication\n"
-                                  "Difficulty: 1\n"
+                                  "Difficulty: 2\n"
                                   "Effects:\n"
                                   "> 50%% of trees/trunks at the forest position will be "
                                   "cut down.\n"
@@ -3813,6 +3814,9 @@ bool basecamp::distribute_food()
         }
         // Stuff like butchery refuse and other disgusting stuff
         if( it.get_comestible_fun() < -6 ) {
+            return false;
+        }
+        if( it.has_flag( flag_INEDIBLE ) ) {
             return false;
         }
         if( it.rotten() ) {

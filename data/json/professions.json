@@ -685,7 +685,6 @@
       "both": {
         "items": [
           "pants_cargo",
-          "briefs",
           "cape_fp",
           "dress_shirt",
           "armguard_hard",
@@ -701,7 +700,9 @@
           { "item": "foodplace_snack_bar" },
           { "item": "bat", "custom-flags": [ "auto_wield" ] }
         ]
-      }
+      },
+      "male": [ "briefs" ],
+      "female": [ "bra", "panties" ]
     }
   },
   {
@@ -1141,7 +1142,7 @@
     ],
     "items": {
       "both": {
-        "items": [ "suit", "bowhat", "socks", "dress_shoes", "knit_scarf", "cig", "switchblade", "mag_porn", "sunglasses", "wristwatch" ],
+        "items": [ "suit", "bowhat", "socks", "dress_shoes", "knit_scarf", "cig", "switchblade", "sunglasses", "wristwatch" ],
         "entries": [
           { "group": "charged_cell_phone" },
           { "item": "glock_19", "ammo-item": "9mm", "container-item": "holster", "charges": 15 },

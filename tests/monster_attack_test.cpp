@@ -179,7 +179,7 @@ TEST_CASE( "monster_throwing_sanity_test", "[throwing],[balance]" )
     clear_avatar();
     you.setpos( target_location );
     // and you got a monster
-    const std::string monster_type = "mon_feral_human_pipe";
+    const std::string monster_type = "mon_zombie";
     monster &test_monster = spawn_test_monster( monster_type, attacker_location );
     test_monster.set_goal( target_location );
     const mtype_special_attack &attack = test_monster.type->special_attacks.at( "gun" );

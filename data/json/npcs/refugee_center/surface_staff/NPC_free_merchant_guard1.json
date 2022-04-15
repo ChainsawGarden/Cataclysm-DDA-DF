@@ -53,32 +53,63 @@
     "type": "talk_topic",
     "id": "TALK_EVAC_GUARD1_JOIN",
     "dynamic_line": "Nope.",
-    "responses": [ { "text": "That's pretty blunt!", "topic": "TALK_EVAC_GUARD1_JOIN2" } ]
-  },
-  {
-    "type": "talk_topic",
-    "id": "TALK_EVAC_GUARD1_JOIN2",
-    "dynamic_line": "Death is pretty blunt.",
     "responses": [
-      { "text": "So no negotiating?  No, 'If you do this quest then we'll let you in?'", "topic": "TALK_EVAC_GUARD1_JOIN3" }
-    ]
-  },
-  {
-    "type": "talk_topic",
-    "id": "TALK_EVAC_GUARD1_JOIN3",
-    "dynamic_line": "Nope.",
-    "responses": [
-      { "text": "I don't like your attitude.", "topic": "TALK_EVAC_GUARD1_ATTITUDE" },
+      {
+        "text": "So no negotiating?  No, 'If-you-do-me-a-favor-then-we'll-let-you-in type deal?'",
+        "topic": "TALK_EVAC_GUARD1_JOIN2"
+      },
       { "text": "Well alright then.", "topic": "TALK_EVAC_GUARD1" }
     ]
   },
   {
     "type": "talk_topic",
-    "id": "TALK_EVAC_GUARD1_ATTITUDE",
-    "dynamic_line": "Then leave, you have two feet.",
+    "id": "TALK_EVAC_GUARD1_JOIN2",
+    "dynamic_line": "Nope.",
+    "responses": [ { "text": "That's pretty blunt!", "topic": "TALK_EVAC_GUARD1_JOIN3" } ]
+  },
+  {
+    "type": "talk_topic",
+    "id": "TALK_EVAC_GUARD1_JOIN3",
+    "dynamic_line": "Death is pretty blunt.",
+    "responses": [ { "text": "That's a pretty messed up analogy.", "topic": "TALK_EVAC_GUARD1_MESSED_UP" } ]
+  },
+  {
+    "type": "talk_topic",
+    "id": "TALK_EVAC_GUARD1_MESSED_UP",
+    "dynamic_line": "Then leave.  You have two feet, right?  Use them.",
     "responses": [
-      { "text": "I think I'd rather rearrange your face instead!", "topic": "TALK_DONE", "effect": "insult_combat" },
-      { "text": "I will.", "topic": "TALK_DONE" }
+      { "text": "I will.", "topic": "TALK_DONE" },
+      { "text": "Alright, alright, chill.", "topic": "TALK_DONE" },
+      { "text": "No need to be a dick.", "topic": "TALK_DONE" },
+      { "text": "Later, douche.", "topic": "TALK_DONE" },
+      { "text": "*mumbles angrily*", "topic": "TALK_DONE" },
+      { "text": "*whispers a snide remark*", "topic": "TALK_DONE" },
+      { "text": "*whispers a snide remark a little too loudly*", "topic": "TALK_DONE", "effect": "insult_combat" },
+      { "text": "Go fuck yourself.", "topic": "TALK_DONE", "effect": "insult_combat" },
+      {
+        "text": "I'll have three if you don't stop being a little bitch.",
+        "topic": "TALK_DONE",
+        "effect": "insult_combat"
+      },
+      {
+        "text": "You're a dead man walking.",
+        "topic": "TALK_DONE",
+        "effect": "insult_combat",
+        "condition": { "u_has_trait": "BADTEMPER" }
+      },
+      {
+        "text": "You want to get skullfucked?  Keep fuckin' talking!",
+        "topic": "TALK_DONE",
+        "effect": "insult_combat",
+        "condition": { "u_has_trait": "PSYCHOPATH" },
+        "//":{"condition": { "u_has_trait": "PSYCHOPATH", "and": { "u_has_trait": "BADTEMPER" } }}
+      },
+      {
+        "text": "You'll look good in my freezer.",
+        "topic": "TALK_DONE",
+        "effect": "insult_combat",
+        "condition": { "u_has_trait": "PSYCHOPATH" }
+      }
     ]
   },
   {

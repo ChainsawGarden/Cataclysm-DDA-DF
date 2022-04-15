@@ -16,7 +16,6 @@
       { "item": "rm228", "prob": 2 },
       { "item": "vibrator", "prob": 3, "charges": [ 0, 100 ] },
       { "item": "condom", "prob": 5, "count": [ 1, 3 ] },
-      { "item": "mag_porn", "prob": 20 },
       { "item": "lighter", "prob": 60, "charges": [ 95, 100 ] },
       { "item": "ref_lighter", "prob": 5, "charges": [ 40, 50 ] },
       { "item": "matches", "prob": 60, "charges": [ 19, 20 ] },
@@ -1005,7 +1004,6 @@
       { "item": "syringe", "prob": 20 },
       { "item": "meth", "prob": 10, "charges": [ 1, 6 ] },
       { "item": "heroin", "prob": 5, "charges": [ 1, 4 ] },
-      { "item": "mag_porn", "prob": 35 },
       { "item": "hairpin", "prob": 5 },
       { "item": "purse", "prob": 15 }
     ]

@@ -15,20 +15,6 @@
     "type": "talk_topic",
     "dynamic_line": { "u_has_any_trait": [ "PROF_FED" ], "yes": "Marshal…", "no": "Citizen…" },
     "responses": [
-      {
-        "text": "I'm trying to put a cleanup crew together to tidy up the back room.  Can you help?",
-        "condition": {
-          "and": [
-            { "u_has_mission": "MISSION_REFUGEE_Boris_CLEANUP" },
-            {
-              "not": { "npc_has_var": "cleanup_asked", "type": "mission", "context": "Boris_mission_1", "value": "yes" }
-            }
-          ]
-        },
-        "trial": { "type": "PERSUADE", "difficulty": 15 },
-        "failure": { "topic": "TALK_OLD_GUARD_REP_Refuse_Boris_Mission_1" },
-        "success": { "topic": "TALK_OLD_GUARD_REP_Accept_Boris_Mission_1" }
-      },
       { "text": "Who are you?", "topic": "TALK_OLD_GUARD_REP_NEW" },
       { "text": "Heard anything about the outside world?", "topic": "TALK_OLD_GUARD_REP_WORLD" },
       { "text": "Is there any way I can join the 'Old Guard'?", "topic": "TALK_OLD_GUARD_REP_ASK_JOIN" },
@@ -89,25 +75,6 @@
     "type": "talk_topic",
     "dynamic_line": "You can't actually join unless you go through a recruiter.  We can usually use help though, ask me from time to time if there is any work available.  Completing missions as a contractor is a great way to make a name for yourself among the most powerful men left in the world.",
     "responses": [ { "text": "Hmmm…", "topic": "TALK_OLD_GUARD_REP" } ]
-  },
-  {
-    "id": "TALK_OLD_GUARD_REP_Refuse_Boris_Mission_1",
-    "type": "talk_topic",
-    "dynamic_line": "I'm sorry, but I can't leave my post here, and I just don't have the human resources even for a project like that.",
-    "speaker_effect": { "effect": { "npc_add_var": "cleanup_asked", "type": "mission", "context": "Boris_mission_1", "value": "yes" } },
-    "responses": [ { "text": "Well, thanks anyway…", "topic": "TALK_OLD_GUARD_REP" } ]
-  },
-  {
-    "id": "TALK_OLD_GUARD_REP_Accept_Boris_Mission_1",
-    "type": "talk_topic",
-    "dynamic_line": "It's your lucky day: I just made contact with a couple volunteers like yourself, and that's exactly the sort of project I can put them to.",
-    "speaker_effect": {
-      "effect": [
-        { "npc_add_var": "cleanup_asked", "type": "mission", "context": "Boris_mission_1", "value": "yes" },
-        { "u_adjust_var": "Boris_mission_1", "type": "mission", "context": "cleanup_promises", "adjustment": 2 }
-      ]
-    },
-    "responses": [ { "text": "Thanks, that's great news!", "topic": "TALK_OLD_GUARD_REP" } ]
   },
   {
     "id": "MISSION_OLD_GUARD_REP_1",
@@ -233,7 +200,7 @@
     "origins": [ "ORIGIN_SECONDARY" ],
     "dialogue": {
       "describe": "We need help…",
-      "offer": "I've located a Hell's Raiders encampment in the region that appears to be coordinating operations against the Free Merchants.  We know almost nothing about the command structure in the 'gang' so I need to send someone in to decapitate the leadership.  The raid will be held under orders of the U.S. Marshals Service and by agreeing to the mission you will become a marshal, swearing to assist the federal government in regaining order.",
+      "offer": "I've located a Hell's Raiders encampment in the region that appears to be coordinating operations against the Free Merchants.  We know almost nothing about the command structure in the 'gang' so I need to send someone in to decapitate the leadership.  The raid will be held under orders of the U.S.  Marshals Service and by agreeing to the mission you will become a marshal, swearing to assist the federal government in regaining order.",
       "accepted": "Now repeat after me…  I do solemnly swear that I will support and defend the Constitution of the United States against all enemies, foreign and domestic…… that I will bear true faith and allegiance to the same…… that I take this obligation freely, without any mental reservation or purpose of evasion…… and that I will well and faithfully discharge the duties of the office on which I am about to enter.  To establish justice, insure domestic tranquility, provide for the common defense, promote the general welfare and secure the blessings of liberty.  So help me God.  Congratulations Marshal, don't forget your badge and gun.  As a marshal all men or women assisting you are considered deputy marshals so keep them in line.",
       "rejected": "Come back when you get a chance, we could use a few good men.",
       "advice": "I'd recommend having two deputies… it would be a death trap if a single man got surrounded.",

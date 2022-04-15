@@ -42,6 +42,8 @@ static const bionic_id bio_cqb( "bio_cqb" );
 
 static const flag_id json_flag_UNARMED_WEAPON( "UNARMED_WEAPON" );
 
+static const matec_id tec_none( "tec_none" );
+
 namespace
 {
 generic_factory<ma_technique> ma_techniques( "martial art technique" );
@@ -663,6 +665,10 @@ int ma_buff::block_bonus( const Character &u ) const
 {
     return bonuses.get_flat( u, affected_stat::BLOCK );
 }
+int ma_buff::arpen_bonus( const Character &u, damage_type dt ) const
+{
+    return bonuses.get_flat( u, affected_stat::ARMOR_PENETRATION, dt );
+}
 int ma_buff::block_effectiveness_bonus( const Character &u ) const
 {
     return bonuses.get_flat( u, affected_stat::BLOCK_EFFECTIVENESS );
@@ -893,80 +899,30 @@ std::vector<matec_id> character_martial_arts::get_all_techniques( const item &we
 }
 
 // defensive technique-related
-bool character_martial_arts::has_miss_recovery_tec( const item &weap ) const
-{
-    for( const matec_id &technique : get_all_techniques( weap ) ) {
-        if( technique->miss_recovery ) {
-            return true;
-        }
-    }
-    return false;
-}
 
-ma_technique character_martial_arts::get_miss_recovery_tec( const item &weap ) const
+static ma_technique get_valid_technique( const Character &owner, bool ma_technique::*  purpose )
 {
-    ma_technique tech;
-    for( const matec_id &technique : get_all_techniques( weap ) ) {
-        if( technique->miss_recovery ) {
-            tech = technique.obj();
-            break;
+    const auto &ma_data = owner.martial_arts_data;
+
+    for( const matec_id &candidate_id : ma_data->get_all_techniques( owner.weapon ) ) {
+        ma_technique candidate = candidate_id.obj();
+
+        if( candidate.*purpose && candidate.is_valid_character( owner ) ) {
+            return candidate;
         }
     }
 
-    return tech;
+    return tec_none.obj();
 }
 
-// This one isn't used with a weapon
-bool character_martial_arts::has_grab_break_tec() const
+ma_technique character_martial_arts::get_grab_break( const Character &owner ) const
 {
-    for( const matec_id &technique : get_all_techniques( item() ) ) {
-        if( technique->grab_break ) {
-            return true;
-        }
-    }
-    return false;
+    return get_valid_technique( owner, &ma_technique::grab_break );
 }
 
-ma_technique character_martial_arts::get_grab_break_tec( const item &weap ) const
+ma_technique character_martial_arts::get_miss_recovery( const Character &owner ) const
 {
-    ma_technique tec;
-    for( const matec_id &technique : get_all_techniques( weap ) ) {
-        if( technique->grab_break ) {
-            tec = technique.obj();
-            break;
-        }
-    }
-    return tec;
-}
-
-bool Character::can_grab_break( const item &weap ) const
-{
-    if( !has_grab_break_tec() ) {
-        return false;
-    }
-
-    ma_technique tec;
-    for( const matec_id &technique : martial_arts_data->get_all_techniques( weap ) ) {
-        if( technique->grab_break ) {
-            tec = technique.obj();
-            if( tec.is_valid_character( *this ) ) {
-                return true;
-            }
-        }
-    }
-
-    return false;
-}
-
-bool Character::can_miss_recovery( const item &weap ) const
-{
-    if( !martial_arts_data->has_miss_recovery_tec( weap ) ) {
-        return false;
-    }
-
-    ma_technique tec = martial_arts_data->get_miss_recovery_tec( weap );
-
-    return tec.is_valid_character( *this );
+    return get_valid_technique( owner, &ma_technique::miss_recovery );
 }
 
 bool character_martial_arts::can_leg_block( const Character &owner ) const
@@ -1140,6 +1096,14 @@ int Character::mabuff_speed_bonus() const
     } );
     return ret;
 }
+int Character::mabuff_arpen_bonus( damage_type type ) const
+{
+    int ret = 0;
+    accumulate_ma_buff_effects( *effects, [&ret, type, this]( const ma_buff & b, const effect & d ) {
+        ret += d.get_intensity() * b.arpen_bonus( *this, type );
+    } );
+    return ret;
+}
 int Character::mabuff_armor_bonus( damage_type type ) const
 {
     int ret = 0;
@@ -1221,7 +1185,7 @@ bool Character::has_mabuff( const mabuff_id &id ) const
 
 bool Character::has_grab_break_tec() const
 {
-    return martial_arts_data->has_grab_break_tec();
+    return martial_arts_data->get_grab_break( *this ).id != tec_none;
 }
 
 bool character_martial_arts::has_martialart( const matype_id &ma ) const
