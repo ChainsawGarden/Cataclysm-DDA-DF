@@ -2071,17 +2071,17 @@ void activity_handlers::train_finish( player_activity *act, player *p )
         } else { // if we didn't level up
             add_msg( m_good, _( "You get some training in %s." ), skill_name ); // log message to announcements
         }
-        // lua start
+        // lua bloc start
         const std::string skill_increase_source = "training"; // source key that lua uses
         CallbackArgumentContainer lua_callback_args_info; // callback arg container for callbacks?
-        lua_callback_args_info.emplace_back( p->getID() ); // get the player ID
+        lua_callback_args_info.emplace_back( p->getID() ); // get the player ID (old code expects a straight integer; modern code requires type `character_id`.)
         lua_callback_args_info.emplace_back( skill_increase_source ); // using the source of the skill inc, emplace said source back (in our case, a string).
         lua_callback_args_info.emplace_back( sk.str() ); // get our skill id, emplace that.
         lua_callback_args_info.emplace_back( new_skill_level ); // emplace our new skill level.
         // I think ^this block would look like this: <player_id>, "training", <skill_id>, <new skill level>
         lua_callback( "on_player_skill_increased", lua_callback_args_info ); // lua callback; event listener?
         lua_callback( "on_skill_increased" ); // Legacy callback // event listener?
-        // lua end
+        // lua bloc end
         act->set_to_null(); // set the action to null?
         return; // quit the function immediately
     }

@@ -158,10 +158,12 @@ CHKJSON_BIN = $(BUILD_PREFIX)chkjson
 BINDIST_DIR = $(BUILD_PREFIX)bindist
 BUILD_DIR = $(CURDIR)
 SRC_DIR = src
+# lua bloc start (define var)
 LUA_DIR = lua
 LUASRC_DIR = $(SRC_DIR)/$(LUA_DIR)
 # if you have LUAJIT installed, try make LUA_BINARY=luajit for extra speed
 LUA_BINARY = lua
+# lua bloc end
 LOCALIZE = 1
 ASTYLE_BINARY = astyle
 
@@ -668,42 +670,44 @@ ifeq ($(SOUND), 1)
 
   CXXFLAGS += -DSDL_SOUND
 endif
-
+# lua bloc pkg installation
 ifdef LUA
-  ifeq ($(TARGETSYSTEM),WINDOWS)
-    ifeq ($(MSYS2),1)
-      LUA_USE_PKGCONFIG := 1
-    else
+  ifeq ($(TARGETSYSTEM),WINDOWS) # if the target Operating System is Windows...
+    ifeq ($(MSYS2),1) # If MSYS2 (compiler?) is 1 (prob version number)
+      LUA_USE_PKGCONFIG := 1 # lua "use pkgconfig" = 1 now
+    else # if we aren't using MSYS2
       # Windows expects to have lua unpacked at a specific location
-      LUA_LIBS := -llua
+      LUA_LIBS := -llua # lua libraries equals -llua? what does `-l` mean? or `-llua` ?
     endif
-  else
-    LUA_USE_PKGCONFIG := 1
+  else # if the target Operating System is not windows...
+    LUA_USE_PKGCONFIG := 1 # "use-package config" = 1.
   endif
 
-  ifdef OSXCROSS
-    LUA_LIBS = -L$(LIBSDIR)/lua/lib -llua -lm
-    LUA_CFLAGS = -I$(LIBSDIR)/lua/include
+  ifdef OSXCROSS # If the operating system is cross-platform OSX...
+    LUA_LIBS = -L$(LIBSDIR)/lua/lib -llua -lm  # set the lua libs
+    LUA_CFLAGS = -I$(LIBSDIR)/lua/include      # set the lua CFLAGs
   else
-    ifdef LUA_USE_PKGCONFIG
+    ifdef LUA_USE_PKGCONFIG # if lua use pkgconfig is defined...
       # On unix-like systems, use pkg-config to find lua
-      LUA_CANDIDATES = lua5.3 lua5.2 lua-5.3 lua-5.2 lua5.1 lua-5.1 lua $(LUA_BINARY)
-      LUA_FOUND = $(firstword $(foreach lua,$(LUA_CANDIDATES),\
-          $(shell if $(PKG_CONFIG) --silence-errors --exists $(lua); then echo $(lua);fi)))
-      LUA_PKG = $(if $(LUA_FOUND),$(LUA_FOUND),$(error "Lua not found by $(PKG_CONFIG), install it or make without 'LUA=1'"))
-      LUA_LIBS := $(shell $(PKG_CONFIG) --silence-errors --libs $(LUA_PKG))
-      LUA_CFLAGS := $(shell $(PKG_CONFIG) --silence-errors --cflags $(LUA_PKG))
+      #LUA_CANDIDATES = lua5.3 lua5.2 lua-5.3 lua-5.2 lua5.1 lua-5.1 lua $(LUA_BINARY) # this candidates section, legacywise, means "take potshots at package names"
+      #LUA_CANDIDATES = lua5.3 lua-5.3 lua5.1 lua-5.1 lua $(LUA_BINARY) # this candidates section, legacywise, means "take potshots at package names"
+      LUA_CANDIDATES = lua5.3 lua-5.3 lua5.2 lua-5.2 lua5.1 lua-5.1 lua $(LUA_BINARY) # set package <candidates> names {{ will be used to take potshots at the packman }}
+      LUA_FOUND = $(firstword $(foreach lua,$(LUA_CANDIDATES),$(shell if $(PKG_CONFIG) --silence-errors --exists $(lua); then echo $(lua);fi))) # if pkg-config returns non-errors for the search, set LUA_FOUND to boolean true (fixed tab error by putting everything on one line instead of breaking the line)
+      LUA_PKG = $(if $(LUA_FOUND),$(LUA_FOUND),$(error "Lua not found by $(PKG_CONFIG), install it or make without 'LUA=1'")) # set the lua package
+      LUA_LIBS := $(shell $(PKG_CONFIG) --silence-errors --libs $(LUA_PKG)) # get the libs
+      LUA_CFLAGS := $(shell $(PKG_CONFIG) --silence-errors --cflags $(LUA_PKG)) # get the cflags
     endif
   endif
 
-  LDFLAGS += $(LUA_LIBS)
-  CXXFLAGS += $(LUA_CFLAGS)
+  LDFLAGS += $(LUA_LIBS)    # what are LDFLAGS ?
+  CXXFLAGS += $(LUA_CFLAGS) # add C++ Flags
 
-  CXXFLAGS += -DLUA
-  LUA_DEPENDENCIES = $(LUASRC_DIR)/catabindings.cpp
-  BINDIST_EXTRAS  += $(LUA_DIR)
+  CXXFLAGS += -DLUA # C++ flag for lua is -DLUA
+  # LUA_DEPENDENCIES = $(LUASRC_DIR)/catabindings.cpp # set the lua deps to the catabindings file
+  LUA_DEPENDENCIES = $(SRC_DIR)/catabindings.cpp # set the lua deps to the catabindings file
+  BINDIST_EXTRAS  += $(LUA_DIR) # extra stuff to bind (lua dir specifically) ? bind to what?
 endif
-
+# lua bloc pkg installation end
 ifeq ($(SDL), 1)
   TILES = 1
 endif
@@ -754,7 +758,7 @@ ifeq ($(TILES), 1)
   endif
 
   DEFINES += -DTILES
-
+  # if windows is the target system
   ifeq ($(TARGETSYSTEM),WINDOWS)
     ifndef DYNAMIC_LINKING
       # These differ depending on what SDL2 is configured to use.
@@ -995,9 +999,9 @@ version:
             [ -e "$(SRC_DIR)/version.h" ] && OLDVERSION=$$(grep VERSION $(SRC_DIR)/version.h|cut -d '"' -f2) ; \
             if [ "x$$VERSION_STRING" != "x$$OLDVERSION" ]; then printf '// NOLINT(cata-header-guard)\n#define VERSION "%s"\n' "$$VERSION_STRING" | tee $(SRC_DIR)/version.h ; fi \
          )
-
+# runs the "json_verifier" luascript file
 json-verify:
-  $(LUA_BINARY) lua/json_verifier.lua
+	$(LUA_BINARY) lua/json_verifier.lua 
 
 # Unconditionally create the object dir on every invocation.
 $(shell mkdir -p $(ODIR))
@@ -1011,9 +1015,17 @@ $(ODIR)/%.o: $(SRC_DIR)/%.rc
 src/version.h: version
 
 src/version.cpp: src/version.h
-
-$(LUASRC_DIR)/catabindings.cpp: $(LUA_DIR)/class_definitions.lua $(LUASRC_DIR)/generate_bindings.lua
-	cd $(LUASRC_DIR) && $(LUA_BINARY) generate_bindings.lua
+# The below switches to the lua directory and runs lua
+# $(LUASRC_DIR)/catabindings.cpp: $(LUA_DIR)/class_definitions.lua $(LUASRC_DIR)/generate_bindings.lua # does something with a catabindings C++ srcfile and two lua files (class defs & gen bindings) ?
+$(SRC_DIR)/catabindings.cpp: $(LUA_DIR)/class_definitions.lua $(SRC_DIR)/generate_bindings.lua # does something with a catabindings C++ srcfile and two lua files (class defs & gen bindings) ?
+	cd $(SRC_DIR) && /usr/bin/$(LUA_BINARY) generate_bindings.lua 
+#cd $(LUASRC_DIR) && $(LUA_BINARY) generate_bindings.lua # original
+# the above is the most problematic
+# For our linux targets, it can not find Lua. The following will be displayed whenever the linux target tries to run the line:
+# `/bin/sh: 1: lua: not found`
+# A possible solution would be to do `$(LUASRC_DIR)/$(LUA_BINARY)` to theoretically run the binary directly from the directory.
+# The above did not work because `src/lua/` is CDDAs lua code, not the lua binary itself.
+# However, a proper fix is in. Instead of simply executing $(LUA_BINARY), I went directly to /usr/bin/$(LUA_BINARY)
 
 $(SRC_DIR)/catalua.cpp: $(LUA_DEPENDENCIES)
 
@@ -1030,8 +1042,8 @@ clean: clean-tests clean-object_creator clean-pch
 	rm -rf *$(TARGET_NAME) *$(TILES_TARGET_NAME)
 	rm -rf *$(TILES_TARGET_NAME).exe *$(TARGET_NAME).exe *$(TARGET_NAME).a
 	rm -rf *obj *objwin
+	rm -f $(SRC_DIR)/version.h $(SRC_DIR)/catabindings.cpp
 	rm -rf *$(BINDIST_DIR) *cataclysmdda-*.tar.gz *cataclysmdda-*.zip
-	rm -f $(SRC_DIR)/version.h $(LUASRC_DIR)/catabindings.cpp
 	rm -f $(CHKJSON_BIN)
 
 distclean:
@@ -1045,6 +1057,7 @@ distclean:
 
 bindist: $(BINDIST)
 
+# Specify "cataclysm-dda-df/" so that the compiler isn't confused.
 ifeq ($(TARGETSYSTEM), LINUX)
 DATA_PREFIX=$(DESTDIR)$(PREFIX)/share/cataclysm-dda/
 BIN_PREFIX=$(DESTDIR)$(PREFIX)/bin
@@ -1073,12 +1086,17 @@ endif
 ifeq ($(SOUND), 1)
 	cp -R --no-preserve=ownership data/sound $(DATA_PREFIX)
 endif
+# lua bloc install lua things
+# 1. make data/lua dir
+# 2. run the lua log cmd on the data/lua
+# 3. run the class_definitions.lua file on the data/lua
 ifdef LUA
 	mkdir -p $(DATA_PREFIX)/lua
-	install --mode=644 lua/autoexec.lua $(DATA_PREFIX)/lua
+	install --mode=644 lua/autoexec.lua $(DATA_PREFIX)/lua 
 	install --mode=644 lua/log.lua $(DATA_PREFIX)/lua
 	install --mode=644 lua/class_definitions.lua $(DATA_PREFIX)/lua
 endif
+# lua bloc "ILT" end
 	install --mode=644 data/changelog.txt data/cataicon.ico data/fontdata.json \
                    LICENSE.txt LICENSE-OFL-Terminus-Font.txt -t $(DATA_PREFIX)
 	mkdir -p $(LOCALE_DIR)

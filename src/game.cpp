@@ -106,7 +106,10 @@
 #include "line.h"
 #include "live_view.h"
 #include "loading_ui.h"
-#include "lua_console.h"
+// lua console include
+// #include "lua/lua_console.h" 
+#include "lua_console.h" 
+// lua console include
 #include "location.h"
 #include "magic.h"
 #include "make_static.h"
@@ -1470,23 +1473,26 @@ bool game::do_turn()
     if( u.is_mounted() ) {
         u.check_mount_is_spooked(); // check if the mount is spooked
     }
+    // lua bloc start (checking for passing time)
     if( calendar::once_every( 1_days ) ) { // daily check
         overmap_buffer.process_mongroups(); // process the monster groups that are nearby
-        if( calendar::turn.day_of_year() == 0 ) { // if today is the start of the year...
-            lua_callback( "on_year_passed" ); // a year passed, pass this to the callback
+        // if( calendar::turn.day_of_year() == 0 ) { // if today is the start of the year...
+        if( calendar::once_every( calendar::year_length() ) ) { // if today is the start of the year...
+            lua_callback( "on_year_passed" ); // a year passed, pass this to the LUA callback
         }
-        lua_callback( "on_day_passed" ); // regardless; a day still passed. pass this to the callback.
+        lua_callback( "on_day_passed" ); // regardless; a day still passed. pass this to the LUA callback.
     }
 
     if( calendar::once_every( 1_hours ) ) { // hourly check
-        lua_callback( "on_hour_passed" ); // an hour passed, pass this to the lua callback
+        lua_callback( "on_hour_passed" ); // an hour passed, pass this to the LUA callback
     }
 
     if( calendar::once_every( 1_minutes ) ) { // minutely check
-        lua_callback( "on_minute_passed" ); // a minute passed, pass this to the callback
+        lua_callback( "on_minute_passed" ); // a minute passed, pass this to the LUA callback
     }
 
-    lua_callback( "on_turn_passed" ); // ultimately, a turned pass. Pass this to the callback.
+    lua_callback( "on_turn_passed" ); // ultimately, a turned pass. Pass this to the LUA callback.
+    // lua bloc end (checking for passing time)
 
     // Move hordes every 2.5 min
     if( calendar::once_every( time_duration::from_minutes( 2.5 ) ) ) {
@@ -4560,8 +4566,8 @@ void game::mon_info_update( )
         }
     }
 
-    if( newseen == 0 && safe_mode == SAFE_MODE_STOP ) {
-        set_safe_mode( SAFE_MODE_ON );
+    if( newseen == 0 && safe_mode == SAFE_MODE_STOP ) { // if .. and our safemode setting STOPs the game (pauses)
+        set_safe_mode( SAFE_MODE_ON ); // Turn on safe mode
     }
 
     previous_turn = calendar::turn;
@@ -4574,7 +4580,7 @@ void game::cleanup_dead()
     // This is because dying monsters can still interact with other dying monsters (@ref Creature::killer)
     bool monster_is_dead = critter_tracker->kill_marked_for_death();
 
-    bool npc_is_dead = false;
+    bool npc_is_dead = false; // by default, the NPC is not dead.
     // can't use all_npcs as that does not include dead ones
     for( const auto &n : active_npc ) {
         if( n->is_dead() ) {
@@ -5161,12 +5167,12 @@ static cata::optional<tripoint> choose_where_to_place_monster( const monster &mo
         return can_place_monster( mon, p );
     } );
 }
-
+// creates a new critter from the following ID and then spawns it at the specified tripoint
 monster *game::place_critter_at( const mtype_id &id, const tripoint &p )
 {
     return place_critter_around( id, p, 0 );
 }
-
+// move an existing critter to the specified tripoint
 monster *game::place_critter_at( const shared_ptr_fast<monster> &mon, const tripoint &p )
 {
     return place_critter_around( mon, p, 0 );
@@ -10336,18 +10342,25 @@ void game::place_player_overmap( const tripoint_abs_omt &om_dest )
     m.spawn_monsters( true ); // Static monsters
     update_overmap_seen();
     // update weather now as it could be different on the new location
+    weather_manager old_weather = weather;
     weather.nextweather = calendar::turn;
     // lua bloc start
-    if( weather != old_weather ) { // if the weather changed
+    if( weather.weather_id != old_weather.weather_id ) { // if the weather changed
             // lua event
             CallbackArgumentContainer lua_callback_args_info;
-            lua_callback_args_info.emplace_back( weather_data( weather ).name ); // weather type name
-            lua_callback_args_info.emplace_back( weather_data( old_weather ).name ); // old weather name
+            // oldcode start
+            // lua_callback_args_info.emplace_back( weather_data( weather ).name ); // weather type name
+            // lua_callback_args_info.emplace_back( weather_data( old_weather ).name ); // old weather name
+            // oldcode end
+            lua_callback_args_info.emplace_back( weather.weather_id ); // weather type name
+            lua_callback_args_info.emplace_back( old_weather.weather_id ); // old weather name
             lua_callback( "on_weather_changed", lua_callback_args_info ); // weather change event
             // visualization: 
             // on Weather Changed (event)
             // <current_weather_name>, <previous_weather_name>
-            
+            // modern visualization:
+            // <current_weather_id>, <previous_weather_id>
+                        
         }
     // end lua bloc
     place_player( player_pos );
@@ -12564,51 +12577,52 @@ Character &get_player_character()
 {
     return g->u;
 }
-
+// returns the player's location
 location &get_player_location()
 {
     return g->u;
 }
-
+// returns the player (only?)
 viewer &get_player_view()
 {
     return g->u;
 }
-
+// returns the game's avatar
 avatar &get_avatar()
 {
     return g->u;
 }
-
+// returns the game's map
 map &get_map()
 {
     return g->m;
 }
-
+// the get the current events going on (..?)
 event_bus &get_event_bus()
 {
     return g->events();
 }
-
+// get the memorial for the player(..?)
 memorial_logger &get_memorial()
 {
     return g->memorial();
 }
-
+// get the player's chosen scenario
 const scenario *get_scenario()
 {
     return g->scen;
 }
+// set the player's scenario
 void set_scenario( const scenario *new_scenario )
 {
     g->scen = new_scenario;
 }
-
+// get the player's scent (?)
 scent_map &get_scent()
 {
     return g->scent;
 }
-
+// get the player's current stats
 stats_tracker &get_stats()
 {
     return g->stats();

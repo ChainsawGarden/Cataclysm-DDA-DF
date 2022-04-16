@@ -28,6 +28,10 @@ enum class character_stat : char;
 
 struct bionic_data {
     bionic_data();
+    // bionic_data( const bionic_data & ); // copy constructor
+    // bionic_data( bionic_data && ); // copy constructor
+    // bionic_data operator=( const bionic_data & ); // operator=
+    // bionic_data operator=( bionic_data && );
 
     bionic_id id;
 
@@ -161,6 +165,7 @@ struct bionic {
         bionic_id id;
         int         charge_timer  = 0;
         char        invlet  = 'a';
+        /* Whether the current bionic is currently powered on or off. */
         bool        powered = false;
         /* Ammunition actually loaded in this bionic gun in deactivated state */
         itype_id    ammo_loaded = itype_id::NULL_ID();

@@ -532,11 +532,11 @@ void Character::randomize_blood()
     };
     const double x = rng_float( 0.0, 1.0 );
     double cumulative_prob = 0.0;
-    for( const std::tuple<double, blood_type, bool> &type : blood_type_distribution ) {
-        cumulative_prob += std::get<0>( type );
-        if( x <= cumulative_prob ) {
-            my_blood_type = std::get<1>( type );
-            blood_rh_factor = std::get<2>( type );
+    for( const std::tuple<double, blood_type, bool> &type : blood_type_distribution ) { // for each blood type (?)
+        cumulative_prob += std::get<0>( type ); // make cumu. type
+        if( x <= cumulative_prob ) { // if randomness is less than cumulative probabilty
+            my_blood_type = std::get<1>( type ); // set chara bloodtype
+            blood_rh_factor = std::get<2>( type ); // set the rhfactor
             return;
         }
     }
@@ -2249,12 +2249,12 @@ bool Character::has_bionic( const bionic_id &b ) const
     }
     return false;
 }
-
+// 
 bool Character::has_active_bionic( const bionic_id &b ) const
 {
-    for( const bionic &i : *my_bionics ) {
-        if( i.id == b ) {
-            return ( i.powered && i.incapacitated_time == 0_turns );
+    for( const bionic &i : *my_bionics ) { // for each bionic installed
+        if( i.id == b ) { // if the ID is of the desired bionic...
+            return ( i.powered && i.incapacitated_time == 0_turns ); // return whether the bionic is on and the time in which the bionic was off.
         }
     }
     return false;
@@ -11656,7 +11656,7 @@ void Character::on_item_wear( const item &it )
     lua_callback_args_info.emplace_back( getID() );
     lua_callback_args_info.emplace_back( it );
     lua_callback( "on_player_item_wear", lua_callback_args_info );
-    //lua_callback( "on_chara_item_wear", lua_callback_args_info ); TODO: THIS IS THE NEW ONE. MAKE SURE TO CHANGE THE OTHERS TOO!
+    lua_callback( "on_chara_item_wear", lua_callback_args_info ); //TODO: THIS IS THE NEW ONE. MAKE SURE TO CHANGE THE OTHERS TOO!
     // lua bloc end
 }
 

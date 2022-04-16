@@ -55,6 +55,7 @@ class player_activity
          *   DO NOT USE FOR ITEM INDEX
         */
         int position = 0;
+        // Name of the activity
         std::string name;
         std::vector<item_location> targets;
         std::vector<int> values;

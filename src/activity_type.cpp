@@ -17,6 +17,10 @@
 #include "string_formatter.h"
 #include "translations.h"
 #include "type_id.h"
+// lua modernization addtns
+#include "player.h"
+#include "player_activity.h"
+// end lua modernization addtns
 
 // activity_type functions
 static std::map< activity_id, activity_type > activity_type_all;
@@ -91,14 +95,14 @@ void activity_type::check_consistency()
     for( const auto &pair : activity_handlers::do_turn_functions ) {
         if( activity_type_all.find( pair.first ) == activity_type_all.end() ) {
             debugmsg( "The do_turn function %s doesn't correspond to a valid activity_type.",
-                      pair.first.c_str() );
+                      pair.first.c_str() ); // emit do_turn error debug message
         }
     }
 
-    for( const auto &pair : activity_handlers::finish_functions ) {
-        if( activity_type_all.find( pair.first ) == activity_type_all.end() ) {
+    for( const auto &pair : activity_handlers::finish_functions ) { // for each pair in the finish funcs
+        if( activity_type_all.find( pair.first ) == activity_type_all.end() ) { // if activity_type_all's first pair is the same as the ending one...
             debugmsg( "The finish_function %s doesn't correspond to a valid activity_type",
-                      pair.first.c_str() );
+                      pair.first.c_str() ); // emit visible debug message
         }
     }
 }
@@ -109,8 +113,8 @@ void activity_type::call_do_turn( player_activity *act, player *p ) const
     if( pair != activity_handlers::do_turn_functions.end() ) { // if the pair isn't what do_turn_fns's end returns?
         // lua block start; starting to think this can be automated very easily.
         CallbackArgumentContainer lua_callback_args_info; // lua callback info object
-        lua_callback_args_info.emplace_back( act->id().str() ); // the activity id
-        lua_callback_args_info.emplace_back( p->getID() ); // the player id
+        lua_callback_args_info.emplace_back( act->id().str() ); // the activity id (act is incomplete type)
+        lua_callback_args_info.emplace_back( p->getID() ); // the player id (player is incomplete type)
         // visualization: <activity_id>, <player_id>
         lua_callback( "on_activity_call_do_turn_started", lua_callback_args_info ); // event listener? for turn starts
         // lua block end

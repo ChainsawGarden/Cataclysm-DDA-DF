@@ -168,6 +168,23 @@ const bodypart_str_id &convert_bp( body_part bp )
     return body_parts[static_cast<size_t>( bp )];
 }
 
+
+// body_part_type::body_part_type( )
+// {
+// }
+
+// body_part_type::body_part_type( const body_part_type & )
+// {
+// }
+
+// body_part_type &body_part_type::operator=( const body_part_type & )
+// {
+//     // TODO: Actually copy values to this b_p_t.
+//     return *this;
+// }
+
+//body_part_type::~body_part_type() = default;
+
 void body_part_type::load_bp( const JsonObject &jo, const std::string &src )
 {
     body_part_factory.load( jo, src );

@@ -47,6 +47,9 @@
 #include "map.h"
 #include "map_extras.h"
 #include "map_iterator.h"
+// lua block modern addition start
+#include "mapgen.h"
+// lua modern addition end
 #include "mapdata.h"
 #include "mapgen_functions.h"
 #include "mapgendata.h"
@@ -453,26 +456,27 @@ load_mapgen_function( const JsonObject &jio, const std::string &id_base, const p
         }
     // luabloc start
     } else if( mgtype == "lua" ) { // lua script
-            if( jio.has_string( "script" ) ) { // minified into one\nline
-                const std::string mgscript = jio.get_string( "script" );
-                ret = std::make_shared<mapgen_function_lua>( mgscript, mgweight );
-                //oter_mapgen[id_base].push_back( ret ); // access oter_mapget  & add the ret
-                oter_mapgen.add( id_base, ret ); // modern way of adding the ret.
-            } else if( jio.has_array( "script" ) ) { // or 1 line per entry array
-                std::string mgscript;
-                JsonArray jascr = jio.get_array( "script" );
-                while( jascr.has_more() ) {
-                    mgscript += jascr.next_string();
-                    mgscript += "\n";
-                }
-                ret = std::make_shared<mapgen_function_lua>( mgscript, mgweight );
-                oter_mapgen.add( id_base, ret ); // yeah 
-                // @todo: pass dirname current.json, because the latter two are icky
-                // } else if ( jio.has_string("file" ) { // or "same-dir-as-this/json/something.lua
-            } else {
-                debugmsg( "oter_t[%s]: Invalid mapgen function (missing \"script\" or \"file\" value).",
-                          id_base.c_str() );
-            }
+            // temporarily disable lua mapgen
+            // if( jio.has_string( "script" ) ) { // minified into one\nline
+            //     const std::string mgscript = jio.get_string( "script" );
+            //     ret = std::make_shared<mapgen_function_lua>( mgscript, mgweight );
+            //     //oter_mapgen[id_base].push_back( ret ); // access oter_mapget  & add the ret
+            //     oter_mapgen.add( id_base, ret ); // modern way of adding the ret.
+            // } else if( jio.has_array( "script" ) ) { // or 1 line per entry array
+            //     std::string mgscript;
+            //     JsonArray jascr = jio.get_array( "script" );
+            //     while( jascr.has_more() ) {
+            //         mgscript += jascr.next_string();
+            //         mgscript += "\n";
+            //     }
+            //     ret = std::make_shared<mapgen_function_lua>( mgscript, mgweight );
+            //     oter_mapgen.add( id_base, ret ); // yeah 
+            //     // @todo: pass dirname current.json, because the latter two are icky
+            //     // } else if ( jio.has_string("file" ) { // or "same-dir-as-this/json/something.lua
+            // } else {
+            //     debugmsg( "oter_t[%s]: Invalid mapgen function (missing \"script\" or \"file\" value).",
+            //               id_base.c_str() );
+            // }
 #ifndef LUA
             dbg( D_ERROR ) << "oter_t " << id_base << ": mapgen entry requires a build with LUA=1.";
 #endif
@@ -2892,7 +2896,7 @@ bool mapgen_function_json_base::has_vehicle_collision( const mapgendata &dat,
 /*
  * Apply mapgen as per a derived-from-json recipe; in theory fast, but not very versatile
  */
-void mapgen_function_json::generate( mapgendata &md )
+void mapgen_function_json::generate( mapgendata &md ) // PERTAINING TO LUA RESPORATION: this is solid, do not touch
 {
     map *const m = &md.m;
     if( fill_ter != t_null ) { // if not null
@@ -2925,7 +2929,10 @@ void mapgen_function_json::generate( mapgendata &md )
     // luabloc // WE SHALL RETURN TO THIS TOMORROW!
     if( ! luascript.empty() ) { // if the luascript var is not empty
         // LUA MAPGEN ONLY NEEDS (m), (md), & (luascript).
-        lua_mapgen( m, terrain_type, md, t, d, luascript ); // generate a lua map using the given params.
+        //lua_mapgen( m, md->terrain_type, md, t, d, luascript ); // generate a lua map using the given params.
+        lua_mapgen( m, md.terrain_type(), luascript ); // generate a lua map using the given params.
+        // t = timepoint
+        // d = float... for what?
     }
     // end luabloc
     objects.apply( md, point_zero );
@@ -2941,9 +2948,9 @@ void mapgen_function_json::generate( mapgendata &md )
     const std::string mapgen_generator_type = "json"; // the mapgen generator type
     const tripoint terrain_tripoint = sm_to_omt_copy( m->get_abs_sub() ); // coords to map?
     // callback container
-    CallbackArgumentContainer lua_callback_args_info; 
+    CallbackArgumentContainer lua_callback_args_info;  // lua callback args
     lua_callback_args_info.emplace_back( mapgen_generator_type ); // place the mapgen gen type ("json")
-    lua_callback_args_info.emplace_back( terrain_type.id().str() ); // place the terrain type ("terrain type?")
+    lua_callback_args_info.emplace_back( md.terrain_type().id().str() ); // place the terrain type ("terrain type?")
     lua_callback_args_info.emplace_back( terrain_tripoint ); // terrain coords
     lua_callback( "on_mapgen_finished", lua_callback_args_info ); // call everything
     // stack visualization: "mapgen_type" "terrain_type" "x y z"
@@ -3014,41 +3021,49 @@ void jmapgen_objects::apply( const mapgendata &dat, const point &offset ) const
 // wip: need more bindings. Basic stuff works
 
 #ifndef LUA
-int lua_mapgen( map *m, const oter_id &terrain_type, const mapgendata &mgd, const time_point &t,
-                float d, const std::string & )
+// int lua_mapgen( map *m, const oter_id &terrain_type, const mapgendata &mgd, const time_point &t,
+//                 float d, const std::string & )
+int lua_mapgen( map *m, const oter_id &terrain_type, const std::string & ) // neuter this for now
 {
-    mapgen_crater( m, terrain_type, mgd, to_turn<int>( t ), d );
-    mapf::formatted_set_simple( m, 0, 6,
-                                "\
-    *   *  ***\n\
-    **  * *   *\n\
-    * * * *   *\n\
-    *  ** *   *\n\
-    *   *  ***\n\
-\n\
- *     *   *   *\n\
- *     *   *  * *\n\
- *     *   *  ***\n\
- *     *   * *   *\n\
- *****  ***  *   *\n\
-", mapf::ter_bind( "*", t_paper ), mapf::furn_bind( "*", f_null ) );
+    
+//      mapgen_crater( m, terrain_type, mgd, to_turn<int>( t ), d );
+//      mapf::formatted_set_simple( m, 0, 6,
+//                                  "\REMOVEME
+//      *   *  ***\n\REMOVEME
+//      **  * *   *\n\REMOVEME
+//      * * * *   *\n\REMOVEME
+//      *  ** *   *\n\REMOVEME
+//      *   *  ***\n\REMOVEME
+//  \n\REMOVEME
+//   *     *   *   *\n\REMOVEME
+//   *     *   *  * *\n\REMOVEME
+//   *     *   *  ***\n\REMOVEME
+//   *     *   * *   *\n\REMOVEME
+//   *****  ***  *   *\n\REMOVEME
+//  ", mapf::ter_bind( "*", t_paper ), mapf::furn_bind( "*", f_null ) );
+    
     return 0;
 }
 #endif
 
-void mapgen_function_lua::generate( map *m, const oter_id &terrain_type, const mapgendata &mgd,
-                                    const time_point &t, float d )
-{
-    lua_mapgen( m, terrain_type, mgd, t, d, scr );
+// void mapgen_function_lua::generate( map *m, const oter_id &terrain_type, const mapgendata &mgd,
+//                                     const time_point &t, float d ) // oldcode
+// TODO: MODERNIZE AND REIMPLEMENT!
+// void mapgen_function_lua::generate( map *m, const oter_id &terrain_type )
+// {
+//     // lua_mapgen( m, terrain_type, mgd, t, d, scr ); oldcode
+//     lua_mapgen( m, terrain_type, scr );
 
-    const std::string mapgen_generator_type = "lua";
-    const tripoint terrain_tripoint = sm_to_omt_copy( m->get_abs_sub() );
-    CallbackArgumentContainer lua_callback_args_info;
-    lua_callback_args_info.emplace_back( mapgen_generator_type );
-    lua_callback_args_info.emplace_back( terrain_type.id().str() );
-    lua_callback_args_info.emplace_back( terrain_tripoint );
-    lua_callback( "on_mapgen_finished", lua_callback_args_info );
-}
+//     const std::string mapgen_generator_type = "lua";
+//     const tripoint terrain_tripoint = sm_to_omt_copy( m->get_abs_sub() );
+//     // lua callback bloc start (upon finishing mapgen)
+//     CallbackArgumentContainer lua_callback_args_info;
+//     lua_callback_args_info.emplace_back( mapgen_generator_type );
+//     lua_callback_args_info.emplace_back( terrain_type.id().str() );
+//     lua_callback_args_info.emplace_back( terrain_tripoint );
+//     lua_callback( "on_mapgen_finished", lua_callback_args_info );
+//     // lua callback bloc end
+// }
 // end lua bloc
 
 bool jmapgen_objects::has_vehicle_collision( const mapgendata &dat, const point &offset ) const

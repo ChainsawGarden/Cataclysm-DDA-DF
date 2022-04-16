@@ -27,56 +27,56 @@ struct in_place_t {
 };
 static constexpr in_place_t in_place{ };
 
-template<typename T>
-class optional
+template<typename T> // template for optional-class objects.
+class optional // the optional class
 {
     private:
-        using StoredType = typename std::remove_const<T>::type;
+        using StoredType = typename std::remove_const<T>::type; // stored type...?
         union {
-            char dummy;
-            StoredType data;
+            char dummy; // what is dummy used for?
+            StoredType data; // what is this data?
         };
-        bool full;
+        bool full; // whether or not (something) is full
 
-        T &get() {
+        T &get() { // templated get method; does a cata_assert and returns the `data` member.
             cata_assert( full );
             return data;
         }
-        const T &get() const {
+        const T &get() const { // templated get method, though for `const` members.
             cata_assert( full );
             return data;
         }
 
         template<typename... Args>
-        void construct( Args &&... args ) {
+        void construct( Args &&... args ) { // construct() does a cata assert, creates a new StoredType, and sets member `full` to True.
             cata_assert( !full );
             new( &data )StoredType( std::forward<Args>( args )... );
             full = true;
         }
-        void destruct() {
+        void destruct() { // calls the `data` member's StoredType deconstructor
             data.~StoredType();
         }
 
     public:
-        constexpr optional() noexcept : dummy(), full( false ) { }
+        constexpr optional() noexcept : dummy(), full( false ) { } // optional::optional constructor; what does noexcept do?
         // NOLINTNEXTLINE(google-explicit-constructor)
-        constexpr optional( const nullopt_t ) noexcept : dummy(), full( false ) { }
+        constexpr optional( const nullopt_t ) noexcept : dummy(), full( false ) { } // optional::optional constructor that takes a nullopt_t.
 
-        optional( const optional &other ) : full( false ) {
+        optional( const optional &other ) : full( false ) { // define the constructor with an (optional &other) param. if "other" is full, then call its get() method.
             if( other.full ) {
                 construct( other.get() );
             }
         }
-        optional( optional &&other ) noexcept : full( false ) {
-            if( other.full ) {
+        optional( optional &&other ) noexcept : full( false ) { // define the constructor with double-addressed "other" param. if other is full, call construct with the param
+            if( other.full ) {                                  // of std::move, and std::move has the param of other.get
                 construct( std::move( other.get() ) );
             }
         }
-        template<typename... Args>
+        template<typename... Args> // template w/ args; uses optional constructor, takes an "in_place_t", Args (from template) and a list of args addresses ? come back to this
         explicit optional( in_place_t, Args &&... args ) : data( std::forward<Args>( args )... ),
             full( true ) { }
 
-        template<typename U, typename... Args>
+        template<typename U, typename... Args> // template with typename U. Typename with multiple args. Optional constructor takes an "in_place_t", initializer list "ilist" and args.
         explicit optional( in_place_t, std::initializer_list<U> ilist,
                            Args &&... args ) : data( ilist,
                                        std::forward<Args>( args )... ), full( true ) { }

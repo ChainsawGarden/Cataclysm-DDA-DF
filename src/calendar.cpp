@@ -21,8 +21,8 @@ static constexpr double moonlight_per_quarter = 2.25;
 const int calendar::INDEFINITELY_LONG( std::numeric_limits<int>::max() / 100 );
 const time_duration calendar::INDEFINITELY_LONG_DURATION(
     time_duration::from_turns( std::numeric_limits<int>::max() ) );
-static bool is_eternal_season = false;
-static int cur_season_length = 1;
+static bool is_eternal_season = false; // HARDCODED: by default, the season is not forever.
+static int cur_season_length = 1; // HARDCODED: by default, the season length is at least 1.
 
 const time_point calendar::before_time_starts = time_point::from_turn( -1 );
 const time_point calendar::turn_zero = time_point::from_turn( 0 );
@@ -30,7 +30,7 @@ const time_point calendar::turn_zero = time_point::from_turn( 0 );
 time_point calendar::start_of_cataclysm = calendar::turn_zero;
 time_point calendar::start_of_game = calendar::turn_zero;
 time_point calendar::turn = calendar::turn_zero;
-season_type calendar::initial_season = SPRING;
+season_type calendar::initial_season = SPRING; // hardcoded initial season; there *has* to be a season, though, so that's why it's Spring.
 
 // Internal constants, not part of the calendar interface.
 // Times for sunrise, sunset at equinoxes
@@ -326,32 +326,32 @@ std::pair<int, clipped_unit> clipped_time( const time_duration &d )
         return { 0, clipped_unit::forever };
     }
 
-    if( d < 1_minutes ) {
+    if( d < 1_minutes ) { // if the duration is less than 1 minute ?
         const int sec = to_seconds<int>( d );
         return { sec, clipped_unit::second };
-    } else if( d < 1_hours ) {
+    } else if( d < 1_hours ) { // if the duration is less than one hour ?
         const int min = to_minutes<int>( d );
         return { min, clipped_unit::minute };
-    } else if( d < 1_days ) {
+    } else if( d < 1_days ) { // if the duration is less than one day ?
         const int hour = to_hours<int>( d );
         return { hour, clipped_unit::hour };
-    } else if( d < 7_days ) {
+    } else if( d < 7_days ) { // if the duration is less than seven days (one week) ?
         const int day = to_days<int>( d );
         return { day, clipped_unit::day };
-    } else if( d < calendar::season_length() || calendar::eternal_season() ) {
+    } else if( d < calendar::season_length() || calendar::eternal_season() ) { // if the duration is less than a season / eternal season ?
         // eternal seasons means one season is indistinguishable from the next,
         // therefore no way to count them
         const int week = to_weeks<int>( d );
         return { week, clipped_unit::week };
-    } else if( d < calendar::year_length() && !calendar::eternal_season() ) {
+    } else if( d < calendar::year_length() && !calendar::eternal_season() ) { // if the duration is less than a year and we do not have eternal seasons ?
         // TODO: consider a to_season function, but season length is variable, so
         // this might be misleading
         const int season = to_turns<int>( d ) / to_turns<int>( calendar::season_length() );
         return { season, clipped_unit::season };
-    } else {
+    } else { // if the above criteria does not fit, execute the following code:
         // TODO: consider a to_year function, but year length is variable, so
         // this might be misleading
-        const int year = to_turns<int>( d ) / to_turns<int>( calendar::year_length() );
+        const int year = to_turns<int>( d ) / to_turns<int>( calendar::year_length() ); // instatiate the `year` number 
         return { year, clipped_unit::year };
     }
 }

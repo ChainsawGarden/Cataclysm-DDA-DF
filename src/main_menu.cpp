@@ -1047,7 +1047,7 @@ bool main_menu::load_character_tab( bool transfer )
                 }
             }
             wnoutrefresh( w_open );
-        } else if( layer == 3 && sel1 == 2 ) {
+        } else if( layer == 3 && sel1 == 2 ) { // if we're on the third layer, 2nd element selected (?)
             savegames = world_generator->get_world( all_worldnames[sel2] )->world_saves;
 
             const std::string &wn = all_worldnames[sel2];
@@ -1057,9 +1057,10 @@ bool main_menu::load_character_tab( bool transfer )
             // lua block start
             if( ( wn != "TUTORIAL" && wn != "DEFENSE" ) && world_generator->world_need_lua_build( wn ) ) {
                 savegames.clear();
-                mvwprintz( w_open, iMenuOffsetY - 2 - sel2, 40 + iMenuOffsetX + extra_w / 2,
-                           c_red, "%s", _( "This world requires the game to be compiled with Lua." ) );
-                on_error();
+                // mvwprintz( w_open, iMenuOffsetY - 2 - sel2, 40 + iMenuOffsetX + extra_w / 2,
+                //            c_red, "%s", _( "This world requires the game to be compiled with Lua." ) );
+                mvwprintz( w_open, point(menu_offset.x - 2 - sel2, 40 + menu_offset.y + extra_w / 2), c_red, "%s", _( "This world requires the game to be compiled with Lua." ) ); // modernization: iMenuOffset is oldcode; replaced with `menu_offset` which has an `.x` and `.y` member.
+                on_error(); 
             } else {
             // lua block end
             // if there are no savegames at all
@@ -1077,8 +1078,9 @@ bool main_menu::load_character_tab( bool transfer )
                 }
             }
             wnoutrefresh( w_open );
+            }
         }
-    } );
+    }); // end second element selected
     ui.on_screen_resize( [this]( ui_adaptor & ui ) {
         init_windows();
         ui.position_from_window( w_open );

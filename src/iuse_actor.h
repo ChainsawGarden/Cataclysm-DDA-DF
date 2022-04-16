@@ -1113,4 +1113,7 @@ class sew_advanced_actor : public iuse_actor
         cata::optional<int> use( player &, item &, bool, const tripoint & ) const override;
         std::unique_ptr<iuse_actor> clone() const override;
 };
+
+// thinking of putting the appropriate lua class here...
+
 #endif // CATA_SRC_IUSE_ACTOR_H

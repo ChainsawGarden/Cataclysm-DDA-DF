@@ -56,7 +56,7 @@ class computer;
 class field;
 class field_entry;
 class item_location;
-class mapgendata;
+class mapgendata; // honestly belongs in a namespace, but do this after 0.F-3 update.
 class monster;
 class optional_vpart_position;
 class player;
@@ -1068,8 +1068,8 @@ class map
         // the list in map.  Used in tests.
         std::vector<tripoint> check_submap_active_item_consistency();
         // Accessor that returns a wrapped reference to an item stack for safe modification.
-        map_stack i_at( const tripoint &p );
-        map_stack i_at( const point &p ) {
+        map_stack i_at( const tripoint &p ); // use a tripoint (x,y,z)
+        map_stack i_at( const point &p ) { // use a point (x, y)
             return i_at( tripoint( p, abs_sub.z ) );
         }
         item water_from( const tripoint &p );

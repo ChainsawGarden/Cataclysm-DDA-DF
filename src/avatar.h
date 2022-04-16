@@ -65,7 +65,7 @@ struct monster_visible_info {
     // If the monster visible in this direction is dangerous
     bool dangerous[8] = {};
 };
-
+// An `avatar` is the Player -> game interface... ?
 class avatar : public player
 {
     public:

@@ -7,7 +7,15 @@ File Layout
 - `lua/class_definitions.lua` - Definitions of classes and functions that bindings will be generated from
 - `lua/generate_bindings.lua` - Custom binding generator for cataclysm, can generate class and function bindings.
 - `lua/catabindings.cpp` - Output of generate_bindings.lua
+
+FOR MODS:
+- moddir/preload.lua - PLACEHOLDER
+- moddir/main.lua - PLACEHOLDER
+
+PERTAINING TO MODERNIZATION AS OF 12-02-2021: THE BELOW FILE DOES NOT EXIST IN THE `data` DIR. IT MAY BE REFERRING TO THE PARTICULAR LUA MOD.
 - `data/main.lua` - Script that will be called on cataclysm startup. You can define functions here and call them in the lua debug interpreter.
+
+
 
 Adding new functionality
 ========================
@@ -26,7 +34,7 @@ An example of such a function would be:
 static int game_items_at(lua_State *L) {
     int x = lua_tointeger(L, 1);
     int y = lua_tointeger(L, 2);
-    std::vector<item>& items = g->m.i_at(x, y);
+    std::vector<item>& items = get_map().i_at(x, y);
     lua_createtable(L, items.size(), 0); // Preallocate enough space for all our items.
     // Iterate over the monster list and insert each monster into our returned table.
     for(int i=0; i < items.size(); i++) {
@@ -61,7 +69,7 @@ First, define your function however you like in catalua.cpp
 ```c++
 // game.remove_item(x, y, item)
 void game_remove_item(int x, int y, item *it) {
-    std::vector<item>& items = g->m.i_at(x, y);
+    std::vector<item>& items = get_map().i_at(x, y);
     for(int i=0; i<items.size(); i++) {
         if(&(items[i]) == it) {
             items.erase(items.begin() + i);

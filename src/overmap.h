@@ -237,7 +237,7 @@ class overmap
         std::vector<point_abs_omt> find_terrain( const std::string &term, int zlevel );
 
         void ter_set( const tripoint_om_omt &p, const oter_id &id );
-        const oter_id &ter( const tripoint_om_omt &p ) const;
+        const oter_id &ter( const tripoint_om_omt &p ) const; // is this the modern equivalent to "om.get_ter" ?
         bool &seen( const tripoint_om_omt &p );
         bool seen( const tripoint_om_omt &p ) const;
         bool &explored( const tripoint_om_omt &p );

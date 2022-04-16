@@ -9,8 +9,8 @@
 #include "translations.h"
 
 class JsonObject;
-class activity_type;
-class player;
+class activity_type; // activity_type class
+class player; // player class for activity_type.h? what is this used for?
 class player_activity;
 
 using activity_id = string_id<activity_type>;
