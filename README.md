@@ -2,10 +2,22 @@
 
 Cataclysm: Dark Days Ahead is free, libre & open-source turn-based survival game set in a post-apocalyptic world. Struggle to survive in a harsh, persistent, procedurally generated world. Scavenge the remnants of a dead civilization for food and equipment. Try to get a vehicle up and running for the long-haul. Fight to defeat or escape from a wide variety of powerful monstrosities, from zombies, to giant insects, to killer robots, and stranger things...
 
+<<<<<<< HEAD
 The Delta Fork of CDDA follows some of the developments of CleverRaven's. This mostly concerns bug fixes, and certain gameplay mechanics.
 Outside of that, the fork will add more story, and just enough lore to keep you intrigued. 
 
 UndeadPeople Tileset is the default tileset.
+=======
+***This version of Cataclysm: Dark Days Ahead has completely (and permanently) re-implemented Lua support.*** Old mods will require some tweaking to work with the new Lua API. 
+Lua is an integral part of Delta Fork, and is here to stay forever. Lua is a scripting language which allows for an extremely versatile modding experience. There is a Lua console in the "Map" portion of the Debug Menu, if you'd like to test it out. Keep in mind that this re-implementation is still keeping up with 3 years of newly-added technical content from CleverRaven. 
+
+Make backups of your saves!
+
+Concerning updates, Delta Fork follows some of the developments of CleverRaven's. This mostly concerns bug fixes, and certain gameplay mechanics.
+This fork seeks to be the most feature-complete, technologically-advanced version of *Cataclysm: Dark Days Ahead* with rich, expansive story and classic lore and particular focus on the "fun" of realism.
+
+UndeadPeople Tileset is the default tileset, and is being actively updated by its original maintainer.
+>>>>>>> lua
 
 CleverRaven CDDA Versions (Not ours!):
 <a href="https://repology.org/project/cataclysm-dda/versions">

@@ -55,6 +55,10 @@ class player_activity
          *   DO NOT USE FOR ITEM INDEX
         */
         int position = 0;
+<<<<<<< HEAD
+=======
+        // Name of the activity
+>>>>>>> lua
         std::string name;
         std::vector<item_location> targets;
         std::vector<int> values;

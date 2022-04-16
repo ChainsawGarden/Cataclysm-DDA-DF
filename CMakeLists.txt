@@ -19,6 +19,10 @@ option(LOCALIZE "Support for language localizations. Also enable UTF support." "
 option(LANGUAGES "Compile localization files for specified languages." "")
 option(DYNAMIC_LINKING
         "Use dynamic linking. Or use static to remove MinGW dependency instead." "ON")
+<<<<<<< HEAD
+=======
+option(LUA_BINARY "Lua binary name or path. You can try to use luajit for extra speed." "")        
+>>>>>>> lua
 option(JSON_FORMAT "Build JSON formatter" "OFF")
 option(CATA_CCACHE "Try to find and build with ccache" "ON")
 option(CATA_CLANG_TIDY_PLUGIN "Build Cata's custom clang-tidy plugin" "OFF")
@@ -26,6 +30,10 @@ set(CATA_CLANG_TIDY_INCLUDE_DIR "" CACHE STRING
         "Path to internal clang-tidy headers required for plugin (e.g. ClangTidy.h)")
 set(CATA_CHECK_CLANG_TIDY "" CACHE STRING "Path to check_clang_tidy.py for plugin tests")
 set(GIT_BINARY "" CACHE STRING "Git binary name or path.")
+<<<<<<< HEAD
+=======
+# option(PREFIX "Location of Data, GFX, & Lua directories." "")
+>>>>>>> lua
 
 include(CTest)
 
@@ -135,6 +143,13 @@ endif ()
 message(STATUS "${PROJECT_NAME} build options --")
 
 # Preset variables
+<<<<<<< HEAD
+=======
+if (NOT LUA_BINARY)
+	SET (LUA_BINARY "lua")
+ENDIF (NOT LUA_BINARY)
+
+>>>>>>> lua
 if (NOT LANGUAGES)
     # English is included to workaround a libintl bug that affects performance
     # on MinGW targets. See lang/CMakeList.txt for more information.
@@ -182,13 +197,27 @@ else ()
     message(STATUS "PIXMAPS_UNITY_ENTRY_PATH      : ${PIXMAPS_UNITY_ENTRY_PATH}")
     message(STATUS "MANPAGE_ENTRY_PATH            : ${MANPAGE_ENTRY_PATH}")
     add_definitions(-DRELEASE)
+<<<<<<< HEAD
     # Use CMAKE_INSTALL_PREFIX as storage of data,gfx, etc.. Useful only on *nix OS.
     if (CMAKE_INSTALL_PREFIX AND NOT WIN32)
+=======
+    # Use CMAKE_INSTALL_PREFIX as storage of data, gfx, lua, etc.. Useful only on *nix OS.
+    if (CMAKE_INSTALL_PREFIX AND NOT WIN32) # CMAKE_INSTALL_PREFIX  is the prefix for our Data Gfx Lua thing
+>>>>>>> lua
         add_definitions(-DPREFIX=${CMAKE_INSTALL_PREFIX})
         add_definitions(-DDATA_DIR_PREFIX)
     endif ()
 endif ()
+<<<<<<< HEAD
 
+=======
+# lua bloc (lua var definitions?)
+message(STATUS "LUA                           : ${LUA}")
+if(LUA)
+message(STATUS "LUA_BINARY                    : ${LUA_BINARY}")
+endif(LUA)
+# lua bloc defs end
+>>>>>>> lua
 message(STATUS "GIT_BINARY                    : ${GIT_EXECUTABLE}")
 message(STATUS "DYNAMIC_LINKING               : ${DYNAMIC_LINKING}")
 message(STATUS "TILES                         : ${TILES}")
@@ -325,7 +354,19 @@ if (SOUND)
                  See doc/COMPILING/COMPILING-CMAKE.md for details and more info.")
     endif ()
 endif ()
+<<<<<<< HEAD
 
+=======
+# lua bloc find pkgs
+if(LUA)
+    find_package(Lua)
+    if(NOT LUA_FOUND)
+        message(FATAL_ERROR "You need the Lua development library to be able to compile with Lua support.\nSee INSTALL file for details and more info\n")
+    endif(NOT LUA_FOUND)
+    add_definitions(-DLUA)
+endif(LUA)
+# lua bloc find package end
+>>>>>>> lua
 if (BACKTRACE)
     add_definitions(-DBACKTRACE)
     if (LIBBACKTRACE)
@@ -358,7 +399,16 @@ endif ()
 if (USE_HOME_DIR)
     add_definitions(-DUSE_HOME_DIR)
 endif ()
+<<<<<<< HEAD
 
+=======
+# lua bloc directories
+if(LUA)
+    add_subdirectory(lua)
+    add_subdirectory(src/lua)
+endif(lua)
+# lua bloc directories end
+>>>>>>> lua
 add_subdirectory(src)
 add_subdirectory(data)
 if (NOT MSVC)

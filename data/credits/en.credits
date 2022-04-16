@@ -2,6 +2,7 @@
 # The following line is for reference
 ##############################################################################
 <color_white>Original author:</color>    <color_white>Project Manager:</color>
+<<<<<<< HEAD
 <color_yellow>Whales</color> (<color_dark_gray>retired</color>)    <color_yellow>KevinGranade</color>
 
 <color_white>Current Main Developers:</color>
@@ -22,12 +23,29 @@
 
 <color_white>For a full list of contributors please see:</color>
 <color_cyan>https://github.com/CleverRaven/Cataclysm-DDA/contributors</color>
+=======
+<color_yellow>Whales</color> (<color_dark_gray>retired</color>)    <color_yellow>SambaFidelity/ChainsawGarden</color>
+
+<color_white>Current Main Developers:</color>
+<color_yellow>SambaFidelity/ChainsawGarden</color> - Main developer of Cataclysm: Dark Days Ahead - Delta Fork.
+
+<color_white>Special thanks to:</color>
+<color_yellow>CleverRaven Devs</color> - For originally maintaining Cataclysm.
+
+<color_white>Special thanks for art contributions:</color>
+<color_red>SomeDeadGuy</color> - Developer of the UndeadPeopleTileset.
+<color_yellow>BroadFlatNails (Bright Nights, Former Lua Dev)</color> - For helping me with some C++/Lua errors.
+
+<color_white>For a full list of contributors please see:</color>
+<color_cyan>TBA</color>
+>>>>>>> lua
 
 <color_light_cyan>Cataclysm</color>: <color_light_blue>Dark Days Ahead</color> is released under <color_white>CC-BY-SA 3.0</color>:
 <color_cyan>https://creativecommons.org/licenses/by-sa/3.0/</color>
 
 ******************************************************************************
 
+<<<<<<< HEAD
 <color_white>Main Developers (<color_cyan>0.E</color>):</color>
 <color_yellow>mlangsdorf</color> - Vehicles, boats, basecamps and modding guides.
 <color_yellow>I-am-Erk</color> - Ultica, dialogs, NPCs and clutter in the kitchens.
@@ -114,3 +132,14 @@
 <color_yellow>TheDarklingWolf</color> - For creating Cataclysm:DDA as we know it
 <color_yellow>Narc</color> - For setting up the automatic Jenkins build-bot
 <color_yellow>yobbobanana</color> - For working as liason between translators and github
+=======
+<color_white>Main Developers (<color_cyan>Severance-0.F-2</color>):</color>
+<color_yellow>SambaFidelity/ChainsawGarden</color> - Lua re-integration, Dynamic NPC & Economy work.
+
+<color_white>Special thanks to (<color_cyan>Severance-0.F-2</color>):</color>
+
+<color_yellow>ZhilkinSerg</color> - For originally working on Lua.
+
+<color_white>For a full list of contributors please see the git repo:</color>
+<color_cyan>TBA</color>
+>>>>>>> lua

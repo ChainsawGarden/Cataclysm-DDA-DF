@@ -59,6 +59,27 @@ std::string mod_ui::get_information( const MOD_INFORMATION *mod )
         info += mod->description + "\n";
     }
 
+<<<<<<< HEAD
+=======
+    // lua blooooc stooooort
+
+    // if( mod->need_lua() ) {
+    //     #ifdef LUA
+    //         // modernization: string was pure "_( "This mod requires <color_green>Lua support</color>" )"
+    //         // what I did was put it in a string_format.
+    //         info += string_format( _( "This mod requires <color_green>Lua support</color>" ) ) + "\n";
+    //     #else
+    //         // info += _( "This mod requires <color_red>Lua support</color>" ) + "\n"; // string with color ML tags; this might be valid by itself. More research is needed.
+    //                                                                                    // update as of 11:43 AM 12/11/2021: it is not valid by itself. It needs either string_format or colorize.
+            
+    //         // this might throw errors; previous one might already be valid
+    //         //info += string_format( _( "This mod requires <color_red>Lua support</color>", e.c_str ) ) + "\n";
+    //         info += string_format( _( "This mod requires <color_red>Lua support</color>" ) ) + "\n";
+    //     #endif
+    // }
+    // lua bloooooc end
+
+>>>>>>> lua
     std::string note = !mm_tree.is_available( mod->ident ) ? mm_tree.get_node(
                            mod->ident )->s_errors() : "";
     if( !note.empty() ) {

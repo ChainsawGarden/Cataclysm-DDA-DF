@@ -35,7 +35,11 @@ struct MOD_INFORMATION {
 
         mod_id ident;
 
+<<<<<<< HEAD
         /** Directory to load JSON from relative to directory containing modinfo.json */
+=======
+        /** Directory to load JSON and Lua from relative to directory containing modinfo.json */
+>>>>>>> lua
         std::string path;
 
         /** All authors who have added content to the mod (excluding maintenance changes) */
@@ -59,6 +63,12 @@ struct MOD_INFORMATION {
         /** Obsolete mods are loaded for legacy saves but cannot be used when starting new worlds */
         bool obsolete = false;
 
+<<<<<<< HEAD
+=======
+        /** Does this mod require Lua support? **/
+        bool need_lua() const;
+
+>>>>>>> lua
         std::pair<int, translation> category = { -1, translation() };
 };
 

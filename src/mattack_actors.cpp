@@ -9,6 +9,10 @@
 #include "avatar.h"
 #include "bodypart.h"
 #include "calendar.h"
+<<<<<<< HEAD
+=======
+#include "catalua.h" // lua include
+>>>>>>> lua
 #include "character.h"
 #include "creature.h"
 #include "enums.h"
@@ -436,6 +440,20 @@ std::unique_ptr<mattack_actor> gun_actor::clone() const
     return std::make_unique<gun_actor>( *this );
 }
 
+<<<<<<< HEAD
+=======
+// lua bloc lua mattack wrapper start
+#ifdef LUA
+    // mattack_actor *clone() const { // used to have override (here we go again)
+    std::unique_ptr<mattack_actor> lua_mattack_wrapper::clone() const 
+    {
+        // return new lua_mattack_wrapper( *this );
+        return std::make_unique<lua_mattack_wrapper>( *this );
+    }
+#endif    
+// lua bloc wrapper end
+
+>>>>>>> lua
 bool gun_actor::call( monster &z ) const
 {
     Creature *target;

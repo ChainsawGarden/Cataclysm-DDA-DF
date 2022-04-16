@@ -3,6 +3,10 @@
 #define CATA_SRC_PATH_INFO_H
 
 #include <iosfwd>
+<<<<<<< HEAD
+=======
+#include <string>
+>>>>>>> lua
 
 enum class holiday : int;
 
@@ -52,6 +56,14 @@ std::string worldoptions();
 std::string crash();
 std::string tileset_conf();
 std::string gfxdir();
+<<<<<<< HEAD
+=======
+// lua bloc start (lua path information)
+std::string luadir();
+std::string autoexeclua();
+std::string class_defslua();
+// lua bloc end (lua path info)
+>>>>>>> lua
 std::string langdir();
 std::string lang_file();
 std::string user_gfx();

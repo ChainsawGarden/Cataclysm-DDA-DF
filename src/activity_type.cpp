@@ -9,6 +9,10 @@
 #include "activity_actor.h"
 #include "activity_handlers.h"
 #include "assign.h"
+<<<<<<< HEAD
+=======
+#include "catalua.h"
+>>>>>>> lua
 #include "debug.h"
 #include "enum_conversions.h"
 #include "json.h"
@@ -16,6 +20,13 @@
 #include "string_formatter.h"
 #include "translations.h"
 #include "type_id.h"
+<<<<<<< HEAD
+=======
+// lua modernization addtns
+#include "player.h"
+#include "player_activity.h"
+// end lua modernization addtns
+>>>>>>> lua
 
 // activity_type functions
 static std::map< activity_id, activity_type > activity_type_all;
@@ -90,6 +101,7 @@ void activity_type::check_consistency()
     for( const auto &pair : activity_handlers::do_turn_functions ) {
         if( activity_type_all.find( pair.first ) == activity_type_all.end() ) {
             debugmsg( "The do_turn function %s doesn't correspond to a valid activity_type.",
+<<<<<<< HEAD
                       pair.first.c_str() );
         }
     }
@@ -130,4 +142,56 @@ void activity_type::reset()
 std::string activity_type::stop_phrase() const
 {
     return string_format( _( "Stop %s?" ), verb_ );
+=======
+                      pair.first.c_str() ); // emit do_turn error debug message
+        }
+    }
+
+    for( const auto &pair : activity_handlers::finish_functions ) { // for each pair in the finish funcs
+        if( activity_type_all.find( pair.first ) == activity_type_all.end() ) { // if activity_type_all's first pair is the same as the ending one...
+            debugmsg( "The finish_function %s doesn't correspond to a valid activity_type",
+                      pair.first.c_str() ); // emit visible debug message
+        }
+    }
+}
+// handles turn activities
+void activity_type::call_do_turn( player_activity *act, player *p ) const
+{
+    const auto &pair = activity_handlers::do_turn_functions.find( id_ ); // initiate the pair variable
+    if( pair != activity_handlers::do_turn_functions.end() ) { // if the pair isn't what do_turn_fns's end returns?
+        // lua block start; starting to think this can be automated very easily.
+        CallbackArgumentContainer lua_callback_args_info; // lua callback info object
+        lua_callback_args_info.emplace_back( act->id().str() ); // the activity id (act is incomplete type)
+        lua_callback_args_info.emplace_back( p->getID() ); // the player id (player is incomplete type)
+        // visualization: <activity_id>, <player_id>
+        lua_callback( "on_activity_call_do_turn_started", lua_callback_args_info ); // event listener? for turn starts
+        // lua block end
+        pair->second( act, p ); // access the second stored value; and call it i guess.
+        // sneaky lua addition
+        lua_callback( "on_activity_call_do_turn_finished", lua_callback_args_info ); // event listener? for turn ends
+        // end 2nd lua block
+    }
+}
+// 
+bool activity_type::call_finish( player_activity *act, player *p ) const
+{
+    const auto &pair = activity_handlers::finish_functions.find( id_ ); // gets data that's returned after fns finish?
+    if( pair != activity_handlers::finish_functions.end() ) { // if the pair isn't the in last of the finish fns?
+        pair->second( act, p );
+        // kill activity sounds at finish
+        sfx::end_activity_sounds(); // stop the activity sounds
+        return true; // return true, as everything worked as needed.
+    }
+    return false; // we aren't able to call_finish so return false.
+}
+// reset the activity
+void activity_type::reset()
+{
+    activity_type_all.clear(); // clears the activity buffer of all activities?
+}
+// "stop doing xyz?" prompt string for popup
+std::string activity_type::stop_phrase() const
+{
+    return string_format( _( "Stop %s?" ), verb_ ); // responsible for the "Stop XYZ?" message popup.
+>>>>>>> lua
 }

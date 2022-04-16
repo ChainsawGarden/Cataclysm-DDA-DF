@@ -25,6 +25,13 @@
 #include <utility>
 #include <vector>
 
+<<<<<<< HEAD
+=======
+// lua bloc include start
+// #include "lua/lua_console.h"
+#include "lua_console.h"
+// lua bloc include end
+>>>>>>> lua
 #include "achievement.h"
 #include "action.h"
 #include "avatar.h"
@@ -192,6 +199,10 @@ std::string enum_to_string<debug_menu::debug_menu_index>( debug_menu::debug_menu
         case debug_menu::debug_menu_index::NESTED_MAPGEN: return "NESTED_MAPGEN";
         case debug_menu::debug_menu_index::VEHICLE_BATTERY_CHARGE: return "VEHICLE_BATTERY_CHARGE";
         case debug_menu::debug_menu_index::GENERATE_EFFECT_LIST: return "GENERATE_EFFECT_LIST";
+<<<<<<< HEAD
+=======
+        case debug_menu::debug_menu_index::LUA_CONSOLE: return "LUA_CONSOLE"; // lua console debug menu index
+>>>>>>> lua
         // *INDENT-ON*
         case debug_menu::debug_menu_index::last:
             break;
@@ -333,6 +344,12 @@ static int spawning_uilist()
 static int map_uilist()
 {
     const std::vector<uilist_entry> uilist_initializer = {
+<<<<<<< HEAD
+=======
+        // lua console uilist entry
+        { uilist_entry( debug_menu_index::LUA_CONSOLE, true, 'l', _( "Lua Console" ) ) }, // lua console
+        // lua console uilist entry end
+>>>>>>> lua
         { uilist_entry( debug_menu_index::REVEAL_MAP, true, 'r', _( "Reveal map" ) ) },
         { uilist_entry( debug_menu_index::KILL_NPCS, true, 'k', _( "Kill NPCs" ) ) },
         { uilist_entry( debug_menu_index::MAP_EDITOR, true, 'M', _( "Map editor" ) ) },
@@ -1796,7 +1813,10 @@ void debug()
 #endif
         }
         break;
+<<<<<<< HEAD
 
+=======
+>>>>>>> lua
         case debug_menu_index::DISPLAY_WEATHER:
             ui::omap::display_weather();
             break;
@@ -2172,9 +2192,20 @@ void debug()
             }
             break;
         }
+<<<<<<< HEAD
 
         case debug_menu_index::last:
             return;
+=======
+        case debug_menu_index::LUA_CONSOLE: {// lua console case
+            lua_console console;
+            console.run();
+            break;
+        }
+        case debug_menu_index::last: {
+            return;
+        }
+>>>>>>> lua
     }
     here.invalidate_map_cache( here.get_abs_sub().z );
 }

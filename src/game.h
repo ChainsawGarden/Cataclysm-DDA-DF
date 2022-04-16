@@ -528,7 +528,11 @@ class game
         /** validate camps to ensure they are on the overmap list */
         void validate_camps();
         /** Picks and spawns a random fish from the remaining fish list when a fish is caught. */
+<<<<<<< HEAD
         void catch_a_monster( monster *fish, const tripoint &pos, player *p,
+=======
+        void catch_a_monster( monster *fish, const tripoint &pos, player *p, // modern: pokemon!
+>>>>>>> lua
                               const time_duration &catch_duration );
         /**
          * Get the contiguous fishable locations starting at fish_pos, out to the specified distance.
@@ -764,6 +768,12 @@ class game
 #endif
         // Data Initialization
         void init_autosave();     // Initializes autosave parameters
+<<<<<<< HEAD
+=======
+        // LUA bloc
+        void init_lua(); // initializes the lua interpreter.
+        // end lua bloc
+>>>>>>> lua
         void create_starting_npcs(); // Creates NPCs that start near you
         // create vehicle nearby, for example; for a profession vehicle.
         vehicle *place_vehicle_nearby(
@@ -973,7 +983,11 @@ class game
         pimpl<spell_events> spell_events_ptr;
 
         map &m;
+<<<<<<< HEAD
         avatar &u;
+=======
+        avatar &u; // avatar? is this specifically for the player?
+>>>>>>> lua
         scent_map &scent;
         const scenario *scen = nullptr;
 

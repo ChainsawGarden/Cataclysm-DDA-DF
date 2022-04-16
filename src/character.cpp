@@ -22,6 +22,12 @@
 #include "bionics.h"
 #include "cata_utility.h"
 #include "catacharset.h"
+<<<<<<< HEAD
+=======
+// lua include start
+#include "catalua.h"
+// lua include end
+>>>>>>> lua
 #include "character_martial_arts.h"
 #include "clzones.h"
 #include "colony.h"
@@ -529,11 +535,19 @@ void Character::randomize_blood()
     };
     const double x = rng_float( 0.0, 1.0 );
     double cumulative_prob = 0.0;
+<<<<<<< HEAD
     for( const std::tuple<double, blood_type, bool> &type : blood_type_distribution ) {
         cumulative_prob += std::get<0>( type );
         if( x <= cumulative_prob ) {
             my_blood_type = std::get<1>( type );
             blood_rh_factor = std::get<2>( type );
+=======
+    for( const std::tuple<double, blood_type, bool> &type : blood_type_distribution ) { // for each blood type (?)
+        cumulative_prob += std::get<0>( type ); // make cumu. type
+        if( x <= cumulative_prob ) { // if randomness is less than cumulative probabilty
+            my_blood_type = std::get<1>( type ); // set chara bloodtype
+            blood_rh_factor = std::get<2>( type ); // set the rhfactor
+>>>>>>> lua
             return;
         }
     }
@@ -1414,6 +1428,16 @@ void Character::on_dodge( Creature *source, float difficulty )
             }
         }
     }
+<<<<<<< HEAD
+=======
+    // lua bloc start
+    CallbackArgumentContainer lua_callback_args_info;
+    lua_callback_args_info.emplace_back( getID() );
+    lua_callback_args_info.emplace_back( source );
+    lua_callback_args_info.emplace_back( difficulty );
+    lua_callback( "on_player_dodge", lua_callback_args_info );
+    // lua bloc end
+>>>>>>> lua
 }
 
 float Character::get_melee() const
@@ -2239,12 +2263,21 @@ bool Character::has_bionic( const bionic_id &b ) const
     }
     return false;
 }
+<<<<<<< HEAD
 
 bool Character::has_active_bionic( const bionic_id &b ) const
 {
     for( const bionic &i : *my_bionics ) {
         if( i.id == b ) {
             return ( i.powered && i.incapacitated_time == 0_turns );
+=======
+// 
+bool Character::has_active_bionic( const bionic_id &b ) const
+{
+    for( const bionic &i : *my_bionics ) { // for each bionic installed
+        if( i.id == b ) { // if the ID is of the desired bionic...
+            return ( i.powered && i.incapacitated_time == 0_turns ); // return whether the bionic is on and the time in which the bionic was off.
+>>>>>>> lua
         }
     }
     return false;
@@ -2411,6 +2444,19 @@ void Character::practice( const skill_id &id, int amount, int cap, bool suppress
         }
         if( is_player() && newLevel > oldLevel ) {
             add_msg( m_good, _( "Your skill in %s has increased to %d!" ), skill_name, newLevel );
+<<<<<<< HEAD
+=======
+            // lua bloc start (training, skill increased)
+            const std::string skill_increase_source = "training";
+            CallbackArgumentContainer lua_callback_args_info;
+            lua_callback_args_info.emplace_back( getID() );
+            lua_callback_args_info.emplace_back( skill_increase_source );
+            lua_callback_args_info.emplace_back( id.str() );
+            lua_callback_args_info.emplace_back( newLevel );
+            lua_callback( "on_player_skill_increased", lua_callback_args_info );
+            lua_callback( "on_skill_increased" ); //Legacy callback
+            // lua bloc end
+>>>>>>> lua
         }
         if( is_player() && newLevel > cap ) {
             //inform player immediately that the current recipe can't be used to train further
@@ -9951,6 +9997,11 @@ void Character::on_hit( Creature *source, bodypart_id bp_hit,
             source->add_effect( effect_blind, 2_turns );
         }
     }
+<<<<<<< HEAD
+=======
+    // while the lua stack block code thing would go here, additional code was added.
+    // the lua stack block code stuff will go after all of these "if"s. just trust me on this one.
+>>>>>>> lua
     if( worn_with_flag( flag_REQUIRES_BALANCE ) && !has_effect( effect_downed ) ) {
         int rolls = 4;
         if( worn_with_flag( flag_ROLLER_ONE ) ) {
@@ -9978,8 +10029,20 @@ void Character::on_hit( Creature *source, bodypart_id bp_hit,
             add_effect( effect_downed, 2_turns, false, 0, true );
         }
     }
+<<<<<<< HEAD
 
     enchantment_cache->cast_hit_me( *this, source );
+=======
+    // lua bloc start
+    CallbackArgumentContainer lua_callback_args_info;
+    lua_callback_args_info.emplace_back( getID() );
+    lua_callback_args_info.emplace_back( source );
+    lua_callback_args_info.emplace_back( bp_hit );
+    //lua_callback_args_info.emplace_back( proj ); // this comment is canonical; it was already in the pre-lua-removal source
+    lua_callback( "on_player_hit", lua_callback_args_info );
+    // lua bloc end
+    enchantment_cache->cast_hit_me( *this, source ); // some magic stuff
+>>>>>>> lua
 }
 
 /*
@@ -11622,6 +11685,16 @@ void Character::on_item_wear( const item &it )
         }
     }
     morale->on_item_wear( it );
+<<<<<<< HEAD
+=======
+    // lua bloc start (upon the a character wearing an item)
+    CallbackArgumentContainer lua_callback_args_info;
+    lua_callback_args_info.emplace_back( getID() );
+    lua_callback_args_info.emplace_back( it );
+    lua_callback( "on_player_item_wear", lua_callback_args_info );
+    lua_callback( "on_chara_item_wear", lua_callback_args_info ); //TODO: THIS IS THE NEW ONE. MAKE SURE TO CHANGE THE OTHERS TOO!
+    // lua bloc end
+>>>>>>> lua
 }
 
 void Character::on_item_takeoff( const item &it )
@@ -11636,6 +11709,15 @@ void Character::on_item_takeoff( const item &it )
         }
     }
     morale->on_item_takeoff( it );
+<<<<<<< HEAD
+=======
+    //lua bloc start (taking off an item)
+    CallbackArgumentContainer lua_callback_args_info;
+    lua_callback_args_info.emplace_back( getID() );
+    lua_callback_args_info.emplace_back( it );
+    lua_callback( "on_player_item_takeoff", lua_callback_args_info );
+    //lua bloc end
+>>>>>>> lua
 }
 
 void Character::on_effect_int_change( const efftype_id &eid, int intensity, const bodypart_id &bp )
@@ -11648,6 +11730,17 @@ void Character::on_effect_int_change( const efftype_id &eid, int intensity, cons
     }
 
     morale->on_effect_int_change( eid, intensity, bp );
+<<<<<<< HEAD
+=======
+    // lua bloc start (when the intelligence changes)
+    CallbackArgumentContainer lua_callback_args_info;
+    lua_callback_args_info.emplace_back( getID() );
+    lua_callback_args_info.emplace_back( eid.str() );
+    lua_callback_args_info.emplace_back( intensity );
+    lua_callback_args_info.emplace_back( bp );
+    lua_callback( "on_player_effect_int_change", lua_callback_args_info );
+    // lua bloc end
+>>>>>>> lua
 }
 
 void Character::on_mutation_gain( const trait_id &mid )
@@ -11656,6 +11749,15 @@ void Character::on_mutation_gain( const trait_id &mid )
     magic->on_mutation_gain( mid, *this );
     update_type_of_scent( mid );
     recalculate_enchantment_cache(); // mutations can have enchantments
+<<<<<<< HEAD
+=======
+    // lua bloc start
+    CallbackArgumentContainer lua_callback_args_info;
+    lua_callback_args_info.emplace_back( getID() );
+    lua_callback_args_info.emplace_back( mid.str() );
+    lua_callback( "on_player_mutation_gain", lua_callback_args_info );
+    // lua bloc end
+>>>>>>> lua
 }
 
 void Character::on_mutation_loss( const trait_id &mid )
@@ -11664,11 +11766,30 @@ void Character::on_mutation_loss( const trait_id &mid )
     magic->on_mutation_loss( mid );
     update_type_of_scent( mid, false );
     recalculate_enchantment_cache(); // mutations can have enchantments
+<<<<<<< HEAD
+=======
+    // lua bloc start (mutation loss)
+    CallbackArgumentContainer lua_callback_args_info;
+    lua_callback_args_info.emplace_back( getID() );
+    lua_callback_args_info.emplace_back( mid.str() );
+    lua_callback( "on_player_mutation_loss", lua_callback_args_info );
+    // lua bloc end
+>>>>>>> lua
 }
 
 void Character::on_stat_change( const std::string &stat, int value )
 {
     morale->on_stat_change( stat, value );
+<<<<<<< HEAD
+=======
+    // lua bloc start
+    CallbackArgumentContainer lua_callback_args_info;
+    lua_callback_args_info.emplace_back( getID() );
+    lua_callback_args_info.emplace_back( stat );
+    lua_callback_args_info.emplace_back( value );
+    lua_callback( "on_player_stat_change", lua_callback_args_info );
+    // lua bloc stop
+>>>>>>> lua
 }
 
 bool Character::has_opposite_trait( const trait_id &flag ) const

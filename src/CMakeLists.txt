@@ -51,6 +51,15 @@ if (TILES)
     target_link_libraries(cataclysm-tiles cataclysm-tiles-common)
     target_compile_definitions(cataclysm-tiles-common PUBLIC TILES )
 
+<<<<<<< HEAD
+=======
+    IF (LUA)
+        ADD_DEPENDENCIES(cataclysm-tiles-common lua_bindings)
+        target_include_directories(cataclysm-tiles-common PUBLIC ${LUA_INCLUDE_DIR})
+        target_link_libraries(cataclysm-tiles-common ${LUA_LIBRARIES})
+    ENDIF(LUA)
+
+>>>>>>> lua
     if (LOCALIZE)
         target_include_directories(cataclysm-tiles-common PUBLIC
                 ${LIBINTL_INCLUDE_DIR}
@@ -144,6 +153,15 @@ if (CURSES)
     add_dependencies(cataclysm-common get_version)
     target_link_libraries(cataclysm cataclysm-common)
 
+<<<<<<< HEAD
+=======
+    IF (LUA)
+		ADD_DEPENDENCIES(cataclysm-common lua_bindings)
+		target_include_directories(cataclysm-common PUBLIC ${LUA_INCLUDE_DIR})
+		target_link_libraries(cataclysm-common ${LUA_LIBRARIES})
+	ENDIF(LUA)
+
+>>>>>>> lua
     if (LOCALIZE)
         target_include_directories(cataclysm-common PUBLIC
                 ${LIBINTL_INCLUDE_DIR}
@@ -198,6 +216,14 @@ if (MINGW AND NOT RELEASE)
             ${RuntimeLib_GCC_S_DW2_1}
             ${RuntimeLib_STDC_PP_6}
             ${RuntimeLib_WINPTHREAD_1})
+<<<<<<< HEAD
+=======
+    if(LUA)
+        SET(RuntimeLib_LUA
+              ${LUA_LIBRARIES}
+            )
+        ENDIF (LUA)
+>>>>>>> lua
     if (LOCALIZE)
         find_library(RuntimeLib_iconv  "libiconv-2")
         find_library(RuntimeLib_intl  "libintl-8")
@@ -268,3 +294,33 @@ if (MINGW AND NOT RELEASE)
             ${RuntimeLib_SDL_SOUND}
             DESTINATION ${BIN_PREFIX})
 endif ()
+<<<<<<< HEAD
+=======
+
+# lua section
+
+MESSAGE(STATUS "Searching for Lua library --\n")
+
+SET(CATACLYSM_DDA_LUA_BINDING_SOURCES
+    # ${CMAKE_SOURCE_DIR}/lua/class_definitions.lua
+    # ${CMAKE_SOURCE_DIR}/src/lua/generate_bindings.lua
+    ${CMAKE_SOURCE_DIR}/src/generate_bindings.lua
+)
+
+add_custom_target (
+	lua_bindings
+	ALL
+	# DEPENDS ${CMAKE_SOURCE_DIR}/src/lua/catabindings.cpp
+	DEPENDS ${CMAKE_SOURCE_DIR}/src/catabindings.cpp
+	WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+)
+
+ADD_CUSTOM_COMMAND (
+	# OUTPUT ${CMAKE_SOURCE_DIR}/src/lua/catabindings.cpp
+	OUTPUT ${CMAKE_SOURCE_DIR}/src/catabindings.cpp
+	COMMAND ${LUA_BINARY} generate_bindings.lua
+	DEPENDS ${CATACLYSM_DDA_LUA_BINDING_SOURCES}
+	# WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/src/lua
+	WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/src
+)
+>>>>>>> lua

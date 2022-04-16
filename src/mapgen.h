@@ -19,6 +19,11 @@
 #include "type_id.h"
 #include "weighted_list.h"
 
+<<<<<<< HEAD
+=======
+//#pragma clang diagnostic ignored "-Woverloaded-virtual" // ignore overload error; doesn't work currently, probably because all warnings are treated as errors.
+
+>>>>>>> lua
 class map;
 class mapgendata;
 class mission;
@@ -362,6 +367,12 @@ class mapgen_function_json : public mapgen_function_json_base, public virtual ma
 
         ter_id fill_ter;
         oter_id predecessor_mapgen;
+<<<<<<< HEAD
+=======
+        // luabloc uno
+        std::string luascript;
+        // luabloc uno... turns to cero!
+>>>>>>> lua
 
     protected:
         bool setup_internal( const JsonObject &jo ) override;
@@ -405,6 +416,31 @@ class mapgen_function_json_nested : public mapgen_function_json_base
         jmapgen_int rotation;
 };
 
+<<<<<<< HEAD
+=======
+// lua bloc start (this time, we're mapgen)
+/////////////////////////////////////////////////////////////////////////////////
+///// lua bloc mapgen
+// TODO: AS PART OF LUA MODERNIZATION, RE ADD THIS WHENEVER POSSIBLE!
+// class mapgen_function_lua : public virtual mapgen_function
+// {
+//     public:
+//         const std::string scr; // lua script ?
+//         mapgen_function_lua( std::string s, int w = 1000 ) : mapgen_function( w ), scr( s ) {
+//             // scr = s; // @todo: if ( luaL_loadstring(L, scr.c_str() ) ) { error }
+//         }
+
+//         // i didn't want to this, but it should suffice for now (add "using" because we want to use a specific class's (read: mapgen_function) generate method)
+//         using mapgen_function::generate; // specifies that we want to use class `mapgen_function`'s `generate` method.
+
+//         // I removed the override because the game would throw a "this doesn't override anything" error. And it's true, the params are different. No need for an override.
+//         // void generate( map *, const oter_id &terrain_type ); // TEMPORARILY REMOVED. newest code. Will be re-adding time_point soon.
+//         // void generate( map *, const oter_id &, const mapgendata &, const time_point &, float ); // @todo generate doesn't override anything, look into this
+//         void generate( map *, const oter_id &, const mapgendata &, const time_point &, float ); // this should work since generate isn't being overrode.
+// };
+// lua bloc end
+
+>>>>>>> lua
 /////////////////////////////////////////////////////////
 ///// global per-terrain mapgen function lists
 /*

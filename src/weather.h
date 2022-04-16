@@ -162,8 +162,13 @@ void wet( Character &target, int amount );
 class weather_manager
 {
     public:
+<<<<<<< HEAD
         weather_manager();
         const weather_generator &get_cur_weather_gen() const;
+=======
+        weather_manager(); // constructor
+        const weather_generator &get_cur_weather_gen() const; // generates weather ?
+>>>>>>> lua
         // Updates the temperature and weather patten
         void update_weather();
         // The air temperature

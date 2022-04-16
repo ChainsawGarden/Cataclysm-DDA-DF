@@ -61,7 +61,11 @@
 
 /**
  * Debug message of level D_ERROR and class D_MAIN, also includes the source
+<<<<<<< HEAD
  * file name and line, uses varg style arguments, teh first argument must be
+=======
+ * file name and line, uses varg style arguments, the first argument must be
+>>>>>>> lua
  * a printf style format string.
  */
 

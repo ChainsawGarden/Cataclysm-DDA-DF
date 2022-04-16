@@ -50,6 +50,10 @@
 #include "cata_utility.h"
 #include "cata_variant.h"
 #include "catacharset.h"
+<<<<<<< HEAD
+=======
+#include "catalua.h"
+>>>>>>> lua
 #include "character.h"
 #include "character_martial_arts.h"
 #include "clzones.h"
@@ -105,6 +109,13 @@
 #include "line.h"
 #include "live_view.h"
 #include "loading_ui.h"
+<<<<<<< HEAD
+=======
+// lua console include
+// #include "lua/lua_console.h" 
+#include "lua_console.h" 
+// lua console include
+>>>>>>> lua
 #include "location.h"
 #include "magic.h"
 #include "make_static.h"
@@ -469,19 +480,43 @@ bool game::is_core_data_loaded() const
 {
     return DynamicDataLoader::get_instance().is_data_finalized();
 }
+<<<<<<< HEAD
 
+=======
+// load core gamedata
+>>>>>>> lua
 void game::load_core_data( loading_ui &ui )
 {
     // core data can be loaded only once and must be first
     // anyway.
+<<<<<<< HEAD
     DynamicDataLoader::get_instance().unload_data();
 
     load_data_from_dir( PATH_INFO::jsondir(), "core", ui );
+=======
+    DynamicDataLoader::get_instance().unload_data(); // unload data from the current instance... of this (game) class?
+    
+    init_lua(); // initialize lua
+    load_data_from_dir( PATH_INFO::jsondir(), "core", ui ); // load data from the json directory; get core json (data/json/core ?)
+>>>>>>> lua
 }
 
 void game::load_data_from_dir( const std::string &path, const std::string &src, loading_ui &ui )
 {
+<<<<<<< HEAD
     DynamicDataLoader::get_instance().load_data_from_path( path, src, ui );
+=======
+    // Process a preload file before the .json files,
+    // so that custom IUSE's can be defined before
+    // the items that need them are parsed
+    lua_loadmod( path, "preload.lua" ); // load the main file of a lua mod; in this case, the lua preload.
+
+    DynamicDataLoader::get_instance().load_data_from_path( path, src, ui );
+
+    // main.lua will be executed after JSON, allowing to
+    // work with items defined by mod's JSON
+    lua_loadmod( path, "main.lua" );
+>>>>>>> lua
 }
 
 #if !(defined(_WIN32) || defined(TILES))
@@ -821,6 +856,17 @@ bool game::start_game()
     }
     // Now that we're done handling coordinates, ensure the player's submap is in the center of the map
     update_map( u );
+<<<<<<< HEAD
+=======
+
+    CallbackArgumentContainer lua_callback_args_info; // lua callback info container
+    lua_callback_args_info.emplace_back( u.getID() ); // gets player ID
+    lua_callback( "on_new_player_created", lua_callback_args_info ); // event thing that emits when a player is created.
+    // visualization: 
+    // on New Player Created (when the player is created)
+    // lua_callback_args_info[<player_id>]
+
+>>>>>>> lua
     // Profession pets
     for( const mtype_id &elem : u.starting_pets ) {
         if( monster *const mon = place_critter_around( elem, u.pos(), 5 ) ) {
@@ -1448,12 +1494,38 @@ bool game::do_turn()
     }
     // If riding a horse - chance to spook
     if( u.is_mounted() ) {
+<<<<<<< HEAD
         u.check_mount_is_spooked();
     }
     if( calendar::once_every( 1_days ) ) {
         overmap_buffer.process_mongroups();
     }
 
+=======
+        u.check_mount_is_spooked(); // check if the mount is spooked
+    }
+    // lua bloc start (checking for passing time)
+    if( calendar::once_every( 1_days ) ) { // daily check
+        overmap_buffer.process_mongroups(); // process the monster groups that are nearby
+        // if( calendar::turn.day_of_year() == 0 ) { // if today is the start of the year...
+        if( calendar::once_every( calendar::year_length() ) ) { // if today is the start of the year...
+            lua_callback( "on_year_passed" ); // a year passed, pass this to the LUA callback
+        }
+        lua_callback( "on_day_passed" ); // regardless; a day still passed. pass this to the LUA callback.
+    }
+
+    if( calendar::once_every( 1_hours ) ) { // hourly check
+        lua_callback( "on_hour_passed" ); // an hour passed, pass this to the LUA callback
+    }
+
+    if( calendar::once_every( 1_minutes ) ) { // minutely check
+        lua_callback( "on_minute_passed" ); // a minute passed, pass this to the LUA callback
+    }
+
+    lua_callback( "on_turn_passed" ); // ultimately, a turned pass. Pass this to the LUA callback.
+    // lua bloc end (checking for passing time)
+
+>>>>>>> lua
     // Move hordes every 2.5 min
     if( calendar::once_every( time_duration::from_minutes( 2.5 ) ) ) {
         overmap_buffer.move_hordes();
@@ -3000,6 +3072,11 @@ bool game::load( const save_t &name )
 
     u.reset();
 
+<<<<<<< HEAD
+=======
+    lua_callback( "on_savegame_loaded" ); // emit lua -event "on_savegame_loaded" ?
+
+>>>>>>> lua
     events().send<event_type::game_load>( getVersionString() );
     time_of_last_load = std::chrono::steady_clock::now();
     time_played_at_last_load = std::chrono::seconds( 0 );
@@ -4524,8 +4601,13 @@ void game::mon_info_update( )
         }
     }
 
+<<<<<<< HEAD
     if( newseen == 0 && safe_mode == SAFE_MODE_STOP ) {
         set_safe_mode( SAFE_MODE_ON );
+=======
+    if( newseen == 0 && safe_mode == SAFE_MODE_STOP ) { // if .. and our safemode setting STOPs the game (pauses)
+        set_safe_mode( SAFE_MODE_ON ); // Turn on safe mode
+>>>>>>> lua
     }
 
     previous_turn = calendar::turn;
@@ -4538,7 +4620,11 @@ void game::cleanup_dead()
     // This is because dying monsters can still interact with other dying monsters (@ref Creature::killer)
     bool monster_is_dead = critter_tracker->kill_marked_for_death();
 
+<<<<<<< HEAD
     bool npc_is_dead = false;
+=======
+    bool npc_is_dead = false; // by default, the NPC is not dead.
+>>>>>>> lua
     // can't use all_npcs as that does not include dead ones
     for( const auto &n : active_npc ) {
         if( n->is_dead() ) {
@@ -5125,12 +5211,20 @@ static cata::optional<tripoint> choose_where_to_place_monster( const monster &mo
         return can_place_monster( mon, p );
     } );
 }
+<<<<<<< HEAD
 
+=======
+// creates a new critter from the following ID and then spawns it at the specified tripoint
+>>>>>>> lua
 monster *game::place_critter_at( const mtype_id &id, const tripoint &p )
 {
     return place_critter_around( id, p, 0 );
 }
+<<<<<<< HEAD
 
+=======
+// move an existing critter to the specified tripoint
+>>>>>>> lua
 monster *game::place_critter_at( const shared_ptr_fast<monster> &mon, const tripoint &p )
 {
     return place_critter_around( mon, p, 0 );
@@ -10300,7 +10394,31 @@ void game::place_player_overmap( const tripoint_abs_omt &om_dest )
     m.spawn_monsters( true ); // Static monsters
     update_overmap_seen();
     // update weather now as it could be different on the new location
+<<<<<<< HEAD
     weather.nextweather = calendar::turn;
+=======
+    weather_manager old_weather = weather;
+    weather.nextweather = calendar::turn;
+    // lua bloc start
+    if( weather.weather_id != old_weather.weather_id ) { // if the weather changed
+            // lua event
+            CallbackArgumentContainer lua_callback_args_info;
+            // oldcode start
+            // lua_callback_args_info.emplace_back( weather_data( weather ).name ); // weather type name
+            // lua_callback_args_info.emplace_back( weather_data( old_weather ).name ); // old weather name
+            // oldcode end
+            lua_callback_args_info.emplace_back( weather.weather_id ); // weather type name
+            lua_callback_args_info.emplace_back( old_weather.weather_id ); // old weather name
+            lua_callback( "on_weather_changed", lua_callback_args_info ); // weather change event
+            // visualization: 
+            // on Weather Changed (event)
+            // <current_weather_name>, <previous_weather_name>
+            // modern visualization:
+            // <current_weather_id>, <previous_weather_id>
+                        
+        }
+    // end lua bloc
+>>>>>>> lua
     place_player( player_pos );
 }
 
@@ -12515,51 +12633,91 @@ Character &get_player_character()
 {
     return g->u;
 }
+<<<<<<< HEAD
 
+=======
+// returns the player's location
+>>>>>>> lua
 location &get_player_location()
 {
     return g->u;
 }
+<<<<<<< HEAD
 
+=======
+// returns the player (only?)
+>>>>>>> lua
 viewer &get_player_view()
 {
     return g->u;
 }
+<<<<<<< HEAD
 
+=======
+// returns the game's avatar
+>>>>>>> lua
 avatar &get_avatar()
 {
     return g->u;
 }
+<<<<<<< HEAD
 
+=======
+// returns the game's map
+>>>>>>> lua
 map &get_map()
 {
     return g->m;
 }
+<<<<<<< HEAD
 
+=======
+// the get the current events going on (..?)
+>>>>>>> lua
 event_bus &get_event_bus()
 {
     return g->events();
 }
+<<<<<<< HEAD
 
+=======
+// get the memorial for the player(..?)
+>>>>>>> lua
 memorial_logger &get_memorial()
 {
     return g->memorial();
 }
+<<<<<<< HEAD
 
+=======
+// get the player's chosen scenario
+>>>>>>> lua
 const scenario *get_scenario()
 {
     return g->scen;
 }
+<<<<<<< HEAD
+=======
+// set the player's scenario
+>>>>>>> lua
 void set_scenario( const scenario *new_scenario )
 {
     g->scen = new_scenario;
 }
+<<<<<<< HEAD
 
+=======
+// get the player's scent (?)
+>>>>>>> lua
 scent_map &get_scent()
 {
     return g->scent;
 }
+<<<<<<< HEAD
 
+=======
+// get the player's current stats
+>>>>>>> lua
 stats_tracker &get_stats()
 {
     return g->stats();

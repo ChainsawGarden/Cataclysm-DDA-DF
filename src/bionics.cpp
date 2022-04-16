@@ -464,6 +464,29 @@ bionic_data::bionic_data() : name( no_translation( "bad bionic" ) ),
 {
 }
 
+<<<<<<< HEAD
+=======
+// bionic_data::bionic_data( const bionic_data & )
+// {
+// }
+
+// bionic_data bionic_data::operator=( const bionic_data &other )
+// {
+//     name = other.name;
+//     description = other.description;
+//     capacity = other.capacity;
+//     return *this;
+// }
+
+// bionic_data bionic_data::operator=( bionic_data &&other )
+// {
+//     name = other.name;
+//     description = other.description;
+//     capacity = other.capacity;
+//     return *this;
+// }
+
+>>>>>>> lua
 static void force_comedown( effect &eff )
 {
     if( eff.is_null() || eff.get_effect_type() == nullptr || eff.get_duration() <= 1_turns ) {

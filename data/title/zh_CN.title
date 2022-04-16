@@ -1,7 +1,11 @@
 <color_light_cyan>                  **                  **                  **                    </color>
 <color_light_cyan>                  **                  **             *************              </color>
 <color_light_cyan>                  **             **************     **   * **                   </color>
+<<<<<<< HEAD
 <color_light_cyan>             *************       *    *      **        ***  * *                 </color>
+=======
+<color_light_cyan> D E L T A   *************       *    *      **        ***  * *     F O R K     </color>
+>>>>>>> lua
 <color_light_cyan>             **   **             * *  **  *  *       *** *  * ***               </color>
 <color_light_cyan>                  * *            * ** ** **  *      *  ******** **              </color>
 <color_light_blue>                 ** **             ** **                *    **                 </color>
