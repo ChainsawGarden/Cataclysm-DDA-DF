@@ -6,6 +6,10 @@ on:
   push:
     branches:
       - master
+<<<<<<< HEAD
+=======
+      - lua
+>>>>>>> lua
     paths:
       - '**.json'
       - 'src/**.cpp'

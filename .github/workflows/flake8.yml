@@ -4,6 +4,10 @@ on:
   push:
     branches:
     - master
+<<<<<<< HEAD
+=======
+    - lua
+>>>>>>> lua
     paths:
     - '**.py'
   pull_request:

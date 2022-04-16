@@ -477,6 +477,11 @@ struct mutation_branch {
 
         /**
          * Return the idents of all trait groups that are known.
+<<<<<<< HEAD
+=======
+         * This is meant to be accessed at startup by lua to do mod-related modifications of groups. 
+         * <MODERNIZATION NOTE: Is the line directly above this note necessary? Probably.>
+>>>>>>> lua
          */
         static std::vector<trait_group::Trait_group_tag> get_all_group_names();
 };

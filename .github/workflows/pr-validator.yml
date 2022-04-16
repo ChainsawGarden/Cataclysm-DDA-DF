@@ -3,6 +3,10 @@ on:
   pull_request:
     branches:
     - master
+<<<<<<< HEAD
+=======
+    - lua
+>>>>>>> lua
     types: [opened, edited, synchronize]
 jobs:
   validate:

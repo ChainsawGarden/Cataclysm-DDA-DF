@@ -65,7 +65,11 @@ struct monster_visible_info {
     // If the monster visible in this direction is dangerous
     bool dangerous[8] = {};
 };
+<<<<<<< HEAD
 
+=======
+// An `avatar` is the Player -> game interface... ?
+>>>>>>> lua
 class avatar : public player
 {
     public:

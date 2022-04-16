@@ -5,6 +5,10 @@ xcopy /s /e /i ..\data distribution\data
 xcopy /s /e /i ..\config distribution\config
 xcopy /s /e /i ..\gfx distribution\gfx
 xcopy /s /e /i ..\lang\mo distribution\lang\mo
+<<<<<<< HEAD
+=======
+xcopy /s /e /i ..\lua distribution\lua
+>>>>>>> lua
 copy ..\Cataclysm*.exe distribution\
 copy ..\UndeadPeopleTileset*.zip distribution\
 echo [+] === UNDEAD VICTORY ! ===

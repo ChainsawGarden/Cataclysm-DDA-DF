@@ -3265,6 +3265,10 @@ void Item_factory::clear()
 {
     m_template_groups.clear();
 
+<<<<<<< HEAD
+=======
+    // also clear functions referring to lua
+>>>>>>> lua
     iuse_function_list.clear();
 
     m_templates.clear();

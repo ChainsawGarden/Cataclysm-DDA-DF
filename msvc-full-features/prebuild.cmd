@@ -1,6 +1,12 @@
 @echo off
 SETLOCAL
 
+<<<<<<< HEAD
+=======
+cd ..\src\lua
+echo Generating lua bindings
+lua generate_bindings.lua
+>>>>>>> lua
 cd ..\msvc-full-features
 echo Done
 

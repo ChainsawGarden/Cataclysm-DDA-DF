@@ -9,6 +9,10 @@
 *.cpp     text
 *.h       text
 *.json    text
+<<<<<<< HEAD
+=======
+*.lua     text
+>>>>>>> lua
 *.md      text
 *.py      text
 *.rc      text
