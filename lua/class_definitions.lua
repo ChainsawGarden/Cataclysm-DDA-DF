@@ -1501,7 +1501,7 @@ classes = {
             { name = "to_string", rval = "string", args = { } },
             { name = "x", rval = "int", args = { } },
             { name = "y", rval = "int", args = { } },
-            { name = "z", rval = "int", args = { } },
+            -- { name = "z", rval = "int", args = { } }, -- `struct point` has no Z member.
         },
         desc = "This is the class for the Absolute Overmap point."
     },
