@@ -1493,7 +1493,7 @@ classes = {
             { "int", "int", "int" }
         },
         attributes = {
-            dimension = { type = "int", writable = true }
+            dimension = { type = "int", writable = false }
         },
         functions = {
             --         { name = "", rval = "", args = { } },
