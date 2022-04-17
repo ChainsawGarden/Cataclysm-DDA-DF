@@ -1493,7 +1493,7 @@ classes = {
             { "int", "int", "int" }
         },
         attributes = {
-            dimension = { type = "int", writable = false }
+            dimension = { type = "int", writable = false } -- read-only.
         },
         functions = {
             --         { name = "", rval = "", args = { } },
@@ -1512,7 +1512,7 @@ classes = {
             { "int", "int", "int" }
         },
         attributes = {
-            dimension = { type = "int", writable = true }
+            dimension = { type = "int", writable = false }
         },
         functions = {
             --         { name = "", rval = "", args = { } },
@@ -1531,7 +1531,7 @@ classes = {
             { "int", "int", "int" }
         },
         attributes = {
-            dimension = { type = "int", writable = true }
+            dimension = { type = "int", writable = false }
         },
         functions = {
             --         { name = "", rval = "", args = { } },
@@ -1550,7 +1550,7 @@ classes = {
             { "int", "int", "int" }
         },
         attributes = {
-            dimension = { type = "int", writable = true }
+            dimension = { type = "int", writable = false }
         },
         functions = {
             { name = "raw", rval = "point", args = { } },
@@ -1568,7 +1568,7 @@ classes = {
             { "int", "int", "int" }
         },
         attributes = {
-            dimension = { type = "int", writable = true }
+            dimension = { type = "int", writable = false }
         },
         functions = {
             --         { name = "", rval = "", args = { } },
@@ -1587,7 +1587,7 @@ classes = {
             { "int", "int", "int" }
         },
         attributes = {
-            dimension = { type = "int", writable = true }
+            dimension = { type = "int", writable = false }
         },
         functions = {
             --         { name = "", rval = "", args = { } },
@@ -1606,7 +1606,7 @@ classes = {
             { "int", "int", "int" }
         },
         attributes = {
-            dimension = { type = "int", writable = true }
+            dimension = { type = "int", writable = false }
         },
         functions = {
             --         { name = "", rval = "", args = { } },
