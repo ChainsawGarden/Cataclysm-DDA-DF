@@ -33,7 +33,7 @@ class JsonOut;
 
 // NOLINTNEXTLINE(cata-xy)
 struct point {
-    static constexpr int dimension = 2;
+    static constexpr int dimension = 2; // remember: `constexpr` is a `const`, and is read-only.
 
     int x = 0;
     int y = 0;
