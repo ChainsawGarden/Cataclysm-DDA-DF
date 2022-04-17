@@ -36,6 +36,10 @@ Optional values are:
   table for the type name given here.
   This is done because all the int_id objects have essentially the same functions.
 
+- `desc` (optional): A good description of what a class, attribute, struct (soon) or function does.
+  This was previously meant for the wikidocs; however, if you ever need to get the description in-game, you may by running
+  `doc(object)`. This will create a window with a blue title denoting the object and the object's type verbosely,
+  with the given description.
 
 The attributes table contains the members of the C++ class. Each key is the name of the member,
 it maps to a map with the following values:
@@ -393,10 +397,26 @@ classes = {
             -- { name = "end", rval = "iterator", args = { } }
         }
     },
+    location = {
+        attributes = {
+
+        },
+        functions = {
+            -- { name = "", rval = nil, args = { } },
+            { name = "posx", rval = "int", args = { } },
+            { name = "posy", rval = "int", args = { } },
+            { name = "posz", rval = "int", args = { } },
+            { name = "pos", rval = "tripoint", args = { } },
+            { name = "setpos", rval = nil, args = { "tripoint" } },
+        }
+    },
     game = {
         attributes = {
         },
         functions = {
+            -- { name = "", rval = nil, args = { } },
+            { name = "get_player_character", rval = "Character", args = { }, desc = "Return the current player character object." },
+            { name = "get_player_location", rval = "location", args = { }, desc = "Return the current player location." },
             -- { name = "add_zombie", rval = "bool", args = { "monster" } }, -- TODO: find possible modern equivalent.
             -- { name = "add_zombie", rval = "bool", args = { "monster", "bool" } }, -- TODO: find possible modern equivalent.
             { name = "assign_mission_id", rval = "int", args = { } },
