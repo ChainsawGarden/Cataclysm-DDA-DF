@@ -1497,7 +1497,7 @@ classes = {
         },
         functions = {
             --         { name = "", rval = "", args = { } },
-            { name = "raw", rval = "point", args = { } },
+            -- { name = "raw", rval = "point", args = { } }, -- disabled because it throws errors related to tripoint
             { name = "to_string", rval = "string", args = { } },
             { name = "x", rval = "int", args = { } },
             { name = "y", rval = "int", args = { } },
@@ -1516,7 +1516,6 @@ classes = {
         },
         functions = {
             --         { name = "", rval = "", args = { } },
-            { name = "raw", rval = "point", args = { } },
             { name = "to_string", rval = "string", args = { } },
             { name = "x", rval = "int", args = { } },
             { name = "y", rval = "int", args = { } },
@@ -1535,7 +1534,6 @@ classes = {
         },
         functions = {
             --         { name = "", rval = "", args = { } },
-            { name = "raw", rval = "point", args = { } },
             { name = "to_string", rval = "string", args = { } },
             { name = "x", rval = "int", args = { } },
             { name = "y", rval = "int", args = { } },
@@ -1553,7 +1551,6 @@ classes = {
             dimension = { type = "int", writable = false }
         },
         functions = {
-            { name = "raw", rval = "point", args = { } },
             { name = "to_string", rval = "string", args = { } },
             { name = "x", rval = "int", args = { } },
             { name = "y", rval = "int", args = { } },
@@ -1572,7 +1569,6 @@ classes = {
         },
         functions = {
             --         { name = "", rval = "", args = { } },
-            { name = "raw", rval = "point", args = { } },
             { name = "to_string", rval = "string", args = { } },
             { name = "x", rval = "int", args = { } },
             { name = "y", rval = "int", args = { } },
@@ -1591,7 +1587,6 @@ classes = {
         },
         functions = {
             --         { name = "", rval = "", args = { } },
-            { name = "raw", rval = "point", args = { } },
             { name = "to_string", rval = "string", args = { } },
             { name = "x", rval = "int", args = { } },
             { name = "y", rval = "int", args = { } },
@@ -1610,7 +1605,6 @@ classes = {
         },
         functions = {
             --         { name = "", rval = "", args = { } },
-            { name = "raw", rval = "point", args = { } },
             { name = "to_string", rval = "string", args = { } },
             { name = "x", rval = "int", args = { } },
             { name = "y", rval = "int", args = { } },
