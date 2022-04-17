@@ -606,7 +606,7 @@ classes = {
         },
         functions = {
             -- { name = "", rval = "", args = {  }, desc = "" },
-            -- { name = "pos", rval = "tripoint", args = { } }, -- returns the player's current pos.
+            { name = "pos", rval = "tripoint", args = { } }, -- returns the player's current pos.
             { name = "get_str_base", rval = "int", args = {  }, desc = "Gets the player's (avatar) base-level strength value." },
             { name = "get_dex_base", rval = "int", args = {  }, desc = "Gets the player's (avatar) base-level dexterity value." },
             { name = "get_int_base", rval = "int", args = {  }, desc = "Gets the player's (avatar) base-level intelligence value." },
