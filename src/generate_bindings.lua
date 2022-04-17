@@ -249,17 +249,17 @@ function generate_overload_tree(classes)
             end
             value.functions = functions_by_name
 
-            if value.new then
-                local new_root = {}
-                for _, func in ipairs(value.new) do
-                    local root = new_root
-                    for _, arg in pairs(func) do
-                        if not root[arg] then
-                            root[arg] = {}
+            if value.new then -- checks for `new` member
+                local new_root = {} -- create temp holder (table) for something
+                for _, func in ipairs(value.new) do -- get 'func's in the `new` member
+                    local root = new_root -- define new "root"
+                    for _, arg in pairs(func) do -- get param arguments (args) from func
+                        if not root[arg] then -- if the arg is not in the root...
+                            root[arg] = {} -- clear the section of `root` there the specified `arg` is
                         end
-                        root = root[arg]
+                        root = root[arg] -- set the root to that of the data located at the `arg` position of root
                     end
-                    root.r = { rval = nil, cpp_name = class_name .. "::" .. class_name }
+                    root.r = { rval = nil, cpp_name = class_name .. "::" .. class_name } -- what is 'r'? 
                 end
                 value.new = new_root
             end

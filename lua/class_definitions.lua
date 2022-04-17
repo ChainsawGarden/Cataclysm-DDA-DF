@@ -2404,6 +2404,8 @@ classes = {
         attributes = {
         },
         functions = {
+            -- { name = "", rval = "", args = {  } },
+            -- { name = "from_turns", rval = "", args = { } }
         }
         },
     time_point = {
