@@ -2452,13 +2452,19 @@
     "type": "keybinding",
     "name": "Toggle Run",
     "category": "DEFAULTMODE",
-    "id": "toggle_run"
+    "id": "toggle_run",
+    "bindings": [
+      { "input_method": "keyboard_char", "key": "\"" }
+    ]
   },
   {
     "type": "keybinding",
     "name": "Toggle Crouch",
     "category": "DEFAULTMODE",
-    "id": "toggle_crouch"
+    "id": "toggle_crouch",
+    "bindings": [
+      { "input_method": "keyboard_char", "key": "SPACE" }
+    ]
   },
   {
     "type": "keybinding",
