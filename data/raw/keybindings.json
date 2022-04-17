@@ -2470,11 +2470,7 @@
     "type": "keybinding",
     "name": "Movement Mode Menu",
     "category": "DEFAULTMODE",
-    "id": "open_movement",
-    "bindings": [
-      { "input_method": "keyboard_char", "key": "\"" },
-      { "input_method": "keyboard_code", "key": "'", "mod": [ "shift" ] }
-    ]
+    "id": "open_movement"
   },
   {
     "type": "keybinding",
