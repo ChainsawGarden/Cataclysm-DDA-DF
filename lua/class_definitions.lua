@@ -1520,7 +1520,7 @@ classes = {
             { name = "to_string", rval = "string", args = { } },
             { name = "x", rval = "int", args = { } },
             { name = "y", rval = "int", args = { } },
-            { name = "z", rval = "int", args = { } },
+            -- { name = "z", rval = "int", args = { } },
         },
         desc = "This is the class for the Overmap Overmap-Terrain Tripoint."
     },
@@ -1539,7 +1539,7 @@ classes = {
             { name = "to_string", rval = "string", args = { } },
             { name = "x", rval = "int", args = { } },
             { name = "y", rval = "int", args = { } },
-            { name = "z", rval = "int", args = { } },
+            -- { name = "z", rval = "int", args = { } },
         },
         desc = "This is the class for the Overmap Submap point."
     },
@@ -1557,7 +1557,7 @@ classes = {
             { name = "to_string", rval = "string", args = { } },
             { name = "x", rval = "int", args = { } },
             { name = "y", rval = "int", args = { } },
-            { name = "z", rval = "int", args = { } },
+            -- { name = "z", rval = "int", args = { } },
         },
         desc = "This is the class for the Absolute Submap tripoint."
     },
@@ -1576,7 +1576,7 @@ classes = {
             { name = "to_string", rval = "string", args = { } },
             { name = "x", rval = "int", args = { } },
             { name = "y", rval = "int", args = { } },
-            { name = "z", rval = "int", args = { } },
+            -- { name = "z", rval = "int", args = { } },
         },
         desc = "This is the class for the Overmap Submap tripoint."
     },
@@ -1595,7 +1595,7 @@ classes = {
             { name = "to_string", rval = "string", args = { } },
             { name = "x", rval = "int", args = { } },
             { name = "y", rval = "int", args = { } },
-            { name = "z", rval = "int", args = { } },
+            -- { name = "z", rval = "int", args = { } },
         },
         desc = "This is the class for the Absolute Overmap-terrain tripoint."
     },
@@ -1614,7 +1614,7 @@ classes = {
             { name = "to_string", rval = "string", args = { } },
             { name = "x", rval = "int", args = { } },
             { name = "y", rval = "int", args = { } },
-            { name = "z", rval = "int", args = { } },
+            -- { name = "z", rval = "int", args = { } },
         },
         desc = "This is the class for the Absolute Overmap-terrain point."
     },
