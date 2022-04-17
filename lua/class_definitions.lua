@@ -1490,7 +1490,8 @@ classes = {
     point_abs_om = {
         by_value = true,
         new = {
-            { "int", "int", "int" }
+            -- { "int", "int", "int" }
+            { "int", "int" }
         },
         attributes = {
             dimension = { type = "int", writable = false } -- read-only.
@@ -1509,7 +1510,7 @@ classes = {
     tripoint_om_omt = {
         by_value = true,
         new = {
-            { "int", "int", "int" }
+            { "int", "int" }
         },
         attributes = {
             dimension = { type = "int", writable = false }
@@ -1527,7 +1528,7 @@ classes = {
     point_om_sm = {
         by_value = true,
         new = {
-            { "int", "int", "int" }
+            { "int", "int" }
         },
         attributes = {
             dimension = { type = "int", writable = false }
@@ -1545,7 +1546,7 @@ classes = {
     tripoint_abs_sm = {
         by_value = true,
         new = {
-            { "int", "int", "int" }
+            { "int", "int" }
         },
         attributes = {
             dimension = { type = "int", writable = false }
@@ -1562,7 +1563,7 @@ classes = {
     tripoint_om_sm = {
         by_value = true,
         new = {
-            { "int", "int", "int" }
+            { "int", "int" }
         },
         attributes = {
             dimension = { type = "int", writable = false }
@@ -1580,7 +1581,7 @@ classes = {
     tripoint_abs_omt = {
         by_value = true,
         new = {
-            { "int", "int", "int" }
+            { "int", "int" }
         },
         attributes = {
             dimension = { type = "int", writable = false }
@@ -1598,7 +1599,7 @@ classes = {
     point_abs_omt = {
         by_value = true,
         new = {
-            { "int", "int", "int" }
+            { "int", "int" }
         },
         attributes = {
             dimension = { type = "int", writable = false }
