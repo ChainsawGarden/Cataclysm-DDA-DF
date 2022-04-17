@@ -411,12 +411,13 @@ classes = {
         }
     },
     game = {
+        -- new = {
+
+        -- },
         attributes = {
         },
         functions = {
             -- { name = "", rval = nil, args = { } },
-            { name = "get_player_character", rval = "Character", args = { }, desc = "Return the current player character object." },
-            { name = "get_player_location", rval = "location", args = { }, desc = "Return the current player location." },
             -- { name = "add_zombie", rval = "bool", args = { "monster" } }, -- TODO: find possible modern equivalent.
             -- { name = "add_zombie", rval = "bool", args = { "monster", "bool" } }, -- TODO: find possible modern equivalent.
             { name = "assign_mission_id", rval = "int", args = { } },
@@ -2772,6 +2773,20 @@ enums = {
 }
 
 global_functions = {
+    get_player_character = { 
+        cpp_name = "get_player_location",
+        name = "get_player_character",
+        args = { },
+        rval = "Character",
+        desc = "Return the current player character object." 
+    },
+    get_player_location = {
+        cpp_name = "get_player_location",
+        name = "get_player_location",
+        args = { },
+        rval = "location",
+        desc = "Return the current player location."
+    },
     add_msg = {
         cpp_name = "add_msg_wrapper",
         args     = { "string" },
