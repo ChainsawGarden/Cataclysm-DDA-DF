@@ -38,6 +38,7 @@ extern "C" {
 #include "coordinates.h" // for coords / positions / location based stuff
 #include "overmap.h" // for overmap class and stuff
 #include "omdata.h" // for overmap data
+#include "location.h" // for getting the player location (and maybe more in the future)
 
 // callback arg types
 enum CallbackArgumentType : int {
@@ -53,7 +54,8 @@ enum CallbackArgumentType : int {
     Enum_BodyPart, // bodypart Enum
     Id_BodyPart, // bodypart ID
     Character_Id,
-    Weather_Id
+    Weather_Id,
+    Location
     // Character_Type,
     // Weather
 };
@@ -72,6 +74,7 @@ struct CallbackArgument {
     const int_id<body_part_type> value_body_part_id; // value body part id is modern
     character_id value_character_id; // value character is modern
     weather_type_id value_weather_id; // value weather is modern 
+    location value_location; // value location is modern
 
     // the below `CallbackArgument` "things" are constructors with various overloads.
     // The weird syntax spooked me, but rest assured, ":type(xyz)" & ":value_integer(xyz)" initialize private variables.
@@ -118,6 +121,9 @@ struct CallbackArgument {
     }
     CallbackArgument( weather_type_id arg_value ) :
         type( CallbackArgumentType::Weather_Id ), value_weather_id( arg_value ) {
+    }
+    CallbackArgument( location arg_value ) :
+        type( CallbackArgumentType::Location ), value_location( arg_value ) {
     }
     // CallbackArgument( arg_value ) :
     //     type( CallbackArgumentType:: ), value_placeholder( arg_value ) {
