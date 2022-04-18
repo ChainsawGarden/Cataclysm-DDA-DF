@@ -2508,10 +2508,14 @@ classes = {
             humidity = { type = "float" },
             pressure = { type = "float" },
             windpower = { type = "float" },
+            wind_desc = { type = "string" },
+            winddirection = { type = "int" },
+            time = { type = "time_point" }
             -- acidic = { type = "bool" } -- TODO: find possible modern equivalent.
         },
         functions = {
-        }
+        },
+        desc = "Weather point. Contains data for a particular weather phenomena."
     }
 }
 
@@ -2774,7 +2778,7 @@ enums = {
 
 global_functions = {
     get_player_character = { 
-        cpp_name = "get_player_location",
+        cpp_name = "get_player_character",
         name = "get_player_character",
         args = { },
         rval = "Character",
