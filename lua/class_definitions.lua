@@ -2788,7 +2788,7 @@ global_functions = {
         cpp_name = "get_player_location",
         name = "get_player_location",
         args = { },
-        rval = "location",
+        rval = "location&",
         desc = "Return the current player location."
     },
     add_msg = {

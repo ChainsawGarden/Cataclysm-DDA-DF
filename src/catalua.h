@@ -122,7 +122,7 @@ struct CallbackArgument {
     CallbackArgument( weather_type_id arg_value ) :
         type( CallbackArgumentType::Weather_Id ), value_weather_id( arg_value ) {
     }
-    CallbackArgument( location arg_value ) :
+    CallbackArgument( location &arg_value ) :
         type( CallbackArgumentType::Location ), value_location( arg_value ) {
     }
     // CallbackArgument( arg_value ) :
