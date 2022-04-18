@@ -399,7 +399,6 @@ classes = {
     },
     location = {
         attributes = {
-
         },
         functions = {
             -- { name = "", rval = nil, args = { } },

@@ -678,7 +678,9 @@ void CallbackArgument::Save()
         case CallbackArgumentType::Location:
             LuaValue<location>::push( L, value_location );
             break;
-
+        case CallbackArgumentType::Reference_Character:
+            LuaValue<Character>::push( L, value_character ); // CAT_CHARACTER_ID
+            break;
             
         // case CallbackArgumentType::Character:
         //     LuaValue<Character>::push( L, value_character ); // CAT_CHARACTER_ID

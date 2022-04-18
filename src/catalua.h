@@ -20,6 +20,7 @@ extern "C" {
 
 
 #include "creature.h"
+#include "character.h"
 #include "character_id.h"
 #include "enums.h"
 #include "iuse.h"
@@ -55,7 +56,8 @@ enum CallbackArgumentType : int {
     Id_BodyPart, // bodypart ID
     Character_Id,
     Weather_Id,
-    Location
+    Location,
+    Reference_Character
     // Character_Type,
     // Weather
 };
@@ -74,7 +76,8 @@ struct CallbackArgument {
     const int_id<body_part_type> value_body_part_id; // value body part id is modern
     character_id value_character_id; // value character is modern
     weather_type_id value_weather_id; // value weather is modern 
-    location value_location; // value location is modern
+    location *value_location; // value location is modern
+    Character *value_character;
 
     // the below `CallbackArgument` "things" are constructors with various overloads.
     // The weird syntax spooked me, but rest assured, ":type(xyz)" & ":value_integer(xyz)" initialize private variables.
@@ -122,8 +125,11 @@ struct CallbackArgument {
     CallbackArgument( weather_type_id arg_value ) :
         type( CallbackArgumentType::Weather_Id ), value_weather_id( arg_value ) {
     }
-    CallbackArgument( location &arg_value ) :
+    CallbackArgument( location *arg_value ) :
         type( CallbackArgumentType::Location ), value_location( arg_value ) {
+    }
+    CallbackArgument( Character *arg_value ) :
+        type( CallbackArgumentType::Reference_Character ), value_character( arg_value ) {
     }
     // CallbackArgument( arg_value ) :
     //     type( CallbackArgumentType:: ), value_placeholder( arg_value ) {
