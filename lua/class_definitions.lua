@@ -2780,7 +2780,7 @@ global_functions = {
         cpp_name = "get_player_character",
         name = "get_player_character",
         args = { },
-        rval = "Character",
+        rval = "Character&",
         desc = "Return the current player character object." 
     },
     get_player_location = {
