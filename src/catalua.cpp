@@ -681,7 +681,7 @@ void CallbackArgument::Save()
         case CallbackArgumentType::Reference_Character:
             LuaReference<Character>::push( L, value_character ); // CAT_CHARACTER_ID
             break;
-        case CallbackArgumentType::Weather:
+        case CallbackArgumentType::Reference_Weather_Manager:
             LuaReference<weather_type>::push( L, value_weather ); // CAT_WEATHER_ID
             break;
         // case CallbackArgumentType::Character:
