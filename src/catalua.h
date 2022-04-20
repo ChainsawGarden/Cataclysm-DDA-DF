@@ -31,6 +31,7 @@ extern "C" {
 
 // modern additions
 #include "weather_type.h" // for weather typing stuff
+#include "weather.h"
 #include "string_input_popup.h" // for string input
 #include "item_factory.h" // for item factory stuff
 #include "monstergenerator.h" // for mongen stuff
@@ -59,7 +60,7 @@ enum CallbackArgumentType : int {
     Location,
     Reference_Character
     // Character_Type,
-    // Weather
+    Reference_Weather_Manager
 };
 // callback args
 struct CallbackArgument {
@@ -78,6 +79,7 @@ struct CallbackArgument {
     weather_type_id value_weather_id; // value weather is modern 
     location *value_location; // value location is modern
     Character *value_character;
+    weather_manager *value_weather_manager;
 
     // the below `CallbackArgument` "things" are constructors with various overloads.
     // The weird syntax spooked me, but rest assured, ":type(xyz)" & ":value_integer(xyz)" initialize private variables.
@@ -130,6 +132,9 @@ struct CallbackArgument {
     }
     CallbackArgument( Character *arg_value ) :
         type( CallbackArgumentType::Reference_Character ), value_character( arg_value ) {
+    }
+    CallbackArgument( weather_manager *arg_value ) :
+        type( CallbackArgumentType::Reference_Weather_Manager ), value_weather_manager( arg_value ) {
     }
     // CallbackArgument( arg_value ) :
     //     type( CallbackArgumentType:: ), value_placeholder( arg_value ) {

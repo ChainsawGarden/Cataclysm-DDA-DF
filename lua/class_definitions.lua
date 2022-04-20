@@ -1936,6 +1936,27 @@ classes = {
             { name = "symbol", rval = "int", args = { } },
         }
     },
+    weather_manager = {
+        new = {},
+        attributes = {
+            -- placeholder = { type = "", writable = true },
+            temperature = { type = "int", writable = true },
+            lightning_active = { type = "bool", writable = true },
+            winddirection = { type = "int", writable = true },
+            windspeed = { type = "int", writable = true },
+            nextweather = { type = "time_point", writable = true },
+            weather_override = { type = "weather_type_id", writable = true },
+        },
+        functions = {
+            -- { name = "", rval = nil, args = {  } },
+            { name = "update_weather", rval = nil, args = {  } },
+            { name = "get_temperature", rval = nil, args = { "tripoint" } },
+            { name = "clear_temp_cache", rval = nil, args = {  } },
+            { name = "set_nextweather", rval = nil, args = { "time_point" } },
+            { name = "", rval = nil, args = {  } },
+            -- { name = "", rval = nil, args = {  } },
+        }
+    },
     Creature = {
         attributes = {
         },
