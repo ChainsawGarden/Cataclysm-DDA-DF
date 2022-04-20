@@ -58,7 +58,7 @@ enum CallbackArgumentType : int {
     Character_Id,
     Weather_Id,
     Location,
-    Reference_Character
+    Reference_Character,
     // Character_Type,
     Reference_Weather_Manager
 };
