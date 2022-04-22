@@ -58,7 +58,7 @@
   {
     "type": "talk_topic",
     "id": "TALK_PrepNet_gardener_place",
-    "dynamic_line": "This is a PrepNet Phyle orchard.  We were a community of survivalists gathering resources to prepare for climate change, but it left us better prepared for what actually happened than most.",
+    "dynamic_line": "This is a PrepNet Phyle orchard.  We were a community of survivalists gathering resources to prepare for the worst of mother nature's wrath.  We're still better prepared than most, as we're a wide-reaching network of survivalists.  We're still pretty tight-nit for now, but that's to make sure our own behinds are safe first.",
     "responses": [
       { "text": "Can you give me something to eat then?", "topic": "TALK_PrepNet_gardener_food" },
       { "text": "What can I buy here?", "topic": "TALK_PrepNet_gardener_ask_goods" },
