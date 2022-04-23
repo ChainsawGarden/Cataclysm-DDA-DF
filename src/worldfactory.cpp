@@ -513,7 +513,7 @@ WORLDPTR worldfactory::pick_world( bool show_prompt )
             }
         }
 
-        //Draw World Names
+        // Draw world names
         for( size_t i = 0; i < world_pages[selpage].size(); ++i ) {
             mvwprintz( w_worlds, point( 0, static_cast<int>( i ) ), c_white, "%d", i + 1 );
             wmove( w_worlds, point( 4, static_cast<int>( i ) ) );
@@ -538,26 +538,26 @@ WORLDPTR worldfactory::pick_world( bool show_prompt )
             
         }
 
-        //Draw Tabs
-        wmove( w_worlds_header, point( 7, 0 ) );
+        // Draw tabs
+        wmove( w_worlds_header, point( 7, 0 ) ); // move the worlds header to the right by 7 on the X Y axis
 
-        for( size_t i = 0; i < num_pages; ++i ) {
+        for( size_t i = 0; i < num_pages; ++i ) { // iterate through pages
             //skip empty pages
-            if( !world_pages[i].empty() ) {
-                nc_color tabcolor = ( selpage == i ) ? hilite( c_white ) : c_white;
-                wprintz( w_worlds_header, c_white, "[" );
-                wprintz( w_worlds_header, tabcolor, _( "Page %lu" ), i + 1 );
-                wprintz( w_worlds_header, c_white, "]" );
+            if( !world_pages[i].empty() ) { // if the page exists
+                nc_color tabcolor = ( selpage == i ) ? hilite( c_white ) : c_white; // colorize the tab white
+                wprintz( w_worlds_header, c_white, "[" ); // colorize the header white (left bracket)
+                wprintz( w_worlds_header, tabcolor, _( "Page %lu" ), i + 1 ); // colorize the header white (page number english)
+                wprintz( w_worlds_header, c_white, "]" ); // colorize the header white (left bracket)
                 wputch( w_worlds_header, BORDER_COLOR, LINE_OXOX );
             }
         }
 
-        wnoutrefresh( w_worlds_header );
+        wnoutrefresh( w_worlds_header ); // refresh the worlds header?
 
-        fold_and_print( w_worlds_tooltip, point_zero, 78, c_white, _( "Pick a world to enter game" ) );
-        wnoutrefresh( w_worlds_tooltip );
+        fold_and_print( w_worlds_tooltip, point_zero, 78, c_white, _( "Pick a world to enter game" ) ); // choose the world?
+        wnoutrefresh( w_worlds_tooltip ); // tooltip
 
-        wnoutrefresh( w_worlds );
+        wnoutrefresh( w_worlds ); // refresh?
     } );
 
     input_context ctxt( "PICK_WORLD_DIALOG" );
