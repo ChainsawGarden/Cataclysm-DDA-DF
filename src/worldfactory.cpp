@@ -628,11 +628,11 @@ WORLDPTR worldfactory::pick_world( bool show_prompt )
             } while( world_pages[selpage].empty() );
         } else if( action == "CONFIRM" ) {
             // lua bloc start
-            if( world_need_lua_build( world_pages[selpage][sel] ) ) {
-                popup( _( "Can't start in world [%s]. Some of mods require Lua support." ),
-                       world_pages[selpage][sel].c_str() );
-                continue;
-            }
+            // if( world_need_lua_build( world_pages[selpage][sel] ) ) {
+            //     popup( _( "Can't start in world [%s]. Some of mods require Lua support." ),
+            //            world_pages[selpage][sel].c_str() );
+            //     continue;
+            // }
             // lua bloc end
             return get_world( world_pages[selpage][sel] );
         }
@@ -782,19 +782,19 @@ void worldfactory::draw_mod_list( const catacurses::window &w, int &start, size_
                     nc_color mod_entry_color = c_white;
                     if( mod_entry_id.is_valid() ) {
                         const MOD_INFORMATION &mod = *mod_entry_id;
-                        // lua bloc start (validating mod list)
-                        #ifndef LUA
-                            if( mod.need_lua() ) {
-                                // trim_and_print( w, iNum - start, 4, wwidth, c_dark_gray, mod.name() ); oldcode
-                                trim_and_print( w, point(iNum - start, 4), wwidth, c_dark_gray, mod.name() ); // MODERNIZATION: We're using the `point()` function now.
-                            } else {
-                                // trim_and_print( w, iNum - start, 4, wwidth, c_white, mod.name() ); oldcode
-                                trim_and_print( w, point(iNum - start, 4), wwidth, c_white, mod.name() ); // MODERNIZATION: We're using the `point()` function now.
-                            }
-                        #else
-                            // trim_and_print( w, iNum - start, 4, wwidth, c_white, mod.name() );
-                            trim_and_print( w, point(iNum - start, 4), wwidth, c_white, mod.name() ); // MODERNIZATION: We're using the `point()` function now.
-                        #endif
+                        // lua bloc start (validating mod list) << probably the code that causes the problem >>
+                        // #ifndef LUA
+                        //     if( mod.need_lua() ) {
+                        //         // trim_and_print( w, iNum - start, 4, wwidth, c_dark_gray, mod.name() ); oldcode
+                        //         trim_and_print( w, point(iNum - start, 4), wwidth, c_dark_gray, mod.name() ); // MODERNIZATION: We're using the `point()` function now.
+                        //     } else {
+                        //         // trim_and_print( w, iNum - start, 4, wwidth, c_white, mod.name() ); oldcode
+                        //         trim_and_print( w, point(iNum - start, 4), wwidth, c_white, mod.name() ); // MODERNIZATION: We're using the `point()` function now.
+                        //     }
+                        // #else
+                        //     // trim_and_print( w, iNum - start, 4, wwidth, c_white, mod.name() );
+                        //     trim_and_print( w, point(iNum - start, 4), wwidth, c_white, mod.name() ); // MODERNIZATION: We're using the `point()` function now.
+                        // #endif
                         // lua bloc end
                         mod_entry_name = mod.name() + mod_entry_name;
                         if( mod.obsolete ) {
