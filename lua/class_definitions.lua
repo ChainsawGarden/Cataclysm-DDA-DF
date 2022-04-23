@@ -417,72 +417,42 @@ classes = {
         },
         functions = {
             -- { name = "", rval = nil, args = { } },
-            -- { name = "add_zombie", rval = "bool", args = { "monster" } }, -- TODO: find possible modern equivalent.
-            -- { name = "add_zombie", rval = "bool", args = { "monster", "bool" } }, -- TODO: find possible modern equivalent.
             { name = "assign_mission_id", rval = "int", args = { } },
-            -- { name = "assign_npc_id", rval = "character_id", args = { } }, -- cbtt
-            -- { name = "cancel_activity", rval = nil, args = { } }, -- TODO: find possible modern equivalent.
             { name = "clear_zombies", rval = nil, args = { } },
             { name = "critter_at", rval = "Creature&", args = { "tripoint" } },
-            -- { name = "critter_by_id", rval = "Creature&", args = { "int" } }, -- TODO: fix after significant mods resurface
-            -- { name = "do_blast", rval = nil, args = { "tripoint", "float", "float", "bool" } }, -- TODO: find possible modern equivalent.
             { name = "draw", rval = nil, args = { } },
             { name = "draw_critter", rval = nil, args = { "Creature", "tripoint" } },
-            -- { name = "draw_explosion", rval = nil, args = { "tripoint", "int", "nc_color" } }, -- TODO: find possible modern equivalent.
             { name = "draw_hit_mon", rval = nil, args = { "tripoint", "monster" } },
             { name = "draw_hit_player", rval = nil, args = { "player", "int" } },
             { name = "draw_sct", rval = nil, args = { } },
             { name = "draw_ter", rval = nil, args = { "tripoint" } },
             { name = "draw_ter", rval = nil, args = { } },
             { name = "draw_trail_to_square", rval = nil, args = { "tripoint", "bool" } },
-            -- { name = "emp_blast", rval = nil, args = { "tripoint" } }, -- TODO: find possible modern equivalent.
-            -- { name = "explosion", rval = nil, args = { "tripoint", "float" } }, -- TODO: find possible modern equivalent.
-            -- { name = "flashbang", rval = nil, args = { "tripoint" } }, -- TODO: find possible modern equivalent.
             { name = "fling_creature", rval = nil, args = { "Creature", "angle", "float" } },
             { name = "get_cur_om", rval = "overmap&", args = { } },
-            -- { name = "get_levx", rval = "int", args = { } }, -- TODO: find possible modern equivalent.
-            -- { name = "get_levy", rval = "int", args = { } }, -- TODO: find possible modern equivalent.
-            -- { name = "get_levz", rval = "int", args = { } }, -- TODO: find possible modern equivalent.
-            -- { name = "get_temperature", rval = "int", args = { "tripoint" } },  -- TODO: find possible modern equivalent.
-            -- { name = "handle_liquid", rval = "bool", args = { "item" } }, -- TODO: find possible modern equivalent.
-            -- { name = "increase_kill_count", rval = nil, args = { "mtype_id" } }, -- TODO: find possible modern equivalent.
-            -- { name = "inv_for_all", rval = "int", args = { "string" } }, -- TODO: find possible modern equivalent.
-            -- { name = "inv_for_flag", rval = "int", args = { "string", "string" } }, -- TODO: find possible modern equivalent.
             { name = "inventory_item_menu", rval = "int", args = { "item_location" } },
             { name = "is_empty", rval = "bool", args = { "tripoint" } },
             { name = "is_hostile_nearby", rval = "Creature&", args = { } },
             { name = "is_hostile_very_close", rval = "Creature&", args = { } },
             { name = "is_in_sunlight", rval = "bool", args = { "tripoint" } },
             { name = "is_sheltered", rval = "bool", args = { "tripoint" } },
-            -- { name = "kill_count", rval = "int", args = { "mtype_id" } }, -- TODO: find possible modern equivalent.
             { name = "knockback", rval = nil, args = { "tripoint", "tripoint", "int", "int", "int" } },
             { name = "light_level", rval = "int", args = { "int" } },
             { name = "look_around", rval = "tripoint", args = { } },
             { name = "natural_light_level", rval = "float", args = { "int" } },
-            -- { name = "nuke", rval = nil, args = { "tripoint" } }, -- TODO: find possible modern equivalent.
             { name = "num_creatures", rval = "int", args = { } },
             { name = "open_gate", rval = nil, args = { "tripoint" } },
             { name = "peek", rval = nil, args = { "tripoint" } },
             { name = "peek", rval = nil, args = { } },
-            -- { name = "plfire", rval = nil, args = { } }, -- TODO: find possible modern equivalent.
-            -- { name = "plswim", rval = nil, args = { "tripoint" } }, -- TODO: find possible modern equivalent.
-            -- { name = "refresh_all", rval = nil, args = { } }, -- TODO: find possible modern equivalent.
             { name = "remove_zombie", rval = nil, args = { "monster" } },
-            -- { name = "resonance_cascade", rval = nil, args = { "tripoint" } }, -- TODO: find possible modern equivalent.
             { name = "revive_corpse", rval = "bool", args = { "tripoint", "item" } },
             { name = "save", rval = "bool", args = { } },
-            -- { name = "scrambler_blast", rval = nil, args = { "tripoint" } },  -- TODO: find possible modern equivalent.
-            -- { name = "shockwave", rval = nil, args = { "tripoint", "int", "int", "int", "int", "bool" } }, -- TODO: find possible modern equivalent.
             { name = "spawn_hallucination", rval = "bool", args = { "tripoint" } },
-            -- { name = "summon_mon", rval = "monster&", args = { "mtype_id", "tripoint" } }, -- TODO: find possible modern equivalent.
             { name = "swap_critters", rval = "bool", args = { "Creature", "Creature" } },
-            -- { name = "teleport", rval = nil, args = { } }, -- TODO: find possible modern equivalent.
-            -- { name = "unload", rval = nil, args = { "item" } }, -- TODO: find possible modern equivalent.
-            -- { name = "unload", rval = nil, args = { }  }, -- TODO: find possible modern equivalent.
             { name = "use_computer", rval = nil, args = { "tripoint" } },
             { name = "reload_npcs", rval = nil, args = { } },
             { name = "place_player", rval = nil, args = { "tripoint" } },
-            { name = "place_player_overmap", rval = nil, args = { "tripoint_abs_omt" } },
+            { name = "place_player_overmap", rval = nil, args = { "tripoint_abs_omt" } }
         }
     },
     -- TODO: activity_id is to be moved into activity_type.string_id.
