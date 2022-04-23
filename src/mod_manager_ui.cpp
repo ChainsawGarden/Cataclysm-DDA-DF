@@ -15,6 +15,7 @@ mod_ui::mod_ui( mod_manager &mman )
 {
 }
 
+// Retrieves the more specific information of a mod (check bottom UI of mod menu)
 std::string mod_ui::get_information( const MOD_INFORMATION *mod )
 {
     if( mod == nullptr ) {
@@ -23,6 +24,7 @@ std::string mod_ui::get_information( const MOD_INFORMATION *mod )
 
     std::string info;
 
+    // Mod Authors info
     if( !mod->authors.empty() ) {
         info += colorize( ngettext( "Author", "Authors", mod->authors.size() ),
                           c_light_blue ) + ": " + enumerate_as_string( mod->authors );
@@ -33,11 +35,13 @@ std::string mod_ui::get_information( const MOD_INFORMATION *mod )
         }
     }
 
+    // Mod Maintainers info
     if( !mod->maintainers.empty() ) {
         info += colorize( ngettext( "Maintainer", "Maintainers", mod->maintainers.size() ),
                           c_light_blue ) + u8":\u00a0"/*non-breaking space*/ + enumerate_as_string( mod->maintainers ) + "\n";
     }
 
+    // Mod dependencies info
     if( !mod->dependencies.empty() ) {
         const auto &deps = mod->dependencies;
         auto str = enumerate_as_string( deps.begin(), deps.end(), [&]( const mod_id & e ) {
@@ -51,10 +55,12 @@ std::string mod_ui::get_information( const MOD_INFORMATION *mod )
                           c_light_blue ) + ": " + str + "\n";
     }
 
+    // Mod version info
     if( !mod->version.empty() ) {
         info += colorize( _( "Mod version" ), c_light_blue ) + ": " + mod->version + "\n";
     }
 
+    // Mod description info
     if( !mod->description.empty() ) {
         info += mod->description + "\n";
     }
