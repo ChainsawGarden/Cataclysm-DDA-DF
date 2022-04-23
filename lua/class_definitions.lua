@@ -1922,7 +1922,7 @@ classes = {
             { name = "get_temperature", rval = nil, args = { "tripoint" } },
             { name = "set_nextweather", rval = nil, args = { "time_point" } },
             { name = "clear_temp_cache", rval = nil, args = {  } },
-            { name = "on_load", rval = nil, args = {  } },
+            -- { name = "on_load" rval = nil, args = {  } },
             -- { name = "", rval = nil, args = {  } },
         }
     },
