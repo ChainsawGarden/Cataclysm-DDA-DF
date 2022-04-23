@@ -1945,7 +1945,7 @@ classes = {
             winddirection = { type = "int", writable = true },
             windspeed = { type = "int", writable = true },
             nextweather = { type = "time_point", writable = true },
-            weather_override = { type = "weather_type_id", writable = true },
+            weather_override = { type = "weather_type_id", writable = true }
         },
         functions = {
             -- { name = "", rval = nil, args = {  } },
