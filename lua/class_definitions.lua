@@ -1951,9 +1951,9 @@ classes = {
             -- { name = "", rval = nil, args = {  } },
             { name = "update_weather", rval = nil, args = {  } },
             { name = "get_temperature", rval = nil, args = { "tripoint" } },
-            { name = "clear_temp_cache", rval = nil, args = {  } },
             { name = "set_nextweather", rval = nil, args = { "time_point" } },
-            -- { name = "", rval = nil, args = {  } },
+            { name = "clear_temp_cache", rval = nil, args = {  } },
+            { name = "on_load", rval = nil, args = {  } },
             -- { name = "", rval = nil, args = {  } },
         }
     },
