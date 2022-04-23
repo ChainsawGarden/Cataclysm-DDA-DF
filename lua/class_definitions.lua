@@ -1907,6 +1907,7 @@ classes = {
         }
     },
     weather_manager = {
+        new = {},
         attributes = {
             -- placeholder = { type = "", writable = true },
             temperature = { type = "int", writable = true },
