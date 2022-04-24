@@ -2068,6 +2068,15 @@ void options_manager::add_options_world_default()
     }, "reset"
        );
 
+    add( "REALISTIC_ARCADE", "world_default", to_translation( "Game Difficulty" ),
+    to_translation( "." ), {
+        { "normal", to_translation( "Vanilla / Normal" ) }, // How I personally prefer to play the game
+        { "hard", to_translation( "Hard" ) }, // Makes the game more difficult to play.
+        { "arcade", to_translation( "Arcade" ) }, // Focuses on all the sugary sweet bits of gameplay.
+        { "realistic", to_translation( "Realistic" ) }, // Realistic features that some people don't want in their regular games.
+    }, "normal"
+       );
+
     add_empty_line();
 
     add( "CBM_SLOTS", "world_default", to_translation( "Bionic Slots" ),
