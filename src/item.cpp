@@ -3522,7 +3522,7 @@ void item::bionic_info( std::vector<iteminfo> &info, const iteminfo_query *parts
     }
 
     // TODO: Unhide when enforcing limits
-    if( get_option < bool >( "CBM_SLOTS_ENABLED" )
+    if( get_option < bool >( "CBM_SLOTS" )
         && parts->test( iteminfo_parts::DESCRIPTION_CBM_SLOTS ) ) {
         info.push_back( iteminfo( "DESCRIPTION", list_occupied_bps( type->bionic->id,
                                   _( "This bionic is installed in the following body "

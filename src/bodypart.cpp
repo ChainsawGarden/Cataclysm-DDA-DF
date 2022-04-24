@@ -255,7 +255,7 @@ void body_part_type::load( const JsonObject &jo, const std::string & )
     optional( jo, was_loaded, "stylish_bonus", stylish_bonus, 0 );
     optional( jo, was_loaded, "squeamish_penalty", squeamish_penalty, 0 );
 
-    optional( jo, was_loaded, "bionic_slots", bionic_slots_, 0 );
+    optional( jo, was_loaded, "bionic_slots", bionic_slots_, 0 ); // Load in the JO?
 
     optional( jo, was_loaded, "flags", flags );
 

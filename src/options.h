@@ -318,8 +318,8 @@ extern std::map<std::string, std::string> SOUNDPACKS;
 
 options_manager &get_options();
 
-template<typename T>
-inline T get_option( const std::string &name )
+template<typename T> 
+inline T get_option( const std::string &name ) // Retrieves the option set in the options manager; this may include World-end handling (reset the world, etc), Surrounded start, warndering hordes, etc.
 {
     return get_options().get_option( name ).value_as<T>();
 }

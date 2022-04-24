@@ -2070,6 +2070,13 @@ void options_manager::add_options_world_default()
 
     add_empty_line();
 
+    add( "CBM_SLOTS", "world_default", to_translation( "Bionic Slots" ),
+         to_translation( "If true, bionic slots are enabled in this world.  Limits the number of CBMs (Compact Bionic Modules) you can install in a bodypart." ),
+         false
+       );
+
+    add_empty_line();
+
     add( "CITY_SIZE", "world_default", to_translation( "Size of cities" ),
          to_translation( "A number determining how large cities are.  A higher number means larger cities.  0 disables cities, roads and any scenario requiring a city start." ),
          0, 16, 8
@@ -2569,6 +2576,7 @@ static void draw_borders_internal( const catacurses::window &w, std::map<int, bo
     wnoutrefresh( w );
 }
 
+// Displays the options manager?
 std::string options_manager::show( bool ingame, const bool world_options_only,
                                    const std::function<bool()> &on_quit )
 {

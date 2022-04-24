@@ -2647,7 +2647,7 @@ int Character::get_used_bionics_slots( const bodypart_id &bp ) const
 std::map<bodypart_id, int> Character::bionic_installation_issues( const bionic_id &bioid )
 {
     std::map<bodypart_id, int> issues;
-    if( !get_option < bool >( "CBM_SLOTS_ENABLED" ) ) {
+    if( !get_option < bool >( "CBM_SLOTS" ) ) {
         return issues;
     }
     for( const std::pair<const string_id<body_part_type>, size_t> &elem : bioid->occupied_bodyparts ) {
@@ -2676,16 +2676,18 @@ int Character::get_free_bionics_slots( const bodypart_id &bp ) const
 
 void Character::add_bionic( const bionic_id &b )
 {
+    // if the player already has a bionic (param: b)
     if( has_bionic( b ) ) {
         debugmsg( "Tried to install bionic %s that is already installed!", b.c_str() );
         return;
     }
 
-    const units::energy pow_up = b->capacity;
-    mod_max_power_level( pow_up );
-    if( b == bio_power_storage || b == bio_power_storage_mkII ) {
+    // handle physical / energy storage bionic
+    const units::energy pow_up = b->capacity; // get the bionics capacity
+    mod_max_power_level( pow_up ); // increase max power level
+    if( b == bio_power_storage || b == bio_power_storage_mkII ) { // if the bionic is a physical storage or power storage one...
         add_msg_if_player( m_good, _( "Increased storage capacity by %i." ),
-                           units::to_kilojoule( pow_up ) );
+                           units::to_kilojoule( pow_up ) ); // increase capacity
         // Power Storage CBMs are not real bionic units, so return without adding it to my_bionics
         return;
     }
@@ -2698,7 +2700,8 @@ void Character::add_bionic( const bionic_id &b )
     for( const bionic_id &inc_bid : b->included_bionics ) {
         add_bionic( inc_bid );
     }
-
+    
+    // magiclysm
     for( const std::pair<const spell_id, int> &spell_pair : b->learned_spells ) {
         const spell_id learned_spell = spell_pair.first;
         if( learned_spell->spell_class != trait_id( "NONE" ) ) {
