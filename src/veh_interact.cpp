@@ -1229,9 +1229,11 @@ void veh_interact::do_repair()
 
         // "would repair prevent flyable" check
         bool would_prevent_flying = veh->would_repair_prevent_flyable( pt );
+        bool is_aircraft = veh->is_flyable();
         
         // this should only check if something would prevent flying; no other skills required.
-        if( would_prevent_flying ) {
+        // also checks if the darn thing is an aircraft first
+        if( is_aircraft && would_prevent_flying ) {
             nmsg += _( "\n<color_yellow>The repair would prevent the aircraft from flying!</color>\n\n" );
         }
 
