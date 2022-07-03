@@ -1949,7 +1949,13 @@ class Character : public Creature, public visitable
 
         // --------------- Values ---------------
         std::string name;
-        bool male = false;
+        bool male = false; // whether or not the character is male
+        bool has_womb; //
+        bool child_is_male;
+        bool pregnant;
+        time_duration gestation = calendar::turn_zero; // needs variable for gestation period (how long the pregnancy lasts), but I would probably want to make this a time_duration.
+        Character& mother; // mother character
+        Character& father;
 
         std::list<item> worn;
         bool nv_cached = false;
@@ -2113,11 +2119,15 @@ class Character : public Creature, public visitable
         void reset_chargen_attributes();
         // age in years, determined at character creation
         int base_age() const;
-        void set_base_age( int age );
-        void mod_base_age( int mod );
+        void set_base_age( int age ); // I added a `const` here but I don't know why. -Samba
+        void mod_base_age( int mod ); // I added a `const` here but I don't know why. -Samba
         // age in years
         int age() const;
         std::string age_string() const;
+        // pregnancy
+        bool can_get_pregnant() const; // whether or not the character can get pregnant
+        bool is_pregnant() const; // whether or not the character is pregnant
+        bool impregnate(const Character& father) const; // Makes the character pregnant. ~~Uses real genetic calculations to determine traits.~~ Previous statement is technically accurate, but lacks the meat and potatoes for the time being.
         // returns the height in cm
         int base_height() const;
         void set_base_height( int height );
