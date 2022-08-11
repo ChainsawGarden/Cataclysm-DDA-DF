@@ -157,10 +157,7 @@ std::map<std::string, std::bitset<npc_factions::rel_types>> epilogue_data;
 ```
 > **DESCRIPTION**
 >
-> The description goes here.
+> <string, int?> mapping for NPC faction relations. Keyed by string-type.
 
 #### class faction (*inherits from class faction_template*)
 #### class faction_manager
-
-# NOTES
-- POINT
