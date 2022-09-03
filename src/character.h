@@ -1953,7 +1953,7 @@ class Character : public Creature, public visitable
         bool has_womb; //
         bool child_is_male;
         bool pregnant;
-        time_duration gestation = calendar::turn_zero; // needs variable for gestation period (how long the pregnancy lasts), but I would probably want to make this a time_duration.
+        time_point gestation = calendar::turn_zero; // needs variable for gestation period (how long the pregnancy lasts), but I would probably want to make this a time_duration.
         Character& mother; // mother character
         Character& father;
 
