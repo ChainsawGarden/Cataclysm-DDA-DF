@@ -364,10 +364,10 @@ class Character : public Creature, public visitable
         Character &operator=( const Character & ) = delete;
         ~Character() override;
 
-        Character *as_character() override {
+        Character *as_character() override { // Interesting. This returns this particular character's memory address.
             return this;
         }
-        const Character *as_character() const override {
+        const Character *as_character() const override { // This is a const version of the above method.
             return this;
         }
 
@@ -1949,13 +1949,13 @@ class Character : public Creature, public visitable
 
         // --------------- Values ---------------
         std::string name;
-        bool male = false; // whether or not the character is male
-        bool has_womb; //
-        bool child_is_male;
-        bool pregnant;
+        bool male = false; // Whether or not the character is male.
+        bool has_womb; // Does this character have a womb? (womb could be `infested`(by parasites / dermatik) or `disabled` (through combat)) Dermatiks can infest the womb, stopping any pregnancy and instead producing a friendly dermatik "baby". After Derma-baby birth, the womb is then disabled.
+        bool child_is_male; // Is the child male?
+        bool pregnant; // Is this character pregnant?
         time_point gestation = calendar::turn_zero; // needs variable for gestation period (how long the pregnancy lasts), but I would probably want to make this a time_duration.
-        Character& mother; // mother character
-        Character& father;
+        Character *mother; // mother character (pointer-to)
+        Character *father; // father character (pointer-to)
 
         std::list<item> worn;
         bool nv_cached = false;
