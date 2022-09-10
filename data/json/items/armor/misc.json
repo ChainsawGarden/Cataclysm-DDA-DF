@@ -266,5 +266,23 @@
     "material_thickness": 0.1,
     "environmental_protection": 1,
     "flags": [ "OVERSIZE", "OUTER", "WATERPROOF", "ALLOWS_NATURAL_ATTACKS" ]
-  }
+  },
+    {
+    "id": "anal_plug",
+    "type": "ARMOR",
+    "name": { "str": "Buttplug" },
+    "description": "A sexual object, consisting of a large bulbous end, with a rod and disk to on the end. to prevent situations.",
+    "weight": "10 g",
+    "volume": "300 ml",
+    "price": 75,
+    "price_postapoc": 10,
+    "bashing": 1,
+    "material": [ "plastic" ],
+    "symbol": "*",
+    "looks_like": "anal_plug",
+    "color": "pink",
+    "covers": [ "torso" ],
+    "encumbrance":1,
+    "flags": [ "SKINTIGHT" ]
+  },
 ]
