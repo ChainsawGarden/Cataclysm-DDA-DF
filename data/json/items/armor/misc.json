@@ -271,7 +271,7 @@
     "id": "anal_plug",
     "type": "ARMOR",
     "name": { "str": "Buttplug" },
-    "description": "A sexual object, consisting of a large bulbous end, with a rod and disk to on the other end. to prevent situations.",
+    "description": "A sexual toy, designed to be inserted into the posterior for sexual gratification",
     "weight": "10 g",
     "volume": "300 ml",
     "price": 75,
@@ -281,8 +281,7 @@
     "symbol": "*",
     "looks_like": "anal_plug",
     "color": "pink",
-    "covers": [ "torso" ],
     "encumbrance":1,
-    "flags": [ "SKINTIGHT" ]
+    "flags": [ "SKINTIGHT", "ONLY_ONE" ]
   },
 ]
