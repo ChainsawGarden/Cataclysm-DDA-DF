@@ -184,6 +184,8 @@
     "price": 50,
     "name": { "str_sp": "tomato seeds" },
     "description": "Some tomato seeds.",
+    "//": "I assume that the charges determine the actual tomato fruit yield. If this isn't so, then this must be fixed.",
+    "charges": 12,
     "seed_data": { "plant_name": "tomato", "fruit": "tomato", "byproducts": [ "withered" ], "grow": "65 days" }
   },
   {
