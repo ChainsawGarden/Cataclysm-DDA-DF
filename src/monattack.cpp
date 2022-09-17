@@ -2123,23 +2123,23 @@ bool mattack::impale( monster *z )
     return true;
 }
 
-bool mattack::dermatik( monster *z )
+bool mattack::dermatik( monster *z ) // The Dermatik's attack
 {
-    if( !z->can_act() ) {
+    if( !z->can_act() ) { // If the monster (z) can not act...
         return false;
     }
 
-    Creature *target = z->attack_target();
+    Creature *target = z->attack_target(); // [CODE BLOCK] If the target either doesn't exist, is not nearby, or cannot be seen, Dermatik can't fight
     if( target == nullptr ||
         !z->is_adjacent( target, true ) ||
         !z->sees( *target ) ) {
         return false;
     }
 
-    if( target->uncanny_dodge() ) {
+    if( target->uncanny_dodge() ) { // If the target has uncanny dodge... return true.
         return true;
     }
-    player *foe = dynamic_cast< player * >( target );
+    player *foe = dynamic_cast< player * >( target ); // If the player (foe) does not exist, return true.
     if( foe == nullptr ) {
         return true; // No implanting monsters for now
     }
@@ -2168,38 +2168,38 @@ bool mattack::dermatik( monster *z )
         ///\EFFECT_UNARMED increases chance of deflecting dermatik attack with TAIL_CATTLE
         player_swat += ( ( foe->dex_cur + foe->get_skill_level( skill_unarmed ) ) / 2 );
     }
-    Character &player_character = get_player_character();
-    if( player_swat > dodge_roll ) {
-        target->add_msg_if_player( _( "The %s lands on you, but you swat it off." ), z->name() );
-        if( z->get_hp() >= z->get_hp_max() / 2 ) {
-            z->apply_damage( &player_character, bodypart_id( "torso" ), 1 );
-            z->check_dead_state();
+    Character &player_character = get_player_character(); // get's the player character
+    if( player_swat > dodge_roll ) { // if the swat roll is greater than the dodge roll...
+        target->add_msg_if_player( _( "The %s lands on you, but you swat it off." ), z->name() ); // todo: swatting should do a little bit of damage to the swattee
+        if( z->get_hp() >= z->get_hp_max() / 2 ) { // If the Dermatik's HP is greater than or equal to its maxhealth...
+            z->apply_damage( &player_character, bodypart_id( "torso" ), 1 ); // do damage to the player's torso
+            z->check_dead_state(); // check dead state of dermatik
         }
-        if( player_swat > dodge_roll * 1.5 ) {
-            z->stumble();
+        if( player_swat > dodge_roll * 1.5 ) { // If the player's swat is greater than the dodge roll (mult. by 1.5)
+            z->stumble(); // make the Dermatik stumble
         }
-        return true;
+        return true; // return true for swat code block
     }
 
     // Can the bug penetrate our armor?
-    const bodypart_id targeted = target->get_random_body_part();
-    if( 4 < player_character.get_armor_cut( targeted ) / 3 ) {
+    const bodypart_id targeted = target->get_random_body_part(); // choose a random bodypart on the target
+    if( 4 < player_character.get_armor_cut( targeted ) / 3 ) { // if the player's armor cut resistance (divided by 3) is less than 4...
         //~ 1$s monster name(dermatik), 2$s bodypart name in accusative.
-        target->add_msg_if_player( _( "The %1$s lands on your %2$s, but can't penetrate your armor." ),
+        target->add_msg_if_player( _( "The %1$s lands on your %2$s, but can't penetrate your armor." ), // Our dermatik lands the attack but doesn't penetrate armor
                                    z->name(), body_part_name_accusative( targeted ) );
-        z->moves -= 150; // Attempted laying takes a while
+        z->moves -= 150; // Attempted laying takes a while // take some moves from the dermatik
         return true;
     }
 
-    // Success!
+    // Success! (Dermatik penetrated the player's skin and laid eggs. Congrats on your new Derma-baby!)
     z->moves -= 500; // Successful laying takes a long time
     //~ 1$s monster name(dermatik), 2$s bodypart name in accusative.
     target->add_msg_if_player( m_bad, _( "The %1$s sinks its ovipositor into your %2$s!" ),
                                z->name(),
-                               body_part_name_accusative( targeted ) );
-    if( !foe->has_trait( trait_PARAIMMUNE ) && !foe->has_trait( trait_ACIDBLOOD ) ) {
-        foe->add_effect( effect_dermatik, 1_turns, targeted, true );
-        get_event_bus().send<event_type::dermatik_eggs_injected>( foe->getID() );
+                               body_part_name_accusative( targeted ) ); // message log message
+    if( !foe->has_trait( trait_PARAIMMUNE ) && !foe->has_trait( trait_ACIDBLOOD ) ) { // If our player is not PARAIMMUNE (immune to parasites), and not ACIDBLOOD (blood is acidic)... 
+        foe->add_effect( effect_dermatik, 1_turns, targeted, true ); // player is derma-pregnant
+        get_event_bus().send<event_type::dermatik_eggs_injected>( foe->getID() ); // event bus trickery. I don't even know what the event bus does. Does it process events? Our first foray into the events subsystem! Hoooh!
     }
 
     return true;
