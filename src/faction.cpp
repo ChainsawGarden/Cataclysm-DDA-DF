@@ -72,10 +72,10 @@ void faction_template::load( const JsonObject &jsobj )
 
 void faction_template::check_consistency()
 {
-    for( const faction_template &fac : npc_factions::all_templates ) {
-        for( const auto &epi : fac.epilogue_data ) {
-            if( !std::get<2>( epi ).is_valid() ) {
-                debugmsg( "There's no snippet with id %s", std::get<2>( epi ).str() );
+    for( const faction_template &fac : npc_factions::all_templates ) { // iterate through NPC factions
+        for( const auto &epi : fac.epilogue_data ) { // iterate through epilogue data
+            if( !std::get<2>( epi ).is_valid() ) { // Checks if the epilogue data is valid (calls method ".is_valid()" on some data)
+                debugmsg( "There's no snippet with id %s", std::get<2>( epi ).str() ); // If invalid, display debug message.
             }
         }
     }
