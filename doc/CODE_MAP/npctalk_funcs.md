@@ -1,6 +1,6 @@
 # HEADER
 ## npctalk.h
-> HEADER GUARDS: **CATA_SRC_NPCTALK_H**
+### HEADER GUARDS: **CATA_SRC_NPCTALK_H**
 > This header file holds the data concerning NPC-to-Player talking behavior.
 ### HEADERS
 `type_id.h` - For creating `string_id` objects; uses the following type_ids:
