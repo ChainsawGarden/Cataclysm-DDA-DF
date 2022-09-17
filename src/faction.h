@@ -78,16 +78,16 @@ class faction_template
         static void check_consistency();
         static void reset();
 
-        std::string name;
-        int likes_u;
-        int respects_u;
-        bool known_by_u;
-        faction_id id;
-        translation desc;
-        int size; // How big is our sphere of influence?
-        int power; // General measure of our power
-        int food_supply;  //Total nutritional value held
-        int wealth;  //Total trade currency
+        std::string name; // The name of the faction
+        int likes_u; // Generally, the player's camp's morale. Too low, mutinies will arise.
+        int respects_u; // Filler for camp morale?
+        bool known_by_u; // For epilogue text; lone wolf NPCs (through mutiny?) 
+        faction_id id; // The ID of the faction.
+        translation desc; // Translatable description.
+        int size; // How big is our sphere of influence? /* for epilogue text */
+        int power; // General measure of our power /* for epilogue text */
+        int food_supply;  // Total nutritional value held
+        int wealth;  // Total trade currency /* for epilogue text */
         bool lone_wolf_faction; // is this a faction for just one person?
         itype_id currency; // id of the faction currency
         std::map<std::string, std::bitset<npc_factions::rel_types>> relations;
@@ -117,6 +117,11 @@ class faction : public faction_template
         std::vector<int> opinion_of;
         bool validated = false;
         std::map<character_id, std::pair<std::string, bool>> members;
+        // new stuff
+        std::map<character_id, std::pair<std::string, bool>> prisoners; // people / (animals?) held captive.
+        std::map<character_id, std::pair<std::string, bool>> hostages; // captives that will be used as "negotiation security"; in layman's terms, factions may use these entities in an attempt to get what they want from another faction.
+
+        // end new stuff
 };
 
 class faction_manager
