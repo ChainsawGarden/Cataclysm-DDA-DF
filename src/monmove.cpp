@@ -313,35 +313,35 @@ float monster::rate_target( Creature &c, float best, bool smart ) const
 
     return FLT_MAX;
 }
-
+// Plan... makes the monster plan out their movements?
 void monster::plan()
 {
-    const auto &factions = g->critter_tracker->factions();
+    const auto &factions = g->critter_tracker->factions(); // gets all factions
 
     // Bots are more intelligent than most living stuff
-    bool smart_planning = has_flag( MF_PRIORITIZE_TARGETS );
-    Creature *target = nullptr;
-    int max_sight_range = std::max( type->vision_day, type->vision_night );
+    bool smart_planning = has_flag( MF_PRIORITIZE_TARGETS ); // ??? target acquisition algo?
+    Creature *target = nullptr; // target creature
+    int max_sight_range = std::max( type->vision_day, type->vision_night ); // get sight range
     // 8.6f is rating for tank drone 60 tiles away, moose 16 or boomer 33
-    float dist = !smart_planning ? max_sight_range : 8.6f;
-    bool fleeing = false;
-    bool docile = friendly != 0 && has_effect( effect_docile );
+    float dist = !smart_planning ? max_sight_range : 8.6f; // determine distance from smart planning and max sight range
+    bool fleeing = false; // is the monster fleeing / running away?
+    bool docile = friendly != 0 && has_effect( effect_docile ); // check if monster is not hostile
 
-    const bool angers_hostile_weak = type->has_anger_trigger( mon_trigger::HOSTILE_WEAK );
-    const int angers_hostile_near = type->has_anger_trigger( mon_trigger::HOSTILE_CLOSE ) ? 5 : 0;
-    const int angers_mating_season = type->has_anger_trigger( mon_trigger::MATING_SEASON ) ? 3 : 0;
-    const int angers_cub_threatened = type->has_anger_trigger( mon_trigger::PLAYER_NEAR_BABY ) ? 8 : 0;
-    const int fears_hostile_near = type->has_fear_trigger( mon_trigger::HOSTILE_CLOSE ) ? 5 : 0;
+    const bool angers_hostile_weak = type->has_anger_trigger( mon_trigger::HOSTILE_WEAK ); // if the opposition is weak, then get angry?
+    const int angers_hostile_near = type->has_anger_trigger( mon_trigger::HOSTILE_CLOSE ) ? 5 : 0; // if a bad hombre is nearby, then get angry?
+    const int angers_mating_season = type->has_anger_trigger( mon_trigger::MATING_SEASON ) ? 3 : 0; // if the hostile is in mating season, then get angry?
+    const int angers_cub_threatened = type->has_anger_trigger( mon_trigger::PLAYER_NEAR_BABY ) ? 8 : 0; // if the hostile's baby is being threatened, get angry?
+    const int fears_hostile_near = type->has_fear_trigger( mon_trigger::HOSTILE_CLOSE ) ? 5 : 0; // if the hostile is weak, then get angry?
 
-    map &here = get_map();
+    map &here = get_map(); // the map we're using
     std::bitset<OVERMAP_LAYERS> seen_levels = here.get_inter_level_visibility( pos().z );
-    bool group_morale = has_flag( MF_GROUP_MORALE ) && morale < type->morale;
-    bool swarms = has_flag( MF_SWARMS );
-    monster_attitude mood = attitude();
-    Character &player_character = get_player_character();
+    bool group_morale = has_flag( MF_GROUP_MORALE ) && morale < type->morale; // total group morale...?
+    bool swarms = has_flag( MF_SWARMS ); // swarm monster...?
+    monster_attitude mood = attitude(); // monster's additude..
+    Character &player_character = get_player_character(); // our player
     // If we can see the player, move toward them or flee, simpleminded animals are too dumb to follow the player.
     if( friendly == 0 && seen_levels.test( player_character.pos().z + OVERMAP_DEPTH ) &&
-        sees( player_character ) && !has_flag( MF_PET_WONT_FOLLOW ) ) {
+        sees( player_character ) && !has_flag( MF_PET_WONT_FOLLOW ) ) { // if this monster can see the player and pet wont follow
         dist = rate_target( player_character, dist, smart_planning );
         fleeing = fleeing || is_fleeing( player_character );
         target = &player_character;
@@ -365,7 +365,7 @@ void monster::plan()
                 }
             }
         }
-        if( angers_cub_threatened > 0 ) {
+        if( angers_cub_threatened > 0 ) { // if babies are threatened
             for( monster &tmp : g->all_monsters() ) {
                 if( type->baby_monster == tmp.type->id ) {
                     // baby nearby; is the player too close?
@@ -378,7 +378,7 @@ void monster::plan()
                 }
             }
         }
-    } else if( friendly != 0 && !docile ) {
+    } else if( friendly != 0 && !docile ) { // if they're not docile but they're not at 0 friendliness
         for( monster &tmp : g->all_monsters() ) {
             if( tmp.friendly == 0 && seen_levels.test( tmp.pos().z + OVERMAP_DEPTH ) ) {
                 float rating = rate_target( tmp, dist, smart_planning );
