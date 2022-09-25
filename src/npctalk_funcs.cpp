@@ -105,15 +105,15 @@ void talk_function::nothing( npc & )
 
 void talk_function::assign_mission( npc &p )
 {
-    mission *miss = p.chatbin.mission_selected;
-    if( miss == nullptr ) {
-        debugmsg( "assign_mission: mission_selected == nullptr" );
-        return;
+    mission *miss = p.chatbin.mission_selected; // get player's mission
+    if( miss == nullptr ) { // if the selected mission is nonexistant?
+        debugmsg( "assign_mission: mission_selected == nullptr" ); // the mission doesn't exist?
+        return; // return to previous code (get out of the function)
     }
-    miss->assign( get_avatar() );
-    p.chatbin.missions_assigned.push_back( miss );
-    const auto it = std::find( p.chatbin.missions.begin(), p.chatbin.missions.end(), miss );
-    p.chatbin.missions.erase( it );
+    miss->assign( get_avatar() ); // assign the player a mission
+    p.chatbin.missions_assigned.push_back( miss ); // put this mission in the assigned missions cache
+    const auto it = std::find( p.chatbin.missions.begin(), p.chatbin.missions.end(), miss ); // get an iterator
+    p.chatbin.missions.erase( it ); // erase the assigned mission from
 }
 
 void talk_function::mission_success( npc &p )
@@ -128,7 +128,7 @@ void talk_function::mission_success( npc &p )
     npc_opinion tmp( 0, 0, 1 + miss_val / 5, -1, 0 );
     p.op_of_u += tmp;
     faction *p_fac = p.get_faction();
-    if( p_fac != nullptr ) {
+    if( p_fac != nullptr ) { // if NPC
         int fac_val = std::min( 1 + miss_val / 10, 10 );
         p_fac->likes_u += fac_val;
         p_fac->respects_u += fac_val;
@@ -136,28 +136,28 @@ void talk_function::mission_success( npc &p )
     }
     miss->wrap_up();
 }
-
+// Fail the NPC's mission.
 void talk_function::mission_failure( npc &p )
 {
-    mission *miss = p.chatbin.mission_selected;
-    if( miss == nullptr ) {
+    mission *miss = p.chatbin.mission_selected; // get selected mission
+    if( miss == nullptr ) { // handle nullptr (nonexistant msn?)
         debugmsg( "mission_failure: mission_selected == nullptr" );
         return;
     }
-    npc_opinion tmp( -1, 0, -1, 1, 0 );
-    p.op_of_u += tmp;
-    miss->fail();
+    npc_opinion tmp( -1, 0, -1, 1, 0 ); // set NPC opinion
+    p.op_of_u += tmp; // combine values from above npc_opinion calc
+    miss->fail(); // fail the mission
 }
 
 void talk_function::clear_mission( npc &p )
 {
-    mission *miss = p.chatbin.mission_selected;
-    if( miss == nullptr ) {
+    mission *miss = p.chatbin.mission_selected; // get selected mission
+    if( miss == nullptr ) { // nonexistant mission; return
         debugmsg( "clear_mission: mission_selected == nullptr" );
         return;
     }
     const auto it = std::find( p.chatbin.missions_assigned.begin(), p.chatbin.missions_assigned.end(),
-                               miss );
+                               miss ); // generate an iterator for the missions list.
     if( it == p.chatbin.missions_assigned.end() ) {
         debugmsg( "clear_mission: mission_selected not in assigned" );
         return;
@@ -266,7 +266,13 @@ void talk_function::do_butcher( npc &p )
 {
     p.assign_activity( ACT_MULTIPLE_BUTCHER );
 }
-
+/*
+    +------------+
+    |            |
+    | CAMP STUFF |
+    |            |
+    +------------+
+*/
 void talk_function::do_chop_plank( npc &p )
 {
     p.assign_activity( ACT_MULTIPLE_CHOP_PLANKS );
@@ -461,22 +467,22 @@ void talk_function::bionic_install( npc &p )
     avatar &player_character = get_avatar();
     item_location bionic = game_menus::inv::install_bionic( player_character, player_character, true );
 
-    if( !bionic ) {
-        return;
+    if( !bionic ) { // If the bionic doesn't exist...
+        return; // Continue program execution.
     }
 
-    const item *tmp = bionic.get_item();
-    const itype &it = *tmp->type;
+    const item *tmp = bionic.get_item(); // The item version of the bionic.
+    const itype &it = *tmp->type; // The item's type.
 
-    signed int price = tmp->price( true ) * 2;
-    if( !npc_trading::pay_npc( p, price ) ) {
+    signed int price = tmp->price( true ) * 2; // Gets the monetary value of the bionic (itemized); practical (our `true` value param) means actual current barter value as opposed to pre-cataclysm prices.
+    if( !npc_trading::pay_npc( p, price ) ) { // If you can't pay the NPC, continue program execution (or abort fn?)
         return;
     }
 
     //Makes the doctor awesome at installing but not perfect
-    if( player_character.can_install_bionics( it, p, false, 20 ) ) {
-        bionic.remove_item();
-        player_character.install_bionics( it, p, false, 20 );
+    if( player_character.can_install_bionics( it, p, false, 20 ) ) { // If the player can install the bionic...
+        bionic.remove_item(); // Remove the bionic item from the game
+        player_character.install_bionics( it, p, false, 20 ); // Install the bionic to the player.
     }
 }
 
@@ -589,9 +595,9 @@ void talk_function::give_aid( npc &p )
 
 void talk_function::give_all_aid( npc &p )
 {
-    p.add_effect( effect_currently_busy, 30_minutes );
-    give_aid( p );
-    for( npc &guy : g->all_npcs() ) {
+    p.add_effect( effect_currently_busy, 30_minutes ); // Gives the NPC the "Busy" effect
+    give_aid( p ); // Heals the player
+    for( npc &guy : g->all_npcs() ) { // Iterate through NPCs (within range I'm guessing?)
         if( guy.is_walking_with() && rl_dist( guy.pos(), get_player_character().pos() ) < PICKUP_RANGE ) {
             for( const bodypart_id &bp :
                  guy.get_all_body_parts( get_body_part_flags::only_main ) ) {
@@ -677,6 +683,27 @@ void talk_function::morale_chat( npc &p )
 {
     get_player_character().add_morale( MORALE_CHAT, rng( 3, 10 ), 10, 200_minutes, 5_minutes / 2 );
     add_msg( m_good, _( "That was a pleasant conversation with %s…" ), p.disp_name() );
+}
+
+void talk_function::morale_flirt( npc &p )
+{
+    /*
+        1. Get appearance buffs/debuffs, persuasion,| and factor in NPC affection to player
+    */
+    if(true) { // if the flirt is successful
+        if(p.male) { // If the player's a male...
+            add_msg( m_mixed, _( "You walk away from that, feeling a little stronger, and just a little happier." ) );
+        } else { // player is female
+            add_msg( m_mixed, _( "You walk away from that, feeling warm and fuzzy." ) );
+        }
+    } else { // if the flirt is unsuccessful (fail)
+        if(p.male) { // If the player's a male...
+            add_msg( m_mixed, _( "You walk away from that, feeling a little worthless." ) );
+        } else { // player is female
+            add_msg( m_mixed, _( "You walk away from that, feeling a little dejected." ) );   
+        }
+    }
+    
 }
 
 void talk_function::morale_chat_activity( npc &p )

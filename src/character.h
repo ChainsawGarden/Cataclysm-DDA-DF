@@ -1950,9 +1950,11 @@ class Character : public Creature, public visitable
         // --------------- Values ---------------
         std::string name;
         bool male = false; // Whether or not the character is male.
-        bool has_womb; // Does this character have a womb? (womb could be `infested`(by parasites / dermatik) or `disabled` (through combat)) Dermatiks can infest the womb, stopping any pregnancy and instead producing a friendly dermatik "baby". After Derma-baby birth, the womb is then disabled.
+        bool has_womb; // Does this character have a womb? (womb could be `infested`(by parasites) or `disabled` (through combat)) Parasites can infest the womb, stopping any pregnancy and instead will eventually kill the mother. Stopping the parasite will save the mother, but disable the womb. The womb can get repaired at an autodoc.
         bool child_is_male; // Is the child male?
         bool pregnant; // Is this character pregnant?
+        bool pregnant_with_parasite; // parasite infested womb
+        bool pregnant_with_skinwalker; // skinwalker growing in womb
         time_point gestation = calendar::turn_zero; // needs variable for gestation period (how long the pregnancy lasts), but I would probably want to make this a time_duration.
         Character *mother; // mother character (pointer-to)
         Character *father; // father character (pointer-to)

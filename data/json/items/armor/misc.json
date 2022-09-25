@@ -287,7 +287,7 @@
   "id": "large_anal_plug",
   "type": "ARMOR",
   "name": { "str": "large Buttplug" },
-  "discription": "A sexual object of fair size for the more experienced, designed to be inserted into the posterior for sexual gratification.",
+  "description": "A sexual object of fair size for the more experienced, designed to be inserted into the posterior for sexual gratification.",
   "weight": "907 g",
   "volume": "750 ml",
   "price": 85,
@@ -303,7 +303,7 @@
   "id": "fox_butt_plug",
   "type": "ARMOR",
   "name": { "str": "Fox Tail Plug" },
-  "discription": "A fluffy sexual object mimicing that of a foxes tail, designed to be inserted into the postior for sexual gratification of the user and the fairer sex.",
+  "description": "A fluffy sexual object mimicing that of a foxes tail, designed to be inserted into the postior for sexual gratification of the user and the fairer sex.",
   "weight": "680 g",
   "volume": "1 L",
   "price": 85,
@@ -312,7 +312,8 @@
   "material": ["plastic", "fur"],
   "symbol": "*",
   "looks_like": "tail_plug",
-  "color": "orange",
+  "//": "implement orange next push (it is surprisingly more complex (not by too much) to add another color, refer to src/color.h)",
+  "color": "light_red",
   "flags": [ "SKINTIGHT", "ONLY_ONE"]
-  },
+  }
 ]

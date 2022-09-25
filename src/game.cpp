@@ -5453,23 +5453,24 @@ bool game::revive_corpse( const tripoint &p, item &it )
     return place_critter_at( newmon_ptr, p );
 }
 
-void game::save_cyborg( item *cyborg, const tripoint &couch_pos, player &installer )
+// Turns item-ized (through death?) cyborgs into NPCs.
+void game::save_cyborg( item *cyborg, const tripoint &couch_pos, player &installer ) 
 {
-    int damage = cyborg->damage();
-    int dmg_lvl = cyborg->damage_level();
-    int difficulty = 12;
+    int damage = cyborg->damage(); // Item damage (since dead 'borgs are item-ized)
+    int dmg_lvl = cyborg->damage_level(); // Damage level. Some sort of item damage scale.
+    int difficulty = 12; // Hardcoded (set-in-stone) difficulty for saving the cyborg.
 
-    if( damage != 0 ) {
+    if( damage != 0 ) { // If the cyborg item is damaged...
 
         popup( _( "WARNING: Patient's body is damaged.  Difficulty of the procedure is increased by %s." ),
                dmg_lvl );
 
         // Damage of the cyborg increases difficulty
-        difficulty += dmg_lvl;
+        difficulty += dmg_lvl; // The difficulty of saving the cyborg increases by the damage level
     }
 
-    int chance_of_success = bionic_success_chance( true, -1, difficulty, installer );
-    int success = chance_of_success - rng( 1, 100 );
+    int chance_of_success = bionic_success_chance( true, -1, difficulty, installer ); // The chance of success is 
+    int success = chance_of_success - rng( 1, 100 ); // 
 
     if( !get_avatar().query_yn(
             _( "WARNING: %i percent chance of SEVERE damage to all body parts!  Continue anyway?" ),
@@ -5477,7 +5478,7 @@ void game::save_cyborg( item *cyborg, const tripoint &couch_pos, player &install
         return;
     }
 
-    if( success > 0 ) {
+    if( success > 0 ) { // If the save was successful
         add_msg( m_good, _( "Successfully removed Personality override." ) );
         add_msg( m_bad, _( "Autodoc immediately destroys the CBM upon removal." ) );
 
@@ -5487,11 +5488,11 @@ void game::save_cyborg( item *cyborg, const tripoint &couch_pos, player &install
         shared_ptr_fast<npc> tmp = make_shared_fast<npc>();
         tmp->normalize();
         tmp->load_npc_template( npc_cyborg );
-        tmp->spawn_at_precise( get_map().get_abs_sub().xy(), couch_pos );
-        overmap_buffer.insert_npc( tmp );
-        tmp->hurtall( dmg_lvl * 10, nullptr );
-        tmp->add_effect( effect_downed, rng( 1_turns, 4_turns ), false, 0, true );
-        load_npcs();
+        tmp->spawn_at_precise( get_map().get_abs_sub().xy(), couch_pos ); // Spawn the cyborg at the 
+        overmap_buffer.insert_npc( tmp ); // Puts the newly created NPC on the map.
+        tmp->hurtall( dmg_lvl * 10, nullptr ); // Hurt all cyborg (Big boi turned into an NPC now!) bodyparts.
+        tmp->add_effect( effect_downed, rng( 1_turns, 4_turns ), false, 0, true ); // The Cyborg will have the "Downed" effect. Go figure out what that does.
+        load_npcs(); // Make nearby NPCs active
 
     } else {
         const int failure_level = static_cast<int>( std::sqrt( std::abs( success ) * 4.0 * difficulty /

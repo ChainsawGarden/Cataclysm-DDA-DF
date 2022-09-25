@@ -1340,6 +1340,65 @@
   },
   {
     "type": "effect_type",
+    "id": "pregnancy",
+    "name": [ "Pregnant", "Pregante", "Preggers", "Pregananant", "Child-Bearing Belly", "Baby Bump", "Egyptian Flu", "Producing new Character", "Teem" ],
+    "desc": [ "You feel like you have something living inside you." ],
+    "rating": "mixed",
+    "apply_message": "You feel like you've just got quite a bit bigger in the stomach area.",
+    "apply_memorial_log": "Underwent pregnancy.",
+    "blood_analysis_description": "Pregnant",
+    "scaling_mods": { "str_mod": [ -1 ], "int_mod": [ -1.5 ], "dex_mod": [ -4.7 ], "per_mod": [ -0.8 ] },
+    "base_mods": {
+      "pain_amount": [ 13 ],
+      "pain_tick": [ 70 ],
+      "pain_chance": [1, 100],
+      "health": [ -3 ],
+      "health_chance": [ 1, 35 ]
+    }
+  },
+  {
+    "type": "effect_type",
+    "//": "NOT TO BE IMPLEMENTED YET",
+    "id": "pregnancy_parasites",
+    "name": [ "Pregnant?", "Child-Bearing Belly?", "Baby Bump", "Egyptian Flu?", "Teem-ing" ],
+    "desc": [ "You feel like you have something living inside you." ],
+    "rating": "mixed",
+    "apply_message": "You feel like you've just got quite a bit bigger in the stomach area.",
+    "apply_memorial_log": "Unknowingly became a host of a teeming parasite.",
+    "blood_analysis_description": "Non-human In Womb",
+    "affected_bodyparts": [ "TORSO" ],
+    "base_mods": {
+      "pain_amount": [ 8 ],
+      "pain_tick": [ 120 ],
+      "pain_chance": [ 1, 15 ]
+    },
+    "scaling_mods": { "str_mod": [ -3 ], "int_mod": [ -2.5 ], "dex_mod": [ -5.7 ], "per_mod": [ -4.8 ] }
+  },
+  {
+    "type": "effect_type",
+    "//": "NOT TO BE IMPLEMENTED YET",
+    "id": "pregnancy_skinwalker",
+    "name": [ "Pregnant", "Pregante", "Preggers", "Pregananant", "Child-Bearing Belly", "Baby Bump", "Egyptian Flu", "Producing new Character", "What's this in me?" ],
+    "desc": [ "You feel like you have something living inside you." ],
+    "rating": "mixed",
+    "apply_message": "You feel like you've just got quite a bit bigger in the stomach area.",
+    "apply_memorial_log": "Unknowingly became the mother of a flesh-craving husk.",
+    "blood_analysis_description": "Pregnant"
+  },
+  {
+    "type": "effect_type",
+    "id": "birthing",
+    "name": [ "Childbirth", "Childbirth?" ],
+    "desc": [ "Whatever is in you wants to come out." ],
+    "rating": "mixed",
+    "max_intensity": 3,
+    "apply_message": "You feel like whatever's in you needs to come right on out.",
+    "apply_memorial_log": "Is at the last stage of pregnancy.",
+    "blood_analysis_description": "Pregnant",
+    "scaling_mods": { "str_mod": [ -1 ], "int_mod": [ -1.5 ], "dex_mod": [ -4.7 ], "per_mod": [ -0.8 ] }
+  },
+  {
+    "type": "effect_type",
     "id": "formication",
     "name": [ "Itchy skin", "Writhing skin", "Bugs in skin" ],
     "desc": [ "You stop to scratch yourself frequently; high INT helps you resist the urge." ],
