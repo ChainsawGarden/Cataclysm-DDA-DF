@@ -690,7 +690,8 @@ void talk_function::morale_flirt( npc &p )
     /*
         1. Get appearance buffs/debuffs, persuasion,| and factor in NPC affection to player
     */
-    if(true) { // if the flirt is successful
+    bool success; // TODO make proper checks
+    if(success) { // if the flirt is successful
         if(p.male) { // If the player's a male...
             add_msg( m_mixed, _( "You walk away from that, feeling a little stronger, and just a little happier." ) );
         } else { // player is female
@@ -704,6 +705,12 @@ void talk_function::morale_flirt( npc &p )
         }
     }
     
+}
+
+// Increases NPC intrigue.
+void talk_function::morale_charm( npc &p )
+{
+    int x; // do nothing rn
 }
 
 void talk_function::morale_chat_activity( npc &p )

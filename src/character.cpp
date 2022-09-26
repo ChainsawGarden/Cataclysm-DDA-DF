@@ -8360,6 +8360,61 @@ int Character::age() const
     return init_age + years_since_cataclysm;
 }
 
+// Determines whether or not a character can undergo pregnancy.
+bool Character::can_get_pregnant() const
+{
+    if(!male){ // if the character is not male
+        if(age > 18){ 
+            return true;
+        }
+    } else {
+        return false; // chara is not of age.
+        debugmsg("Attempted to impregnate male.");
+    }
+}
+
+// Determines whether or not a character is currently pregnant with a child.
+bool Character::is_pregnant() const
+{
+    return pregnant;
+}
+
+// Impregnates a female character.
+bool Character::impregnate(const Character& father) const
+{
+    // preggers sources
+    // https://www.plannedparenthood.org/learn/ask-experts/how-long-does-it-take-for-a-girl-to-get-pregnant-after-having-sex
+    // https://www.medicalnewstoday.com/articles/how-long-does-it-take-to-get-pregnant-after-sex#fertilization-timeline
+    // https://crh.ucsf.edu/about-fertility/conception
+
+    // if this character can get pregnant, impregante the womante
+    if(can_get_pregnant()){
+        Creature *c_father;
+        c_father->add_msg_if_player( _("") ) // if the pregee is the player, show a message.
+        // add effect "pregnant"
+        // to-do: genetic data
+    } else { // if the character can't get pregnant
+        return false;
+    }
+    /*
+    static const efftype_id effect_fertilization_limbo( "fertilization_limbo" );
+static const efftype_id effect_pregnant( "pregnant" );
+
+Effect "Fertilization Limbo" lasts for 5 days, with a 20% chance of pregnancy each day. If a pregnancy happens, the effect progresses into "Pregnant"
+
+Effect "Pregnant" gives off the effect "Period" every 31 days. 
+
+Effect "Period" causes female characters to bleed. Causes Moodswings, Bad Temper, Hungriness. Will be in code-wise, but will only be available in Realistic Mode.
+*/
+}
+
+// Produces a baby character. Can't do anything yet!
+// Character& Character::birth() const // to-do: implement
+bool Character::birth() const
+{
+    return false;
+}
+
 std::string Character::age_string() const
 {
     //~ how old the character is in years. try to limit number of characters to fit on the screen

@@ -35,6 +35,8 @@ void buy_haircut( npc & );
 void buy_shave( npc & );
 void morale_chat( npc & );
 void morale_chat_activity( npc & );
+void flirt( npc & ); // romance relationship dialogue.
+void charm( npc & ); // make yourself a person of intrigue to the NPC.
 void buy_10_logs( npc & );
 void buy_100_logs( npc & );
 void start_trade( npc & );

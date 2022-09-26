@@ -230,6 +230,7 @@ enum npc_personality_type : int {
     NUM_NPE
 };
 
+// Should probably work from this. TODO!
 struct npc_personality {
     // All values should be in the -10 to 10 range.
     signed char aggression;
@@ -248,22 +249,24 @@ struct npc_personality {
 };
 
 struct npc_opinion {
-    int trust;
-    int fear;
-    int value;
-    int anger;
+    int trust; // How much an NPC trusts you.
+    int fear; // How much an NPC fears you.
+    int value; // 
+    int anger; // How angry an NPC is of you (proper grammar?).
     int owed; // Positive when the npc owes the player. Negative if player owes them.
+    int intrigue; // How important that an NPC thinks you are.
 
     npc_opinion() {
-        trust = 0;
-        fear  = 0;
-        value = 0;
-        anger = 0;
-        owed  = 0;
+        trust    = 0;
+        fear     = 0;
+        value    = 0;
+        anger    = 0;
+        owed     = 0;
+        intrigue = 0;
     }
 
-    npc_opinion( int T, int F, int V, int A, int O ) :
-        trust( T ), fear( F ), value( V ), anger( A ), owed( O ) {
+    npc_opinion( int T, int F, int V, int A, int O, int I ) :
+        trust( T ), fear( F ), value( V ), anger( A ), owed( O ), intrigue( I ) {
     }
 
     npc_opinion &operator+=( const npc_opinion &rhs ) {
@@ -272,6 +275,7 @@ struct npc_opinion {
         value += rhs.value;
         anger += rhs.anger;
         owed  += rhs.owed;
+        intrigue += rhs.intrigue;
         return *this;
     }
 
@@ -1310,7 +1314,7 @@ class npc : public player
         inventory companion_mission_inv; //Inventory that is added and dropped on mission
         npc_mission mission = NPC_MISSION_NULL;
         npc_mission previous_mission = NPC_MISSION_NULL;
-        npc_personality personality;
+        npc_personality personality; // NPC "theme / genre"s.
         npc_opinion op_of_u;
         dialogue_chatbin chatbin;
         int patience = 0; // Used when we expect the player to leave the area
