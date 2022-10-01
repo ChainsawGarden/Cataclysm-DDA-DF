@@ -67,7 +67,7 @@ struct pathfinding_settings;
 enum game_message_type : int;
 class gun_mode;
 
-using bionic_id = string_id<bionic_data>;
+using bionic_id = string_id<bionic_data>; // so all of our "usings" *do* go into header files and not cpp files. huh.
 using npc_class_id = string_id<npc_class>;
 using mission_type_id = string_id<mission_type>;
 using mfaction_id = int_id<monfaction>;
@@ -285,6 +285,35 @@ struct npc_opinion {
 
     void serialize( JsonOut &json ) const;
     void deserialize( JsonIn &jsin );
+};
+
+// NPC family relationships.
+struct npc_family {
+    character_id grandmother; // This NPC's grandmother (parent's mother)
+    character_id grandfather; // This NPC's grandfather (parent's father)
+    character_id mother; // This NPC's mother (female parent)
+    character_id father; // This NPC's father (male parent)
+    std::set<character_id> aunts; // Parent's sisters.
+    std::set<character_id> uncles; // Parent's brothers.
+    std::set<character_id> sisters; // Female siblings.
+    std::set<character_id> brothers; // Male siblings.
+    std::set<character_id> daughters; // Female offspring.
+    std::set<character_id> sons; // Male offspring.
+    // std::set<character_id> other_offspring; // Non-human offspring...? Should these be recognized?
+};
+
+// NPC Relationships (generally how they get along) (PHASE 1, PHASE 2 WILL NOT BE COMPATIBLE WITH PHASE 1 EITHER)
+struct npc_relationships {
+    // positive association
+    std::set<character_id> highly_trusted; // People who the NPC views highly positively, and puts virtually all trust into.
+    std::set<character_id> best_friends; // People who the NPC likes and trusts quite a lot.
+    std::set<character_id> friends; // People who the NPC likes has a positive opinion on. Trusted with general information.
+    // neutral association
+    std::set<character_id> acquaintances; // People who the NPC knows but is generally neutral on.
+    // negative association
+    std::set<character_id> disliked; // People who the NPC does not particularly like, though doesn't hate them.
+    std::set<character_id> enemies; // People who the NPC views as direct opposition, distrusts them.
+    std::set<character_id> hated; // People who the NPC views as a threat to their life, and doesn't trust at all.
 };
 
 enum class combat_engagement : int {
@@ -1316,6 +1345,8 @@ class npc : public player
         npc_mission previous_mission = NPC_MISSION_NULL;
         npc_personality personality; // NPC "theme / genre"s.
         npc_opinion op_of_u;
+        npc_family family; // the NPC family data.
+        npc_relationships relationships; // NPC Relationship data (All NPCs encountered go here.)
         dialogue_chatbin chatbin;
         int patience = 0; // Used when we expect the player to leave the area
         npc_follower_rules rules;
