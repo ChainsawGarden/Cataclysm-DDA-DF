@@ -354,7 +354,7 @@ class player : public Character
         vproto_id starting_vehicle;
         std::vector<mtype_id> starting_pets;
 
-        std::set<character_id> follower_ids;
+        std::set<character_id> follower_ids; // a container containing all of the character_ids of those NPCs who are following you as part of your faction.
         void mod_stat( const std::string &stat, float modifier ) override;
 
         void set_underwater( bool );
