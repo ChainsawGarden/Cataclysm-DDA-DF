@@ -102,6 +102,26 @@
   },
   {
     "type": "npc",
+    "id": "your_child",
+    "//": "Your child.",
+    "class": "NC_APOC_BORN",
+    "attitude": 3,
+    "mission": 0,
+    "chat": "NC_APOC_BORN",
+    "faction": "your_followers"
+  },
+  {
+    "type": "npc",
+    "id": "teen",
+    "//": "A young person that seems to be over or around the age of 15.",
+    "class": "NC_APOC_BORN",
+    "attitude": 3,
+    "mission": 0,
+    "chat": "NC_APOC_BORN",
+    "faction": "no_faction"
+  },
+  {
+    "type": "npc",
     "id": "survivor_cop",
     "//": "A police officer who has taken over the station since the Cataclysm.  They sell items out of the evidence locker.",
     "name_suffix": "officer",

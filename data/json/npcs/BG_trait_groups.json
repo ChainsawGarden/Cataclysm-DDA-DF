@@ -18,6 +18,21 @@
     ]
   },
   {
+    "//": "This group picks out background traits that could apply to any survivor born after the apocalypse (BAA). Eventually these should be implemented as the catch-all for NPCs of an unknown class, eg those introduced by mods.",
+    "type": "trait_group",
+    "id": "BG_survival_story_BAA",
+    "subtype": "distribution",
+    "traits": [
+      { "trait": "BGSS_Confused_1" },
+      { "trait": "BGSS_No_Past_1" },
+      { "trait": "BGSS_No_Past_3" },
+      { "trait": "BGSS_No_Past_5" },
+      { "trait": "BGSS_Religious_1" },
+      { "trait": "BGSS_Religious_2" },
+      { "trait": "BGSS_Dreamer" }
+    ]
+  },
+  {
     "//": "This group picks out background traits for evacuees, and also includes survivors that should have evacuated but didn't. These backgrounds are not appropriate to rural survivors nor to emergency personnel who would not have been evacuated. Most other survivors should fit.",
     "type": "trait_group",
     "id": "BG_survival_story_EVACUEE",
@@ -155,5 +170,19 @@
     "id": "BG_survival_story_CYBORG",
     "subtype": "distribution",
     "traits": [ { "group": "BG_survival_story_UNIVERSAL" }, { "trait": "BGSS_Cyborg_1" } ]
+  },
+  {
+    "//": "This group is for NPCs that have been born during the apocalypse.",
+    "type": "trait_group",
+    "id": "BG_survival_story_BORN_IN_APOC",
+    "subtype": "distribution",
+    "traits": [ { "group": "BG_survival_story_BAA" }, { "trait": "BGSS_CBIA" } ]
+  },
+  {
+    "//": "This group is for your children that have been born during the apocalypse.",
+    "type": "trait_group",
+    "id": "BG_survival_story_BORN_IN_APOC_Your_Child",
+    "subtype": "distribution",
+    "traits": [ { "group": "BG_survival_story_BAA" }, { "trait": "BGSS_CBIA_Your_Child" } ]
   }
 ]

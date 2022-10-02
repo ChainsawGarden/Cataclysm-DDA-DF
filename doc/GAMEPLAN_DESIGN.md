@@ -140,6 +140,15 @@ The effects from the pregnant character are as follows:
 - Fatigue
 - Dexterity Drop
 - Decreased Immunity
+#### POST PREGNANCY
+- Weight Loss
+- Mood swings
+- Hunger
+- Thirst
+- Occasional Nausea
+#### THE BABY
+The baby is a special monster that has only one other stage: Child.
+After it reaches age 5, the baby turns into a Child. Memories will quickly and randomly be removed until age 8.
 
 ### Worldgen
 During worldgen, these family groups can generate. Not all family groups will have all associations.
@@ -151,18 +160,25 @@ Notes:
     - Behavior of AI when experiencing things. 
     - This could be AI reacting to an emote, or an AI reacting to seeing the corpse of a fallen comrade. 
     - For Phase 1, the AI will react to emotes, getting hurt, running out of food and/or water, socializing with other NPCs, seeing monsters, and being hurt.
-    - NPCs will wander, looking around for unclaimed food (or claimed food if they're hungry enough) and sources of water. They will fill up personal liquid containers (bottles, thermoses, flasks) with clean water; though this will also depend on intelligence. An AI with the intelligence of or below 3 / is very thirsty will drink anything that is liquid and comestible.
+    - NPCs will wander, looking around for unclaimed food (or claimed food if they're hungry enough) and sources of water. 
+    - They will fill up personal liquid containers (bottles, thermoses, flasks) and store preferrably clean water; though this will also depend on intelligence. An AI with the intelligence of or below 3 / is very thirsty will drink anything that is liquid and comestible.
 
 ### Tactical AI
-    This refers to the behavior of AI when given or generating objectives.
+    Tactical AI (Often referred to as "Tactical Units") are NPCs that have tactical orders. These orders consist of (but are not limited to) `seeking cover`, `flanking targets`, `grabbing wounded allies`, `guard waypoint`.
+
+    All NPCs with have Tactical AI. Not all NPCs may have 
+#### COVER    
     - For combat, depending on IFC, the AI can `scan` for cover and take it.
-    Depending on how intelligent and focused the particular AI is, the choice for cover can range from things that can barely be considered adequate cover, to things that are appropriate for the type of weapon they are up against.
+    - Depending on how intelligent and focused the particular AI is, the choice for cover can range from things that can barely be considered adequate cover, to things that are appropriate for the type of weapon they are up against.
     
-    For example, let's say an AI is faced with a live grenade three seconds away from an explosion. The AI would notice this, and quickly attempt to move out of the affected area. A stressed and less-focused AI would just jump behind anything it can until it hears a boom. A disciplined AI with a decent amount of focus would leap into appropriate cover, kick it or throw it (if it knew what it was).
+    - Example: Let's say an AI is faced with a live grenade three seconds away from an explosion. 
+        - The AI would notice this, and quickly attempt to move out of the affected area. 
+        - A stressed and less-focused AI would just jump behind anything it can until it hears a boom. 
+        - A disciplined AI with a decent amount of focus would leap into appropriate cover, kick it or throw it (if it knew what it was).
     - AI will grab wounded friendlies and bring them behind cover.
-    Using the `cover system`, NPCs in combat will process threats and the viability to recover their wounded comrades. 
+        - Using the `cover system`, NPCs in combat will process threats and the viability to recover their wounded comrades. 
     
-- Social AI
+### Social AI
     - General social behavior of the AI.
     The AI's general social behavior heavily takes from the Personalities & Beliefs stats. 
     - AI will be able to threaten and be threatened.

@@ -11,6 +11,14 @@
   },
   {
     "type": "npc_class",
+    "id": "NC_APOC_BORN",
+    "name": { "str": "Survivor" },
+    "//": "Survivor for now. Don't know a better name for someone born during the apocalypse.",
+    "job_description": "I was born after the apocalypse.",
+    "traits": [ { "group": "BG_survival_story_BAA" } ]
+  },
+  {
+    "type": "npc_class",
     "id": "NC_TEST_CLASS",
     "name": { "str": "Debug Dude" },
     "job_description": "I'm helping you test the game.",

@@ -45,7 +45,8 @@ Format:
 }
 ```
 This is the JSON that creates the NPC ID that is used to spawn an NPC in "mapgen" (map generation).
-Attitude is based on the enum in npc.h. The important ones are as follows:
+
+`attitude` is based on the enum in npc.h. The important ones are as follows:
 - 0=NPCATT_NULL, 
 - 1=NPCATT_TALK, 
 - 3=NPCATT_FOLLOW, 
@@ -53,7 +54,7 @@ Attitude is based on the enum in npc.h. The important ones are as follows:
 - 10=NPCATT_KILL, 
 - 11=NPCATT_FLEE
 
-Mission is based on the enum in npc.h.
+`mission` is based on the enum in npc.h.
 The important ones are: 
 - 0=NPC_MISSION_NULL, 
 - 3=NPC_MISSION_SHOPKEEP,

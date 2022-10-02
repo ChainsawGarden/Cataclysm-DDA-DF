@@ -347,6 +347,27 @@
         "//": "This is a unique background story that should not be given out randomly.",
         "condition": { "npc_has_trait": "BGSS_pizzaiolo" },
         "switch": true
+      },
+      {
+        "text": "<BGSS_intro_question>",
+        "topic": "BGSS_ycbaa_STORY1",
+        "//": "baa means 'Born After Apocalypse'",
+        "condition": { "npc_has_trait": "BGSS_CBIA_Your_Child" },
+        "switch": true
+      },
+      {
+        "text": "<BGSS_intro_question>",
+        "topic": "BGSS_baa_STORY1",
+        "//": "baa means 'Born After Apocalypse'",
+        "condition": { "npc_has_trait": "BGSS_CBIA" },
+        "switch": true
+      },
+      {
+        "text": "<BGSS_intro_question>",
+        "topic": "BGSS_baa_STORY1",
+        "//": "baa means 'Born After Apocalypse'",
+        "condition": { "npc_has_trait": "BGSS_CBIA" },
+        "switch": true
       }
     ]
   },

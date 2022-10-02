@@ -2926,8 +2926,8 @@ void load_talk_topic( const JsonObject &jo )
 
 std::string npc::pick_talk_topic( const player &/*u*/ )
 {
-    if( personality.aggression > 0 ) {
-        if( op_of_u.fear * 2 < personality.bravery && personality.altruism < 0 ) {
+    if( personality.aggression > 0 ) { // this npc is aggressive, non-altruistic and brave; worst part is that it practical doesn't fear the player,
+        if( op_of_u.fear * 2 < personality.bravery && personality.altruism < 0 ) { // so we gon' rob the player now
             set_attitude( NPCATT_MUG );
             return "TALK_MUG";
         }

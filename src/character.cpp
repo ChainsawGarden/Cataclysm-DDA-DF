@@ -8364,10 +8364,12 @@ int Character::age() const
 bool Character::can_get_pregnant() const
 {
     if(!male){ // if the character is not male
-        if(age > 18){ 
-            return true;
+        if(age() > 18){ // if the character is an adult
+            if(womb) { // if the character has a womb (that is not damaged)
+                return true; // it can get pregnant
+            }
         }
-    } else {
+    } else { // if the character is male
         return false; // chara is not of age.
         debugmsg("Attempted to impregnate male.");
     }
@@ -8389,8 +8391,8 @@ bool Character::impregnate(const Character& father) const
 
     // if this character can get pregnant, impregante the womante
     if(can_get_pregnant()){
-        Creature *c_father;
-        c_father->add_msg_if_player( _("") ) // if the pregee is the player, show a message.
+        //Creature *c_father;
+        c_father->add_msg_if_player( _("") ); // if the pregee is the player, show a message.
         // add effect "pregnant"
         // to-do: genetic data
     } else { // if the character can't get pregnant
