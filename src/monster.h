@@ -128,7 +128,7 @@ class monster : public Creature
         float get_mountable_weight_ratio() const;
 
         // Access
-        std::string get_name() const override;
+        std::string get_name() const override; // Get the monster's name.
         std::string name( unsigned int quantity = 1 ) const; // Returns the monster's formal name
         std::string name_with_armor() const; // Name, with whatever our armor is called
         // the creature-class versions of the above
