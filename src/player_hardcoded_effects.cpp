@@ -542,7 +542,7 @@ void Character::hardcoded_effects( effect &it )
                                    _( "Your flesh crawls; insects tear through the flesh and begin to emerge!" ),
                                    _( "Insects begin to emerge from <npcname>'s skin!" ) );
             for( ; num_insects > 0; num_insects-- ) {
-                if( monster *const grub = g->place_critter_around( mon_dermatik_larva, pos(), 1 ) ) { // g->place_critter_around 
+                if( monster *const grub = g->place_critter_around( mon_dermatik_larva, pos(), 1 ) ) { // g->place_critter_around places a monster around a given point
                     if( one_in( 3 ) ) {
                         grub->friendly = -1;
                     }
