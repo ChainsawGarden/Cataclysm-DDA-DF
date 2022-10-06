@@ -520,18 +520,18 @@ void Character::hardcoded_effects( effect &it )
     map &here = get_map();
     Character &player_character = get_player_character();
     if( id == effect_dermatik ) {
-        bool triggered = false;
-        int formication_chance = 3600;
-        if( dur < 4_hours ) {
-            formication_chance += 14400 - to_turns<int>( dur );
+        bool triggered = false; // If X is triggered
+        int formication_chance = 3600; // itchy chance?
+        if( dur < 4_hours ) { // if 4hrs passed
+            formication_chance += 14400 - to_turns<int>( dur ); // itchy skin chance increases
         }
-        if( one_in( formication_chance ) ) {
-            add_effect( effect_formication, 60_minutes, bp );
+        if( one_in( formication_chance ) ) { // 25% chance that itchy skin occurs
+            add_effect( effect_formication, 60_minutes, bp ); // itchy for an hour on the specified body part
         }
-        if( dur < 1_days && one_in( 14400 ) ) {
-            vomit();
+        if( dur < 1_days && one_in( 14400 ) ) { // if the duration is less than a day and we pass a 1/14400 chance
+            vomit(); // vomit. puke. expel those stomach contents.
         }
-        if( dur > 1_days ) {
+        if( dur > 1_days ) { // if a duration goes beyond a day
             // Spawn some larvae!
             // Choose how many insects; more for large characters
             ///\EFFECT_STR_MAX increases number of insects hatched from dermatik infection
@@ -542,13 +542,13 @@ void Character::hardcoded_effects( effect &it )
                                    _( "Your flesh crawls; insects tear through the flesh and begin to emerge!" ),
                                    _( "Insects begin to emerge from <npcname>'s skin!" ) );
             for( ; num_insects > 0; num_insects-- ) {
-                if( monster *const grub = g->place_critter_around( mon_dermatik_larva, pos(), 1 ) ) {
+                if( monster *const grub = g->place_critter_around( mon_dermatik_larva, pos(), 1 ) ) { // g->place_critter_around 
                     if( one_in( 3 ) ) {
                         grub->friendly = -1;
                     }
                 }
             }
-            get_event_bus().send<event_type::dermatik_eggs_hatch>( getID() );
+            get_event_bus().send<event_type::dermatik_eggs_hatch>( getID() ); // [PREGNANCY] we need to look into how the event bus works.
             remove_effect( effect_formication, bp );
             moves -= 600;
             triggered = true;
