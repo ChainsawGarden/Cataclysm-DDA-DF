@@ -279,10 +279,10 @@ extern bool add_best_key_for_action_to_quick_shortcuts( action_id action,
 extern bool add_key_to_quick_shortcuts( int key, const std::string &category, bool back );
 #endif
 
-//The one and only game instance
+// The one and only game instance
 std::unique_ptr<game> g;
 
-//The one and only uistate instance
+// The one and only uistate instance
 uistatedata uistate;
 
 bool is_valid_in_w_terrain( const point &p )
@@ -5451,6 +5451,30 @@ bool game::revive_corpse( const tripoint &p, item &it )
     }
 
     return place_critter_at( newmon_ptr, p );
+}
+
+void game::npcify_your_baby( monster *baby ) // NPCify your baby specifically
+{
+        add_msg( m_good, _( "Your child has reached its teens!" ) ); // display childhood msg
+        const string_id<npc_template> npc_teen( "your_child" ); // gen. npc template
+        shared_ptr_fast<npc> tmp = make_shared_fast<npc>(); // create pointer for npc
+        tmp->normalize(); // ???
+        tmp->load_npc_template( npc_teen ); // load the template
+        tmp->spawn_at_precise( get_map().get_abs_sub().xy(), baby.pos() ); // Spawn the teenager where the baby originally was. Baby position is based off of 
+        overmap_buffer.insert_npc( tmp ); // Puts the newly created NPC on the map.
+        load_npcs(); // Make nearby NPCs (i assume this new npc) active
+}
+
+void game::npcify_baby( monster *baby ) // NPCify an NPC-to-NPC baby
+{
+        add_msg( m_good, _( "A child has reached its teens!" ) ); // display childhood msg
+        const string_id<npc_template> npc_teen( "apocborn" ); // gen. npc template
+        shared_ptr_fast<npc> tmp = make_shared_fast<npc>(); // create pointer for npc
+        tmp->normalize(); // ???
+        tmp->load_npc_template( npc_teen ); // load the template
+        tmp->spawn_at_precise( get_map().get_abs_sub().xy(), baby.pos() ); // Spawn the teenager where the baby originally was. Baby position is based off of 
+        overmap_buffer.insert_npc( tmp ); // Puts the newly created NPC on the map.
+        load_npcs(); // Make nearby NPCs (i assume this new npc) active
 }
 
 // Turns item-ized (through death?) cyborgs into NPCs.

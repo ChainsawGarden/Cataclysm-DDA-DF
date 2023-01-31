@@ -257,6 +257,7 @@ bool effect_type::load_mod_data( const JsonObject &jo, const std::string &member
         extract_effect( j, mod_data, "per_mod",          member, "PER",      "min" );
         extract_effect( j, mod_data, "int_mod",          member, "INT",      "min" );
         extract_effect( j, mod_data, "speed_mod",        member, "SPEED",    "min" );
+        // extract_effect( j, mod_data, "morale_mod",        member, "MORALE",    "min" ); // add morale mods...? morale probably doesn't need mods.
 
         // Then pain
         extract_effect( j, mod_data, "pain_amount",      member, "PAIN",     "amount" );

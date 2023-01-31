@@ -53,6 +53,12 @@ std::string enum_to_string<event_type>( event_type data )
         case event_type::cuts_tree: return "cuts_tree";
         case event_type::dermatik_eggs_hatch: return "dermatik_eggs_hatch";
         case event_type::dermatik_eggs_injected: return "dermatik_eggs_injected";
+        case event_type::pregnant_with_human: return "pregnant_with_human";
+        case event_type::pregnant_with_skinwalker: return "pregnant_with_skinwalker";
+        case event_type::pregnant_with_psidiocyte: return "pregnant_with_psidiocyte";
+        case event_type::birthing_human: return "birthing_human";
+        case event_type::birthing_skinwalker: return "birthing_skinwalker";
+        case event_type::birthing_psidiocyte: return "birthing_psidiocyte";
         case event_type::destroys_triffid_grove: return "destroys_triffid_grove";
         case event_type::dies_from_asthma_attack: return "dies_from_asthma_attack";
         case event_type::dies_from_drug_overdose: return "dies_from_drug_overdose";
@@ -91,6 +97,7 @@ std::string enum_to_string<event_type>( event_type data )
         case event_type::reads_book: return "reads_book";
         case event_type::releases_subspace_specimens: return "releases_subspace_specimens";
         case event_type::removes_cbm: return "removes_cbm";
+        case event_type::romancing: return "romancing"; // affectionate npc / npc-to-player / player-to-npc stuff
         case event_type::seals_hazardous_material_sarcophagus: return "seals_hazardous_material_sarcophagus";
         case event_type::telefrags_creature: return "telefrags_creature";
         case event_type::teleglow_teleports: return "teleglow_teleports";

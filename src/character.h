@@ -401,7 +401,7 @@ class Character : public Creature, public visitable
         int int_max;
         int per_max;
 
-        int str_cur;
+        int str_cur; // current strength value
         int dex_cur;
         int int_cur;
         int per_cur;
@@ -2127,14 +2127,16 @@ class Character : public Creature, public visitable
         int age() const;
         std::string age_string() const;
         // pregnancy
+        bool romance() const;
         bool can_get_pregnant() const; // whether or not the character can get pregnant
         bool is_pregnant() const; // whether or not the character is pregnant
-        bool impregnate(const Character& father) const; // Makes the character pregnant. ~~Uses real genetic calculations to determine traits.~~ Previous statement is technically accurate, but lacks the meat and potatoes for the time being.
+        bool impregnate() const;//const Character& father) const; // Makes the character pregnant. ~~Uses real genetic calculations to determine traits.~~ Previous statement is technically accurate, but lacks the meat and potatoes for the time being.
+        bool try_for_pregnancy() const; // Chance-based pregnancy; what should be used to bind to the WOOHOO dialogue. Should require father parameter.
         bool birth() const; // Place the baby, add "Post-Birth" effect.
         // returns the height in cm
         int base_height() const;
-        void set_base_height( int height );
-        void mod_base_height( int mod );
+        void set_base_height( int height ); // sets the base height
+        void mod_base_height( int mod ); // modify the base height by some integer amount,
         std::string height_string() const;
         // returns the height of the player character in cm
         int height() const;

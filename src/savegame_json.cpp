@@ -1610,14 +1610,23 @@ void npc_personality::deserialize( JsonIn &jsin )
     int tmpbrav = 0;
     int tmpcol = 0;
     int tmpalt = 0;
+    int tmprom = 0;
+    int tmpaff = 0;
+    int tmpemp = 0;
     if( data.read( "aggression", tmpagg ) &&
         data.read( "bravery", tmpbrav ) &&
         data.read( "collector", tmpcol ) &&
+        data.read( "romance", tmprom ) &&
+        data.read( "affection", tmpaff ) &&
+        data.read( "empathy", tmpemp ) &&
         data.read( "altruism", tmpalt ) ) {
         aggression = static_cast<signed char>( tmpagg );
         bravery = static_cast<signed char>( tmpbrav );
         collector = static_cast<signed char>( tmpcol );
         altruism = static_cast<signed char>( tmpalt );
+        romance = static_cast<signed char>( tmprom );
+        affection = static_cast<signed char>( tmpaff );
+        empathy = static_cast<signed char>( tmpemp );
     } else {
         debugmsg( "npc_personality: bad data" );
     }
@@ -1630,6 +1639,9 @@ void npc_personality::serialize( JsonOut &json ) const
     json.member( "bravery", static_cast<int>( bravery ) );
     json.member( "collector", static_cast<int>( collector ) );
     json.member( "altruism", static_cast<int>( altruism ) );
+    json.member( "romance", static_cast<int>( romance ) );
+    json.member( "affection", static_cast<int>( affection ) );
+    json.member( "empathy", static_cast<int>( empathy ) );
     json.end_object();
 }
 
@@ -1641,6 +1653,7 @@ void npc_opinion::deserialize( JsonIn &jsin )
     data.read( "fear", fear );
     data.read( "value", value );
     data.read( "anger", anger );
+    data.read( "intrigue", intrigue );
     data.read( "owed", owed );
 }
 
@@ -1651,6 +1664,7 @@ void npc_opinion::serialize( JsonOut &json ) const
     json.member( "fear", fear );
     json.member( "value", value );
     json.member( "anger", anger );
+    json.member( "intrigue", intrigue ); // serialize for JSON the intrigue.
     json.member( "owed", owed );
     json.end_object();
 }

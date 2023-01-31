@@ -1,0 +1,26 @@
+[
+    {
+        "id": "TALK_FRIEND_ROMANCE",
+        "//": "This should only pop up when the relationship turns romantic.",
+        "type": "talk_topic",
+        "dynamic_line": [
+            "bruh what",
+            "Hey anon.",
+            "Hey babe.",
+            "Those creatures have been freaking me out all night.  Couldn't get any sleep.",
+            "I could really go for a sandwich right now, or anything with red meat in it really.",
+            "Why don't you bring your sweetness over here?",
+            "Anon! You're here! I can't imagine living without you right now.",
+            "// This should employ a slew (1. Coy/Playfully Mean/Silly?, 2. Loving Greeting, 3. Tell about emotional/stress/morale?/sleep-well state 4. Needs (the greedier, the more common + 'luxurious') 5. Something flirtatious 6. Excited and happy to see you.) ",
+            "// How does the NPC determine to be Coy or playfully mean? Personality traits and emotional state."
+        ],
+        "responses": [
+            { "text": "[ placeholder for something important ]", "topic": "TALK_DONE" },
+            { "text": "[ placeholder for NPC plans, what they want to do. ]", "topic": "TALK_DONE" },
+            { "text": "You want anything while I go exploring?", "topic": "TALK_DONE" },
+            { "text": "[ Romance option ]", "topic": "TALK_DONE" },
+            { "text": "What was that other thing you were talking about?", "topic": "TALK_NONE" },
+            { "text": "Later, babe", "topic": "TALK_DONE" }
+        ]   
+    }
+]

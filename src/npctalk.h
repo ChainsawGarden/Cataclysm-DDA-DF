@@ -11,6 +11,8 @@ class time_duration;
 
 namespace talk_function
 {
+
+/*missions / no action*/
 void nothing( npc & );
 void assign_mission( npc & );
 void mission_success( npc & );
@@ -18,49 +20,81 @@ void mission_failure( npc & );
 void clear_mission( npc & );
 void mission_reward( npc & );
 void mission_favor( npc & );
+
+/*equipment giving*/
 void give_equipment( npc & );
-void give_aid( npc & );
+
+/*aid*/
+void give_aid( npc & ); 
 void give_all_aid( npc & );
+
+/*buy animals*/
 void buy_horse( npc & );
 void buy_cow( npc & );
 void buy_chicken( npc & );
+
+/*bionic installation*/
 void bionic_install( npc & );
 void bionic_remove( npc & );
+
+/*animal mounts find/dismounting*/
 void dismount( npc & );
 void find_mount( npc & );
 
+/*barber functions*/
 void barber_beard( npc & );
 void barber_hair( npc & );
 void buy_haircut( npc & );
 void buy_shave( npc & );
+
+/*morale*/
 void morale_chat( npc & );
 void morale_chat_activity( npc & );
+/*romance*/
+void romance( npc & ); // romances this NPC
+void deny_romance( npc & ) // cbtt & remove / change this note when done. Marked 0411.
+void try_for_pregnancy( npc & ); // tries to impregnate this NPC
 void flirt( npc & ); // romance relationship dialogue.
+/*relationships*/
 void charm( npc & ); // make yourself a person of intrigue to the NPC.
+/*buy wooden logs / trade*/
 void buy_10_logs( npc & );
 void buy_100_logs( npc & );
+/*trading & loot management*/
 void start_trade( npc & );
 void sort_loot( npc & );
+/*building*/
 void do_construction( npc & );
 void do_mining( npc & );
-void do_read( npc & );
 void do_chop_plank( npc & );
 void do_vehicle_deconstruct( npc & );
 void do_vehicle_repair( npc & );
 void do_chop_trees( npc & );
+/*perform special actions*/
+void do_read( npc & );
 void do_fishing( npc & );
 void do_farming( npc & );
 void do_butcher( npc & );
+/*activity management*/
 void revert_activity( npc & );
+/*movement*/
 void goto_location( npc & );
+/*assigning things*/
 void assign_base( npc & );
 void assign_guard( npc & );
 void assign_camp( npc & );
 void abandon_camp( npc & );
+
 void stop_guard( npc & );
+
 void end_conversation( npc & );
+
+/*Insults hostiles during combat*/
 void insult_combat( npc & );
+
+/*Reveal NPC stats*/
 void reveal_stats( npc & );
+
 void follow( npc & );                // p becomes a member of your_followers
 void follow_only( npc & );           // p starts following you
 void deny_follow( npc & );           // p gets "asked_to_follow"

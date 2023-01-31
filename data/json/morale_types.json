@@ -115,6 +115,16 @@
     "text": "Marloss Craving"
   },
   {
+    "id": "morale_romanced",
+    "type": "morale_type",
+    "text": "Romanced"
+  },
+  {
+    "id": "morale_flirt",
+    "type": "morale_type",
+    "text": "Flirted or Flirted With"
+  },
+  {
     "id": "morale_food_bad",
     "type": "morale_type",
     "text": "Disliked %s"

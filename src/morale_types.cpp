@@ -190,6 +190,9 @@ const morale_type MORALE_FUNERAL( "morale_funeral" );
 const morale_type MORALE_TREE_COMMUNION( "morale_tree_communion" );
 const morale_type MORALE_ACCOMPLISHMENT( "morale_accomplishment" );
 const morale_type MORALE_FAILURE( "morale_failure" );
+const morale_type MORALE_FLIRT("morale_flirt"); // adds the flirt morale type
+const morale_type MORALE_FLIRT("morale_charm"); // adds the flirt morale type
+const morale_type MORALE_FLIRT("morale_romance"); // adds the flirt morale type
 
 namespace
 {

@@ -110,6 +110,8 @@ class player : public Character
         // by default save all contained info
         virtual void serialize( JsonOut &jsout ) const = 0;
 
+        /*Romancing an NPC.*/
+
         /** Handles and displays detailed character info for the '@' screen */
         void disp_info();
 

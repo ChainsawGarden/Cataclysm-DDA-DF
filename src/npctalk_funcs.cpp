@@ -79,6 +79,13 @@ static const efftype_id effect_asked_personal_info( "asked_personal_info" );
 static const efftype_id effect_asked_to_follow( "asked_to_follow" );
 static const efftype_id effect_asked_to_lead( "asked_to_lead" );
 static const efftype_id effect_asked_to_train( "asked_to_train" );
+
+static const efftype_id effect_asked_to_romance( "asked_to_romance" ); // npc pregnancy: general romance attempt cooldown
+static const efftype_id effect_asked_to_romance( "romanced" ); // npc pregnancy: general romance cooldown
+static const efftype_id effect_asked_to_impregnate( "asked_to_impregnate" ); // npc pregnancy: general preggers cooldown
+static const efftype_id effect_flirted_with( "was_flirted_with" ); // npc pregnancy: general flirt cooldown
+static const efftype_id effect_charmed( "was_charmed" );
+
 static const efftype_id effect_bite( "bite" );
 static const efftype_id effect_bleed( "bleed" );
 static const efftype_id effect_currently_busy( "currently_busy" );
@@ -94,6 +101,9 @@ static const mtype_id mon_horse( "mon_horse" );
 
 static const bionic_id bio_power_storage( "bio_power_storage" );
 static const bionic_id bio_power_storage_mkII( "bio_power_storage_mkII" );
+
+const trait_id ugly( "PRETTY" );
+const trait_id ugly( "UGLY" );
 
 struct itype;
 
@@ -694,6 +704,7 @@ void talk_function::morale_flirt( npc &p )
     if(success) { // if the flirt is successful
         if(p.male) { // If the player's a male...
             add_msg( m_mixed, _( "You walk away from that, feeling a little stronger, and just a little happier." ) );
+            get_player_character().add_morale( MORALE_FLIRT, rng( 3, 10 ), 10, 200_minutes, 5_minutes / 2 );
         } else { // player is female
             add_msg( m_mixed, _( "You walk away from that, feeling warm and fuzzy." ) );
         }
@@ -710,7 +721,17 @@ void talk_function::morale_flirt( npc &p )
 // Increases NPC intrigue.
 void talk_function::morale_charm( npc &p )
 {
-    int x; // do nothing rn
+    get_player_character().add_morale( MORALE_CHAT, rng( 3, 10 ), 10, 200_minutes, 5_minutes / 2 );
+    bool charm_success; // if the charm was successful or not
+    int charm_success_mod = 1; // all of the modifiers that add up to modify charm
+    if(rng( charm_success_mod, 100 )) // if 
+        {
+            charm_success = true;
+        }
+    if(charm_success)
+        {
+            add_msg( m_good, _( "%s seems to be a little intrigued by your words." ), p.disp_name() );
+        }
 }
 
 void talk_function::morale_chat_activity( npc &p )

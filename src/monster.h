@@ -491,8 +491,8 @@ class monster : public Creature
         // abstract for a fish monster representing a hidden stock of population in that area.
         int fish_population = 1;
 
-        void setpos( const tripoint &p ) override;
-        inline const tripoint &pos() const override {
+        void setpos( const tripoint &p ) override; // ultimately sets the position via tripoint
+        inline const tripoint &pos() const override { /// ultimately returns the position via tripoint
             return position;
         }
         inline int posx() const override {
@@ -553,7 +553,7 @@ class monster : public Creature
         int hp = 0;
         std::map<std::string, mon_special_attack> special_attacks;
         tripoint goal;
-        tripoint position;
+        tripoint position; // Monster position. A private tripoint, accessed through `monster.posx()`, `monster.posy()`, and `monster.posz()`. Those return ints.
         bool dead = false;
         /** Normal upgrades **/
         int next_upgrade_time();

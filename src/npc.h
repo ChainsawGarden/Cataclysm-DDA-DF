@@ -232,16 +232,31 @@ enum npc_personality_type : int {
 
 // Should probably work from this. TODO!
 struct npc_personality {
+    // this might fuck up some things. be prepared for when it does.
+    bool first_time_charmed; // For when an NPC has a little bit of intrigue in you.
+
     // All values should be in the -10 to 10 range.
-    signed char aggression;
-    signed char bravery;
-    signed char collector;
-    signed char altruism;
+    signed char aggression; // How hostile an NPC is. Should be re-named "hostility", aggressiveness isn't necessarily hostile... if I'm right.
+    signed char bravery;    // How brave an NPC is. In theory, this makes NPCs run away less.
+    signed char collector;  // (DELTA FORK) How much of a collector of things this NPC is. This specifically refers to collector missions for NPCs. Honestly shouldn't be a "personality" but whatevs for now.
+    signed char altruism;   // How concerned of the welfare of others 
+
+    /* social */
+    signed char romance;    // Base stat for romance. 
+    signed char affection;  // How particularly affectionate an NPC is. Affects frequency of related actions
+    signed char empathy;    // How particularly empathetic an NPC is. Could raise morale
+    // signed char schadenfreude; // :/
+
+
     npc_personality() {
         aggression = 0;
         bravery    = 0;
         collector  = 0;
         altruism   = 0;
+
+        romance   = 0;
+        affection = 0;
+        empathy   = 0;
     }
 
     void serialize( JsonOut &json ) const;
@@ -254,7 +269,7 @@ struct npc_opinion {
     int value; // 
     int anger; // How angry an NPC is of you (proper grammar?).
     int owed; // Positive when the npc owes the player. Negative if player owes them.
-    int intrigue; // How important that an NPC thinks you are.
+    int intrigue; // How important that an NPC thinks you are to them.
 
     npc_opinion() {
         trust    = 0;

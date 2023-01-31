@@ -101,6 +101,34 @@
         "topic": "TALK_FRIEND_CHAT",
         "condition": { "not": { "npc_has_effect": "asked_to_socialize" } }
       },
+      {
+        "text": "[ You say something flirtatious to your ally ]",
+        "topic": "TALK_FRIEND_FLIRT",
+        "effect": { "npc_add_effect": "was_flirted_with", "duration": 3600 },
+        "condition": {
+        },
+        "//": "Should only appear if you're of the opposite sex.",
+        "switch": true
+      },
+      {
+        "text": "[ You ask your ally if she or he would like to romance ]",
+        "topic": "TALK_FRIEND_ROMANCE",
+        "condition": {
+          "effect": { "npc_add_effect": "asked_to_romance", "duration": 3600 }
+        },
+        "//": "Appears only when the relationship has turned into a confirmed romantic one.",
+        "switch": true
+      },
+      {
+        "text": "[ You imply that you'd like to have a child with your ally ]",
+        "topic": "TALK_FRIEND_TRY_FOR_PREGNANCY",
+        "condition": {
+          "effect": { "npc_add_effect": "asked_to_impregnate", "duration": 3600 }
+        },
+        "//": "Appears only when the relationship has turned into a confirmed romantic one.",
+        "//1": "Condoms will have a use soon; they will outright prevent a pregnancy when worn.",
+        "switch": true
+      },
       { "text": "Can I do anything for you?", "topic": "TALK_MISSION_LIST" },
       { "text": "I changed my mind, wanted to ask you something else.", "topic": "TALK_NONE" },
       { "text": "Let's go.", "topic": "TALK_DONE" }

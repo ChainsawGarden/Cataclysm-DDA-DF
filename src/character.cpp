@@ -417,6 +417,7 @@ static const json_character_flag json_flag_UNCANNY_DODGE( "UNCANNY_DODGE" );
 static const json_character_flag json_flag_WATCH( "WATCH" );
 
 static const mtype_id mon_player_blob( "mon_player_blob" );
+static const mtype_id mon_your_baby( "mon_your_baby" );
 
 static const vitamin_id vitamin_blood( "blood" );
 static const morale_type morale_nightmare( "morale_nightmare" );
@@ -8360,13 +8361,21 @@ int Character::age() const
     return init_age + years_since_cataclysm;
 }
 
+bool Character::romance() const 
+{
+    add_morale("morale_romanced", 90, 120, 20_minutes, 1_hour);
+    // todo: come back to this tomorrow?
+}
+
 // Determines whether or not a character can undergo pregnancy.
 bool Character::can_get_pregnant() const
 {
     if(!male){ // if the character is not male
         if(age() > 18){ // if the character is an adult
-            if(womb) { // if the character has a womb (that is not damaged)
-                return true; // it can get pregnant
+            if(has_womb()) { // if the character has a womb (that is not damaged)
+                if(!is_pregnant()) { // if we aren't already pregnant
+                    return true; // it can get pregnant
+                }
             }
         }
     } else { // if the character is male
@@ -8378,11 +8387,11 @@ bool Character::can_get_pregnant() const
 // Determines whether or not a character is currently pregnant with a child.
 bool Character::is_pregnant() const
 {
-    return pregnant;
+    return pregnant; // returns ture if the bbe
 }
 
-// Impregnates a female character.
-bool Character::impregnate(const Character& father) const
+// Impregnates a female character.                                                                                                                                                                                                                                                                                                                                                                                              
+bool Character::impregnate() const // add Character& father later on
 {
     // preggers sources
     // https://www.plannedparenthood.org/learn/ask-experts/how-long-does-it-take-for-a-girl-to-get-pregnant-after-having-sex
@@ -8391,13 +8400,11 @@ bool Character::impregnate(const Character& father) const
 
     // if this character can get pregnant, impregante the womante
     if(can_get_pregnant()){
-        //Creature *c_father;
-        c_father->add_msg_if_player( _("") ); // if the pregee is the player, show a message.
-        // add effect "pregnant"
+        add_effect("pregnancy"); // chara becomes pregnant
+        return true; // impregnation was successful
         // to-do: genetic data
-    } else { // if the character can't get pregnant
-        return false;
     }
+        return false; // this character can not get pregnant
     /*
     static const efftype_id effect_fertilization_limbo( "fertilization_limbo" );
 static const efftype_id effect_pregnant( "pregnant" );
@@ -8410,11 +8417,58 @@ Effect "Period" causes female characters to bleed. Causes Moodswings, Bad Temper
 */
 }
 
+// Chance-based pregnancy.
+bool Character::try_for_pregnancy() const {
+
+    // if we're not fertile, don't even run the below code. (Let's try to think of the performance impact as we code, too!)
+    if(has_active_mutation("INFERTILE")){
+        return false;
+    }
+
+    // we are fertile
+    int preg_chance = 40; // the chance that a pregnancy could occur
+    int fert_mod = 20; // Modifier that increases or decreases the change for pregnancy.
+    int mods = 0; // (NEGATIVE means HIGHER CHANCE OF SUCCESS)
+    
+    // if we're fertile, add modifier.
+    if(has_active_mutation("FERTILE")){
+        mods -= fert_mod;
+    }
+
+    // pregnancy checks
+    if(one_in(preg_chance+mods)) {
+            const bool impregnable = impregnate(); // var for if can get pregnant
+            if(impregnable) { // if can get pregnant
+                add_msg_if_player( _("You feel a little... special.") ); // if the pregee is the player, show a message.
+                return true;
+            }
+            return false; // not impregnable
+    }
+}
+
+// todo: sometime later, add romance function
+
 // Produces a baby character. Can't do anything yet!
 // Character& Character::birth() const // to-do: implement
 bool Character::birth() const
 {
-    return false;
+    // https://www.healthline.com/health/pregnancy/intrapartum-care-vaginal-delivery
+    // https://en.wikipedia.org/wiki/Postpartum_period
+    // https://www.marchofdimes.org/find-support/topics/postpartum/your-body-after-baby-first-6-weeks
+    
+    // Postbirth pain effects last for 6 weeks.
+
+    // add effect first
+    add_effect("birthed");
+
+    // get mother position; spawn around HER
+    const tripoint *mother_pos = pos();
+
+    // spawn baby at the tripoint
+    g->place_critter_around(mon_your_baby, mother_pos, 1); // PLACE child around mother
+    
+
+    return true;
 }
 
 std::string Character::age_string() const

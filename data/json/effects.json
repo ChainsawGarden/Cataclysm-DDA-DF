@@ -102,6 +102,60 @@
   },
   {
     "type": "effect_type",
+    "id": "spent_time_with_child",
+    "name": [ "Spent time with Kids" ],
+    "desc": [ "AI tag: for having recently spending a little bit of time with your child(ren).  For now, this is a bug if you have it, for now." ]
+  },
+  {
+    "type": "effect_type",
+    "id": "spent_time_with_so",
+    "name": [ "Spent time with Significant Other" ],
+    "desc": [ "AI tag: for having recently talked with your significant other.  For now, this is a bug if you have it, for now." ]
+  },
+  {
+    "type": "effect_type",
+    "id": "was_flirted_with",
+    "name": [ "Flirted With" ],
+    "desc": [ "AI tag: for having recently flirted with an NPC.  For now, this is a bug if you have it, for now." ]
+  },
+  {
+    "type": "effect_type",
+    "id": "asked_to_romance",
+    "name": [ "Asked to Romance" ],
+    "desc": [ "AI tag: for having recently asked an NPC to romance.  This is a bug if you have it, for now." ]
+  },
+  {
+    "type": "effect_type",
+    "id": "asked_to_romance",
+    "name": [ "Asked to Romance" ],
+    "desc": [ "AI tag: for having recently asked an NPC to romance.  This is a bug if you have it, for now." ]
+  },
+  {
+    "//": "cbtt. We need to acknowledge that charming may fail.",
+    "type": "effect_type",
+    "id": "charmed",
+    "name": [ "Charmed by Someone" ]
+  },
+  {
+    "type": "effect_type",
+    "id": "romanced",
+    "name": [ "Asked to Romance" ],
+    "desc": [ "AI tag: for having recently asked an NPC to romance.  This is a bug if you have it, for now." ]
+  },
+  {
+    "type": "effect_type",
+    "id": "asked_to_impregnate",
+    "name": [ "Asked for Pregnancy" ],
+    "desc": [ "AI tag: for having recently asked an NPC to bear a child with him/her.  This is a bug if you have it, for now." ]
+  },
+  {
+    "type": "effect_type",
+    "id": "flirted",
+    "name": [ "Flirted" ],
+    "desc": [ "AI tag: for having recently flirted with an NPC.  This might not be needed in the future." ]
+  },
+  {
+    "type": "effect_type",
     "id": "asked_personal_info",
     "name": [ "Asked Info" ],
     "desc": [ "AI tag for asking to NPCs for personal information.  This is a bug if you have it." ]
@@ -1396,6 +1450,20 @@
     "apply_memorial_log": "Is at the last stage of pregnancy.",
     "blood_analysis_description": "Pregnant",
     "scaling_mods": { "str_mod": [ -1 ], "int_mod": [ -1.5 ], "dex_mod": [ -4.7 ], "per_mod": [ -0.8 ] }
+  },
+  {
+    "type": "effect_type",
+    "id": "birthed",
+    "//": "postnatal",
+    "name": [ "Childbirth", "Childbirth?", "Post Natal" ],
+    "desc": [ "You have birthed a child.." ],
+    "rating": "mixed",
+    "max_intensity": 3,
+    "apply_message": "You have delivered a child.  Congrats on the baby!",
+    "apply_memorial_log": "Birthed a child.",
+    "blood_analysis_description": "Delivered Child.",
+    "scaling_mods": { "str_mod": [ -3 ], "int_mod": [ -1.8 ], "dex_mod": [ -4.6 ], "per_mod": [ -0.1 ] },
+    "int_dur_factor": "42 d"
   },
   {
     "type": "effect_type",

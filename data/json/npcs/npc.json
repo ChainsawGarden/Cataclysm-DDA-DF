@@ -112,8 +112,8 @@
   },
   {
     "type": "npc",
-    "id": "teen",
-    "//": "A young person that seems to be over or around the age of 15.",
+    "id": "apocborn",
+    "//": "Generally, anyone born / growing up during the apocalypse.  Should honestly refer to anyone over 15.",
     "class": "NC_APOC_BORN",
     "attitude": 3,
     "mission": 0,

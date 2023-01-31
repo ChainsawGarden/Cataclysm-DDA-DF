@@ -99,6 +99,12 @@ enum class event_type : int {
     player_fails_conduct,
     player_gets_achievement,
     player_levels_spell,
+    pregnant_with_human,
+    pregnant_with_skinwalker,
+    pregnant_with_psidiocyte,
+    birthing_human,
+    birthing_skinwalker,
+    birthing_psidiocyte,
     reads_book,
     releases_subspace_specimens,
     removes_cbm,
@@ -675,6 +681,24 @@ struct event_spec<event_type::player_levels_spell> {
         }
     };
 };
+
+template<>
+struct event_spec<event_type::pregnant_with_human> : event_spec_character {};
+
+template<>
+struct event_spec<event_type::pregnant_with_skinwalker> : event_spec_character {};
+
+template<>
+struct event_spec<event_type::pregnant_with_psidiocyte> : event_spec_character {};
+
+template<>
+struct event_spec<event_type::birthing_human> : event_spec_character {};
+
+template<>
+struct event_spec<event_type::birthing_skinwalker> : event_spec_character {};
+
+template<>
+struct event_spec<event_type::birthing_psidiocyte> : event_spec_character {};
 
 template<>
 struct event_spec<event_type::reads_book> : event_spec_character_item {};

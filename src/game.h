@@ -981,8 +981,8 @@ class game
         pimpl<memorial_logger> memorial_logger_ptr;
         pimpl<spell_events> spell_events_ptr;
 
-        map &m;
-        avatar &u; // avatar? is this specifically for the player?
+        map &m; // This variable refers to the map. Map-class object.
+        avatar &u; // This variable refers to the player. Avatar-class object.
         scent_map &scent;
         const scenario *scen = nullptr;
 

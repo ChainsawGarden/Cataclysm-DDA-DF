@@ -2382,6 +2382,10 @@ void talk_effect_t::parse_string_effect( const std::string &effect_id, const Jso
             WRAP( set_npc_pickup ),
             WRAP( npc_die ),
             WRAP( npc_thankful ),
+            WRAP( romance ), // binding wrap?
+            WRAP( flirt ), // binding wrap?
+            WRAP( try_for_pregnancy ), // binding wrap?
+            WRAP( charm ),
             WRAP( clear_overrides ),
             WRAP( nothing )
 #undef WRAP

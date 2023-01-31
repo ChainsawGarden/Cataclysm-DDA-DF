@@ -519,7 +519,7 @@ void Character::hardcoded_effects( effect &it )
     bool sleeping = has_effect( effect_sleep );
     map &here = get_map();
     Character &player_character = get_player_character();
-    if( id == effect_dermatik ) {
+    if( id == effect_dermatik ) { // dermatik
         bool triggered = false; // If X is triggered
         int formication_chance = 3600; // itchy chance?
         if( dur < 4_hours ) { // if 4hrs passed
@@ -560,6 +560,14 @@ void Character::hardcoded_effects( effect &it )
             // Count duration up
             it.mod_duration( 1_turns );
         }
+    } else if(id == effect_pregnant_with_human) { // if the player if preggers (normal child)
+        // pregnancy code; what happens during pregnancy eh? this is from the Mother's perspective.
+        // AND DON'T ADD / COMMIT SHIT UNTIL PREGNANCY AS A WHOLE IS DONE. THIS IS THE ONLY WAY
+        // FOR ME TO TRACK MY CHANGES.
+    // } else if(id == effect_pregnant_with_skinwalker) {
+
+    // } else if(id == effect_pregnant_with_psidiocyte) {
+
     } else if( id == effect_formication ) {
         ///\EFFECT_INT decreases occurrence of itching from formication effect
         if( x_in_y( intense, 600 + 300 * get_int() ) && !has_effect( effect_narcosis ) ) {

@@ -441,6 +441,7 @@
     "name": { "str": "pack" },
     "looks_like": "box_small",
     "description": "SURGEON GENERAL'S WARNING: Smoking Causes Lung Cancer, Heart Disease, Emphysema And May Complicate Pregnancy.",
+    "//": "Keep the above description in mind when implementing pregnancy phase two (plot twist it just causes temporary infertility).",
     "weight": "15 g",
     "volume": "95 ml",
     "price": 0,

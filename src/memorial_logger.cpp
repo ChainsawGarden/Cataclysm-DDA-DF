@@ -162,6 +162,24 @@ void memorial_logger::add( const std::string &male_msg,
     log.push_back( { calendar::turn, cur_oter_type, oter_name, msg } );
 }
 
+// This function adds a memorial regardless of the sex of the character. Might give errors; any memorial-related bugs should look here first.
+void memorial_logger::add( const std::string &unisex_msg )
+{
+    Character &player_character = get_player_character();
+    const std::string &msg = unisex_msg;
+
+    if( msg.empty() ) {
+        return;
+    }
+
+    const oter_id &cur_ter = overmap_buffer.ter( player_character.global_omt_location() );
+    const oter_type_str_id cur_oter_type = cur_ter->get_type_id();
+    const std::string &oter_name = cur_ter->get_name();
+
+    log.push_back( { calendar::turn, cur_oter_type, oter_name, msg } );
+}
+
+
 /**
  * Loads the data in a memorial file from the given ifstream.
  * In legacy format all the memorial entry lines begin with a pipe (|).
@@ -792,6 +810,62 @@ void memorial_logger::notify( const cata::event &e )
             if( ch == avatar_id ) {
                 add( pgettext( "memorial_male", "Injected with dermatik eggs." ),
                      pgettext( "memorial_female", "Injected with dermatik eggs." ) );
+            }
+            break;
+        }
+        case event_type::pregnant_with_human: {
+            character_id ch = e.get<character_id>( "character" );
+            if( ch == avatar_id ) {
+                add( pgettext( "memorial_male", "THIS IS A BUG." ),
+                     pgettext( "memorial_female", "Pregnant with human." ) );
+            }
+            break;
+        }
+        case event_type::pregnant_with_skinwalker: {
+            character_id ch = e.get<character_id>( "character" );
+            if( ch == avatar_id ) {
+                add( pgettext( "memorial_male", "THIS IS A BUG." ),
+                     pgettext( "memorial_female", "Pregnant with skinwalker." ) );
+            }
+            break;
+        }
+        case event_type::pregnant_with_psidiocyte: {
+            character_id ch = e.get<character_id>( "character" );
+            if( ch == avatar_id ) {
+                add( pgettext( "memorial_male", "THIS IS A BUG." ),
+                     pgettext( "memorial_female", "Pregnant with psidiocyte." ) );
+            }
+            break;
+        }
+        case event_type::birthing_human: {
+            character_id ch = e.get<character_id>( "character" );
+            if( ch == avatar_id ) {
+                add( pgettext( "memorial_male", "THIS IS A BUG." ),
+                     pgettext( "memorial_female", "Birthing human." ) );
+            }
+            break;
+        }
+        case event_type::birthing_skinwalker: {
+            character_id ch = e.get<character_id>( "character" );
+            if( ch == avatar_id ) {
+                add( pgettext( "memorial_male", "THIS IS A BUG." ),
+                     pgettext( "memorial_female", "Birthing skinwalker." ) );
+            }
+            break;
+        }
+        case event_type::birthing_psidiocyte: {
+            character_id ch = e.get<character_id>( "character" );
+            if( ch == avatar_id ) {
+                add( pgettext( "memorial_male", "THIS IS A BUG." ),
+                     pgettext( "memorial_female", "Birthing psidiocyte." ) );
+            }
+            break;
+        }
+        case event_type::romancing: {
+            character_id ch = e.get<character_id>( "character" );
+            if( ch == avatar_id ) {
+                add( pgettext( "memorial_male", "Romancing." ),
+                     pgettext( "memorial_female", "Birthing psidiocyte." ) );
             }
             break;
         }

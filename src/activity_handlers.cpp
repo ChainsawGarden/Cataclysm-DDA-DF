@@ -877,15 +877,15 @@ static void butchery_drops_harvest( item *corpse_item, const mtype &mt, player &
             }
         }
         if( action == butcher_type::DISSECT ) {
-            int roll = roll_butchery() - corpse_item->damage_level();
-            roll = roll < 0 ? 0 : roll;
-            roll = std::min( entry.max, roll );
-            add_msg_debug( _( "Roll penalty for corpse damage = %s" ), 0 - corpse_item->damage_level() );
-            if( entry.type == "bionic" ) {
-                butcher_cbm_item( drop_id, p.pos(), calendar::turn, roll, entry.flags, entry.faults );
-            } else if( entry.type == "bionic_group" ) {
+            int roll = roll_butchery() - corpse_item->damage_level(); // Butchery roll minus the corpse's damage level
+            roll = roll < 0 ? 0 : roll; // If the roll is less than zero then return zero; otherwise return the roll.
+            roll = std::min( entry.max, roll ); // Get the minimum of `entry.max` and our roll.
+            add_msg_debug( _( "Roll penalty for corpse damage = %s" ), 0 - corpse_item->damage_level() ); // tells you the roll penalty in the debug messages
+            if( entry.type == "bionic" ) { // if the harvest is a bionic...
+                butcher_cbm_item( drop_id, p.pos(), calendar::turn, roll, entry.flags, entry.faults ); // drop a bionic at the player position
+            } else if( entry.type == "bionic_group" ) { // if it's in the bionic group...
                 butcher_cbm_group( item_group_id( entry.drop ), p.pos(), calendar::turn, roll,
-                                   entry.flags, entry.faults );
+                                   entry.flags, entry.faults ); // drop that group's CBMs
             }
             continue;
         }

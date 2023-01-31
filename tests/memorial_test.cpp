@@ -146,6 +146,24 @@ TEST_CASE( "memorials", "[memorial]" )
     check_memorial<event_type::dermatik_eggs_injected>(
         m, b, "Injected with dermatik eggs.", ch );
 
+    check_memorial<event_type::pregnant_with_human>(
+        m, b, "Pregnant with human.", ch );
+
+    check_memorial<event_type::pregnant_with_skinwalker>(
+        m, b, "Pregnany with skinwalker.", ch );
+
+    check_memorial<event_type::pregnant_with_psidiocyte>(
+        m, b, "Pregnant with psidiocyte.", ch );
+
+    check_memorial<event_type::birthing_human>(
+        m, b, "Birthing human.", ch );
+
+    check_memorial<event_type::birthing_skinwalker>(
+        m, b, "Birthing skinwalker.", ch );
+
+    check_memorial<event_type::birthing_psidiocyte>(
+        m, b, "Birthing psidiocyte.", ch );
+
     check_memorial<event_type::destroys_triffid_grove>(
         m, b, "Destroyed a triffid grove." );
 

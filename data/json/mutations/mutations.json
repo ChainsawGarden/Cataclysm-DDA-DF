@@ -1,6 +1,23 @@
 [
   {
     "type": "mutation",
+    "id": "FERTILE",
+    "name": { "str": "Fertile" },
+    "points": 1,
+    "description": "Blood and DNA examinations suggest that your female ability to conceive is very high.",
+    "starting_trait": true,
+    "condition": { "":"" }
+  },
+  {
+    "type": "mutation",
+    "id": "INFERTILE",
+    "name": { "str": "Infertile" },
+    "points": 1,
+    "description": "Blood and DNA examinations suggest that your female body is incapable of producing children.",
+    "starting_trait": true
+  },
+  {
+    "type": "mutation",
     "id": "FLEET",
     "name": { "str": "Fleet-Footed" },
     "points": 2,
