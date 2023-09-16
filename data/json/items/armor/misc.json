@@ -131,7 +131,7 @@
     "id": "sleeping_bag_fur",
     "type": "ARMOR",
     "name": { "str": "fur sleeping bag" },
-    "description": "A large sleeping bag lined with fur.  Who needs a tent?",
+    "description": "A large sleeping bag lined with fur.",
     "weight": "1175 g",
     "volume": "4500 ml",
     "price": 32500,
